@@ -38,8 +38,8 @@ $zero-property-map: (
   p-b: padding-bottom,
   p-l: padding-left,
 );
-@each $keyword, $property in $zero-property-map {
+/*@each $keyword, $property in $zero-property-map {
   html[dir="ltr"] body .#{$keyword}-0 {
     #{$property}: 0;
   }
-}
+}*/
