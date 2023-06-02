@@ -40,26 +40,21 @@ public class RegisterController extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             AccountDao accountDao = new AccountDao();
             HttpSession mySession = request.getSession();
+            String fullName = request.getParameter("fullName");
+            String userName = request.getParameter("userName");
+            String password = request.getParameter("password");
+            String rePassword = request.getParameter("rePassword");
+            String email = request.getParameter("email");
+            String dob = request.getParameter("dob");
+            String phone = request.getParameter("phone");
             String allowRegister = request.getParameter("allowRegister");
             if (allowRegister != null) {
                 try {
-                    String fullName=(String)mySession.getAttribute("fullName");
-                    String userName=(String)mySession.getAttribute("userName");
-                    String password=(String)mySession.getAttribute("password");
-                    String email=(String)mySession.getAttribute("email");
-                    String dob=(String)mySession.getAttribute("dob");
-                    String phone=(String)mySession.getAttribute("phone");
-                    out.print(fullName+"<br>"); 
-                    out.print(userName+"<br>"); 
-                    out.print(password+"<br>"); 
-                    out.print(email+"<br>"); 
-                    out.print(dob+"<br>"); 
-                    out.print(phone+"<br>"); 
                     LoginAndRegisterValidation loginAndRegisterValidation = new LoginAndRegisterValidation();
 //                    boolean checkAdd=accountDao.AddUser(new User(null, userName, password, "4",fullName,String.valueOf(loginAndRegisterValidation.GetAge(dob)) , null, null, phone, null, null, email, "1"));
-//                    String userID = String.valueOf((accountDao.GetUserIndex() + 1));
-//                    boolean checkAdd = accountDao.AddUser(new User(userID, userName, password, "4", fullName, String.valueOf(loginAndRegisterValidation.GetAge(dob)), null, null, phone, null, null, email, null));
-//                    out.print("checkAdd: " + checkAdd);
+                    String userID = String.valueOf((accountDao.GetUserIndex() + 1));
+                    boolean checkAdd = accountDao.AddUser(new User(userID, userName, password, "4", fullName, String.valueOf(loginAndRegisterValidation.GetAge(dob)), "1", null, phone, null, null, email, "1"));
+                    out.print("checkAdd: " + checkAdd);
                 } catch (Exception e) {
                     System.out.println("RegisterController: " + e);
                 }
@@ -68,13 +63,7 @@ public class RegisterController extends HttpServlet {
 //                request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
             }
             
-            String fullName = request.getParameter("fullName");
-            String userName = request.getParameter("userName");
-            String password = request.getParameter("password");
-            String rePassword = request.getParameter("rePassword");
-            String email = request.getParameter("email");
-            String dob = request.getParameter("dob");
-            String phone = request.getParameter("phone");
+            
             String agree_term = request.getParameter("agree_term");
             LoginAndRegisterValidation validate = new LoginAndRegisterValidation();
             String msg1 = null, msg2 = null, msg3 = null, msg4 = null, msg5 = null, msg6 = null, msg7 = null, msg8 = null, registerMessage = null;
@@ -117,15 +106,15 @@ public class RegisterController extends HttpServlet {
             }
             if (msg1 == null && msg2 == null && msg3 == null && msg4 == null && msg5 == null && msg6 == null && msg7 == null && msg8 == null) {
                 
-                mySession.setAttribute("fullName", fullName);
-                mySession.setAttribute("userName", userName);
-                mySession.setAttribute("password", password);
-                mySession.setAttribute("email", email);
-                mySession.setAttribute("dob", dob);
-                mySession.setAttribute("phone", phone);
+//                mySession.setAttribute("fullName", fullName);
+//                mySession.setAttribute("userName", userName);
+//                mySession.setAttribute("password", password);
+//                mySession.setAttribute("email", email);
+//                mySession.setAttribute("dob", dob);
+//                mySession.setAttribute("phone", phone);
                 registerMessage = "A verification link has been sent to your email account";
                 SendMail sendMail = new SendMail();
-                sendMail.SendMail(email, fullName);
+                sendMail.SendMail(email, fullName, userName, password, dob, phone);
             }
 
             request.setAttribute("fullName", fullName);

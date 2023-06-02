@@ -15,7 +15,7 @@ import javax.mail.internet.MimeMessage;
  * @author PC
  */
 public class SendMail {
-    public void SendMail(String email,String fullName)
+    public void SendMail(String email,String fullName,String userName,String password,String dob,String phone)
     {
 //        String email = "ducnvhe160331@fpt.edu.vn";
 //        RequestDispatcher dispatcher = null;
@@ -48,7 +48,7 @@ public class SendMail {
 "                                                            <h1 style=\"margin: 1rem 0\">Xác nhận email</h1>\n" +
 "                                                            <p style=\"padding-bottom: 16px\">Hi "+fullName+",<br>\n" +
 "                                                                    Vui lòng click vào nút xác nhận để tiếp tục</p>\n" +
-"                                                            <p style=\"padding-bottom: 16px\"><a href='http://localhost:9999/TechZone/auth/Register?allowRegister=true' \n" +
+"                                                            <p style=\"padding-bottom: 16px\"><a href='http://localhost:9999/TechZone/auth/Register?allowRegister=true&fullName="+fullName+"&userName="+userName+"&password="+password+"&email="+email+"&dob="+dob+"&phone="+phone+"' \n" +
 "                                                                                               style=\"padding: 12px 24px; border-radius: 4px; color: #FFF; background: #2B52F5;display: inline-block;margin: 0.5rem 0;text-decoration: none;\">Xác nhận ngay</a></p>          \n" +
 "                                                            <p style=\"padding-bottom: 16px\">Nếu không yêu cầu xác minh địa chỉ này, bạn có thể bỏ qua email này.</p>\n" +
 "                                                        </div>\n" +
