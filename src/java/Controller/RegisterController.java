@@ -4,9 +4,9 @@
  */
 package Controller;
 
-import ImplementPakage.LoginAndRegisterValidation;
+import Impl.LoginAndRegisterValidation;
 import Dal.AccountDao;
-import ImplementPakage.SendMail;
+import Impl.SendMail;
 import Model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
