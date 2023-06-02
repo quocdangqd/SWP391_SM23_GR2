@@ -218,13 +218,13 @@
         <!-- JS -->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="js/main.js"></script>
-        
+        <c:if test="${allowRegister!=null}">
             <script>
                 $(document).ready(function () {
                     $("#myModal").modal("show");
                     $(".trigger-btn").click(); // trigger click event on the button
                 });
             </script>
-        
+        </c:if>
     </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>

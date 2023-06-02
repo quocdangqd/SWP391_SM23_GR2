@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Impl;
 
 import java.util.Properties;
@@ -97,7 +94,7 @@ public class SendMail {
                 message.setContent(emailContent, "text/html;charset=UTF-8");
                 // send message
                 Transport.send(message);
-                System.out.println("message sent successfully");
+                System.out.println("Message sent successfully");
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             }
