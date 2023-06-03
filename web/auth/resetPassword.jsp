@@ -30,10 +30,12 @@
                                     <label for="your_name"><i class="zmdi zmdi-lock"></i></label>
                                     <input type="text" name="password" id="your_name" placeholder=" Mật khẩu mới "/>
                                 </div>
+                                ${message1}
                                 <div class="form-group">
                                     <label for="your_name"><i class="zmdi zmdi-lock"></i></label>
                                     <input type="text" name="repassword" id="your_name" placeholder=" Xác nhận lại mật khẩu "/>
-                                </div>                               
+                                </div>       
+                                ${message2}
                                 <div class="form-group form-button">
                                     <input type="submit" name="resetPassword" id="signin" class="form-submit" value="Đổi mật khẩu"/>
                                 </div>

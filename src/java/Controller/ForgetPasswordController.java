@@ -39,37 +39,41 @@ public class ForgetPasswordController extends HttpServlet {
                 String email = request.getParameter("email");
                 SendMail sendMail = new SendMail();
                 sendMail.SendMailReset(email);
-                String message="A verification link has been sent to your email account";
-                request.setAttribute("email",email); 
-                request.setAttribute("message",message); 
-                request.getRequestDispatcher("forgetpassword.jsp").forward(request, response); 
-            }
-            else if(request.getParameter("email")!=null)// g?i mail
+                String message = "A verification link has been sent to your email account";
+                request.setAttribute("email", email);
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("forgetpassword.jsp").forward(request, response);
+            } else if (request.getParameter("email") != null)// g?i mail
             {
-                String email=request.getParameter("email"); 
-                HttpSession session=request.getSession();
+                String email = request.getParameter("email");
+                HttpSession session = request.getSession();
                 session.setAttribute("email", email);
-                request.getRequestDispatcher("resetPassword.jsp").forward(request, response); 
+                request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
 //                accountDao.resetPassword(email, newPassword)
-            }
-            else if(request.getParameter("resetPassword")!=null)// g?i mail
+            } else if (request.getParameter("resetPassword") != null)// g?i mail
             {
-                String password=request.getParameter("password"); 
-                String repassword=request.getParameter("repassword"); 
-                if(!password.equals(repassword))
-                {
-                    String message ="Mật khẩu bạn nhập không khớp";
-                    request.setAttribute("message",message); 
-                    request.getRequestDispatcher("resetPassword.jsp").forward(request, response); 
+                String password = request.getParameter("password");
+                String repassword = request.getParameter("repassword");
+                String message1 = null, message2 = null;
+                LoginAndRegisterValidation validate = new LoginAndRegisterValidation();
+                if (!validate.PassWordValidate(password) || !validate.CheckEqualRepasswordValidate(password.trim(), repassword)) {
+                    if (!validate.PassWordValidate(password)) {
+                        message1 = "Yêu cầu mật khẩu phải có ít nhất 8 ký tự và phải chứa ít nhất một chữ cái viết thường, một chữ cái viết hoa, một chữ số và một ký tự đặc biệt trong tập hợp [@#$%^&+=]. Ngoài ra, mật khẩu không được chứa khoảng trắng (dấu cách).";
+                    }
+                    if (!validate.CheckEqualRepasswordValidate(password.trim(), repassword)) {
+                        message2 = "Nhập Lại Mật Khẩu Không Trùng Với Mật Khẩu Đã Tạo";
+                    }
+                    request.setAttribute("message1", message1);
+                    request.setAttribute("message2", message2);
+                    request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
                 }
-//                LoginAndRegisterValidation validation=new LoginAndRegisterValidation();
-                
-                HttpSession session =request.getSession();
-                String email=(String)session.getAttribute("email");
-                accountDao.resetPassword(email, request.getParameter("password"));
-                request.setAttribute("allowResetPassword","true"); 
-                request.getRequestDispatcher("login.jsp").forward(request, response); 
-                
+                if (message1 == null && message2 == null) {
+                    HttpSession session = request.getSession();
+                    String email = (String) session.getAttribute("email");
+                    accountDao.resetPassword(email, request.getParameter("password"));
+                    request.setAttribute("allowResetPassword", "true");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
             }
 
         }
