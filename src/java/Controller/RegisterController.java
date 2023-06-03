@@ -48,22 +48,21 @@ public class RegisterController extends HttpServlet {
             String dob = request.getParameter("dob");
             String phone = request.getParameter("phone");
             String allowRegister = request.getParameter("allowRegister");
-            if (allowRegister != null) {
-                try {
-                    LoginAndRegisterValidation loginAndRegisterValidation = new LoginAndRegisterValidation();
-//                    boolean checkAdd=accountDao.AddUser(new User(null, userName, password, "4",fullName,String.valueOf(loginAndRegisterValidation.GetAge(dob)) , null, null, phone, null, null, email, "1"));
-                    String userID = String.valueOf((accountDao.GetUserIndex() + 1));
-                    boolean checkAdd = accountDao.AddUser(new User(userID, userName, password, "4", fullName, String.valueOf(loginAndRegisterValidation.GetAge(dob)), "1", null, phone, null, null, email, "1"));
-                    out.print("checkAdd: " + checkAdd);
-                } catch (Exception e) {
-                    System.out.println("RegisterController: " + e);
-                }
-//                out.print("allowRegister"+allowRegister); 
-                request.setAttribute("allowRegister", allowRegister);
-//                request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
-            }
-            
-            
+//            if (allowRegister != null) {
+////                try {
+////                    LoginAndRegisterValidation loginAndRegisterValidation = new LoginAndRegisterValidation();
+//////                    boolean checkAdd=accountDao.AddUser(new User(null, userName, password, "4",fullName,String.valueOf(loginAndRegisterValidation.GetAge(dob)) , null, null, phone, null, null, email, "1"));
+////                    String userID = String.valueOf((accountDao.GetUserIndex() + 1));
+////                    boolean checkAdd = accountDao.AddUser(new User(userID, userName, password, "4", fullName, String.valueOf(loginAndRegisterValidation.GetAge(dob)), "1", null, phone, null, null, email, "1"));
+////                    out.print("checkAdd: " + checkAdd);
+//
+////                } catch (Exception e) {
+////                    System.out.println("RegisterController: " + e);
+////                }
+//                request.setAttribute("allowRegister", allowRegister);
+//                out.print("runnable"); 
+//                request.getRequestDispatcher("/auth/login.jsp").forward(request, response);=> can not run why?
+//            }
             String agree_term = request.getParameter("agree_term");
             LoginAndRegisterValidation validate = new LoginAndRegisterValidation();
             String msg1 = null, msg2 = null, msg3 = null, msg4 = null, msg5 = null, msg6 = null, msg7 = null, msg8 = null, registerMessage = null;
@@ -83,8 +82,10 @@ public class RegisterController extends HttpServlet {
             if (!validate.CheckEqualRepasswordValidate(password.trim(), rePassword.trim())) {
                 msg4 = "Nhập Lại Mật Khẩu Không Trùng Với Mật Khẩu Đã Tạo";
             }
-            if (!validate.EmailValidate(email)) {
+            if (!validate.EmailValidate(email)||accountDao.checkExistEmail(email)) {
                 msg5 = "Email Không Hợp Lệ";
+                if(accountDao.checkExistEmail(email))
+                    msg5 = "Email đăng kí đã tồn tại";
             }
             try {
                 if (!validate.DOBValidate(dob)) {
@@ -105,13 +106,6 @@ public class RegisterController extends HttpServlet {
                 msg8 = "Bạn Cần Đồng Ý Với Điều Khoản Để Tiến Hành Đăng Kí";
             }
             if (msg1 == null && msg2 == null && msg3 == null && msg4 == null && msg5 == null && msg6 == null && msg7 == null && msg8 == null) {
-                
-//                mySession.setAttribute("fullName", fullName);
-//                mySession.setAttribute("userName", userName);
-//                mySession.setAttribute("password", password);
-//                mySession.setAttribute("email", email);
-//                mySession.setAttribute("dob", dob);
-//                mySession.setAttribute("phone", phone);
                 registerMessage = "A verification link has been sent to your email account";
                 SendMail sendMail = new SendMail();
                 sendMail.SendMail(email, fullName, userName, password, dob, phone);
@@ -151,13 +145,39 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            AccountDao accountDao = new AccountDao();
+            String allowRegister = request.getParameter("allowRegister");
+            String fullName = request.getParameter("fullName");
+            String userName = request.getParameter("userName");
+            String password = request.getParameter("password");
+            String rePassword = request.getParameter("rePassword");
+            String email = request.getParameter("email");
+            String dob = request.getParameter("dob");
+            String phone = request.getParameter("phone");
+            if (allowRegister != null) {
+                try {
+                    LoginAndRegisterValidation loginAndRegisterValidation = new LoginAndRegisterValidation();
+                    String userID = String.valueOf((accountDao.GetUserIndex() + 1));
+                    boolean checkAdd = accountDao.AddUser(new User(userID, userName, password, "4", fullName, String.valueOf(loginAndRegisterValidation.GetAge(dob)), "1", null, phone, null, null, email, "1"));
+                } catch (Exception e) {
+                    System.out.println("RegisterController: " + e);
+                }
+                request.setAttribute("allowRegister", allowRegister);
+                request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
+            }
+        }
+
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
     @Override
     public String getServletInfo() {
         return "Short description";

@@ -154,7 +154,9 @@
                     </div>
                     <div class="modal-body">
                         <p class="text-center">
-                            Đăng kí tài khoản thành công!
+                            <c:if test="${allowRegister!=null}">Đăng kí tài khoản thành công!</c:if>
+                            <c:if test="${allowResetPassword!=null}">Bạn đã đổi mật khẩu thành công!!</c:if>
+                            
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -190,9 +192,10 @@
                                     <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
                                     <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
                                 </div>
+                                    <a href="forgetpassword.jsp" >Quên mật khẩu</a>
                                 <div class="form-group">
                                     <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                    <label for="remember-me" class="label-agree-term"><span><span></span></span>Nhớ mật khẩu</label>
+                                    <label for="remember-me" class="label-agree-term"><span><span></span></span>Ghi nhớ mật khẩu</label>
 
                                 </div>
                                 <div class="form-group form-button">
@@ -218,7 +221,7 @@
         <!-- JS -->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="js/main.js"></script>
-        <c:if test="${allowRegister!=null}">
+        <c:if test="${(allowRegister!=null) ||(allowResetPassword!=null)}">
             <script>
                 $(document).ready(function () {
                     $("#myModal").modal("show");

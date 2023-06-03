@@ -8,6 +8,10 @@
         <servlet-name>registe</servlet-name>
         <servlet-class>Controller.LoginController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ForgetPasswordController</servlet-name>
+        <servlet-class>Controller.ForgetPasswordController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/auth/Register</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>registe</servlet-name>
         <url-pattern>/auth/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgetPasswordController</servlet-name>
+        <url-pattern>/auth/forgetPassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
