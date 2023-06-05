@@ -15,6 +15,7 @@ import java.io.PrintWriter;
  *
  * @author HAI DANG
  */
+// file name not match??
 public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
