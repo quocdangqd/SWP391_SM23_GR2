@@ -5,7 +5,7 @@
         <servlet-class>Controller.RegisterController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>registe</servlet-name>
+        <servlet-name>LoginController</servlet-name>
         <servlet-class>Controller.LoginController</servlet-class>
     </servlet>
     <servlet>
@@ -17,12 +17,14 @@
         <url-pattern>/auth/Register</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>registe</servlet-name>
-        <url-pattern>/auth/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ForgetPasswordController</servlet-name>
         <url-pattern>/auth/forgetPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/auth/login</url-pattern>
+        <url-pattern>/auth/LoginWithGoogle</url-pattern>
+        <url-pattern>/view/homepage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

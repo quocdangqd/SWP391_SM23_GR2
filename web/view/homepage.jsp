@@ -22,6 +22,7 @@
     </head>
     <body>
         <div class="app">
+            ${message}
             <jsp:include page="header.jsp"></jsp:include>
                 <!-- slide - menu list -->
                 <section class="menu-slide">

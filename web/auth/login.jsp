@@ -186,11 +186,11 @@
                             <form method="POST" action="login" class="register-form" id="login-form">
                                 <div class="form-group">
                                     <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                    <input type="text" name="your_name" id="your_name" placeholder="Your User Name"/>
+                                    <input type="text" name="username" id="your_name" placeholder="Your User Name"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                    <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                                    <input type="password" name="password" id="your_pass" placeholder="Password"/>
                                 </div>
                                     <a href="forgetpassword.jsp" >Quên mật khẩu</a>
                                 <div class="form-group">
@@ -199,16 +199,19 @@
 
                                 </div>
                                 <div class="form-group form-button">
+                                    <!--// mình sét nhi?u th? form d?c không-->
                                     <input type="submit" name="signIn" id="signin" class="form-submit" value="Đăng nhập"/>
                                     <input type="submit" name="signUp" id="signin" class="form-submit" value="Tạo tài khoản"/>
                                 </div>
+                                    ${message}
                             </form>
                             <div class="social-login">
                                 <span class="social-label">ĐĂNG NHẬP VỚI</span>
                                 <ul class="socials">
                                     <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
                                     <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                                    <li><a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:9999/TechZone/auth/LoginWithGoogle&response_type=code
+		   &client_id=403286912163-5tgcg35ogl3jujvvteq6b4vm38uvvu1h.apps.googleusercontent.com&approval_prompt=force"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
                                 </ul>
                             </div>
                         </div>

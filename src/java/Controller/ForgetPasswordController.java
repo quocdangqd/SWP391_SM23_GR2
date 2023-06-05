@@ -67,7 +67,7 @@ public class ForgetPasswordController extends HttpServlet {
                     request.setAttribute("message2", message2);
                     request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
                 }
-                if (message1 == null && message2 == null) {
+                else if (message1 == null && message2 == null) {// if else 
                     HttpSession session = request.getSession();
                     String email = (String) session.getAttribute("email");
                     accountDao.resetPassword(email, request.getParameter("password"));

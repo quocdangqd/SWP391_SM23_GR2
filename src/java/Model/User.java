@@ -16,6 +16,11 @@ public class User {
     public User() {
     }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+    
     public User(String userID, String username, String password, String user_roleID, String name, String age, String user_sexID, String address, String phone_number, String avatar, String register_code, String email, String status) {
         this.userID = userID;
         this.username = username;
