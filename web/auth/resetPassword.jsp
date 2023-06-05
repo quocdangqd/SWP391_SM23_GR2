@@ -1,9 +1,3 @@
-<%-- 
-    Document   : doiMatKhau
-    Created on : May 23, 2023, 4:09:43 PM
-    Author     : PC
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +11,7 @@
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
         <!-- Main css -->
-<!--        <link rel="stylesheet" href="css/style.css">-->
+        <!--        <link rel="stylesheet" href="css/style.css">-->
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
@@ -30,12 +24,20 @@
                             <figure><img src="images/logo1.png" alt="sing up image"></figure>
                         </div>
 
-                        <div class="signin-form"><h2>Quên mật khẩu</h2>
-                            <form method="POST" action="forgetPassword?forgetPassword=true"class="register-form" id="login-form">
-                                <input type="text" name="email" value="${email}" id="your_name" style="padding: 6px 1px;" placeholder="Nhập vào đây email của bạn"/>
-                                                                                          
+                        <div class="signin-form"><h2>Đặt Lại Mật Khẩu</h2>
+                            <form method="POST" action="forgetPassword" class="register-form" id="login-form">
+                                <div class="form-group">
+                                    <label for="your_name"><i class="zmdi zmdi-lock"></i></label>
+                                    <input type="text" name="password" id="your_name" placeholder=" Mật khẩu mới "/>
+                                </div>
+                                ${message1}
+                                <div class="form-group">
+                                    <label for="your_name"><i class="zmdi zmdi-lock"></i></label>
+                                    <input type="text" name="repassword" id="your_name" placeholder=" Xác nhận lại mật khẩu "/>
+                                </div>       
+                                ${message2}
                                 <div class="form-group form-button">
-                                    <input type="submit" name="confirm" id="signin" class="form-submit" value="Xác nhận"/>
+                                    <input type="submit" name="resetPassword" id="signin" class="form-submit" value="Đổi mật khẩu"/>
                                 </div>
                                 ${message}
                             </form>

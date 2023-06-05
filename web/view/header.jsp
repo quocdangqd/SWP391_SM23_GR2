@@ -16,11 +16,11 @@
                 </div>
                 <nav class="col-lg-7 col-md-0 col-sm-0 header__top-right">
                     <ul class="header__top-list">
-                        <li class="header__top-item">
+<!--                        <li class="header__top-item">
                             <a href="#" class="header__top-link">
 
                                 Tài khoản của tôi</a>
-                        </li>
+                        </li>-->
                         <li class="header__top-item">
                             <a href="#" class="header__top-link">Giỏ hàng</a>
                         </li>
@@ -28,11 +28,11 @@
                             <a href="#" class="header__top-link">Thanh toán</a>
                         </li>
                         <li class="header__top-item">
-                            <a href="login.jsp" class="header__top-link">Đăng nhập</a>
+                            <a href="../auth/login.jsp" class="header__top-link">Đăng nhập</a>
                         </li>
-                        <li class="header__top-item">
+<!--                        <li class="header__top-item">
                             <a href="register.jsp" class="header__top-link">Đăng ký</a>
-                        </li>
+                        </li>-->
                     </ul>
                 </nav>
             </section>
