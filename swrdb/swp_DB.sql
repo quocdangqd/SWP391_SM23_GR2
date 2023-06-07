@@ -295,7 +295,7 @@ DROP TABLE IF EXISTS `salecode`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `salecode` (
-  `salecodeID`  int AUTO_INCREMENTcategory NOT NULL,
+  `salecodeID`  int AUTO_INCREMENT NOT NULL,
   `code` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `amount` int DEFAULT NULL,
   `expiration_date` date DEFAULT NULL,
