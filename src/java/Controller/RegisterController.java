@@ -161,7 +161,7 @@ public class RegisterController extends HttpServlet {
                 try {
                     LoginAndRegisterValidation loginAndRegisterValidation = new LoginAndRegisterValidation();
 //                    String userID = String.valueOf((accountDao.GetUserIndex() + 1));
-                    boolean checkAdd = accountDao.AddUser(new User(null, userName, password, "4", fullName, String.valueOf(loginAndRegisterValidation.GetAge(dob)), "1", null, phone, null, null, email, "1"));
+                    boolean checkAdd = accountDao.AddUser(new User(null, userName, password, "1", fullName, String.valueOf(loginAndRegisterValidation.GetAge(dob)), "1", null, phone, null, null, email, "1"));
                 } catch (Exception e) {
                     System.out.println("RegisterController: " + e);
                 }
