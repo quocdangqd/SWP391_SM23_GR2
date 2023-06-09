@@ -63,22 +63,22 @@ public class AccountDao extends ConnectMySQL {
 
     public boolean AddUser(User user) {
         try {
-            String sqlSelect = "insert into swp.user(userID, username, password, user_roleID, name, age, user_sexID, address, phone_number, avatar, register_code, email, status) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlSelect = "insert into swp.user( username, password, user_roleID, name, age, user_sexID, address, phone_number, avatar, register_code, email, status) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 //            user.setUserID(String.valueOf(GetUserIndex()));
             pstm = connection.prepareStatement(sqlSelect);
-            pstm.setInt(1, Integer.parseInt(user.getUserID()));
-            pstm.setString(2, user.getUsername());
-            pstm.setString(3, user.getPassword());
-            pstm.setInt(4, Integer.parseInt(user.getUser_roleID()));
-            pstm.setString(5, user.getName());
-            pstm.setInt(6, Integer.parseInt(user.getAge()));// fix in model
-            pstm.setInt(7, Integer.parseInt(user.getUser_sexID()));
-            pstm.setString(8, user.getAddress());
-            pstm.setString(9, user.getPhone_number());
-            pstm.setString(10, user.getAvatar());
-            pstm.setString(11, user.getRegister_code());
-            pstm.setString(12, user.getEmail());
-            pstm.setInt(13, Integer.parseInt(user.getStatus()));
+//            pstm.setInt(1, Integer.parseInt(user.getUserID()));
+            pstm.setString(1, user.getUsername());
+            pstm.setString(2, user.getPassword());
+            pstm.setInt(3, Integer.parseInt(user.getUser_roleID()));
+            pstm.setString(4, user.getName());
+            pstm.setInt(5, Integer.parseInt(user.getAge()));// fix in model
+            pstm.setInt(6, Integer.parseInt(user.getUser_sexID()));
+            pstm.setString(7, user.getAddress());
+            pstm.setString(8, user.getPhone_number());
+            pstm.setString(9, user.getAvatar());
+            pstm.setString(10, user.getRegister_code());
+            pstm.setString(11, user.getEmail());
+            pstm.setInt(12, Integer.parseInt(user.getStatus()));
             pstm.execute();
             return true;
         } catch (Exception e) {
@@ -87,21 +87,21 @@ public class AccountDao extends ConnectMySQL {
         return false;
     }
 
-    public int GetUserIndex() {
-        String sqlSelect = "select max(userID)  FROM swp.user;";
-        try {
-            pstm = connection.prepareStatement(sqlSelect);
-            rs = pstm.executeQuery();
-            if (rs.next() == false) {
-                return 1;
-            } else {
-                return Integer.parseInt(rs.getString(1));
-            }
-        } catch (Exception e) {
-            System.out.println("GetUserIndex: " + e);
-        }
-        return -1;
-    }
+//    public int GetUserIndex() {
+//        String sqlSelect = "select max(userID)  FROM swp.user;";
+//        try {
+//            pstm = connection.prepareStatement(sqlSelect);
+//            rs = pstm.executeQuery();
+//            if (rs.next() == false) {
+//                return 1;
+//            } else {
+//                return Integer.parseInt(rs.getString(1));
+//            }
+//        } catch (Exception e) {
+//            System.out.println("GetUserIndex: " + e);
+//        }
+//        return -1;
+//    }
 
     public User GetUserByEmail(String email) {
         String sqlSelect = "select* from swp.user where email= ?";

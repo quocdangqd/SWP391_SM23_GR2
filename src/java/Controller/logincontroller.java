@@ -22,15 +22,13 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             String urlString= request.getRequestURI();
-            if(urlString.equals(request.getContextPath()+"/view/homepage"))
+            if(urlString.equals(request.getContextPath()+"/customer/homepage"))
             {
                 HttpSession session =request.getSession();
                 if(session.getAttribute("user")!=null)
                 {
-                    request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
+                    request.getRequestDispatcher("/customer/homepage.jsp").forward(request, response);
                 }
-                else
-                    out.print("Access Dinied!"); 
             }
             else if(urlString.equals(request.getContextPath()+"/auth/LoginWithGoogle"))
             {
@@ -44,11 +42,11 @@ public class LoginController extends HttpServlet {
                     user.setEmail(email);
                     HttpSession mySession = request.getSession();
                     mySession.setAttribute("user", user); 
-                    response.sendRedirect(request.getContextPath()+"/view/homepage");
+                    response.sendRedirect(request.getContextPath()+"/customer/homepage");
                 }
-                else
+                else// neu khong dang nhap thanh cong quay lai trang login
                 {
-                    out.print("Your email has not been registered!"); 
+                    response.sendRedirect(request.getContextPath()+"/auth/login.jsp");
                 }
             }
             else
@@ -73,7 +71,7 @@ public class LoginController extends HttpServlet {
                 if (accountDao.checkLogin(user)) {
                     HttpSession mySession = request.getSession();
                     mySession.setAttribute("user", user); 
-                    response.sendRedirect(request.getContextPath()+"/view/homepage");
+                    response.sendRedirect(request.getContextPath()+"/customer/homepage");
                 } else {
                     request.setAttribute("message", "Login Fails!");
                     request.getRequestDispatcher("/auth/login.jsp").forward(request, response);

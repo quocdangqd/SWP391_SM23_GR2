@@ -160,8 +160,8 @@ public class RegisterController extends HttpServlet {
             if (allowRegister != null) {
                 try {
                     LoginAndRegisterValidation loginAndRegisterValidation = new LoginAndRegisterValidation();
-                    String userID = String.valueOf((accountDao.GetUserIndex() + 1));
-                    boolean checkAdd = accountDao.AddUser(new User(userID, userName, password, "4", fullName, String.valueOf(loginAndRegisterValidation.GetAge(dob)), "1", null, phone, null, null, email, "1"));
+//                    String userID = String.valueOf((accountDao.GetUserIndex() + 1));
+                    boolean checkAdd = accountDao.AddUser(new User(null, userName, password, "4", fullName, String.valueOf(loginAndRegisterValidation.GetAge(dob)), "1", null, phone, null, null, email, "1"));
                 } catch (Exception e) {
                     System.out.println("RegisterController: " + e);
                 }
@@ -169,7 +169,6 @@ public class RegisterController extends HttpServlet {
                 request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
             }
         }
-
     }
 
     @Override
