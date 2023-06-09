@@ -12,7 +12,6 @@
             background-color: #ef2317;
             color: white;
             padding: 16px;
-            font-size: 16px;
             font-family: Roboto;
             border: none;
         }
