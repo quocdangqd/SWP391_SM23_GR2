@@ -384,6 +384,10 @@ body{
 
 @media (max-width:992px){
     .header__top{
+<<<<<<< HEAD
+=======
+        width: 100%;
+>>>>>>> Đức
     }
     .header__nav-menu-wrap{
         display: none;
@@ -410,7 +414,11 @@ body{
     }
 
     .header__cart{
+<<<<<<< HEAD
         margin-left: 85%;
+=======
+         padding-left: 90%;
+>>>>>>> Đức
     }
 
     .header__nav{

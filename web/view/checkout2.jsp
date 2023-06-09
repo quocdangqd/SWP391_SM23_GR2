@@ -122,10 +122,17 @@
                                     <input id="httt-2" name="httt_ma" type="radio" class="custom-control-input" required=""
                                            value="2">
                                     <label class="custom-control-label" for="httt-2">Chuyển khoản</label>
+<<<<<<< HEAD
                                 </div>                             
                             </div>
                             <hr class="mb-4">
                             <button class="btn btn-primary btn-lg btn-block" style="font-size: 20px; background-color:#ff3333" type="submit" name="btnDatHang">Đặt
+=======
+                                </div>                              
+                            </div>
+                            <hr class="mb-4">
+                            <button class="btn btn-primary btn-lg btn-block" style="font-size: 20px; background-color: #cc9900;"  type="submit" name="btnDatHang">Đặt
+>>>>>>> Đức
                                 hàng</button>
                         </div>
                     </div>
