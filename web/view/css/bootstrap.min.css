@@ -1941,9 +1941,6 @@ a.btn.disabled,fieldset:disabled a.btn{
 }
 .btn-primary{
     color:#fff;
-    background-color:#ff6600;
-    background-color:#cc9900;
-    border-color:#007bff
 }
 .btn-primary:hover{
     color:#fff;
@@ -1968,12 +1965,11 @@ a.btn.disabled,fieldset:disabled a.btn{
 }
 .btn-secondary{
     color:#fff;
-    background-color:#6c757d;
-    border-color:#6c757d
+    background-color:#ff3333;
 }
 .btn-secondary:hover{
     color:#fff;
-    background-color:#5a6268;
+    background-color:#ff3333;
     border-color:#545b62
 }
 .btn-secondary.focus,.btn-secondary:focus{
@@ -3902,7 +3898,7 @@ input[type=button].btn-block,input[type=reset].btn-block,input[type=submit].btn-
 }
 .badge-secondary{
     color:#fff;
-    background-color:#6c757d
+    background-color:#ff3333;
 }
 .badge-secondary[href]:focus,.badge-secondary[href]:hover{
     color:#fff;
