@@ -384,9 +384,10 @@ body{
 
 @media (max-width:992px){
     .header__top{
+        width: 100%;
     }
     .header__nav-menu-wrap{
-        display: none;
+      display: none;
     }
 
     /*.header__search{
@@ -403,14 +404,15 @@ body{
 }
 
 @media (max-width:768px){
-    .hide-on-mobile{   
+    .hide-on-mobile{
     }
 
-    .header__search{      
+    .header__search{
+        
     }
 
     .header__cart{
-        margin-left: 85%;
+        padding-left: 90%;
     }
 
     .header__nav{

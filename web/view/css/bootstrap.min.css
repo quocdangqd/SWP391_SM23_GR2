@@ -1942,6 +1942,7 @@ a.btn.disabled,fieldset:disabled a.btn{
 .btn-primary{
     color:#fff;
     background-color:#ff6600;
+    background-color:#cc9900;
     border-color:#007bff
 }
 .btn-primary:hover{
