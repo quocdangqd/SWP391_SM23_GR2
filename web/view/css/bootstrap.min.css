@@ -1941,11 +1941,8 @@ a.btn.disabled,fieldset:disabled a.btn{
 }
 .btn-primary{
     color:#fff;
-<<<<<<< HEAD
     background-color:#ff6600;
-=======
     background-color:#cc9900;
->>>>>>> Đức
     border-color:#007bff
 }
 .btn-primary:hover{

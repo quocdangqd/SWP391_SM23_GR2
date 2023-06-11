@@ -384,13 +384,10 @@ body{
 
 @media (max-width:992px){
     .header__top{
-<<<<<<< HEAD
-=======
         width: 100%;
->>>>>>> Đức
     }
     .header__nav-menu-wrap{
-        display: none;
+      display: none;
     }
 
     /*.header__search{
@@ -407,18 +404,15 @@ body{
 }
 
 @media (max-width:768px){
-    .hide-on-mobile{   
+    .hide-on-mobile{
     }
 
-    .header__search{      
+    .header__search{
+        
     }
 
     .header__cart{
-<<<<<<< HEAD
-        margin-left: 85%;
-=======
-         padding-left: 90%;
->>>>>>> Đức
+        padding-left: 90%;
     }
 
     .header__nav{
