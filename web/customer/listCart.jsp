@@ -69,7 +69,7 @@
                                 <img src="images1/product/8936049524905.jpg">
                             </div>
                             <a href="" class="cart__body-name-title">
-                                5 Centimet Trên Giây
+                                Bàn phím
                             </a>
                         </div>
                         <div class="col-3 cart__body-quantity">
@@ -90,7 +90,7 @@
                                 <img src="images1/product/untitled-1_9_25_1.jpg">
                             </div>
                             <a href="" class="cart__body-name-title">
-                                Tôi Thích Bản Thân Nỗ Lực Hơn ( Tái bản 2019)
+                                Tai nghe
                             </a>
                         </div>
                         <div class="col-3 cart__body-quantity">
@@ -111,7 +111,7 @@
                                 <img src="images1/product/8936186542176.jpg">
                             </div>
                             <a href="" class="cart__body-name-title">
-                                Tôi Thích Một Cô Gái Nhưng Không Dám Ngỏ Lời
+                                Chuột
                             </a>
                         </div>
                         <div class="col-3 cart__body-quantity">
@@ -132,7 +132,7 @@
                                 <img src="images1/product/biamem.jpg">
                             </div>
                             <a href="" class="cart__body-name-title">
-                                Con Chim Xanh Biếc Bay Về - Tặng Kèm 6
+                                Bàn phím
                             </a>
                         </div>
                         <div class="col-3 cart__body-quantity">
@@ -149,7 +149,6 @@
 
                     <article class="row cart__foot">
                         <div class="col-6 col-lg-6 col-sm-6 cart__foot-update">
-                            <button class="cart__foot-update-btn">Cập nhật giỏ hàng</button>
                         </div>
 
                         <p class="col-3 col-lg-3 col-sm-3 cart__foot-total">
