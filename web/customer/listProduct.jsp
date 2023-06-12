@@ -111,9 +111,9 @@
                             </div>
 
                             <div class="product__panel-price">
-                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                                </span>
+                               <div class="bestselling__product-btn-wrap">
+                                        <button class="bestselling__product-btn">So sánh</button>
+                                    </div>
                                 <span class="product__panel-price-current">
                                     <button>291.650đ</button>
                                 </span>

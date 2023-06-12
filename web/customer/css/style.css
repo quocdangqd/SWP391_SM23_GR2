@@ -401,7 +401,7 @@ body{
 
     .header__search-select{
         display: none;
-    }
+    } 
 }
 
 @media (max-width:768px){
@@ -425,8 +425,6 @@ body{
     .header__logo-img {
         max-width: 10rem;
     }
-
-
 }
 
 @media (min-width:768px){
