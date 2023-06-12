@@ -43,7 +43,7 @@
                         <div class="col-md-4 order-md-2 mb-4">
                             <h4 class="d-flex justify-content-between align-items-center mb-3">
                                 <span class="text-muted" style="font-size: 30px">GIỎ HÀNG</span>
-                                <span class="badge badge-secondary badge-pill"><a href="listCart.jsp" class="col-lg-1 col-md-1 col-sm-0 header__cart">
+                                <span class="badge badge-secondary badge-pill" style="background-color: #ff3333;"><a href="listCart.jsp" class="col-lg-1 col-md-1 col-sm-0 header__cart">
                                         <div class="header__cart-icon-wrap">
                                             <span class="header__notice">4</span>
                                             <i class="fas fa-shopping-cart header__nav-cart-icon"></i>
@@ -84,7 +84,7 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" style="font-size: 20px" placeholder="Mã khuyến mãi">
                                 <div class="input-group-append">
-                                    <button type="submit" class="btn btn-secondary"><h1 style="font-size: 10px">Xác nhận</h1></button>
+                                    <button type="submit" class="btn btn-secondary" style="background-color: #ff3333;"><h1 style="font-size: 10px">Xác nhận</h1></button>
                                 </div>
 
                             </div>
