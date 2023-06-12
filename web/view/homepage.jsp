@@ -22,10 +22,11 @@
     </head>
     <body>
         <div class="app">
-            ${message}
             <jsp:include page="header.jsp"></jsp:include>
                 <!-- slide - menu list -->
+
                 <section class="menu-slide">
+
                     <div class="container">
                         <div class="row">
                             <nav class="menu__nav col-lg-3 col-md-12 col-sm-0">
@@ -237,7 +238,7 @@
                                     </span>
 
                                     <div class="bestselling__product-btn-wrap">
-                                        <button class="bestselling__product-btn">Xem hàng</button>
+                                        <button class="bestselling__product-btn" >Xem hàng</button>
                                     </div>
                                 </div>
                             </div>

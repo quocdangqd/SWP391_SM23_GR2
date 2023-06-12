@@ -4,9 +4,54 @@
     Author     : laptop
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <header id="header">
+    <style>
+        .dropbtn {
+            background-color: #ef2317;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            font-family: Roboto;
+            border: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 16px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ef2317;
+            color: white;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #ef2317;
+        }
+    </style>
     <!-- header top -->
     <div class="header__top">
         <div class="container">
@@ -15,25 +60,41 @@
                     <span>TECHZONE - LỰA CHỌN ĐỂ VƯƠN XA</span>
                 </div>
                 <nav class="col-lg-7 col-md-0 col-sm-0 header__top-right">
-                    <ul class="header__top-list">
-<!--                        <li class="header__top-item">
-                            <a href="#" class="header__top-link">
-
-                                Tài khoản của tôi</a>
-                        </li>-->
-                        <li class="header__top-item">
-                            <a href="#" class="header__top-link">Giỏ hàng</a>
-                        </li>
-                        <li class="header__top-item">
-                            <a href="#" class="header__top-link">Thanh toán</a>
-                        </li>
-                        <li class="header__top-item">
-                            <a href="../auth/login.jsp" class="header__top-link">Đăng nhập</a>
-                        </li>
-<!--                        <li class="header__top-item">
-                            <a href="register.jsp" class="header__top-link">Đăng ký</a>
-                        </li>-->
-                    </ul>
+                    <c:if test="${role==null}" >
+                        <ul class="header__top-list">
+                            <li class="header__top-item">
+                                <a href="../auth/login" class="header__top-link">Giỏ hàng</a>
+                            </li>
+                            <li class="header__top-item">
+                                <a href="../auth/login" class="header__top-link">Thanh toán</a>
+                            </li>
+                            <li class="header__top-item">
+                                <a href="../auth/login" class="header__top-link">Đăng nhập</a>
+                            </li>
+                        </ul>
+                    </c:if>
+                    <c:if test="${role!=null}" >
+                        <ul class="header__top-list">
+                            <li class="header__top-item">
+                                <a href="#" class="header__top-link">Giỏ hàng</a>
+                            </li>
+                            <li class="header__top-item">
+                                <a href="#" class="header__top-link">Thanh toán</a>
+                            </li>
+                            <li class="header__top-item">
+                                <a href="#" class="header__top-link"></a>
+                            </li>
+                            <li class="header__top-item">
+                                <div class="dropdown fas fa-user header__nav-cart-icon">
+                                    <div class="dropdown-content">
+                                        <a href="#">Hồ sơ cá nhân</a>
+                                        <a href="../auth/ChangePassword?tab=changePassword">Đổi mật khẩu</a>
+                                        <a href="HomePageController?logOut">Đăng xuất</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </c:if>
                 </nav>
             </section>
         </div>

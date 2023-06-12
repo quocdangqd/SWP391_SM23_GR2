@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller;
+package Controller.View;
 
+import Dal.ProductDAO;
+import Model.Categories;
+import Model.Products;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,12 +14,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  *
  * @author PC
  */
-public class CustomerController extends HttpServlet {
+public class HomePageController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,14 +35,7 @@ public class CustomerController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            if (session.getAttribute("user") != null) {
-                request.getRequestDispatcher("/customer/homepage.jsp").forward(request, response);
-            }
-            else
-            {
-                out.print("Access Denied!"); 
-            }
+
         }
     }
 
@@ -56,15 +53,18 @@ public class CustomerController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            String urlLString = request.getRequestURI();
+            ProductDAO productDAO = new ProductDAO();
             HttpSession session = request.getSession();
-            if (session.getAttribute("user") != null) {
-                request.getRequestDispatcher("/customer/homepage.jsp").forward(request, response);
+            if (request.getParameter("logOut") != null) {
+                session.removeAttribute("role");
+            } else {
+                ArrayList<Products> bestProductList = new ArrayList<>();
+                bestProductList=productDAO.BestSellerProducts();
+                session.setAttribute("bestProductList", bestProductList);
             }
-            else
-            {
-                out.print("Access Denied!"); 
-                response.sendRedirect(request.getContextPath()+"");
-            }
+            request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
+
         }
 
     }
@@ -80,6 +80,7 @@ public class CustomerController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
     }
 
     /**

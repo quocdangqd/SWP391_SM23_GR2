@@ -155,8 +155,7 @@
                     <div class="modal-body">
                         <p class="text-center">
                             <c:if test="${allowRegister!=null}">Đăng kí tài khoản thành công!</c:if>
-                            <c:if test="${allowResetPassword!=null}">Bạn đã đổi mật khẩu thành công!!</c:if>
-                            
+                            <c:if test="${(allowResetPassword!=null)||(changepasswordSuccess!=null)}">Bạn đã đổi mật khẩu thành công!!</c:if>
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -224,7 +223,7 @@
         <!-- JS -->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="js/main.js"></script>
-        <c:if test="${(allowRegister!=null) ||(allowResetPassword!=null)}">
+        <c:if test="${(allowRegister!=null) ||(allowResetPassword!=null)||(changepasswordSuccess!=null)}">
             <script>
                 $(document).ready(function () {
                     $("#myModal").modal("show");

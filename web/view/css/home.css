@@ -496,7 +496,9 @@
     color: var(--primary-color);
     margin: 1.2rem 0;
 }
-
+.red {
+    color: white;
+}
 .product__panel-price {
     display: flex;
     justify-content: space-between;

@@ -13,9 +13,6 @@ import java.util.logging.Logger;
  */
 public class AccountDao extends ConnectMySQL {
 
-    PreparedStatement pstm;// thuc thi sql
-    ResultSet rs;// luu tru va xu li du lieu
-
     public boolean checkExistEmail(String email) {
         try {
             String sqlSelect = "SELECT * FROM swp.user where email=?;";
@@ -102,7 +99,6 @@ public class AccountDao extends ConnectMySQL {
 //        }
 //        return -1;
 //    }
-
     public User GetUserByEmail(String email) {
         String sqlSelect = "select* from swp.user where email= ?";
         try {
@@ -145,6 +141,20 @@ public class AccountDao extends ConnectMySQL {
         return false;
     }
 
+//    public boolean updateUser(String password, String address) {
+//        try {
+//            String sqlSelect = "UPDATE `swp`.`user` SET `password` = ? WHERE (`email` = ?);";
+//            pstm = connection.prepareStatement(sqlSelect);
+//            pstm.setString(1, newPassword);
+//            pstm.setString(2, email);
+//            pstm.execute();
+//            return true;
+//        } catch (Exception e) {
+//            System.out.println("resetPassword: " + e);
+//        }
+//        return false;
+//    }
+
     public boolean checkLogin(User user) {
         try {
             String sqlString = "SELECT * FROM swp.user where username=? and password=?";
@@ -163,6 +173,8 @@ public class AccountDao extends ConnectMySQL {
 
     public static void main(String[] args) {
         AccountDao dao = new AccountDao();
+//        User u=dao.getUserByUserName("sirducdz");
+//        System.out.println(u.getEmail());
 //        System.out.println(dao.checkExistAccount("admin1"));
 //        User u =dao.GetUserByEmail("ducnvhe160331@fpt.edu.vn");
 //        System.out.println(u.getName());
@@ -170,5 +182,34 @@ public class AccountDao extends ConnectMySQL {
 //          u.setUsername("sirducdz2");
 //          u.setPassword("Sirducdzzzz2@");
 //          System.out.println("dao.checkLogin(u)"+dao.checkLogin(u));
+    }
+
+    public User getUserByUserName(String userName) {
+        String sqlSelect = "select* from swp.user where username= ?";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            pstm.setString(1, userName);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                String userID = String.valueOf(rs.getInt(1));
+                String username = String.valueOf(rs.getString(2));
+                String password = String.valueOf(rs.getString(3));
+                String user_roleID = String.valueOf(rs.getInt(4));
+                String name = String.valueOf(rs.getString(5));
+                String age = String.valueOf(rs.getInt(6));
+                String user_sexID = String.valueOf(rs.getInt(7));
+                String address = String.valueOf(rs.getString(8));
+                String phone_number = String.valueOf(rs.getString(9));
+                String avatar = String.valueOf(rs.getString(10));
+                String register_code = String.valueOf(rs.getString(11));
+                String email = String.valueOf(rs.getString(12));
+                String status = String.valueOf(rs.getInt(13));
+                User user = new User(userID, username, password, user_roleID, name, age, user_sexID, address, phone_number, avatar, register_code, email, status);
+                return user;
+            }
+        } catch (Exception e) {
+            System.out.println("getUserByUserName: " + e);
+        }
+        return null;
     }
 }
