@@ -21,7 +21,7 @@
     <body>
         <!-- header -->
         <jsp:include page="header.jsp"></jsp:include>
-            <!--end header nav -->
+        <!--end header nav -->
 
         <!-- score-top-->
 
@@ -43,7 +43,13 @@
                         <div class="col-md-4 order-md-2 mb-4">
                             <h4 class="d-flex justify-content-between align-items-center mb-3">
                                 <span class="text-muted" style="font-size: 30px">GIỎ HÀNG</span>
-                                <span class="badge badge-secondary badge-pill">2</span>
+                                <span class="badge badge-secondary badge-pill" style="background-color: #ff3333;"><a href="listCart.jsp" class="col-lg-1 col-md-1 col-sm-0 header__cart">
+                                        <div class="header__cart-icon-wrap">
+                                            <span class="header__notice">4</span>
+                                            <i class="fas fa-shopping-cart header__nav-cart-icon"></i>
+                                        </div>
+                                    </a>
+                                </span>
                             </h4>
                             <ul class="list-group mb-3">
                                 <input type="hidden" name="sanphamgiohang[1][sp_ma]" value="2">
@@ -78,7 +84,7 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" style="font-size: 20px" placeholder="Mã khuyến mãi">
                                 <div class="input-group-append">
-                                    <button type="submit" class="btn btn-secondary"><h1 style="font-size: 10px">Xác nhận</h1></button>
+                                    <button type="submit" class="btn btn-secondary" style="background-color: #ff3333;"><h1 style="font-size: 10px">Xác nhận</h1></button>
                                 </div>
 
                             </div>
@@ -122,24 +128,24 @@
                                     <input id="httt-2" name="httt_ma" type="radio" class="custom-control-input" required=""
                                            value="2">
                                     <label class="custom-control-label" for="httt-2">Chuyển khoản</label>
-                                </div>                               
+                                </div>                             
                             </div>
                             <hr class="mb-4">
-                            <button class="btn btn-primary btn-lg btn-block" style="font-size: 20px" type="submit" name="btnDatHang">Đặt
-                                hàng</button>
-                        </div>
+                            <button class="btn btn-primary btn-lg btn-block" style="font-size: 20px; background-color:#ff3333" type="submit" name="btnDatHang">Đặt hàng
+                        </div>                              
                     </div>
-                </form>
-
             </div>
-            <!-- End block content -->
-        </main>
-        <!--end cart -->
+        </div>
+    </form>
 
-        <!-- footer -->
-                    <jsp:include page="footer.jsp"></jsp:include>
+</div>
+<!-- End block content -->
+</main>
+<!--end cart -->
 
-        <!-- end footer -->
-        <script src="js/jq.js"></script>
+<!-- footer -->
+        <jsp:include page="footer.jsp"></jsp:include>
+<!-- end footer -->
+<script src="js/jq.js"></script>
 
-    </body></html>
+</body></html>
