@@ -384,7 +384,9 @@ body{
 
 @media (max-width:992px){
     .header__top{
+        display: none;
     }
+
     .header__nav-menu-wrap{
         display: none;
     }
@@ -403,17 +405,20 @@ body{
 }
 
 @media (max-width:768px){
-    .hide-on-mobile{   
+    .hide-on-mobile{
+        display: none;
     }
 
-    .header__search{      
+    .header__search{
+        display: none;
     }
 
     .header__cart{
-        margin-left: 85%;
+        display: none;
     }
 
     .header__nav{
+        display: none;
     }
 
     .header__heading {

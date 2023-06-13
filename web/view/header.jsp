@@ -113,22 +113,28 @@
                     </h1>
                 </div>
 
-                <div class="col-lg-6 col-md-7 col-sm-0 header__search">
-                    <select name="" id="" class="header__search-select">
-                        <option value="0">All</option>
-                        <option value="1">Tai nghe</option>
-                        <option value="2">Chuột</option>
-                        <option value="3">Bàn phím</option>
+                
+                    <div class="col-lg-6 col-md-7 col-sm-0 header__search">
+                        <select name="typeSelect" id="" class="header__search-select">
+                            <option value="0">All</option>
+                            <option value="1">Tai nghe</option>
+                            <option value="2">Chuột</option>
+                            <option value="3">Bàn phím</option>
 
-                    </select>
-                    <input type="text" class="header__search-input" placeholder="Tìm kiếm tại đây...">
-                    <button class="header__search-btn">
-                        <div class="header__search-icon-wrap">
-                            <i class="fas fa-search header__search-icon"></i>
-                        </div>
-                    </button>
-                </div>
+                        </select>
+                        <input type="text" name="searchInput" class="header__search-input" placeholder="Tìm kiếm tại đây...">
 
+                        <button class="header__search-btn">
+                            <!--<a class="header__search-btn" href="#">--> 
+                            <div class="header__search-icon-wrap">
+                                <i class="fas fa-search header__search-icon"></i>
+                            </div>
+                            <!--</a>-->
+                        </button>
+
+
+                    </div>
+                
                 <div class="col-lg-2 col-md-0 col-sm-0 header__call">
                     <div class="header__call-icon-wrap">
                         <i class="fas fa-phone-alt header__call-icon"></i>  

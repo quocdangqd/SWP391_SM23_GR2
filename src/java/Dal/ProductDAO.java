@@ -12,22 +12,50 @@ import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
  */
 public class ProductDAO extends ConnectMySQL {
 
-    public ArrayList<Products> getProductListByCategoryID(String categoryID) {
+    public ArrayList<Products> getProductListByCategoryIDAndSort(String categoryID, String sortOrder) {
         ArrayList<Products> data = new ArrayList<>();
         try {
-            String sqlSelectString;
+            String sqlSelectString="";
             if (categoryID == null) {
-                sqlSelectString = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
-                        + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice'\n"
-                        + "from swp.orderdetail od right outer join swp.product p\n"
-                        + "on p.ProductID=od.orderdetail_productID \n"
-                        + "group by productid ";
+                if (sortOrder == "rate") {
+                    sqlSelectString = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
+                            + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice'\n"
+                            + "from swp.orderdetail od right outer join swp.product p\n"
+                            + "on p.ProductID=od.orderdetail_productID \n"
+                            + "group by productid order by rate desc";
+                } else if (sortOrder == "ascendingSalePrice") {
+                    sqlSelectString = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
+                            + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice'\n"
+                            + "from swp.orderdetail od right outer join swp.product p\n"
+                            + "on p.ProductID=od.orderdetail_productID \n"
+                            + "group by productid order by SalePrice asc";
+                } else if (sortOrder == "descendingSalePrice") {
+                    sqlSelectString = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
+                            + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice'\n"
+                            + "from swp.orderdetail od right outer join swp.product p\n"
+                            + "on p.ProductID=od.orderdetail_productID \n"
+                            + "group by productid order by SalePrice desc";
+                }
             } else {
-                sqlSelectString = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
-                        + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice'\n"
-                        + "from swp.orderdetail od right outer join swp.product p\n"
-                        + "on p.ProductID=od.orderdetail_productID where product_categoryID=?\n"
-                        + "group by productid ";
+                if (sortOrder == "rate") {
+                    sqlSelectString = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
+                            + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice'\n"
+                            + "from swp.orderdetail od right outer join swp.product p\n"
+                            + "on p.ProductID=od.orderdetail_productID where product_categoryID=?\n"
+                            + "group by productid order by rate desc ";
+                } else if (sortOrder == "ascendingSalePrice") {
+                    sqlSelectString = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
+                            + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice'\n"
+                            + "from swp.orderdetail od right outer join swp.product p\n"
+                            + "on p.ProductID=od.orderdetail_productID where product_categoryID=?\n"
+                            + "group by productid order by SalePrice asc ";
+                } else if (sortOrder == "descendingSalePrice") {
+                    sqlSelectString = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
+                            + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice'\n"
+                            + "from swp.orderdetail od right outer join swp.product p\n"
+                            + "on p.ProductID=od.orderdetail_productID where product_categoryID=?\n"
+                            + "group by productid order by SalePrice desc ";
+                } 
             }
             DecimalFormat decimalFormat = new DecimalFormat("#");
             pstm = connection.prepareStatement(sqlSelectString);
@@ -60,7 +88,7 @@ public class ProductDAO extends ConnectMySQL {
 
     public ArrayList<Products> BestSellerProducts() {
         ArrayList<Products> data = new ArrayList<>();
-        
+
         CategoriesDAO categoriesDAO = new CategoriesDAO();
         DecimalFormat decimalFormat = new DecimalFormat("#");
         ArrayList<Categories> categoryIdList = categoriesDAO.GetCategoriesList();
@@ -120,17 +148,7 @@ public class ProductDAO extends ConnectMySQL {
 
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
-//        for (Products p : productDAO.getProductListByCategoryID(null)) {
-//            System.out.print("productid: " + p.getProductID() + " ");
-//            System.out.print("productName: " + p.getName() + " ");
-//            System.out.print("price: " + p.getPrice() + " ");
-//            System.out.print("sale: " + p.getSale() + " ");
-//            System.out.print("rateStar: " + p.getRateStar() + " ");
-//            System.out.print("saleprice: " + p.getSalePrice() + " ");
-//            System.out.println("");
-//        }
-
-        for (Products p : productDAO.BestSellerProducts()) {
+        for (Products p : productDAO.getProductListByCategoryIDAndSort("1","rate")) {
             System.out.print("productid: " + p.getProductID() + " ");
             System.out.print("productName: " + p.getName() + " ");
             System.out.print("price: " + p.getPrice() + " ");
@@ -139,6 +157,16 @@ public class ProductDAO extends ConnectMySQL {
             System.out.print("saleprice: " + p.getSalePrice() + " ");
             System.out.println("");
         }
+
+//        for (Products p : productDAO.BestSellerProducts()) {
+//            System.out.print("productid: " + p.getProductID() + " ");
+//            System.out.print("productName: " + p.getName() + " ");
+//            System.out.print("price: " + p.getPrice() + " ");
+//            System.out.print("sale: " + p.getSale() + " ");
+//            System.out.print("rateStar: " + p.getRateStar() + " ");
+//            System.out.print("saleprice: " + p.getSalePrice() + " ");
+//            System.out.println("");
+//        }
 
     }
 }
