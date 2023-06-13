@@ -26,6 +26,54 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
         <link href="../dist/css/style.min.css" rel="stylesheet" />
+        <style>
+            .dropbtn {
+                background-color: #ef2317;
+                color: white;
+                padding: 16px;
+                font-family: Roboto;
+                border: none;
+            }
+
+            .dropdown {
+                margin-right: 100px;
+                margin-top: 2px;
+                position: relative;
+                display: inline-block;
+                font-size: 30px;
+                color: white;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: white;
+                min-width: 120px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 12px;
+                text-decoration: none;
+                display: block;
+                font-size: 15px;
+            }
+
+            .dropdown-content a:hover {
+                background-color: #ef2317;
+                color: white;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #ef2317;
+            }
+        </style>
     </head>
 
     <body onload="time()" class="app sidebar-mini rtl">
@@ -38,7 +86,13 @@
 
 
                 <!-- User Menu-->
-                <li><a class="app-nav__item" href="/homepage.jsp"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                <li>
+                    <div class="dropdown fas fa-user header__nav-cart-icon">
+                        <div class="dropdown-content">
+                            <a href="#">Đổi mật khẩu</a>
+                            <a href="#">Đăng xuất</a>
+                        </div>
+                    </div>
 
                 </li>
             </ul>
@@ -290,7 +344,7 @@
                                                 <div>Số điện thoại: 
                                                     <b class="text-secondary">0276544681</b>
                                                 </div>
-                                                
+
                                                 <p class="mt-4">
                                                     <b>Ngày đặt:</b>
                                                     <i class="mdi mdi-calendar"></i> 23/01/2022
@@ -354,180 +408,180 @@
                                                     <tr>
                                                         <td colspan="4" class="text-lg-right"><b>Tổng cộng tiền thanh toán:</b></td>
                                                         <td class="text-end"><b>$13,986<b></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="clearfix"></div>
-                                        <hr/>
-                                        <div class="pull-right text-end">
-                                            <button class="btn btn-danger text-white" type="submit">
-                                                Proceed to payment
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                    </table>
+                                                                    </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="clearfix"></div>
+                                                                        <hr/>
+                                                                        <div class="pull-right text-end">
+                                                                            <button class="btn btn-danger text-white" type="submit">
+                                                                                Proceed to payment
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+                                                                    </div>
+                                                                    </div>
+                                                                    </div>
 
-                    <!-- ============================================================== -->
-                    <!-- End PAge Content -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- Right sidebar -->
-                    <!-- ============================================================== -->
-                    <!-- .right-sidebar -->
-                    <!-- ============================================================== -->
-                    <!-- End Right sidebar -->
-                    <!-- ============================================================== -->
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Container fluid  -->
-                <!-- ============================================================== -->
-            </div>
-        </main>
-        <!-- Essential javascripts for application to work-->
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="src/jquery.table2excel.js"></script>
-        <script src="js/main.js"></script>
-        <!-- The javascript plugin to display page loading on top-->
-        <script src="js/plugins/pace.min.js"></script>
-        <!-- Page specific javascripts-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-        <!-- Data table plugin-->
-        <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript">$('#sampleTable').DataTable();</script>
-        <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap tether Core JavaScript -->
-        <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- slimscrollbar scrollbar JavaScript -->
-        <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-        <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
-        <!--Wave Effects -->
-        <script src="../dist/js/waves.js"></script>
-        <!--Menu sidebar -->
-        <script src="../dist/js/sidebarmenu.js"></script>
-        <!--Custom JavaScript -->
-        <script src="../dist/js/custom.min.js"></script>
-        <script>
-        function deleteRow(r) {
-            var i = r.parentNode.parentNode.rowIndex;
-            document.getElementById("myTable").deleteRow(i);
-        }
-        jQuery(function () {
-            jQuery(".trash").click(function () {
-                swal({
-                    title: "Cảnh báo",
+                                                                    <!-- ============================================================== -->
+                                                                    <!-- End PAge Content -->
+                                                                    <!-- ============================================================== -->
+                                                                    <!-- ============================================================== -->
+                                                                    <!-- Right sidebar -->
+                                                                    <!-- ============================================================== -->
+                                                                    <!-- .right-sidebar -->
+                                                                    <!-- ============================================================== -->
+                                                                    <!-- End Right sidebar -->
+                                                                    <!-- ============================================================== -->
+                                                                    </div>
+                                                                    <!-- ============================================================== -->
+                                                                    <!-- End Container fluid  -->
+                                                                    <!-- ============================================================== -->
+                                                                    </div>
+                                                                    </main>
+                                                                    <!-- Essential javascripts for application to work-->
+                                                                    <script src="js/jquery-3.2.1.min.js"></script>
+                                                                    <script src="js/popper.min.js"></script>
+                                                                    <script src="js/bootstrap.min.js"></script>
+                                                                    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                                                                    <script src="src/jquery.table2excel.js"></script>
+                                                                    <script src="js/main.js"></script>
+                                                                    <!-- The javascript plugin to display page loading on top-->
+                                                                    <script src="js/plugins/pace.min.js"></script>
+                                                                    <!-- Page specific javascripts-->
+                                                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+                                                                    <!-- Data table plugin-->
+                                                                    <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
+                                                                    <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
+                                                                    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+                                                                    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+                                                                    <!-- Bootstrap tether Core JavaScript -->
+                                                                    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                                                                    <!-- slimscrollbar scrollbar JavaScript -->
+                                                                    <script src="../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+                                                                    <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
+                                                                    <!--Wave Effects -->
+                                                                    <script src="../dist/js/waves.js"></script>
+                                                                    <!--Menu sidebar -->
+                                                                    <script src="../dist/js/sidebarmenu.js"></script>
+                                                                    <!--Custom JavaScript -->
+                                                                    <script src="../dist/js/custom.min.js"></script>
+                                                                    <script>
+                                                                    function deleteRow(r) {
+                                                                        var i = r.parentNode.parentNode.rowIndex;
+                                                                        document.getElementById("myTable").deleteRow(i);
+                                                                    }
+                                                                    jQuery(function () {
+                                                                        jQuery(".trash").click(function () {
+                                                                            swal({
+                                                                                title: "Cảnh báo",
 
-                    text: "Bạn có chắc chắn là muốn xóa nhân viên này?",
-                    buttons: ["Hủy bỏ", "Đồng ý"],
-                })
-                        .then((willDelete) => {
-                            if (willDelete) {
-                                swal("Đã xóa thành công.!", {
+                                                                                text: "Bạn có chắc chắn là muốn xóa nhân viên này?",
+                                                                                buttons: ["Hủy bỏ", "Đồng ý"],
+                                                                            })
+                                                                                    .then((willDelete) => {
+                                                                                        if (willDelete) {
+                                                                                            swal("Đã xóa thành công.!", {
 
-                                });
-                            }
-                        });
-            });
-        });
-        oTable = $('#sampleTable').dataTable();
-        $('#all').click(function (e) {
-            $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
-            e.stopImmediatePropagation();
-        });
+                                                                                            });
+                                                                                        }
+                                                                                    });
+                                                                        });
+                                                                    });
+                                                                    oTable = $('#sampleTable').dataTable();
+                                                                    $('#all').click(function (e) {
+                                                                        $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
+                                                                        e.stopImmediatePropagation();
+                                                                    });
 
-        //EXCEL
-        // $(document).ready(function () {
-        //   $('#').DataTable({
+                                                                    //EXCEL
+                                                                    // $(document).ready(function () {
+                                                                    //   $('#').DataTable({
 
-        //     dom: 'Bfrtip',
-        //     "buttons": [
-        //       'excel'
-        //     ]
-        //   });
-        // });
-
-
-        //Thời Gian
-        function time() {
-            var today = new Date();
-            var weekday = new Array(7);
-            weekday[0] = "Chủ Nhật";
-            weekday[1] = "Thứ Hai";
-            weekday[2] = "Thứ Ba";
-            weekday[3] = "Thứ Tư";
-            weekday[4] = "Thứ Năm";
-            weekday[5] = "Thứ Sáu";
-            weekday[6] = "Thứ Bảy";
-            var day = weekday[today.getDay()];
-            var dd = today.getDate();
-            var mm = today.getMonth() + 1;
-            var yyyy = today.getFullYear();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            var s = today.getSeconds();
-            m = checkTime(m);
-            s = checkTime(s);
-            nowTime = h + " giờ " + m + " phút " + s + " giây";
-            if (dd < 10) {
-                dd = '0' + dd
-            }
-            if (mm < 10) {
-                mm = '0' + mm
-            }
-            today = day + ', ' + dd + '/' + mm + '/' + yyyy;
-            tmp = '<span class="date"> ' + today + ' - ' + nowTime +
-                    '</span>';
-            document.getElementById("clock").innerHTML = tmp;
-            clocktime = setTimeout("time()", "1000", "Javascript");
-
-            function checkTime(i) {
-                if (i < 10) {
-                    i = "0" + i;
-                }
-                return i;
-            }
-        }
-        //In dữ liệu
-        var myApp = new function () {
-            this.printTable = function () {
-                var tab = document.getElementById('sampleTable');
-                var win = window.open('', '', 'height=700,width=700');
-                win.document.write(tab.outerHTML);
-                win.document.close();
-                win.print();
-            }
-        }
-        //     //Sao chép dữ liệu
-        //     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
-
-        // copyTextareaBtn.addEventListener('click', function(event) {
-        //   var copyTextarea = document.querySelector('.js-copytextarea');
-        //   copyTextarea.focus();
-        //   copyTextarea.select();
-
-        //   try {
-        //     var successful = document.execCommand('copy');
-        //     var msg = successful ? 'successful' : 'unsuccessful';
-        //     console.log('Copying text command was ' + msg);
-        //   } catch (err) {
-        //     console.log('Oops, unable to copy');
-        //   }
-        // });
+                                                                    //     dom: 'Bfrtip',
+                                                                    //     "buttons": [
+                                                                    //       'excel'
+                                                                    //     ]
+                                                                    //   });
+                                                                    // });
 
 
-        //Modal
-        $("#show-emp").on("click", function () {
-            $("#ModalUP").modal({backdrop: false, keyboard: false})
-        });
-        </script>
-    </body>
-</html>
+                                                                    //Thời Gian
+                                                                    function time() {
+                                                                        var today = new Date();
+                                                                        var weekday = new Array(7);
+                                                                        weekday[0] = "Chủ Nhật";
+                                                                        weekday[1] = "Thứ Hai";
+                                                                        weekday[2] = "Thứ Ba";
+                                                                        weekday[3] = "Thứ Tư";
+                                                                        weekday[4] = "Thứ Năm";
+                                                                        weekday[5] = "Thứ Sáu";
+                                                                        weekday[6] = "Thứ Bảy";
+                                                                        var day = weekday[today.getDay()];
+                                                                        var dd = today.getDate();
+                                                                        var mm = today.getMonth() + 1;
+                                                                        var yyyy = today.getFullYear();
+                                                                        var h = today.getHours();
+                                                                        var m = today.getMinutes();
+                                                                        var s = today.getSeconds();
+                                                                        m = checkTime(m);
+                                                                        s = checkTime(s);
+                                                                        nowTime = h + " giờ " + m + " phút " + s + " giây";
+                                                                        if (dd < 10) {
+                                                                            dd = '0' + dd
+                                                                        }
+                                                                        if (mm < 10) {
+                                                                            mm = '0' + mm
+                                                                        }
+                                                                        today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+                                                                        tmp = '<span class="date"> ' + today + ' - ' + nowTime +
+                                                                                '</span>';
+                                                                        document.getElementById("clock").innerHTML = tmp;
+                                                                        clocktime = setTimeout("time()", "1000", "Javascript");
+
+                                                                        function checkTime(i) {
+                                                                            if (i < 10) {
+                                                                                i = "0" + i;
+                                                                            }
+                                                                            return i;
+                                                                        }
+                                                                    }
+                                                                    //In dữ liệu
+                                                                    var myApp = new function () {
+                                                                        this.printTable = function () {
+                                                                            var tab = document.getElementById('sampleTable');
+                                                                            var win = window.open('', '', 'height=700,width=700');
+                                                                            win.document.write(tab.outerHTML);
+                                                                            win.document.close();
+                                                                            win.print();
+                                                                        }
+                                                                    }
+                                                                    //     //Sao chép dữ liệu
+                                                                    //     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+                                                                    // copyTextareaBtn.addEventListener('click', function(event) {
+                                                                    //   var copyTextarea = document.querySelector('.js-copytextarea');
+                                                                    //   copyTextarea.focus();
+                                                                    //   copyTextarea.select();
+
+                                                                    //   try {
+                                                                    //     var successful = document.execCommand('copy');
+                                                                    //     var msg = successful ? 'successful' : 'unsuccessful';
+                                                                    //     console.log('Copying text command was ' + msg);
+                                                                    //   } catch (err) {
+                                                                    //     console.log('Oops, unable to copy');
+                                                                    //   }
+                                                                    // });
+
+
+                                                                    //Modal
+                                                                    $("#show-emp").on("click", function () {
+                                                                        $("#ModalUP").modal({backdrop: false, keyboard: false})
+                                                                    });
+                                                                    </script>
+                                                                    </body>
+                                                                    </html>
