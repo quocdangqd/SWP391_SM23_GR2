@@ -258,7 +258,7 @@
                     <div class="row">
                         <nav class="menu__nav col-lg-3 col-md-12 col-sm-0">
                             <ul class="menu__list">
-                                <li class="menu__item menu__item--active">
+                                <li class="menu__item">
                                     <a href="headphone.jsp" class="menu__link">
                                         <img src="images1/item/headphone.jpg" alt=""  class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
                                         Tai nghe</a>
