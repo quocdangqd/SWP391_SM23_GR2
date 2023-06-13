@@ -22,10 +22,10 @@
     </head>
     <body>
         <div class="app">
-            <!--<form action="productList" method="get" >-->
+            <form action="productList" method="get" >
                 <jsp:include page="header.jsp"></jsp:include>
-                    <!-- slide - menu list -->
-                <!--</form>-->
+                    <!--slide - menu list--> 
+                </form>
                 <section class="menu-slide">
 
                     <div class="container">

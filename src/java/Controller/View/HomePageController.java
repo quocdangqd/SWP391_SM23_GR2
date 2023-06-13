@@ -53,12 +53,19 @@ public class HomePageController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            String urlString=request.getRequestURI();
             String urlLString = request.getRequestURI();
             ProductDAO productDAO = new ProductDAO();
             HttpSession session = request.getSession();
             if (request.getParameter("logOut") != null) {
                 session.removeAttribute("role");
-            } else {
+            }
+            else if(urlString.equals(request.getContextPath()+"/HomePageController"))
+            {
+                request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
+                return;
+            }
+            else {
                 ArrayList<Products> bestProductList = new ArrayList<>();
                 bestProductList=productDAO.BestSellerProducts();
                 session.setAttribute("bestProductList", bestProductList);

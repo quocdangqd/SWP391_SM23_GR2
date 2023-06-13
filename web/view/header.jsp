@@ -107,7 +107,7 @@
             <section class="row">
                 <div class="col-lg-3 col-md-4 col-sm-12 header__logo">
                     <h1 class="header__heading">
-                        <a href="homepage.jsp" class="header__logo-link">
+                        <a href="HomePageController" class="header__logo-link">
                             <img src="images1/logo1.png" alt="Logo" class="header__logo-img">
                         </a>
                     </h1>
@@ -172,7 +172,7 @@
                 <div class="header__nav col-lg-9 col-md-0 col-sm-0">
                     <ul class="header__nav-list">
                         <li class="header__nav-item">
-                            <a href="homepage.jsp" class="header__nav-link">TRANG CHỦ</a>
+                            <a href="HomePageController" class="header__nav-link">TRANG CHỦ</a>
                         </li>
                         <li class="header__nav-item">
                             <a href="listProduct.jsp" class="header__nav-link">SẢN PHẨM</a>
