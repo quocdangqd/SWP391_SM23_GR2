@@ -35,23 +35,21 @@
                         <nav class="menu__nav col-lg-3 col-md-12 col-sm-0">
                             <ul class="menu__list">
                                 <li class="menu__item menu__item--active">
-                                    <a href="#" class="menu__link">
-                                        <img src="images1/item/baby-boy.png" alt=""  class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
-                                        Sách Tiếng Việt</a>
+                                    <a href="headphone.jsp" class="menu__link">
+                                        <img src="images1/item/headphone.jpg" alt=""  class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
+                                        Tai nghe</a>
                                 </li>
                                 <li class="menu__item">
-                                    <a href="#" class="menu__link">
-                                        <img src="images1/item/translation.png" alt="" class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
-                                        Sách nước ngoài</a>
+                                    <a href="mouse.jsp" class="menu__link">
+                                        <img src="images1/item/mouse.jpg" alt="" class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
+                                        Chuột</a>
                                 </li>
 
                                 <li class="menu__item">
-                                    <a href="#" class="menu__link">
-                                        <img src="images1/item/1380754_batman_comic_hero_superhero_icon.png" alt="" class="menu__item-icon"  viewBox="0 0 512 512" width="1012" height="512">
-
-                                        Manga - Comic</a>
+                                    <a href="keyboard.jsp" class="menu__link">
+                                        <img src="images1/item/keyboard.jpg" alt="" class="menu__item-icon"  viewBox="0 0 512 512" width="1012" height="512">
+                                        Bàn phím</a>
                                 </li>
-
                             </ul>
                         </nav>
                         <div class="col-6 cart__head-name">
@@ -71,7 +69,7 @@
                                 <img src="images1/product/8936049524905.jpg">
                             </div>
                             <a href="" class="cart__body-name-title">
-                                5 Centimet Trên Giây
+                                Bàn phím
                             </a>
                         </div>
                         <div class="col-3 cart__body-quantity">
@@ -92,7 +90,7 @@
                                 <img src="images1/product/untitled-1_9_25_1.jpg">
                             </div>
                             <a href="" class="cart__body-name-title">
-                                Tôi Thích Bản Thân Nỗ Lực Hơn ( Tái bản 2019)
+                                Tai nghe
                             </a>
                         </div>
                         <div class="col-3 cart__body-quantity">
@@ -113,7 +111,7 @@
                                 <img src="images1/product/8936186542176.jpg">
                             </div>
                             <a href="" class="cart__body-name-title">
-                                Tôi Thích Một Cô Gái Nhưng Không Dám Ngỏ Lời
+                                Chuột
                             </a>
                         </div>
                         <div class="col-3 cart__body-quantity">
@@ -134,7 +132,7 @@
                                 <img src="images1/product/biamem.jpg">
                             </div>
                             <a href="" class="cart__body-name-title">
-                                Con Chim Xanh Biếc Bay Về - Tặng Kèm 6
+                                Bàn phím
                             </a>
                         </div>
                         <div class="col-3 cart__body-quantity">
@@ -151,7 +149,6 @@
 
                     <article class="row cart__foot">
                         <div class="col-6 col-lg-6 col-sm-6 cart__foot-update">
-                            <button class="cart__foot-update-btn">Cập nhật giỏ hàng</button>
                         </div>
 
                         <p class="col-3 col-lg-3 col-sm-3 cart__foot-total">

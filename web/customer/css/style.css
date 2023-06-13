@@ -384,12 +384,12 @@ body{
 
 @media (max-width:992px){
     .header__top{
-        display: none;
+        width: 100%;
+    }
+    .header__nav-menu-wrap{
+        display: none;     
     }
 
-    .header__nav-menu-wrap{
-        display: none;
-    }
 
     /*.header__search{
         display: none;
@@ -401,24 +401,21 @@ body{
 
     .header__search-select{
         display: none;
-    }
+    } 
 }
 
 @media (max-width:768px){
     .hide-on-mobile{
-        display: none;
     }
 
     .header__search{
-        display: none;
     }
 
     .header__cart{
-        display: none;
+        padding-left: 90%;
     }
 
     .header__nav{
-        display: none;
     }
 
     .header__heading {
@@ -428,8 +425,6 @@ body{
     .header__logo-img {
         max-width: 10rem;
     }
-
-
 }
 
 @media (min-width:768px){
