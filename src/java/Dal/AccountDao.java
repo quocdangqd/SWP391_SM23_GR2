@@ -154,7 +154,6 @@ public class AccountDao extends ConnectMySQL {
 //        }
 //        return false;
 //    }
-
     public boolean checkLogin(User user) {
         try {
             String sqlString = "SELECT * FROM swp.user where username=? and password=?";

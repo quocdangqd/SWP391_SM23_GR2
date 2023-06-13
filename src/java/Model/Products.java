@@ -39,31 +39,21 @@ public class Products {
     public Products() {
     }
 
-    public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status) {
-        this.ProductID = ProductID;
-        this.product_categoryID = product_categoryID;
-        this.name = name;
-        this.desciption = desciption;
-        this.picture = picture;
-        this.price = price;
-        this.quantity = quantity;
-        this.status = status;
+    public String getPicture2() {
+        return picture2;
     }
 
-    public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status, String sale, String rateStar, String salePrice) {
-        this.ProductID = ProductID;
-        this.product_categoryID = product_categoryID;
-        this.name = name;
-        this.desciption = desciption;
-        this.picture = picture;
-        this.price = price;
-        this.quantity = quantity;
-        this.status = status;
-        this.sale = sale;
-        this.rateStar = rateStar;
-        this.salePrice = salePrice;
+    public void setPicture2(String picture2) {
+        this.picture2 = picture2;
     }
 
+    public String getPicture3() {
+        return picture3;
+    }
+
+    public void setPicture3(String picture3) {
+        this.picture3 = picture3;
+    }
     public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status, String sale, String rateStar, String salePrice, String picture2, String picture3) {
         this.ProductID = ProductID;
         this.product_categoryID = product_categoryID;
