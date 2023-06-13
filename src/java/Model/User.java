@@ -11,7 +11,7 @@ package Model;
 public class User {
     // nhap vao userName,password,name(fullname),age(dob),phone_Number,email
     // them address
-    public String userID, username, password, user_roleID, name, age, user_sexID, address, phone_number, avatar, register_code, email, status="1";
+    private String userID, username, password, user_roleID, name, age, user_sexID, address, phone_number, avatar, register_code, email, status="1";
 
     public User() {
     }

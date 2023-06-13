@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller;
+package Controller.Account;
 
 import Impl.LoginAndRegisterValidation;
 import Dal.AccountDao;
@@ -39,7 +39,6 @@ public class RegisterController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             AccountDao accountDao = new AccountDao();
-            HttpSession mySession = request.getSession();
             String fullName = request.getParameter("fullName");
             String userName = request.getParameter("userName");
             String password = request.getParameter("password");
@@ -48,21 +47,6 @@ public class RegisterController extends HttpServlet {
             String dob = request.getParameter("dob");
             String phone = request.getParameter("phone");
             String allowRegister = request.getParameter("allowRegister");
-//            if (allowRegister != null) {
-////                try {
-////                    LoginAndRegisterValidation loginAndRegisterValidation = new LoginAndRegisterValidation();
-//////                    boolean checkAdd=accountDao.AddUser(new User(null, userName, password, "4",fullName,String.valueOf(loginAndRegisterValidation.GetAge(dob)) , null, null, phone, null, null, email, "1"));
-////                    String userID = String.valueOf((accountDao.GetUserIndex() + 1));
-////                    boolean checkAdd = accountDao.AddUser(new User(userID, userName, password, "4", fullName, String.valueOf(loginAndRegisterValidation.GetAge(dob)), "1", null, phone, null, null, email, "1"));
-////                    out.print("checkAdd: " + checkAdd);
-//
-////                } catch (Exception e) {
-////                    System.out.println("RegisterController: " + e);
-////                }
-//                request.setAttribute("allowRegister", allowRegister);
-//                out.print("runnable"); 
-//                request.getRequestDispatcher("/auth/login.jsp").forward(request, response);=> can not run why?
-//            }
             String agree_term = request.getParameter("agree_term");
             LoginAndRegisterValidation validate = new LoginAndRegisterValidation();
             String msg1 = null, msg2 = null, msg3 = null, msg4 = null, msg5 = null, msg6 = null, msg7 = null, msg8 = null, registerMessage = null;
@@ -82,10 +66,11 @@ public class RegisterController extends HttpServlet {
             if (!validate.CheckEqualRepasswordValidate(password.trim(), rePassword.trim())) {
                 msg4 = "Nhập Lại Mật Khẩu Không Trùng Với Mật Khẩu Đã Tạo";
             }
-            if (!validate.EmailValidate(email)||accountDao.checkExistEmail(email)) {
+            if (!validate.EmailValidate(email) || accountDao.checkExistEmail(email)) {
                 msg5 = "Email Không Hợp Lệ";
-                if(accountDao.checkExistEmail(email))
+                if (accountDao.checkExistEmail(email)) {
                     msg5 = "Email đăng kí đã tồn tại";
+                }
             }
             try {
                 if (!validate.DOBValidate(dob)) {
@@ -110,7 +95,6 @@ public class RegisterController extends HttpServlet {
                 SendMail sendMail = new SendMail();
                 sendMail.SendMail(email, fullName, userName, password, dob, phone);
             }
-
             request.setAttribute("fullName", fullName);
             request.setAttribute("userName", userName);
             request.setAttribute("password", password);
@@ -160,8 +144,8 @@ public class RegisterController extends HttpServlet {
             if (allowRegister != null) {
                 try {
                     LoginAndRegisterValidation loginAndRegisterValidation = new LoginAndRegisterValidation();
-                    String userID = String.valueOf((accountDao.GetUserIndex() + 1));
-                    boolean checkAdd = accountDao.AddUser(new User(userID, userName, password, "4", fullName, String.valueOf(loginAndRegisterValidation.GetAge(dob)), "1", null, phone, null, null, email, "1"));
+//                    String userID = String.valueOf((accountDao.GetUserIndex() + 1));
+                    boolean checkAdd = accountDao.AddUser(new User(null, userName, password, "3", fullName, String.valueOf(loginAndRegisterValidation.GetAge(dob)), "1", null, phone, null, null, email, "1"));
                 } catch (Exception e) {
                     System.out.println("RegisterController: " + e);
                 }
@@ -169,7 +153,6 @@ public class RegisterController extends HttpServlet {
                 request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
             }
         }
-
     }
 
     @Override

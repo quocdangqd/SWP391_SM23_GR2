@@ -1,4 +1,4 @@
-package Controller;
+package Controller.Account;
 
 import Dal.AccountDao;
 import Impl.LoginWithGoogle;
@@ -27,10 +27,11 @@ public class LoginController extends HttpServlet {
                 HttpSession session =request.getSession();
                 if(session.getAttribute("user")!=null)
                 {
-                    request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
-                }
-                else
-                    out.print("Access Dinied!"); 
+                    User u =(User)session.getAttribute("user");
+                    if(u.getUser_roleID()!=null)
+                        session.setAttribute("role",u.getUser_roleID()); 
+                }   
+                request.getRequestDispatcher("/view/HomePageController").forward(request, response);
             }
             else if(urlString.equals(request.getContextPath()+"/auth/LoginWithGoogle"))
             {
@@ -43,20 +44,21 @@ public class LoginController extends HttpServlet {
                     User user = new User();
                     user.setEmail(email);
                     HttpSession mySession = request.getSession();
+                    user=accountDao.GetUserByEmail(email);
                     mySession.setAttribute("user", user); 
                     response.sendRedirect(request.getContextPath()+"/view/homepage");
                 }
-                else
+                else// neu khong dang nhap thanh cong quay lai trang login
                 {
-                    out.print("Your email has not been registered!"); 
+                    response.sendRedirect(request.getContextPath()+"/auth/login.jsp");
                 }
             }
             else
+            {
                 request.getRequestDispatcher("/auth/login.jsp").forward(request, response); 
-
+            }
+                
         }
-//        request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
-//            response.sendRedirect("/view/homepage.jsp");
     }
 
     @Override
@@ -71,6 +73,7 @@ public class LoginController extends HttpServlet {
                 User user = new User(username, password);
                 AccountDao accountDao = new AccountDao();
                 if (accountDao.checkLogin(user)) {
+                    user=accountDao.getUserByUserName(username);
                     HttpSession mySession = request.getSession();
                     mySession.setAttribute("user", user); 
                     response.sendRedirect(request.getContextPath()+"/view/homepage");

@@ -21,10 +21,8 @@ public class LoginWithGoogle {
 
     public String LoginWithGoogle(String code, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.code = code;
-        System.out.println(code);
         String accessToken = getToken(code);
         UserGoogleDto user = getUserInfo(accessToken);
-        System.out.println(user.getEmail());
         return user.getEmail();
     }
 

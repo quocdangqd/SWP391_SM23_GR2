@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
         <!-- Main css -->
-<!--        <link rel="stylesheet" href="css/style.css">-->
+        <!--        <link rel="stylesheet" href="css/style.css">-->
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
@@ -31,22 +31,24 @@
                         </div>
 
                         <div class="signin-form"><h2>ĐỔI MẬT KHẨU</h2>
-                            <form method="POST" class="register-form" id="login-form">
-                               
+                            <form method="POST" action="ChangePassword" class="register-form" id="login-form">
                                 <div class="form-group">
                                     <label for="your_name"><i class="zmdi zmdi-lock"></i></label>
-                                    <input type="text" name="your_name" id="your_name" placeholder=" Mật khẩu hiện tại "/>
+                                    <input type="text" name="currentPassword" id="your_name" placeholder=" Mật khẩu hiện tại "/>
                                 </div>
+                                 ${msg1}
                                 <div class="form-group">
                                     <label for="your_name"><i class="zmdi zmdi-lock"></i></label>
-                                    <input type="text" name="your_name" id="your_name" placeholder=" Mật khẩu mới "/>
+                                    <input type="text" name="password" id="your_name" placeholder=" Mật khẩu mới "/>
                                 </div>
+                                ${msg2}
                                 <div class="form-group">
                                     <label for="your_name"><i class="zmdi zmdi-lock"></i></label>
-                                    <input type="text" name="your_name" id="your_name" placeholder=" Xác nhận lại mật khẩu "/>
-                                </div>                               
+                                    <input type="text" name="rePassword" id="your_name" placeholder=" Xác nhận lại mật khẩu "/>
+                                </div>    
+                                ${msg3}
                                 <div class="form-group form-button">
-                                    <input type="submit" name="signin" id="signin" class="form-submit" value="Đổi mật khẩu"/>
+                                    <input type="submit" name="submit" id="signin" class="form-submit" value="Đổi mật khẩu"/>
                                 </div>
                             </form>
 

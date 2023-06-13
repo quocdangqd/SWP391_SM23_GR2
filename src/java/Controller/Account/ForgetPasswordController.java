@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller;
+package Controller.Account;
 
 import Dal.AccountDao;
 import Impl.LoginAndRegisterValidation;
@@ -66,8 +66,7 @@ public class ForgetPasswordController extends HttpServlet {
                     request.setAttribute("message1", message1);
                     request.setAttribute("message2", message2);
                     request.getRequestDispatcher("resetPassword.jsp").forward(request, response);
-                }
-                else if (message1 == null && message2 == null) {// if else 
+                } else if (message1 == null && message2 == null) {// if else 
                     HttpSession session = request.getSession();
                     String email = (String) session.getAttribute("email");
                     accountDao.resetPassword(email, request.getParameter("password"));
