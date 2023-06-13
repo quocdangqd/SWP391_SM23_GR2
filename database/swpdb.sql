@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `swpp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `swpp`;
 -- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
 -- Host: localhost    Database: swpp
@@ -287,7 +285,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'Admin'),(2,'Manager'),(3,'User');
+INSERT INTO `role` VALUES (1,'Admin'),(2,'Manager'),(3,'User'),(4,'Saler');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -401,7 +399,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'hoang@fu','1',1,'hoang',17,2,NULL,'0932233424','',NULL,'a@gmail.com',_binary ''),(2,'ha','1',1,'ha',20,3,NULL,'0784888822',NULL,NULL,'ha@gmail.com',_binary '\0'),(3,'dang2012','1',2,'dang',22,2,NULL,'0293929994',NULL,NULL,'dang@gmail.com',_binary ''),(4,'tri2k8','1',2,'tri',18,1,NULL,'0299402888',NULL,NULL,'tri@gmail.com',_binary '\0'),(5,'bestFlo','1',2,'dan',19,1,NULL,'0485003032',NULL,NULL,'dan@gmail.com',_binary ''),(6,'trancalli','1',3,'tran',NULL,3,NULL,'0912827474',NULL,NULL,'tran@gmail.com',_binary ''),(7,'momo','1',3,'dao',NULL,4,NULL,'0288899444',NULL,NULL,'dao@gmail.com',_binary ''),(8,'hunggay','1',3,'hung',NULL,5,NULL,'0494777364',NULL,NULL,'hung@gmail.com',_binary '\0'),(9,'dangnguyen','1',3,'dang',NULL,6,NULL,'0487563344',NULL,NULL,'dangtr@gmail.com',_binary '');
+INSERT INTO `user` VALUES (1,'hoang@fu','1',1,'hoang',27,2,NULL,'0932233424','',NULL,'a@gmail.com',_binary ''),(2,'ha','1',1,'ha',20,3,NULL,'0784888822',NULL,NULL,'ha@gmail.com',_binary '\0'),(3,'dang2012','1',2,'dang',22,2,NULL,'0293929994',NULL,NULL,'dang@gmail.com',_binary ''),(4,'tri2k8','1',2,'tri',18,1,NULL,'0299402888',NULL,NULL,'tri@gmail.com',_binary '\0'),(5,'bestFlo','1',2,'dan',19,1,NULL,'0485003032',NULL,NULL,'dan@gmail.com',_binary ''),(6,'trancalli','1',4,'tran',47,2,NULL,'0912827474',NULL,NULL,'tran@gmail.com',_binary ''),(7,'momo','1',3,'dao',29,1,NULL,'0288899444',NULL,NULL,'dao@gmail.com',_binary ''),(8,'hunggg','1',4,'hung',45,2,NULL,'0494777364',NULL,NULL,'hung@gmail.com',_binary '\0'),(9,'dangnguyen','1',3,'dang',31,1,NULL,'0487563344',NULL,NULL,'dangtr@gmail.com',_binary '');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -414,4 +412,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-11 21:13:56
+-- Dump completed on 2023-06-13 15:25:57
