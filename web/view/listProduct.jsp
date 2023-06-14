@@ -259,31 +259,57 @@
                     <div class="row">
                         <nav class="menu__nav col-lg-3 col-md-12 col-sm-0">
                             <ul class="menu__list">
+                            <c:if test="${tab=='headphone' || tab=='allProduct'}">
+                                <li class="menu__item menu__item--active">
+                                    <a href="ProductListController?tab=headphone" class="menu__link">
+                                        <img src="images1/item/headphone.jpg" alt=""  class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
+                                        Tai nghe</a>
+                                </li>
+                            </c:if>
+                            <c:if test="${tab!='headphone'&&tab!='allProduct'}"> 
                                 <li class="menu__item">
                                     <a href="ProductListController?tab=headphone" class="menu__link">
                                         <img src="images1/item/headphone.jpg" alt=""  class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
                                         Tai nghe</a>
                                 </li>
+                            </c:if>
+                            <c:if test="${tab=='mouse' || tab=='allProduct'}">
+                                <li class="menu__item menu__item--active">
+                                    <a href="ProductListController?tab=mouse" class="menu__link">
+                                        <img src="images1/item/mouse.jpg" alt="" class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
+                                        Chuột</a>
+                                </li>
+                            </c:if>
+                            <c:if test="${tab!='mouse' &&tab!='allProduct'}">
                                 <li class="menu__item">
                                     <a href="ProductListController?tab=mouse" class="menu__link">
                                         <img src="images1/item/mouse.jpg" alt="" class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
                                         Chuột</a>
                                 </li>
+                            </c:if> 
+                            <c:if test="${tab=='keyboard' || tab=='allProduct'}">
+                                <li class="menu__item menu__item--active">
+                                    <a href="ProductListController?tab=keyboard" class="menu__link">
+                                        <img src="images1/item/keyboard.jpg" alt="" class="menu__item-icon"  viewBox="0 0 512 512" width="1012" height="512">
 
+                                        Bàn phím</a>
+                                </li>
+                            </c:if>
+                            <c:if test="${tab!='keyboard' &&tab!='allProduct'}">
                                 <li class="menu__item">
                                     <a href="ProductListController?tab=keyboard" class="menu__link">
                                         <img src="images1/item/keyboard.jpg" alt="" class="menu__item-icon"  viewBox="0 0 512 512" width="1012" height="512">
 
                                         Bàn phím</a>
                                 </li>
-
-                            </ul>
-                        </nav>
-                    </div>
+                            </c:if>
+                        </ul>
+                    </nav>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- category 1: tai nghe -->
+        <!-- category 1: tai nghe -->
         <c:if test="${tab=='allProduct'||tab=='headphone'}">
             <section id ='category1' class="product__love">
                 <div class="container">

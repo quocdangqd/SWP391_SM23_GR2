@@ -30,20 +30,17 @@ public class ProductListController extends HttpServlet {
             String tab = request.getParameter("tab");
             HttpSession session = request.getSession();
             if (tab.equals("allProduct")) {
-//                out.print("Show all product");
                 session.setAttribute("tab", "allProduct");
-                request.getRequestDispatcher("listProduct.jsp").forward(request, response);
+                
             } 
             else if (tab.equals("headphone")) {
                 session.setAttribute("tab", "headphone");
-                request.getRequestDispatcher("headphone.jsp").forward(request, response);
             } else if (tab.equals("mouse")) {
                 session.setAttribute("tab", "mouse");
-                request.getRequestDispatcher("mouse.jsp").forward(request, response);
             } else if (tab.equals("keyboard")) {
                 session.setAttribute("tab", "keyboard");
-                request.getRequestDispatcher("keyboard.jsp").forward(request, response);
             }
+            request.getRequestDispatcher("listProduct.jsp").forward(request, response);
         }
     }
 
