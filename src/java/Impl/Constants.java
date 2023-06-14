@@ -7,7 +7,7 @@ package Impl;
  */
 
 /**
- * @author heaty566
+ * @author DucPhaoLo
  */
 public class Constants {
 

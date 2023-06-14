@@ -8,7 +8,7 @@ import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
 
 /**
  *
- * @author PC
+ * @author DucPhaoLo
  */
 public class ProductDAO extends ConnectMySQL {
 

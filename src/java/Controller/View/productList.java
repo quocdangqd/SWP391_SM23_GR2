@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package Controller.View;
 
 import jakarta.servlet.ServletException;
@@ -13,7 +9,7 @@ import java.io.PrintWriter;
 
 /**
  *
- * @author PC
+ * @author DucPhaoLo
  */
 public class productList extends HttpServlet {
 

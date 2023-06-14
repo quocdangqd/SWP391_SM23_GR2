@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author PC
+ * @author DucPhaoLo
  */
 public class AccountDao extends ConnectMySQL {
 
