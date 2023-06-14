@@ -13,7 +13,7 @@ public class ConnectMySQL {
     ResultSet rs;// luu tru va xu li du lieu
     private static String DB_URL = "jdbc:mysql://localhost:3306/swp";
     private static String USER_NAME = "root";
-    private static String PASSWORD = "Sirducdz7a@";
+    private static String PASSWORD = "123456";
     protected Connection connection = null;
     public ConnectMySQL() {
         try {
@@ -25,9 +25,9 @@ public class ConnectMySQL {
             ex.printStackTrace();
         }
     }
-//    public static void main(String[] args) {
-//        ConnectMySQL obj = new ConnectMySQL();
-//        
-//    }
+    public static void main(String[] args) {
+        ConnectMySQL obj = new ConnectMySQL();
+        
+    }
     
 }
