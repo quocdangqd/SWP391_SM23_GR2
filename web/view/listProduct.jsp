@@ -4,6 +4,7 @@
     Author     : laptop
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -283,6 +284,7 @@
             </section>
 
             <!-- category 1: tai nghe -->
+        <c:if test="${tab=='allProduct'||tab=='headphone'}">
             <section id ='category1' class="product__love">
                 <div class="container">
                     <div class="row bg-white">
@@ -466,469 +468,472 @@
                     <div class="clearfix">
                         <div class="hint-text" style="font-size: 15px;">Hiển thị <b>5</b> trong số <b>25</b> sản phẩm</div>
                         <ul class="pagination">
-                        <%--<c:set var="active" value="active"> </c:set>--%>
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item ${active}"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item ${active}"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item ${active}"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item ${active}"><a href="#" class="page-link">6</a></li>
-                        <li class="page-item ${active}" ><a href="#" class="page-link">7</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">Next</a></li>
-                    </ul>
+                            <%--<c:set var="active" value="active"> </c:set>--%>
+                            <li class="page-item disabled"><a href="#">Previous</a></li>
+                            <li class="page-item"><a href="#" class="page-link">1</a></li>
+                            <li class="page-item"><a href="#" class="page-link">2</a></li>
+                            <li class="page-item ${active}"><a href="#" class="page-link">3</a></li>
+                            <li class="page-item ${active}"><a href="#" class="page-link">4</a></li>
+                            <li class="page-item ${active}"><a href="#" class="page-link">5</a></li>
+                            <li class="page-item ${active}"><a href="#" class="page-link">6</a></li>
+                            <li class="page-item ${active}" ><a href="#" class="page-link">7</a></li>
+                            <li class="page-item active"><a href="#" class="page-link">Next</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </section>
-
+            </section>
+        </c:if>
         <!-- category 2: chuột-->
-        <section  id ='category2' class="product__love">
-            <div class="container">
-                <div class="row bg-white">
-                    <div class="col-lg-10 col-md-10 col-sm-10 product__love-title">
-                        <h2 class="product__love-heading upper">
-                            Chuột 
-                        </h2>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2 product__love-title">
-                        <div class="show-entries">
-                            <select style="font-size: 15px;">
-                                <option>Bán chạy nhất</option>
-                                <option>Giá giảm dần</option>
-                                <option>Giá tăng dần</option>
-                            </select>
+        <c:if test="${tab=='allProduct'||tab=='mouse'}">
+            <section  id ='category2' class="product__love">
+                <div class="container">
+                    <div class="row bg-white">
+                        <div class="col-lg-10 col-md-10 col-sm-10 product__love-title">
+                            <h2 class="product__love-heading upper">
+                                Chuột 
+                            </h2>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 product__love-title">
+                            <div class="show-entries">
+                                <select style="font-size: 15px;">
+                                    <option>Bán chạy nhất</option>
+                                    <option>Giá giảm dần</option>
+                                    <option>Giá tăng dần</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 product__love-title">
+                            <div class="show-entries">
+                                <label class="hint-text" style="margin-right: 3px;">Hiển thị </label>
+                                <select class="form-control" style="font-size: 15px;">
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>15</option>
+                                    <option>20</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 product__love-title">
-                        <div class="show-entries">
-                            <label class="hint-text" style="margin-right: 3px;">Hiển thị </label>
-                            <select class="form-control" style="font-size: 15px;">
-                                <option>5</option>
-                                <option>10</option>
-                                <option>15</option>
-                                <option>20</option>
-                            </select>
+                    <div class="row bg-white">
+                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                            <div class="product__panel-img-wrap">
+                                <img src="images1/category/c1.jpg" alt="" class="product__panel-img">
+                            </div>
+                            <h3 class="product__panel-heading">
+                                <a href="product.jsp" class="product__panel-link">Chuột Logitech G Pro X Superlight Wireless Red</a>
+                            </h3>
+                            <div class="product__panel-rate-wrap">
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+
+                            <div class="product__panel-price">
+                                <span class="product__panel-price-old-1 "> 
+                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                </span>
+                                <span class="product__panel-price-current">
+                                    <button>291.650đ</button>
+                                </span>
+                            </div>  
+
+                            <div class="product__panel-price-sale-off">
+                                -5%
+                            </div>
                         </div>
+
+                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                            <div class="product__panel-img-wrap">
+                                <img src="images1/category/c2.jpg" alt="" class="product__panel-img" >
+                            </div>
+                            <h3 class="product__panel-heading">
+                                <a href="product.jsp" class="product__panel-link">Chuột Logitech G502 X Plus LightSpeed White
+                                </a>
+                            </h3>
+                            <div class="product__panel-rate-wrap">
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+
+                            <div class="product__panel-price">
+                                <span class="product__panel-price-old-1 ">
+                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                </span>
+                                <span class="product__panel-price-current">
+                                    <button>291.650đ</button>
+                                </span>
+                            </div> 
+
+                            <div class="product__panel-price-sale-off">
+                                -5%
+                            </div> 
+                        </div>
+
+                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                            <div class="product__panel-img-wrap">
+                                <img src="images1/category/c3.jpg" alt="" class="product__panel-img">
+                            </div>
+                            <h3 class="product__panel-heading">
+                                <a href="product.jsp" class="product__panel-link">Chuột Logitech G502 Hero</a>
+                            </h3>
+                            <div class="product__panel-rate-wrap">
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+
+                            <div class="product__panel-price">
+                                <span class="product__panel-price-old-1  ">
+                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                </span>
+                                <span class="product__panel-price-current">
+                                    <button>291.650đ</button>
+                                </span>
+                            </div>
+
+                            <div class="product__panel-price-sale-off">
+                                -5%
+                            </div> 
+                        </div>
+                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                            <div class="product__panel-img-wrap">
+                                <img src="images1/category/c4.jpg" alt="" class="product__panel-img">
+                            </div>
+                            <h3 class="product__panel-heading">
+                                <a href="product.jsp" class="product__panel-link">Chuột Logitech G502 X Plus LightSpeed</a>
+                            </h3>
+                            <div class="product__panel-rate-wrap">
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+
+                            <div class="product__panel-price">
+                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                </span>
+                                <span class="product__panel-price-current">
+                                    <button>291.650đ</button>
+                                </span>
+                            </div> 
+
+                            <!-- <div class="product__panel-price-sale-off">
+                               -10%
+                           </div>  -->
+                        </div>
+
+                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                            <div class="product__panel-img-wrap">
+                                <img src="images1/category/c5.jpg" alt="" class="product__panel-img" >
+                            </div>
+                            <h3 class="product__panel-heading">
+                                <a href="product.jsp" class="product__panel-link">Chuột Logitech G203 LightSync Lilac</a>
+                            </h3>
+                            <div class="product__panel-rate-wrap">
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+
+                            <div class="product__panel-price">
+                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                </span>
+                                <span class="product__panel-price-current">
+                                    <button>291.650đ</button>
+                                </span>
+                            </div> 
+
+                            <div class="product__panel-price-sale-off">
+                                -10%
+                            </div>  
+                        </div>
+
+                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                            <div class="product__panel-img-wrap">
+                                <img src="images1/category/c6.jpg" alt="" class="product__panel-img">
+                            </div>
+                            <h3 class="product__panel-heading">
+                                <a href="product.jsp" class="product__panel-link">Chuột Logitech G Pro Hero</a>
+                            </h3>
+                            <div class="product__panel-rate-wrap">
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+
+                            <div class="product__panel-price">
+                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                </span>
+                                <span class="product__panel-price-current">
+                                    <button>291.650đ</button>
+                                </span>
+                            </div> 
+
+                            <!-- <div class="product__panel-price-sale-off">
+                                -5%
+                            </div>  -->
+                        </div>
+
+                    </div>
+                    <div class="clearfix">
+                        <div class="hint-text" style="font-size: 15px;">Hiển thị <b>5</b> trong số <b>25</b> sản phẩm</div>
+                        <ul class="pagination">
+                            <%--<c:set var="active" value="active"> </c:set>--%>
+                            <li class="page-item disabled"><a href="#">Previous</a></li>
+                            <li class="page-item"><a href="#" class="page-link">1</a></li>
+                            <li class="page-item"><a href="#" class="page-link">2</a></li>
+                            <li class="page-item ${active}"><a href="#" class="page-link">3</a></li>
+                            <li class="page-item ${active}"><a href="#" class="page-link">4</a></li>
+                            <li class="page-item ${active}"><a href="#" class="page-link">5</a></li>
+                            <li class="page-item ${active}"><a href="#" class="page-link">6</a></li>
+                            <li class="page-item ${active}" ><a href="#" class="page-link">7</a></li>
+                            <li class="page-item active"><a href="#" class="page-link">Next</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="row bg-white">
-                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                        <div class="product__panel-img-wrap">
-                            <img src="images1/category/c1.jpg" alt="" class="product__panel-img">
-                        </div>
-                        <h3 class="product__panel-heading">
-                            <a href="product.jsp" class="product__panel-link">Chuột Logitech G Pro X Superlight Wireless Red</a>
-                        </h3>
-                        <div class="product__panel-rate-wrap">
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                        </div>
-
-                        <div class="product__panel-price">
-                            <span class="product__panel-price-old-1 "> 
-                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                            </span>
-                            <span class="product__panel-price-current">
-                                <button>291.650đ</button>
-                            </span>
-                        </div>  
-
-                        <div class="product__panel-price-sale-off">
-                            -5%
-                        </div>
-                    </div>
-
-                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                        <div class="product__panel-img-wrap">
-                            <img src="images1/category/c2.jpg" alt="" class="product__panel-img" >
-                        </div>
-                        <h3 class="product__panel-heading">
-                            <a href="product.jsp" class="product__panel-link">Chuột Logitech G502 X Plus LightSpeed White
-                            </a>
-                        </h3>
-                        <div class="product__panel-rate-wrap">
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                        </div>
-
-                        <div class="product__panel-price">
-                            <span class="product__panel-price-old-1 ">
-                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                            </span>
-                            <span class="product__panel-price-current">
-                                <button>291.650đ</button>
-                            </span>
-                        </div> 
-
-                        <div class="product__panel-price-sale-off">
-                            -5%
-                        </div> 
-                    </div>
-
-                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                        <div class="product__panel-img-wrap">
-                            <img src="images1/category/c3.jpg" alt="" class="product__panel-img">
-                        </div>
-                        <h3 class="product__panel-heading">
-                            <a href="product.jsp" class="product__panel-link">Chuột Logitech G502 Hero</a>
-                        </h3>
-                        <div class="product__panel-rate-wrap">
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                        </div>
-
-                        <div class="product__panel-price">
-                            <span class="product__panel-price-old-1  ">
-                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                            </span>
-                            <span class="product__panel-price-current">
-                                <button>291.650đ</button>
-                            </span>
-                        </div>
-
-                        <div class="product__panel-price-sale-off">
-                            -5%
-                        </div> 
-                    </div>
-                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                        <div class="product__panel-img-wrap">
-                            <img src="images1/category/c4.jpg" alt="" class="product__panel-img">
-                        </div>
-                        <h3 class="product__panel-heading">
-                            <a href="product.jsp" class="product__panel-link">Chuột Logitech G502 X Plus LightSpeed</a>
-                        </h3>
-                        <div class="product__panel-rate-wrap">
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                        </div>
-
-                        <div class="product__panel-price">
-                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                            </span>
-                            <span class="product__panel-price-current">
-                                <button>291.650đ</button>
-                            </span>
-                        </div> 
-
-                        <!-- <div class="product__panel-price-sale-off">
-                           -10%
-                       </div>  -->
-                    </div>
-
-                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                        <div class="product__panel-img-wrap">
-                            <img src="images1/category/c5.jpg" alt="" class="product__panel-img" >
-                        </div>
-                        <h3 class="product__panel-heading">
-                            <a href="product.jsp" class="product__panel-link">Chuột Logitech G203 LightSync Lilac</a>
-                        </h3>
-                        <div class="product__panel-rate-wrap">
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                        </div>
-
-                        <div class="product__panel-price">
-                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                            </span>
-                            <span class="product__panel-price-current">
-                                <button>291.650đ</button>
-                            </span>
-                        </div> 
-
-                        <div class="product__panel-price-sale-off">
-                            -10%
-                        </div>  
-                    </div>
-
-                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                        <div class="product__panel-img-wrap">
-                            <img src="images1/category/c6.jpg" alt="" class="product__panel-img">
-                        </div>
-                        <h3 class="product__panel-heading">
-                            <a href="product.jsp" class="product__panel-link">Chuột Logitech G Pro Hero</a>
-                        </h3>
-                        <div class="product__panel-rate-wrap">
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                        </div>
-
-                        <div class="product__panel-price">
-                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                            </span>
-                            <span class="product__panel-price-current">
-                                <button>291.650đ</button>
-                            </span>
-                        </div> 
-
-                        <!-- <div class="product__panel-price-sale-off">
-                            -5%
-                        </div>  -->
-                    </div>
-
-                </div>
-                <div class="clearfix">
-                    <div class="hint-text" style="font-size: 15px;">Hiển thị <b>5</b> trong số <b>25</b> sản phẩm</div>
-                    <ul class="pagination">
-                        <%--<c:set var="active" value="active"> </c:set>--%>
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item ${active}"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item ${active}"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item ${active}"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item ${active}"><a href="#" class="page-link">6</a></li>
-                        <li class="page-item ${active}" ><a href="#" class="page-link">7</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">Next</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
+            </section>
+        </c:if>
         <!-- category 3: bàn phím -->
-        <section  id ='category3'class="product__love">
-            <div class="container">
-                <div class="row bg-white">
-                    <div class="col-lg-10 col-md-10 col-sm-10 product__love-title">
-                        <h2 class="product__love-heading upper">
-                            Bàn phím  
-                        </h2>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2 product__love-title">
-                        <div class="show-entries">
-                            <select style="font-size: 15px;">
-                                <option>Bán chạy nhất</option>
-                                <option>Giá giảm dần</option>
-                                <option>Giá tăng dần</option>
-                            </select>
+        <c:if test="${tab=='allProduct'||tab=='keyboard'}">
+            <section  id ='category3'class="product__love">
+                <div class="container">
+                    <div class="row bg-white">
+                        <div class="col-lg-10 col-md-10 col-sm-10 product__love-title">
+                            <h2 class="product__love-heading upper">
+                                Bàn phím  
+                            </h2>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 product__love-title">
+                            <div class="show-entries">
+                                <select style="font-size: 15px;">
+                                    <option>Bán chạy nhất</option>
+                                    <option>Giá giảm dần</option>
+                                    <option>Giá tăng dần</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 product__love-title">
+                            <div class="show-entries">
+                                <label class="hint-text" style="margin-right: 3px;">Hiển thị </label>
+                                <select class="form-control" style="font-size: 15px;">
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>15</option>
+                                    <option>20</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 product__love-title">
-                        <div class="show-entries">
-                            <label class="hint-text" style="margin-right: 3px;">Hiển thị </label>
-                            <select class="form-control" style="font-size: 15px;">
-                                <option>5</option>
-                                <option>10</option>
-                                <option>15</option>
-                                <option>20</option>
-                            </select>
+                    <div class="row bg-white">
+
+                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                            <div class="product__panel-img-wrap">
+                                <img src="images1/product/p1.jpg" alt="" class="product__panel-img">
+                            </div>
+                            <h3 class="product__panel-heading">
+                                <a href="product.jsp" class="product__panel-link">Bàn phím cơ AKKO 5075B Plus Dragon Ball Super Goku</a>
+                            </h3>
+                            <div class="product__panel-rate-wrap">
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+
+                            <div class="product__panel-price">
+                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                </span>
+                                <span class="product__panel-price-current">
+                                    <button>291.650đ</button>
+                                </span>
+                            </div>  
+
+                            <!-- <div class="product__panel-price-sale-off">
+                                -10%
+                            </div>  -->
                         </div>
+
+                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                            <div class="product__panel-img-wrap">
+                                <img src="images1/product/p2.jpg" alt="" class="product__panel-img">
+                            </div>
+                            <h3 class="product__panel-heading">
+                                <a href="product.jsp" class="product__panel-link">Bàn phím cơ AKKO 5075B Plus Naruto</a>
+                            </h3>
+                            <div class="product__panel-rate-wrap">
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+
+                            <div class="product__panel-price">
+                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                </span>
+                                <span class="product__panel-price-current">
+                                    <button>291.650đ</button>
+                                </span>
+                            </div> 
+
+                            <!-- <div class="product__panel-price-sale-off">
+                                -10%
+                            </div>  -->
+                        </div>
+
+                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                            <div class="product__panel-img-wrap">
+                                <img src="images1/product/p5.jpg" alt="" class="product__panel-img">
+                            </div>
+                            <h3 class="product__panel-heading">
+                                <a href="product.jsp" class="product__panel-link">Bàn phím cơ AKKO PC98B Plus Black Gold</a>
+                            </h3>
+                            <div class="product__panel-rate-wrap">
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+
+                            <div class="product__panel-price">
+                                <span class="product__panel-price-old-1">
+                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                </span>
+                                <span class="product__panel-price-current">
+                                    <button>291.650đ</button>
+                                </span>
+                            </div> 
+
+                            <div class="product__panel-price-sale-off">
+                                -10%
+                            </div> 
+                        </div>
+
+                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                            <div class="product__panel-img-wrap">
+                                <img src="images1/product/p4.jpg" alt="" class="product__panel-img">
+                            </div>
+                            <h3 class="product__panel-heading">
+                                <a href="product.jsp" class="product__panel-link">Bàn phím cơ AKKO 3068B Black Pink</a>
+                            </h3>
+                            <div class="product__panel-rate-wrap">
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+
+                            <div class="product__panel-price">
+                                <span class="product__panel-price-old-1 ">
+                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                </span>
+                                <span class="product__panel-price-current">
+                                    <button>291.650đ</button>
+                                </span>
+                            </div>
+
+                            <div class="product__panel-price-sale-off">
+                                -10%
+                            </div> 
+                        </div>
+
+                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                            <div class="product__panel-img-wrap">
+                                <img src="images1/product/p3.jpg" alt="" class="product__panel-img" >
+                            </div>
+                            <h3 class="product__panel-heading">
+                                <a href="product.jsp" class="product__panel-link">Bàn phím cơ AKKO PC98B Plus Black Gold</a>
+                            </h3>
+                            <div class="product__panel-rate-wrap">
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+
+                            <div class="product__panel-price">
+                                <span class="product__panel-price-old-1 ">
+                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                </span>
+                                <span class="product__panel-price-current">
+                                    <button>291.650đ</button>
+                                </span>
+                            </div> 
+
+                            <div class="product__panel-price-sale-off">
+                                -15%
+                            </div> 
+                        </div>
+
+                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                            <div class="product__panel-img-wrap">
+                                <img src="images1/product/p6.jpg" alt="" class="product__panel-img" >
+                            </div>
+                            <h3 class="product__panel-heading">
+                                <a href="product.jsp" class="product__panel-link">Bàn phím cơ AKKO 3068B Plus Prunus Lannesiana
+                                </a>
+                            </h3>
+                            <div class="product__panel-rate-wrap">
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                                <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+
+                            <div class="product__panel-price">
+                                <span class="product__panel-price-old-1">
+                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                </span>
+                                <span class="product__panel-price-current">
+                                    <button>291.650đ</button>
+                                </span>
+                            </div> 
+
+                            <!-- <div class="product__panel-price-sale-off">
+                                -10%
+                            </div>  -->
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="hint-text" style="font-size: 15px;">Hiển thị <b>5</b> trong số <b>25</b> sản phẩm</div>
+                        <ul class="pagination">
+                            <%--<c:set var="active" value="active"> </c:set>--%>
+                            <li class="page-item disabled"><a href="#">Previous</a></li>
+                            <li class="page-item"><a href="#" class="page-link">1</a></li>
+                            <li class="page-item"><a href="#" class="page-link">2</a></li>
+                            <li class="page-item ${active}"><a href="#" class="page-link">3</a></li>
+                            <li class="page-item ${active}"><a href="#" class="page-link">4</a></li>
+                            <li class="page-item ${active}"><a href="#" class="page-link">5</a></li>
+                            <li class="page-item ${active}"><a href="#" class="page-link">6</a></li>
+                            <li class="page-item ${active}" ><a href="#" class="page-link">7</a></li>
+                            <li class="page-item active"><a href="#" class="page-link">Next</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="row bg-white">
-
-                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                        <div class="product__panel-img-wrap">
-                            <img src="images1/product/p1.jpg" alt="" class="product__panel-img">
-                        </div>
-                        <h3 class="product__panel-heading">
-                            <a href="product.jsp" class="product__panel-link">Bàn phím cơ AKKO 5075B Plus Dragon Ball Super Goku</a>
-                        </h3>
-                        <div class="product__panel-rate-wrap">
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                        </div>
-
-                        <div class="product__panel-price">
-                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                            </span>
-                            <span class="product__panel-price-current">
-                                <button>291.650đ</button>
-                            </span>
-                        </div>  
-
-                        <!-- <div class="product__panel-price-sale-off">
-                            -10%
-                        </div>  -->
-                    </div>
-
-                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                        <div class="product__panel-img-wrap">
-                            <img src="images1/product/p2.jpg" alt="" class="product__panel-img">
-                        </div>
-                        <h3 class="product__panel-heading">
-                            <a href="product.jsp" class="product__panel-link">Bàn phím cơ AKKO 5075B Plus Naruto</a>
-                        </h3>
-                        <div class="product__panel-rate-wrap">
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                        </div>
-
-                        <div class="product__panel-price">
-                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                            </span>
-                            <span class="product__panel-price-current">
-                                <button>291.650đ</button>
-                            </span>
-                        </div> 
-
-                        <!-- <div class="product__panel-price-sale-off">
-                            -10%
-                        </div>  -->
-                    </div>
-
-                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                        <div class="product__panel-img-wrap">
-                            <img src="images1/product/p5.jpg" alt="" class="product__panel-img">
-                        </div>
-                        <h3 class="product__panel-heading">
-                            <a href="product.jsp" class="product__panel-link">Bàn phím cơ AKKO PC98B Plus Black Gold</a>
-                        </h3>
-                        <div class="product__panel-rate-wrap">
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                        </div>
-
-                        <div class="product__panel-price">
-                            <span class="product__panel-price-old-1">
-                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                            </span>
-                            <span class="product__panel-price-current">
-                                <button>291.650đ</button>
-                            </span>
-                        </div> 
-
-                        <div class="product__panel-price-sale-off">
-                            -10%
-                        </div> 
-                    </div>
-
-                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                        <div class="product__panel-img-wrap">
-                            <img src="images1/product/p4.jpg" alt="" class="product__panel-img">
-                        </div>
-                        <h3 class="product__panel-heading">
-                            <a href="product.jsp" class="product__panel-link">Bàn phím cơ AKKO 3068B Black Pink</a>
-                        </h3>
-                        <div class="product__panel-rate-wrap">
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                        </div>
-
-                        <div class="product__panel-price">
-                            <span class="product__panel-price-old-1 ">
-                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                            </span>
-                            <span class="product__panel-price-current">
-                                <button>291.650đ</button>
-                            </span>
-                        </div>
-
-                        <div class="product__panel-price-sale-off">
-                            -10%
-                        </div> 
-                    </div>
-
-                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                        <div class="product__panel-img-wrap">
-                            <img src="images1/product/p3.jpg" alt="" class="product__panel-img" >
-                        </div>
-                        <h3 class="product__panel-heading">
-                            <a href="product.jsp" class="product__panel-link">Bàn phím cơ AKKO PC98B Plus Black Gold</a>
-                        </h3>
-                        <div class="product__panel-rate-wrap">
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                        </div>
-
-                        <div class="product__panel-price">
-                            <span class="product__panel-price-old-1 ">
-                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                            </span>
-                            <span class="product__panel-price-current">
-                                <button>291.650đ</button>
-                            </span>
-                        </div> 
-
-                        <div class="product__panel-price-sale-off">
-                            -15%
-                        </div> 
-                    </div>
-
-                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                        <div class="product__panel-img-wrap">
-                            <img src="images1/product/p6.jpg" alt="" class="product__panel-img" >
-                        </div>
-                        <h3 class="product__panel-heading">
-                            <a href="product.jsp" class="product__panel-link">Bàn phím cơ AKKO 3068B Plus Prunus Lannesiana
-                            </a>
-                        </h3>
-                        <div class="product__panel-rate-wrap">
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                            <i class="fas fa-star product__panel-rate"></i>
-                        </div>
-
-                        <div class="product__panel-price">
-                            <span class="product__panel-price-old-1">
-                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                            </span>
-                            <span class="product__panel-price-current">
-                                <button>291.650đ</button>
-                            </span>
-                        </div> 
-
-                        <!-- <div class="product__panel-price-sale-off">
-                            -10%
-                        </div>  -->
-                    </div>
-                </div>
-                <div class="clearfix">
-                    <div class="hint-text" style="font-size: 15px;">Hiển thị <b>5</b> trong số <b>25</b> sản phẩm</div>
-                    <ul class="pagination">
-                        <%--<c:set var="active" value="active"> </c:set>--%>
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item ${active}"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item ${active}"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item ${active}"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item ${active}"><a href="#" class="page-link">6</a></li>
-                        <li class="page-item ${active}" ><a href="#" class="page-link">7</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">Next</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            </section>
+        </c:if>
         <!-- footer -->
         <jsp:include page="footer.jsp"></jsp:include>
 
