@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="fonts/fontawesome/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/productlist.css">
         <link rel="stylesheet" href="css/category.css">
         <link rel="stylesheet" href="fonts/fontawesome/css/all.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
@@ -249,14 +249,13 @@
     <body>
         <!-- header -->
         <jsp:include page="header.jsp"></jsp:include>
-
             <!-- end header -->
             <!-- score-top-->
             <button onclick="topFunction()" id="myBtn-scroll" title="Go to top"><i class="fas fa-chevron-up"></i></button>   
             <section class="menu-slide">
                 <div class="container">
                     <div class="row">
-                        <nav class="menu__nav col-lg-3 col-md-12 col-sm-0">
+                        <nav class="menu__nav col-lg-3 col-md-12 col-sm-0" style="padding: 0px;">
                             <ul class="menu__list">
                                 <li class="menu__item">
                                     <a href="headphone.jsp" class="menu__link">
@@ -315,25 +314,27 @@
                     <div class="row bg-white">
                         <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                             <div class="product__panel-img-wrap">
-                                <a href="product.jsp"> <img src="images1/product/t1.jpg" alt="" class="product__panel-img"></a>
+                                <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
                             </div>
                             <h3 class="product__panel-heading">
                                 <a href="product.jsp"  class="product__panel-link">Tai nghe Corsair HS70 Pro Wireless Carbon</a>
-                            </h3>
+                            </h3>                       
                             <div class="product__panel-rate-wrap">
+                                <i class="product__panel-rate" style="text-decoration: underline; margin-right: 5px">5</i>
                                 <i class="fas fa-star product__panel-rate"></i>
                                 <i class="fas fa-star product__panel-rate"></i>
                                 <i class="fas fa-star product__panel-rate"></i>
                                 <i class="fas fa-star product__panel-rate"></i>
                                 <i class="fas fa-star product__panel-rate"></i>
                             </div>
-
                             <div class="product__panel-price">
                                 <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                    <div>    
+                                        <button class="bestselling__product-btn">So sánh</button>
+                                    </div>
                                 </span>
                                 <span class="product__panel-price-current">
-                                    <button>291.650đ</button>
+                                    <button href="compareProduct.jsp" class="bestselling__product-btn">291.650đ</button>
                                 </span>
                             </div>  
                         </div>
@@ -352,7 +353,6 @@
                                 <i class="fas fa-star product__panel-rate"></i>
                                 <i class="fas fa-star product__panel-rate"></i>
                             </div>
-
                             <div class="product__panel-price">
                                 <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
                                     <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
@@ -464,7 +464,7 @@
                         </div>
                     </div>
                     <div class="clearfix">
-                        <div class="hint-text" style="font-size: 15px;">Hiển thị <b>5</b> trong số <b>25</b> sản phẩm</div>
+                        <div class="hint-text" style="font-size: 15px;">Hiển thị 5 trong số 25 sản phẩm</div>
                         <ul class="pagination">
                         <%--<c:set var="active" value="active"> </c:set>--%>
                         <li class="page-item disabled"><a href="#">Previous</a></li>
@@ -688,7 +688,7 @@
 
                 </div>
                 <div class="clearfix">
-                    <div class="hint-text" style="font-size: 15px;">Hiển thị <b>5</b> trong số <b>25</b> sản phẩm</div>
+                    <div class="hint-text" style="font-size: 15px;">Hiển thị 5 trong số 25 sản phẩm</div>
                     <ul class="pagination">
                         <%--<c:set var="active" value="active"> </c:set>--%>
                         <li class="page-item disabled"><a href="#">Previous</a></li>
@@ -913,7 +913,7 @@
                     </div>
                 </div>
                 <div class="clearfix">
-                    <div class="hint-text" style="font-size: 15px;">Hiển thị <b>5</b> trong số <b>25</b> sản phẩm</div>
+                    <div class="hint-text" style="font-size: 15px;">Hiển thị 5 trong số 25 sản phẩm</div>
                     <ul class="pagination">
                         <%--<c:set var="active" value="active"> </c:set>--%>
                         <li class="page-item disabled"><a href="#">Previous</a></li>

@@ -250,7 +250,7 @@
             <section class="menu-slide">
                 <div class="container">
                     <div class="row">
-                        <nav class="menu__nav col-lg-3 col-md-12 col-sm-0">
+                        <nav class="menu__nav col-lg-3 col-md-12 col-sm-0"style="padding: 0px;">
                             <ul class="menu__list">
                                 <li class="menu__item">
                                     <a href="headphone.jsp" class="menu__link">
