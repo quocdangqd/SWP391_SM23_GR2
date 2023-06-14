@@ -6,7 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<form action="ProductListController?tab=allProduc&typeSelect=100" method="get" >
+<form method="post" action="ProductListController?tab=${tab}" >
     <header id="header">
         <style>
             .dropbtn {
@@ -114,7 +114,7 @@
                         </h1>
                     </div>
 
-
+                    <!--<form action="ProductListController?tab=allproduct" method="get" >-->
                     <div class="col-lg-6 col-md-7 col-sm-0 header__search">
                         <select name="typeSelect" id="" class="header__search-select">
                             <option value="0">All</option>
@@ -125,7 +125,7 @@
                         </select>
                         <input type="text" name="searchInput" class="header__search-input" placeholder="Tìm kiếm tại đây...">
 
-                        <button class="header__search-btn">
+                        <button class="header__search-btn" name="searchSubmit" value="submit">
                             <!--<a class="header__search-btn" href="#">--> 
                             <div class="header__search-icon-wrap">
                                 <i class="fas fa-search header__search-icon"></i>
@@ -135,7 +135,7 @@
 
 
                     </div>
-
+                    <!--</form>-->
                     <div class="col-lg-2 col-md-0 col-sm-0 header__call">
                         <div class="header__call-icon-wrap">
                             <i class="fas fa-phone-alt header__call-icon"></i>  

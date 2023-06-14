@@ -25,8 +25,8 @@
         <servlet-class>Controller.Account.ChangePasswordController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>productList</servlet-name>
-        <servlet-class>Controller.View.productList</servlet-class>
+        <servlet-name>ProductListController</servlet-name>
+        <servlet-class>Controller.View.ProductListController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
@@ -55,8 +55,8 @@
         <url-pattern>/auth/ChangePassword</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>productList</servlet-name>
-        <url-pattern>/view/productList</url-pattern>
+        <servlet-name>ProductListController</servlet-name>
+        <url-pattern>/view/ProductListController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

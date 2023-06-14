@@ -1,8 +1,5 @@
 package Controller.View;
 
-import Dal.ProductDAO;
-import Model.Categories;
-import Model.Products;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,13 +7,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 /**
  *
  * @author DucPhaoLo
  */
-public class HomePageController extends HttpServlet {
+public class ProductListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,7 +27,21 @@ public class HomePageController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-
+            String tab = request.getParameter("tab");
+            HttpSession session=request.getSession();
+            if (tab.equals("allProduct")) {
+//                out.print("Show all product");
+            request.getRequestDispatcher("listProduct.jsp").forward(request, response); 
+            } else if (tab.equals("headphone")) {
+                session.setAttribute("tab", "headphone");
+                request.getRequestDispatcher("headphone.jsp").forward(request, response); 
+            } else if (tab.equals("mouse")) {
+                session.setAttribute("tab", "mouse");
+                request.getRequestDispatcher("mouse.jsp").forward(request, response);
+            } else if (tab.equals("keyboard")) {
+                session.setAttribute("tab", "keyboard");
+                request.getRequestDispatcher("keyboard.jsp").forward(request, response);
+            }
         }
     }
 
@@ -47,26 +57,28 @@ public class HomePageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            String tab =request.getParameter("tab"); 
-            ProductDAO productDAO = new ProductDAO();
-            HttpSession session = request.getSession();
-            if (tab!=null&&tab.equals("logOut")) {
-                session.removeAttribute("role");
-            }
-//            else if(tab==null||tab.equals("homepage"))
+        processRequest(request, response);
+//        response.setContentType("text/html;charset=UTF-8");
+//        try ( PrintWriter out = response.getWriter()) {
+//            String tab = request.getParameter("tab");
+//            out.print("tab: "+tab); 
+//            if(tab.equals("allProduct"))
 //            {
-//                ArrayList<Products> bestProductList = new ArrayList<>();
-//                bestProductList=productDAO.BestSellerProducts();
-//                session.setAttribute("bestProductList", bestProductList);
-//                request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
-//                return;
+//                out.print("Show all product");  
 //            }
-            session.setAttribute("tab", "allProduct");
-            request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
-
-        }
+//            else if(tab.equals("headphone"))
+//            {
+//                out.print("Show all headphone");  
+//            }
+//            else if(tab.equals("mouse"))
+//            {
+//                out.print("Show all mouse");  
+//            }
+//            else if(tab.equals("keyboard"))
+//            {
+//                out.print("Show all keyboard");  
+//            }
+//        }
 
     }
 
@@ -81,7 +93,7 @@ public class HomePageController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /**
