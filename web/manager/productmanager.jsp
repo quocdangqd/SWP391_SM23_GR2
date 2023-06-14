@@ -26,7 +26,54 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+        <style>
+            .dropbtn {
+                background-color: #ef2317;
+                color: white;
+                padding: 16px;
+                font-family: Roboto;
+                border: none;
+            }
 
+            .dropdown {
+                margin-right: 100px;
+                margin-top: 2px;
+                position: relative;
+                display: inline-block;
+                font-size: 30px;
+                color: white;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: white;
+                min-width: 120px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 12px;
+                text-decoration: none;
+                display: block;
+                font-size: 15px;
+            }
+
+            .dropdown-content a:hover {
+                background-color: #ef2317;
+                color: white;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #ef2317;
+            }
+        </style>
     </head>
 
     <body onload="time()" class="app sidebar-mini rtl">
@@ -39,7 +86,13 @@
 
 
                 <!-- User Menu-->
-                <li><a class="app-nav__item" href="/homepage.jsp"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                <li>
+                    <div class="dropdown fas fa-user header__nav-cart-icon">
+                        <div class="dropdown-content">
+                            <a href="#">Đổi mật khẩu</a>
+                            <a href="#">Đăng xuất</a>
+                        </div>
+                    </div>
 
                 </li>
             </ul>
@@ -56,7 +109,7 @@
             <ul class="app-menu">
                 <li><a class="app-menu__item " href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
-                
+
                 <li><a class="app-menu__item active" href="productmanager.jsp"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
                 </li>
@@ -299,47 +352,47 @@
         <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript">
-                                                    $('#sampleTable').DataTable();
-                                                    //Thời Gian
-                                                    function time() {
-                                                        var today = new Date();
-                                                        var weekday = new Array(7);
-                                                        weekday[0] = "Chủ Nhật";
-                                                        weekday[1] = "Thứ Hai";
-                                                        weekday[2] = "Thứ Ba";
-                                                        weekday[3] = "Thứ Tư";
-                                                        weekday[4] = "Thứ Năm";
-                                                        weekday[5] = "Thứ Sáu";
-                                                        weekday[6] = "Thứ Bảy";
-                                                        var day = weekday[today.getDay()];
-                                                        var dd = today.getDate();
-                                                        var mm = today.getMonth() + 1;
-                                                        var yyyy = today.getFullYear();
-                                                        var h = today.getHours();
-                                                        var m = today.getMinutes();
-                                                        var s = today.getSeconds();
-                                                        m = checkTime(m);
-                                                        s = checkTime(s);
-                                                        nowTime = h + " giờ " + m + " phút " + s + " giây";
-                                                        if (dd < 10) {
-                                                            dd = '0' + dd
-                                                        }
-                                                        if (mm < 10) {
-                                                            mm = '0' + mm
-                                                        }
-                                                        today = day + ', ' + dd + '/' + mm + '/' + yyyy;
-                                                        tmp = '<span class="date"> ' + today + ' - ' + nowTime +
-                                                                '</span>';
-                                                        document.getElementById("clock").innerHTML = tmp;
-                                                        clocktime = setTimeout("time()", "1000", "Javascript");
-
-                                                        function checkTime(i) {
-                                                            if (i < 10) {
-                                                                i = "0" + i;
+                                                        $('#sampleTable').DataTable();
+                                                        //Thời Gian
+                                                        function time() {
+                                                            var today = new Date();
+                                                            var weekday = new Array(7);
+                                                            weekday[0] = "Chủ Nhật";
+                                                            weekday[1] = "Thứ Hai";
+                                                            weekday[2] = "Thứ Ba";
+                                                            weekday[3] = "Thứ Tư";
+                                                            weekday[4] = "Thứ Năm";
+                                                            weekday[5] = "Thứ Sáu";
+                                                            weekday[6] = "Thứ Bảy";
+                                                            var day = weekday[today.getDay()];
+                                                            var dd = today.getDate();
+                                                            var mm = today.getMonth() + 1;
+                                                            var yyyy = today.getFullYear();
+                                                            var h = today.getHours();
+                                                            var m = today.getMinutes();
+                                                            var s = today.getSeconds();
+                                                            m = checkTime(m);
+                                                            s = checkTime(s);
+                                                            nowTime = h + " giờ " + m + " phút " + s + " giây";
+                                                            if (dd < 10) {
+                                                                dd = '0' + dd
                                                             }
-                                                            return i;
+                                                            if (mm < 10) {
+                                                                mm = '0' + mm
+                                                            }
+                                                            today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+                                                            tmp = '<span class="date"> ' + today + ' - ' + nowTime +
+                                                                    '</span>';
+                                                            document.getElementById("clock").innerHTML = tmp;
+                                                            clocktime = setTimeout("time()", "1000", "Javascript");
+
+                                                            function checkTime(i) {
+                                                                if (i < 10) {
+                                                                    i = "0" + i;
+                                                                }
+                                                                return i;
+                                                            }
                                                         }
-                                                    }
         </script>
         <script>
             function deleteRow(r) {

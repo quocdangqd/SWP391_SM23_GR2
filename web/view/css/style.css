@@ -384,11 +384,10 @@ body{
 
 @media (max-width:992px){
     .header__top{
-        display: none;
+        width: 100%;
     }
-
     .header__nav-menu-wrap{
-        display: none;
+      display: none;
     }
 
     /*.header__search{
@@ -406,19 +405,17 @@ body{
 
 @media (max-width:768px){
     .hide-on-mobile{
-        display: none;
     }
 
     .header__search{
-        display: none;
+        
     }
 
     .header__cart{
-        display: none;
+        padding-left: 90%;
     }
 
     .header__nav{
-        display: none;
     }
 
     .header__heading {
