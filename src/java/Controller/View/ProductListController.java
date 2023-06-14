@@ -28,13 +28,15 @@ public class ProductListController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             String tab = request.getParameter("tab");
-            HttpSession session=request.getSession();
+            HttpSession session = request.getSession();
             if (tab.equals("allProduct")) {
 //                out.print("Show all product");
-            request.getRequestDispatcher("listProduct.jsp").forward(request, response); 
-            } else if (tab.equals("headphone")) {
+                session.setAttribute("tab", "allProduct");
+                request.getRequestDispatcher("listProduct.jsp").forward(request, response);
+            } 
+            else if (tab.equals("headphone")) {
                 session.setAttribute("tab", "headphone");
-                request.getRequestDispatcher("headphone.jsp").forward(request, response); 
+                request.getRequestDispatcher("headphone.jsp").forward(request, response);
             } else if (tab.equals("mouse")) {
                 session.setAttribute("tab", "mouse");
                 request.getRequestDispatcher("mouse.jsp").forward(request, response);

@@ -27,7 +27,6 @@
             <!--</form>-->
                     <!--slide - menu list--> 
                 <section class="menu-slide">
-
                     <div class="container">
                         <div class="row">
                             <nav class="menu__nav col-lg-3 col-md-12 col-sm-0">
