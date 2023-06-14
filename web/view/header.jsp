@@ -6,7 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<form action="productList" method="get" >
+<form action="ProductListController?tab=allProduc&typeSelect=100" method="get" >
     <header id="header">
         <style>
             .dropbtn {
@@ -90,7 +90,7 @@
                                         <div class="dropdown-content">
                                             <a href="#">Hồ sơ cá nhân</a>
                                             <a href="../auth/ChangePassword?tab=changePassword">Đổi mật khẩu</a>
-                                            <a href="HomePageController?logOut">Đăng xuất</a>
+                                            <a href="HomePageController?tab=logOut">Đăng xuất</a>
                                         </div>
                                     </div>
                                 </li>
@@ -108,7 +108,7 @@
                 <section class="row">
                     <div class="col-lg-3 col-md-4 col-sm-12 header__logo">
                         <h1 class="header__heading">
-                            <a href="HomePageController" class="header__logo-link">
+                            <a href="HomePageController?tab=homepage" class="header__logo-link">
                                 <img src="images1/logo1.png" alt="Logo" class="header__logo-img">
                             </a>
                         </h1>
@@ -173,10 +173,11 @@
                     <div class="header__nav col-lg-9 col-md-0 col-sm-0">
                         <ul class="header__nav-list">
                             <li class="header__nav-item">
-                                <a href="HomePageController" class="header__nav-link">TRANG CHỦ</a>
+                                <a href="HomePageController?tab=homepage" class="header__nav-link">TRANG CHỦ</a>
                             </li>
                             <li class="header__nav-item">
-                                <a href="listProduct.jsp" class="header__nav-link">SẢN PHẨM</a>
+                                <!--<a href="listProduct.jsp" class="header__nav-link">SẢN PHẨM</a>-->
+                                <a href="ProductListController?tab=allProduct" class="header__nav-link">SẢN PHẨM</a>
                             </li>
                             <li class="header__nav-item">
                                 <a href="compareProduct.jsp" class="header__nav-link">SO SÁNH SẢN PHẨM</a>
@@ -192,6 +193,7 @@
                 </section>
             </div>
         </div>
+
     </header>
 </form>
 <!--end header nav -->

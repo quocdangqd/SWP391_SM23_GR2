@@ -1,7 +1,9 @@
 package Controller.Account;
 
+import Dal.AccountDao;
 import Impl.LoginAndRegisterValidation;
 import Model.User;
+import com.oracle.wls.shaded.org.apache.bcel.generic.AALOAD;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -53,6 +55,8 @@ public class ChangePasswordController extends HttpServlet {
                         }
                     }
                     if (msg1 == null && msg2 == null && msg3 == null) {
+                        AccountDao accountDao = new AccountDao();
+                        accountDao.ChangePassword(u.getUsername(), password);
                         request.setAttribute("changepasswordSuccess","true"); 
                         request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
                         return;

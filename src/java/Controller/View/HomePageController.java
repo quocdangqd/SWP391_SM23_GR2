@@ -49,23 +49,21 @@ public class HomePageController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String urlString=request.getRequestURI();
-            String urlLString = request.getRequestURI();
+            String tab =request.getParameter("tab"); 
             ProductDAO productDAO = new ProductDAO();
             HttpSession session = request.getSession();
-            if (request.getParameter("logOut") != null) {
+            if (tab!=null&&tab.equals("logOut")) {
                 session.removeAttribute("role");
             }
-            else if(urlString.equals(request.getContextPath()+"/HomePageController"))
-            {
-                request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
-                return;
-            }
-            else {
-                ArrayList<Products> bestProductList = new ArrayList<>();
-                bestProductList=productDAO.BestSellerProducts();
-                session.setAttribute("bestProductList", bestProductList);
-            }
+//            else if(tab==null||tab.equals("homepage"))
+//            {
+//                ArrayList<Products> bestProductList = new ArrayList<>();
+//                bestProductList=productDAO.BestSellerProducts();
+//                session.setAttribute("bestProductList", bestProductList);
+//                request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
+//                return;
+//            }
+            session.setAttribute("type", "allProduct");
             request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
 
         }
