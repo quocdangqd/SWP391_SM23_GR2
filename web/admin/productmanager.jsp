@@ -4,6 +4,7 @@
     Author     : trand
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,6 +72,7 @@
                 </li>
             </ul>
         </aside>
+        
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb side">
@@ -130,10 +132,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:forEach items="${product}" var="p">
                                     <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Loại sản phẩm</td>
+                                        <!--<td width="10"><input type="checkbox" name="check1" value="1"></td>-->
+                                       
+                                        <td>${p.name}</td>
+<!--                                        <td>Loại sản phẩm</td>
                                         <td>Tên sản phẩm</td>
                                         <td>Mô tả</td>
                                         <td>Ảnh</td>
@@ -146,62 +150,10 @@
                                             <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
                                                     data-target="#ModalUP"><i class="fas fa-edit"></i></button>
 
-                                        </td>
+                                        </td>-->
                                     </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Loại sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Mô tả</td>
-                                        <td>Ảnh</td>
-                                        <td>Số lượng</td>
-                                        <td>Tình trạng</td>
-                                        <td>Giá tiền</td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Loại sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Mô tả</td>
-                                        <td>Ảnh</td>
-                                        <td>Số lượng</td>
-                                        <td>Tình trạng</td>
-                                        <td>Giá tiền</td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Loại sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Mô tả</td>
-                                        <td>Ảnh</td>
-                                        <td>Số lượng</td>
-                                        <td>Tình trạng</td>
-                                        <td>Giá tiền</td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button> 
-                                        </td>
-                                    </tr>
+                                    </c:forEach>
+                                    
                                 </tbody>
                             </table>
                         </div>

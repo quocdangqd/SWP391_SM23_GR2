@@ -4,6 +4,7 @@ import Model.Categories;
 import Model.Products;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
 
 /**
@@ -149,25 +150,60 @@ public class ProductDAO extends ConnectMySQL {
         }
         return data;
     }
+    
+   public List<Products> searchProducts() {
+        List<Products> data = new ArrayList<>();
+        try {
+            String sqlSelect = "Select * from product";
+            pstm = connection.prepareStatement(sqlSelect);
+             rs = pstm.executeQuery();
+            while (rs.next()) {
+                       Products p = new Products();
+                       p.setProductID(String.valueOf(rs.getInt(1)));
+                       String categories = String.valueOf(rs.getInt(2));
+                       p.setProduct_categoryID(categories);
+                       p.setName(String.valueOf(rs.getString(3)));
+                       p.setDesciption(String.valueOf(rs.getString(4)));
+                       p.setPicture( rs.getString(5));
+                       p.setPicture2( rs.getString(6));
+                       p.setPicture3( rs.getString(7));
+                       p.setPrice(String.valueOf(rs.getFloat(8)));
+                       p.setQuantity(String.valueOf(rs.getInt(9)));
+                       p.setStatus(String.valueOf(rs.getInt(10)));
+                       p.setCategories(new CategoriesDAO().getCategoryById(categories));
+                       data.add(p);
+                    }          
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        return data;
+   }
+    
 
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
-        for (Products p : productDAO.getProductListByCategoryIDAndSort("", "descendingSalePrice")) {
-            System.out.println("productid: " + p.getProductID() + " ");
-            System.out.println("categoriID: " + p.getProduct_categoryID()+ " ");
-            System.out.println("Name: " + p.getName() + " ");
-            System.out.println("Description: " + p.getDesciption()+ " ");
-            System.out.println("picture: " + p.getPicture()+ " ");
-            System.out.println("picture2: " + p.getPicture2()+ " ");
-            System.out.println("picture3: " + p.getPicture3()+ " ");
-            System.out.println("price: " + p.getPrice() + " ");
-            System.out.println("quantity: " + p.getQuantity()+ " ");
-            System.out.println("status: " + p.getStatus()+ " ");
-            System.out.println("sale: " + p.getSale() + " ");
-            System.out.println("rateStar: " + p.getRateStar() + " ");
-            System.out.println("saleprice: " + p.getSalePrice() + " ");
-            System.out.println("");
+        for(Products p  :productDAO.searchProducts()){
+            System.out.println(p.getCategories().getName());
+            
         }
+                ;
+//        for (Products p : productDAO.getProductListByCategoryIDAndSort("", "descendingSalePrice")) {
+//            System.out.println("productid: " + p.getProductID() + " ");
+//            System.out.println("categoriID: " + p.getProduct_categoryID()+ " ");
+//            System.out.println("Name: " + p.getName() + " ");
+//            System.out.println("Description: " + p.getDesciption()+ " ");
+//            System.out.println("picture: " + p.getPicture()+ " ");
+//            System.out.println("picture2: " + p.getPicture2()+ " ");
+//            System.out.println("picture3: " + p.getPicture3()+ " ");
+//            System.out.println("price: " + p.getPrice() + " ");
+//            System.out.println("quantity: " + p.getQuantity()+ " ");
+//            System.out.println("status: " + p.getStatus()+ " ");
+//            System.out.println("sale: " + p.getSale() + " ");
+//            System.out.println("rateStar: " + p.getRateStar() + " ");
+//            System.out.println("saleprice: " + p.getSalePrice() + " ");
+//            System.out.println("");
+//        }
 
 //        for (Products p : productDAO.BestSellerProducts()) {
 //            System.out.print("productid: " + p.getProductID() + " ");

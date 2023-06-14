@@ -5,12 +5,21 @@ package Model;
  * @author DucPhaoLo
  */
 public class Products {
-    private String ProductID, product_categoryID, name, desciption, picture, price, quantity, status,sale;
-    private String rateStar,salePrice,picture2,picture3;
-    
+
+    private String ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale;
+    private String rateStar, salePrice, picture2, picture3;
+    private Categories categories;
 
     public String getSale() {
         return sale;
+    }
+
+    public Categories getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Categories categories) {
+        this.categories = categories;
     }
 
     public void setSale(String sale) {
@@ -32,6 +41,7 @@ public class Products {
     public void setSalePrice(String salePrice) {
         this.salePrice = salePrice;
     }
+
     public Products() {
     }
 
@@ -50,6 +60,7 @@ public class Products {
     public void setPicture3(String picture3) {
         this.picture3 = picture3;
     }
+
     public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status, String sale, String rateStar, String salePrice, String picture2, String picture3) {
         this.ProductID = ProductID;
         this.product_categoryID = product_categoryID;
@@ -66,8 +77,6 @@ public class Products {
         this.picture3 = picture3;
     }
 
-    
-    
     public String getProductID() {
         return ProductID;
     }
@@ -131,5 +140,5 @@ public class Products {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
 }
