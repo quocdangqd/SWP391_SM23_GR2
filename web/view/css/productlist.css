@@ -216,7 +216,7 @@
 }
 
 .bestselling__product-btn {
-    width: 10rem;
+    width: 7rem;
     height: 3rem;
     border-radius: 0.2rem;
     background: var(--primary-color);
@@ -228,7 +228,6 @@
     border: none;
     font-size: 1.4rem;
     font-weight: 500;
-    margin: 1rem 0;
     cursor: pointer;
     transition: 0.2s;
 }
@@ -705,10 +704,8 @@ section.product__love{
         display: none;
     }
 
-
-    /*.header__search{
-        display: none;
-    }*/
+    .header__search{
+    }
 }
 
 @media (max-width:768px){
@@ -723,10 +720,12 @@ section.product__love{
     .product__title-mobile{
         display: block;
     }
+    .header__nav-cart-icon{
+        padding-right: 90%;
+    }
 }
-
 @media (min-width:768px){
-
+    
 }
 
 .main__modal{
