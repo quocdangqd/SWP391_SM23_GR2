@@ -11,7 +11,7 @@ import org.apache.http.client.fluent.Request;
 
 /**
  *
- * @author PC
+ * @author DucPhaoLo
  */
 public class LoginWithGoogle {
     private String code;

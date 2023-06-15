@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author PC
+ * @author DucPhaoLo
  */
 public class AccountDao extends ConnectMySQL {
 
@@ -84,21 +84,6 @@ public class AccountDao extends ConnectMySQL {
         return false;
     }
 
-//    public int GetUserIndex() {
-//        String sqlSelect = "select max(userID)  FROM swp.user;";
-//        try {
-//            pstm = connection.prepareStatement(sqlSelect);
-//            rs = pstm.executeQuery();
-//            if (rs.next() == false) {
-//                return 1;
-//            } else {
-//                return Integer.parseInt(rs.getString(1));
-//            }
-//        } catch (Exception e) {
-//            System.out.println("GetUserIndex: " + e);
-//        }
-//        return -1;
-//    }
     public User GetUserByEmail(String email) {
         String sqlSelect = "select* from swp.user where email= ?";
         try {
@@ -141,19 +126,19 @@ public class AccountDao extends ConnectMySQL {
         return false;
     }
 
-//    public boolean updateUser(String password, String address) {
-//        try {
-//            String sqlSelect = "UPDATE `swp`.`user` SET `password` = ? WHERE (`email` = ?);";
-//            pstm = connection.prepareStatement(sqlSelect);
-//            pstm.setString(1, newPassword);
-//            pstm.setString(2, email);
-//            pstm.execute();
-//            return true;
-//        } catch (Exception e) {
-//            System.out.println("resetPassword: " + e);
-//        }
-//        return false;
-//    }
+    public boolean ChangePassword(String userName, String newPassword) {
+        try {
+            String sqlSelect = "UPDATE `swp`.`user` SET `password` = ? WHERE (`userName` = ?);";
+            pstm = connection.prepareStatement(sqlSelect);
+            pstm.setString(1, newPassword);
+            pstm.setString(2, userName);
+            pstm.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println("ChangePassword: " + e);
+        }
+        return false;
+    }
 
     public boolean checkLogin(User user) {
         try {

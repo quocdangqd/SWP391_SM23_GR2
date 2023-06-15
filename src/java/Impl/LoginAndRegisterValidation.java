@@ -3,7 +3,7 @@ package Impl;
 
 /**
  *
- * @author PC
+ * @author DucPhaoLo
  */
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 
 /**
  *
- * @author HAI DANG
+ * @author DucPhaoLo
  */
 // file name not match??
 public class LoginController extends HttpServlet {

@@ -1,21 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package Controller.View;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
  *
- * @author PC
+ * @author DucPhaoLo
  */
-public class productList extends HttpServlet {
+public class ProductListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,18 +27,20 @@ public class productList extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet productList</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet productList at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            out.print("typeselect: "+request.getParameter("typeSelect")); 
-            out.print(" input: "+request.getParameter("searchInput") ); 
+            String tab = request.getParameter("tab");
+            HttpSession session = request.getSession();
+            if (tab.equals("allProduct")) {
+                session.setAttribute("tab", "allProduct");
+                
+            } 
+            else if (tab.equals("headphone")) {
+                session.setAttribute("tab", "headphone");
+            } else if (tab.equals("mouse")) {
+                session.setAttribute("tab", "mouse");
+            } else if (tab.equals("keyboard")) {
+                session.setAttribute("tab", "keyboard");
+            }
+            request.getRequestDispatcher("listProduct.jsp").forward(request, response);
         }
     }
 
@@ -58,6 +57,28 @@ public class productList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+//        response.setContentType("text/html;charset=UTF-8");
+//        try ( PrintWriter out = response.getWriter()) {
+//            String tab = request.getParameter("tab");
+//            out.print("tab: "+tab); 
+//            if(tab.equals("allProduct"))
+//            {
+//                out.print("Show all product");  
+//            }
+//            else if(tab.equals("headphone"))
+//            {
+//                out.print("Show all headphone");  
+//            }
+//            else if(tab.equals("mouse"))
+//            {
+//                out.print("Show all mouse");  
+//            }
+//            else if(tab.equals("keyboard"))
+//            {
+//                out.print("Show all keyboard");  
+//            }
+//        }
+
     }
 
     /**

@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Model;
 
 /**
  *
- * @author PC
+ * @author DucPhaoLo
  */
 public class Products {
     private String ProductID, product_categoryID, name, desciption, picture, price, quantity, status,sale;
-    private String rateStar,salePrice;
+    private String rateStar,salePrice,picture2,picture3;
     
 
     public String getSale() {
@@ -39,18 +35,22 @@ public class Products {
     public Products() {
     }
 
-    public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status) {
-        this.ProductID = ProductID;
-        this.product_categoryID = product_categoryID;
-        this.name = name;
-        this.desciption = desciption;
-        this.picture = picture;
-        this.price = price;
-        this.quantity = quantity;
-        this.status = status;
+    public String getPicture2() {
+        return picture2;
     }
 
-    public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status, String sale, String rateStar, String salePrice) {
+    public void setPicture2(String picture2) {
+        this.picture2 = picture2;
+    }
+
+    public String getPicture3() {
+        return picture3;
+    }
+
+    public void setPicture3(String picture3) {
+        this.picture3 = picture3;
+    }
+    public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status, String sale, String rateStar, String salePrice, String picture2, String picture3) {
         this.ProductID = ProductID;
         this.product_categoryID = product_categoryID;
         this.name = name;
@@ -62,6 +62,8 @@ public class Products {
         this.sale = sale;
         this.rateStar = rateStar;
         this.salePrice = salePrice;
+        this.picture2 = picture2;
+        this.picture3 = picture3;
     }
 
     
