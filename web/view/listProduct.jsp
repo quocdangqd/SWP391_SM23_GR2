@@ -342,34 +342,35 @@
                         </div>
                     </div>
                     <div class="row bg-white">
-                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                            <div class="product__panel-img-wrap">
-                                <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
+                        <c:forEach items="${headPhoneData}" var="item">
+                            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                                <div class="product__panel-img-wrap">
+                                    <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
+                                </div>
+                                <h3 class="product__panel-heading">
+                                    <a href="product.jsp"  class="product__panel-link">${item.getName()}</a>
+                                </h3>                       
+                                <div class="product__panel-rate-wrap">
+                                    <i class="product__panel-rate" style="text-decoration: underline; margin-right: 5px">${item.getRateStar()}</i>
+                                    <i class="fas fa-star product__panel-rate"></i>
+                                    <i class="fas fa-star product__panel-rate"></i>
+                                    <i class="fas fa-star product__panel-rate"></i>
+                                    <i class="fas fa-star product__panel-rate"></i>
+                                    <i class="fas fa-star product__panel-rate"></i>
+                                </div>
+                                <div class="product__panel-price">
+                                    <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                        <div>    
+                                            <button class="bestselling__product-btn">So sánh</button>
+                                        </div>
+                                    </span>
+                                    <span class="product__panel-price-current">
+                                        <button href="compareProduct.jsp" class="bestselling__product-btn">${item.getSalePrice()}đ</button>
+                                    </span>
+                                </div>  
                             </div>
-                            <h3 class="product__panel-heading">
-                                <a href="product.jsp"  class="product__panel-link">Tai nghe Corsair HS70 Pro Wireless Carbon</a>
-                            </h3>                       
-                            <div class="product__panel-rate-wrap">
-                                <i class="product__panel-rate" style="text-decoration: underline; margin-right: 5px">5</i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                            </div>
-                            <div class="product__panel-price">
-                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                    <div>    
-                                        <button class="bestselling__product-btn">So sánh</button>
-                                    </div>
-                                </span>
-                                <span class="product__panel-price-current">
-                                    <button href="compareProduct.jsp" class="bestselling__product-btn">291.650đ</button>
-                                </span>
-                            </div>  
-                        </div>
-
-                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                        </c:forEach>
+<!--                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                             <div class="product__panel-img-wrap">
                                 <a href="product.jsp"><img src="images1/product/t2.jpg" alt="" class="product__panel-img"></a>
                             </div>
@@ -491,7 +492,7 @@
                                     <button>291.650đ</button>
                                 </span>
                             </div> 
-                        </div>
+                        </div>-->
                     </div>
                     <div class="clearfix">
                         <div class="hint-text" style="font-size: 15px;">Hiển thị 5 trong số 25 sản phẩm</div>

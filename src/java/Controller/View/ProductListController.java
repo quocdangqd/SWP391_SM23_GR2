@@ -1,5 +1,8 @@
 package Controller.View;
 
+import Dal.ProductDAO;
+import Model.Earphone;
+import Model.Products;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -7,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,17 +33,23 @@ public class ProductListController extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             String tab = request.getParameter("tab");
             HttpSession session = request.getSession();
+            ProductDAO pdao = new ProductDAO();
             if (tab.equals("allProduct")) {
                 session.setAttribute("tab", "allProduct");
-                
-            } 
-            else if (tab.equals("headphone")) {
-                session.setAttribute("tab", "headphone");
+
+            } else if (tab.equals("headphone")) {
+//                session.setAttribute("tab", "headphone");
+//                ArrayList<Products> headPhoneData = pdao.getProductListByCategoryIDAndSort("1", "rate");
+//                request.setAttribute("headPhoneData",headPhoneData); 
             } else if (tab.equals("mouse")) {
                 session.setAttribute("tab", "mouse");
             } else if (tab.equals("keyboard")) {
                 session.setAttribute("tab", "keyboard");
             }
+            session.setAttribute("tab", "headphone");
+            ArrayList<Products> headPhoneData = pdao.getProductListByCategoryIDAndSort("1", "rate");
+            request.setAttribute("headPhoneData", headPhoneData);
+//            out.print("size() = "+headPhoneData.size()); 
             request.getRequestDispatcher("/view/listProduct.jsp").forward(request, response);
         }
     }

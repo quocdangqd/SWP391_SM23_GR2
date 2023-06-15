@@ -1,5 +1,7 @@
 package Dal;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import Model.Categories;
 import Model.Products;
 import java.text.DecimalFormat;
@@ -57,7 +59,10 @@ public class ProductDAO extends ConnectMySQL {
                             + "group by productid order by SalePrice desc ";
                 }
             }
-            DecimalFormat decimalFormat = new DecimalFormat("#");
+//            DecimalFormat decimalFormat = new DecimalFormat("#");
+            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+            decimalFormat.applyPattern("#,###");
+//            String formattedNumber = decimalFormat.format(number);
             pstm = connection.prepareStatement(sqlSelectString);
             if (categoryID != null && !categoryID.isEmpty()) {
                 pstm.setInt(1, Integer.parseInt(categoryID));
@@ -69,15 +74,15 @@ public class ProductDAO extends ConnectMySQL {
                 String name = String.valueOf(rs.getString(3));
                 String desciption = String.valueOf(rs.getString(4));
                 String picture = String.valueOf(rs.getString(5));
-                String price = String.valueOf(decimalFormat.format(rs.getFloat(6)));
+                String price = String.valueOf(decimalFormat.format((int) rs.getFloat(6)));
                 String quantity = String.valueOf(rs.getInt(7));
                 String status = String.valueOf(rs.getInt(8));
-                String sale = String.valueOf(decimalFormat.format(rs.getFloat(9)));
+                String sale = String.valueOf(decimalFormat.format((int) rs.getFloat(9)));
                 String rateStar = String.valueOf(new DecimalFormat("#.0").format(rs.getFloat(10)));
                 if (rs.getFloat(10) - (int) rs.getFloat(10) == 0) {
                     rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                 }
-                String salePrice = String.valueOf(decimalFormat.format(rs.getDouble(11)));
+                String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
                 String picture2 = String.valueOf(rs.getString(12));
                 String picture3 = String.valueOf(rs.getString(13));
                 data.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rateStar, salePrice, picture2, picture3));
@@ -92,7 +97,8 @@ public class ProductDAO extends ConnectMySQL {
         ArrayList<Products> data = new ArrayList<>();
 
         CategoriesDAO categoriesDAO = new CategoriesDAO();
-        DecimalFormat decimalFormat = new DecimalFormat("#");
+        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+        decimalFormat.applyPattern("#,###");
         ArrayList<Categories> categoryIdList = categoriesDAO.GetCategoriesList();
         try {
             for (Categories c : categoryIdList) {
@@ -128,15 +134,15 @@ public class ProductDAO extends ConnectMySQL {
                         String name = String.valueOf(rs.getString(3));
                         String desciption = String.valueOf(rs.getString(4));
                         String picture = String.valueOf(rs.getString(5));
-                        String price = String.valueOf(decimalFormat.format(rs.getFloat(6)));
+                        String price = String.valueOf(decimalFormat.format((int) rs.getFloat(6)));
                         String quantity = String.valueOf(rs.getInt(7));
                         String status = String.valueOf(rs.getInt(8));
-                        String sale = String.valueOf(decimalFormat.format(rs.getFloat(9)));
+                        String sale = String.valueOf(decimalFormat.format((int) rs.getFloat(9)));
                         String rateStar = String.valueOf(new DecimalFormat("#.0").format(rs.getFloat(10)));
                         if (rs.getFloat(10) - (int) rs.getFloat(10) == 0) {
                             rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                         }
-                        String salePrice = String.valueOf(decimalFormat.format(rs.getDouble(11)));
+                        String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
                         String picture2 = String.valueOf(rs.getString(12));
                         String picture3 = String.valueOf(rs.getString(13));
                         data.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rateStar, salePrice, picture2, picture3));
@@ -159,7 +165,8 @@ public class ProductDAO extends ConnectMySQL {
                     + "on p.ProductID=od.orderdetail_productID  where e.earphone_ProductID=p.ProductID and e.type=?\n"
                     + "group by productid ,e.type\n"
                     + "order by rate desc;";
-            DecimalFormat decimalFormat = new DecimalFormat("#");
+            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+            decimalFormat.applyPattern("#,###");
             pstm = connection.prepareStatement(sqlSelectString);
             pstm.setString(1, type);
             rs = pstm.executeQuery();
@@ -169,15 +176,15 @@ public class ProductDAO extends ConnectMySQL {
                 String name = String.valueOf(rs.getString(3));
                 String desciption = String.valueOf(rs.getString(4));
                 String picture = String.valueOf(rs.getString(5));
-                String price = String.valueOf(decimalFormat.format(rs.getFloat(6)));
+                String price = String.valueOf(decimalFormat.format((int) rs.getFloat(6)));
                 String quantity = String.valueOf(rs.getInt(7));
                 String status = String.valueOf(rs.getInt(8));
-                String sale = String.valueOf(decimalFormat.format(rs.getFloat(9)));
+                String sale = String.valueOf(decimalFormat.format((int) rs.getFloat(9)));
                 String rateStar = String.valueOf(new DecimalFormat("#.0").format(rs.getFloat(10)));
                 if (rs.getFloat(10) - (int) rs.getFloat(10) == 0) {
                     rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                 }
-                String salePrice = String.valueOf(decimalFormat.format(rs.getDouble(11)));
+                String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
                 String picture2 = String.valueOf(rs.getString(12));
                 String picture3 = String.valueOf(rs.getString(13));
                 data.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rateStar, salePrice, picture2, picture3));
@@ -190,6 +197,9 @@ public class ProductDAO extends ConnectMySQL {
 
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
+        // Định dạng số với dấu chấm
+
+//        System.out.println(formattedNumber);
 //        for (Products p : productDAO.getProductListByCategoryIDAndSort("", "descendingSalePrice")) {
 //            System.out.println("productid: " + p.getProductID() + " ");
 //            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
@@ -216,21 +226,21 @@ public class ProductDAO extends ConnectMySQL {
 //            System.out.print("saleprice: " + p.getSalePrice() + " ");
 //            System.out.println("");
 //        }
-        for (Products p : productDAO.getProductListByType("wired")) {
-            System.out.println("productid: " + p.getProductID() + " ");
-            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
-            System.out.println("Name: " + p.getName() + " ");
-            System.out.println("Description: " + p.getDesciption() + " ");
-            System.out.println("picture: " + p.getPicture() + " ");
-            System.out.println("picture2: " + p.getPicture2() + " ");
-            System.out.println("picture3: " + p.getPicture3() + " ");
-            System.out.println("price: " + p.getPrice() + " ");
-            System.out.println("quantity: " + p.getQuantity() + " ");
-            System.out.println("status: " + p.getStatus() + " ");
-            System.out.println("sale: " + p.getSale() + " ");
-            System.out.println("rateStar: " + p.getRateStar() + " ");
-            System.out.println("saleprice: " + p.getSalePrice() + " ");
-            System.out.println("");
-        }
+//        for (Products p : productDAO.getProductListByType("wired")) {
+//            System.out.println("productid: " + p.getProductID() + " ");
+//            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
+//            System.out.println("Name: " + p.getName() + " ");
+//            System.out.println("Description: " + p.getDesciption() + " ");
+//            System.out.println("picture: " + p.getPicture() + " ");
+//            System.out.println("picture2: " + p.getPicture2() + " ");
+//            System.out.println("picture3: " + p.getPicture3() + " ");
+//            System.out.println("price: " + p.getPrice() + " ");
+//            System.out.println("quantity: " + p.getQuantity() + " ");
+//            System.out.println("status: " + p.getStatus() + " ");
+//            System.out.println("sale: " + p.getSale() + " ");
+//            System.out.println("rateStar: " + p.getRateStar() + " ");
+//            System.out.println("saleprice: " + p.getSalePrice() + " ");
+//            System.out.println("");
+//        }
     }
 }
