@@ -290,6 +290,7 @@
                                     <option>Bán chạy nhất</option>
                                     <option>Giá giảm dần</option>
                                     <option>Giá tăng dần</option>
+                                    <option>Giá tăng dần</option>
                                 </select>
                             </div>
                         </div>

@@ -325,6 +325,7 @@
                                     <option>Bán chạy nhất</option>
                                     <option>Giá giảm dần</option>
                                     <option>Giá tăng dần</option>
+                                    <option>Đánh Giá Cao Nhất</option>
                                 </select>
                             </div>
                         </div>

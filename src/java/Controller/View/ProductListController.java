@@ -40,7 +40,7 @@ public class ProductListController extends HttpServlet {
             } else if (tab.equals("keyboard")) {
                 session.setAttribute("tab", "keyboard");
             }
-            request.getRequestDispatcher("listProduct.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/listProduct.jsp").forward(request, response);
         }
     }
 
