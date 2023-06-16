@@ -309,209 +309,262 @@
         </section>
 
         <!-- category 1: tai nghe -->
-
-        <c:if test="${tab=='allProduct'||tab=='headphone'}">
-            <section id ='category1' class="product__love">
-                <div class="container">
-                    <div class="row bg-white">
-                        <div class="col-lg-10 col-md-10 col-sm-10 product__love-title">
-                            <h2 class="product__love-heading upper">
-                                Tai Nghe  
-                            </h2>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 product__love-title">
-                            <div class="show-entries">
-                                <select style="font-size: 15px;">
-                                    <option>Bán chạy nhất</option>
-                                    <option>Giá giảm dần</option>
-                                    <option>Giá tăng dần</option>
-                                    <option>Đánh Giá Cao Nhất</option>
-                                </select>
+        <form method="post" action="ProductListController?tab=${tab}" id="formm">
+            <c:if test="${tab=='allProduct'||tab=='headphone'}">
+                <section id ='category1' class="product__love">
+                    <div class="container">
+                        <div class="row bg-white">
+                            <div class="col-lg-10 col-md-10 col-sm-10 product__love-title">
+                                <h2 class="product__love-heading upper">
+                                    Tai Nghe  
+                                </h2>
                             </div>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 product__love-title">
-                            <div class="show-entries">
-                                <label class="hint-text" style="margin-right: 3px;">Hiển thị </label>
-                                <select class="form-control" style="font-size: 15px;">
-                                    <option>5</option>
-                                    <option>10</option>
-                                    <option>15</option>
-                                    <option>20</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row bg-white">
-                        <c:forEach items="${headPhoneData}" var="item">
-                            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                <div class="product__panel-img-wrap">
-                                    <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
+                            <div class="col-lg-2 col-md-2 col-sm-2 product__love-title">
+                                <div class="show-entries">
+                                    <c:if test="${(sortOrder==null)||(sortOrder=='rate')}">
+                                        <select name="sortOrder" style="font-size: 15px;"  onchange="change()">
+                                            <option value="rate" selected>Bán chạy nhất</option>
+                                            <option value="descendingSalePrice">Giá giảm dần</option>
+                                            <option value="ascendingSalePrice">Giá tăng dần</option>
+                                            <option value="rate">Đánh Giá Cao Nhất</option>
+                                        </select>
+                                    </c:if>
+                                    <c:if test="${sortOrder=='descendingSalePrice'}">
+                                        <select name="sortOrder" style="font-size: 15px;"  onchange="change()">
+                                            <option value="rate">Bán chạy nhất</option>
+                                            <option value="descendingSalePrice" selected>Giá giảm dần</option>
+                                            <option value="ascendingSalePrice">Giá tăng dần</option>
+                                            <option value="rate">Đánh Giá Cao Nhất</option>
+                                        </select>
+                                    </c:if>
+                                    <c:if test="${sortOrder=='ascendingSalePrice'}">
+                                        <select style="font-size: 15px;" name="sortOrder" onchange="change()">
+                                            <option value="rate">Bán chạy nhất</option>
+                                            <option value="descendingSalePrice">Giá giảm dần</option>
+                                            <option value="ascendingSalePrice" selected>Giá tăng dần</option>
+                                            <option value="rate">Đánh Giá Cao Nhất</option>
+                                        </select>
+                                    </c:if>
+                                    <%--<c:if test="${sortOrder=='rate'}">--%>
+<!--                                        <select style="font-size: 15px;" name="sortOrder" onchange="change()">
+                                            <option value="rate">Bán chạy nhất</option>
+                                            <option value="descendingSalePrice">Giá giảm dần</option>
+                                            <option value="ascendingSalePrice">Giá tăng dần</option>
+                                            <option value="rate" selected>Đánh Giá Cao Nhất</option>
+                                        </select>-->
+                                    <%--</c:if>--%>
                                 </div>
-                                <h3 class="product__panel-heading">
-                                    <a href="product.jsp"  class="product__panel-link">${item.getName()}</a>
-                                </h3>                       
-                                <div class="product__panel-rate-wrap">
-                                    <i class="product__panel-rate" style="text-decoration: underline; margin-right: 5px">${item.getRateStar()}</i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 product__love-title">
+                                <div class="show-entries">
+                                    <label class="hint-text" style="margin-right: 3px;">Hiển thị </label>
+                                    <c:if test="${amountElementInPage==5}">
+                                        <select class="form-control" style="font-size: 15px;" name="amountElementInPage">
+                                            <option value="5" selected>5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                        </select>
+                                    </c:if>
+                                    <c:if test="${amountElementInPage==10}">
+                                        <select class="form-control" style="font-size: 15px;" name="amountElementInPage">
+                                            <option value="5">5</option>
+                                            <option value="10" selected>10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                        </select>
+                                    </c:if>
+                                    <c:if test="${amountElementInPage==15}">
+                                        <select class="form-control" style="font-size: 15px;" name="amountElementInPage">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15" selected>15</option>
+                                            <option value="20">20</option>
+                                        </select>
+                                    </c:if>
+                                    <c:if test="${amountElementInPage==20}">
+                                        <select class="form-control" style="font-size: 15px;" name="amountElementInPage">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20" selected>20</option>
+                                        </select>
+                                    </c:if>
                                 </div>
-                                <div class="product__panel-price">
-                                    <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                        <div>    
-                                            <button class="bestselling__product-btn">So sánh</button>
-                                        </div>
-                                    </span>
-                                    <span class="product__panel-price-current">
-                                        <button href="compareProduct.jsp" class="bestselling__product-btn">${item.getSalePrice()}đ</button>
-                                    </span>
-                                </div>  
-                            </div>
-                        </c:forEach>
-<!--                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                            <div class="product__panel-img-wrap">
-                                <a href="product.jsp"><img src="images1/product/t2.jpg" alt="" class="product__panel-img"></a>
-                            </div>
-                            <h3 class="product__panel-heading">
-                                <a href="product.jsp" class="p-name product__panel-link">Tai nghe Havit H2002D</a>
-                            </h3>
-                            <div class="product__panel-rate-wrap">
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                            </div>
-                            <div class="product__panel-price">
-                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                                </span>
-                                <span class="product__panel-price-current">
-                                    <button>291.650đ</button>
-                                </span>
-                            </div> 
-                        </div>
-
-                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                            <div class="product__panel-img-wrap">
-                                <a href="product.jsp"><img src="images1/product/t3.jpg" alt="" class="product__panel-img"></a>
-                            </div>
-                            <h3 class="product__panel-heading">
-                                <a href="product.jsp" class="product__panel-link">Tai nghe Gaming HAVIT H2028U</a>
-                            </h3>
-                            <div class="product__panel-rate-wrap">
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                            </div>
-
-                            <div class="product__panel-price">
-                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                                </span>
-                                <span class="product__panel-price-current">
-                                    <button>291.650đ</button>
-                                </span>
                             </div>
                         </div>
-                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                            <div class="product__panel-img-wrap">
-                                <a href="product.jsp"><img src="images1/product/t4.jpg" alt="" class="product__panel-img"></a>
-                            </div>
-                            <h3 class="product__panel-heading">
-                                <a href="product.jsp" class=" product__panel-link">Tai nghe Havit H2008D</a>
-                            </h3>
-                            <div class="product__panel-rate-wrap">
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                            </div>
-
-                            <div class="product__panel-price">
-                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                                </span>
-                                <span class="product__panel-price-current">
-                                    <button>291.650đ</button>
-                                </span>
-                            </div> 
+                        <div class="row bg-white">
+                            <c:forEach items="${headPhoneData}" var="item">
+                                <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                                    <div class="product__panel-img-wrap">
+                                        <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
+                                    </div>
+                                    <h3 class="product__panel-heading">
+                                        <a href="product.jsp"  class="product__panel-link">${item.getName()}</a>
+                                    </h3>                       
+                                    <div class="product__panel-rate-wrap">
+                                        <i class="product__panel-rate" style="text-decoration: underline; margin-right: 5px">${item.getRateStar()}</i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                    </div>
+                                    <div class="product__panel-price">
+                                        <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                            <div>    
+                                                <button class="bestselling__product-btn">So sánh</button>
+                                            </div>
+                                        </span>
+                                        <span class="product__panel-price-current">
+                                            <button href="compareProduct.jsp" class="bestselling__product-btn">${item.getSalePrice()}đ</button>
+                                        </span>
+                                    </div>  
+                                </div>
+                            </c:forEach>
+                            <!--                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                                                        <div class="product__panel-img-wrap">
+                                                            <a href="product.jsp"><img src="images1/product/t2.jpg" alt="" class="product__panel-img"></a>
+                                                        </div>
+                                                        <h3 class="product__panel-heading">
+                                                            <a href="product.jsp" class="p-name product__panel-link">Tai nghe Havit H2002D</a>
+                                                        </h3>
+                                                        <div class="product__panel-rate-wrap">
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                        </div>
+                                                        <div class="product__panel-price">
+                                                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                                            </span>
+                                                            <span class="product__panel-price-current">
+                                                                <button>291.650đ</button>
+                                                            </span>
+                                                        </div> 
+                                                    </div>
+                            
+                                                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                                                        <div class="product__panel-img-wrap">
+                                                            <a href="product.jsp"><img src="images1/product/t3.jpg" alt="" class="product__panel-img"></a>
+                                                        </div>
+                                                        <h3 class="product__panel-heading">
+                                                            <a href="product.jsp" class="product__panel-link">Tai nghe Gaming HAVIT H2028U</a>
+                                                        </h3>
+                                                        <div class="product__panel-rate-wrap">
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                        </div>
+                            
+                                                        <div class="product__panel-price">
+                                                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                                            </span>
+                                                            <span class="product__panel-price-current">
+                                                                <button>291.650đ</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                                                        <div class="product__panel-img-wrap">
+                                                            <a href="product.jsp"><img src="images1/product/t4.jpg" alt="" class="product__panel-img"></a>
+                                                        </div>
+                                                        <h3 class="product__panel-heading">
+                                                            <a href="product.jsp" class=" product__panel-link">Tai nghe Havit H2008D</a>
+                                                        </h3>
+                                                        <div class="product__panel-rate-wrap">
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                        </div>
+                            
+                                                        <div class="product__panel-price">
+                                                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                                            </span>
+                                                            <span class="product__panel-price-current">
+                                                                <button>291.650đ</button>
+                                                            </span>
+                                                        </div> 
+                                                    </div>
+                            
+                                                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                                                        <div class="product__panel-img-wrap">
+                                                            <a href="product.jsp"><img src="images1/product/t5.jpg" alt="" class="product__panel-img" ></a>
+                                                        </div>
+                                                        <h3 class="product__panel-heading">
+                                                            <a href="product.jsp" class="product__panel-link">Tai nghe Razer Hammerhead PRO V2</a>
+                                                        </h3>
+                                                        <div class="product__panel-rate-wrap">
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                        </div>
+                            
+                                                        <div class="product__panel-price">
+                                                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                                            </span>
+                                                            <span class="product__panel-price-current">
+                                                                <button>291.650đ</button>
+                                                            </span>
+                                                        </div> 
+                                                    </div>
+                            
+                                                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                                                        <div class="product__panel-img-wrap">
+                                                            <img src="images1/product/t6.jpg" alt="" class="product__panel-img" >
+                                                        </div>
+                                                        <h3 class="product__panel-heading">
+                                                            <a href="product.jsp" class="product__panel-link">Tai nghe HyperX Cloud Earbuds 
+                                                            </a>
+                                                        </h3>
+                                                        <div class="product__panel-rate-wrap">
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                            <i class="fas fa-star product__panel-rate"></i>
+                                                        </div>
+                            
+                                                        <div class="product__panel-price">
+                                                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
+                                                            </span>
+                                                            <span class="product__panel-price-current">
+                                                                <button>291.650đ</button>
+                                                            </span>
+                                                        </div> 
+                                                    </div>-->
                         </div>
-
-                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                            <div class="product__panel-img-wrap">
-                                <a href="product.jsp"><img src="images1/product/t5.jpg" alt="" class="product__panel-img" ></a>
-                            </div>
-                            <h3 class="product__panel-heading">
-                                <a href="product.jsp" class="product__panel-link">Tai nghe Razer Hammerhead PRO V2</a>
-                            </h3>
-                            <div class="product__panel-rate-wrap">
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                            </div>
-
-                            <div class="product__panel-price">
-                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                                </span>
-                                <span class="product__panel-price-current">
-                                    <button>291.650đ</button>
-                                </span>
-                            </div> 
+                        <div class="clearfix">
+                            <div class="hint-text" style="font-size: 15px;">Hiển thị 5 trong số 25 sản phẩm1111</div>
+                            <ul class="pagination">
+                                <%--<c:set var="active" value="active"> </c:set>--%>
+                                <li class="page-item disabled"><a href="#">Previous</a></li>
+                                <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                <li class="page-item ${active}"><a href="#" class="page-link">3</a></li>
+                                <li class="page-item ${active}"><a href="#" class="page-link">4</a></li>
+                                <li class="page-item ${active}"><a href="#" class="page-link">5</a></li>
+                                <li class="page-item ${active}"><a href="#" class="page-link">6</a></li>
+                                <li class="page-item ${active}" ><a href="#" class="page-link">7</a></li>
+                                <li class="page-item active"><a href="#" class="page-link">Next</a></li>
+                            </ul>
                         </div>
-
-                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                            <div class="product__panel-img-wrap">
-                                <img src="images1/product/t6.jpg" alt="" class="product__panel-img" >
-                            </div>
-                            <h3 class="product__panel-heading">
-                                <a href="product.jsp" class="product__panel-link">Tai nghe HyperX Cloud Earbuds 
-                                </a>
-                            </h3>
-                            <div class="product__panel-rate-wrap">
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                            </div>
-
-                            <div class="product__panel-price">
-                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                    <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                                </span>
-                                <span class="product__panel-price-current">
-                                    <button>291.650đ</button>
-                                </span>
-                            </div> 
-                        </div>-->
                     </div>
-                    <div class="clearfix">
-                        <div class="hint-text" style="font-size: 15px;">Hiển thị 5 trong số 25 sản phẩm</div>
-                        <ul class="pagination">
-                            <%--<c:set var="active" value="active"> </c:set>--%>
-                            <li class="page-item disabled"><a href="#">Previous</a></li>
-                            <li class="page-item"><a href="#" class="page-link">1</a></li>
-                            <li class="page-item"><a href="#" class="page-link">2</a></li>
-                            <li class="page-item ${active}"><a href="#" class="page-link">3</a></li>
-                            <li class="page-item ${active}"><a href="#" class="page-link">4</a></li>
-                            <li class="page-item ${active}"><a href="#" class="page-link">5</a></li>
-                            <li class="page-item ${active}"><a href="#" class="page-link">6</a></li>
-                            <li class="page-item ${active}" ><a href="#" class="page-link">7</a></li>
-                            <li class="page-item active"><a href="#" class="page-link">Next</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </c:if>
+                </section>
+            </c:if>
+        </form>
         <!-- category 2: chuột-->
         <c:if test="${tab=='allProduct'||tab=='mouse'}">
             <section  id ='category2' class="product__love">
@@ -975,5 +1028,10 @@
 
     <script src="js/jq.js"></script>
     <script src="js/category.js"></script>
+    <script>
+            function change() {
+                document.getElementById("formm").submit();
+            }
+    </script>
 </body>
 </html>
