@@ -321,24 +321,24 @@
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 product__love-title">
                                 <div class="show-entries">
-                                    <c:if test="${(sortOrder==null)||(sortOrder=='rate')}">
-                                        <select name="sortOrder" style="font-size: 15px;"  onchange="change()">
+                                    <c:if test="${(headPhonesortOrder==null)||(headPhonesortOrder=='rate')}">
+                                        <select name="headPhonesortOrder" style="font-size: 15px;"  onchange="change()">
                                             <option value="rate" selected>Bán chạy nhất</option>
                                             <option value="descendingSalePrice">Giá giảm dần</option>
                                             <option value="ascendingSalePrice">Giá tăng dần</option>
                                             <option value="rate">Đánh Giá Cao Nhất</option>
                                         </select>
                                     </c:if>
-                                    <c:if test="${sortOrder=='descendingSalePrice'}">
-                                        <select name="sortOrder" style="font-size: 15px;"  onchange="change()">
+                                    <c:if test="${headPhonesortOrder=='descendingSalePrice'}">
+                                        <select name="headPhonesortOrder" style="font-size: 15px;"  onchange="change()">
                                             <option value="rate">Bán chạy nhất</option>
                                             <option value="descendingSalePrice" selected>Giá giảm dần</option>
                                             <option value="ascendingSalePrice">Giá tăng dần</option>
                                             <option value="rate">Đánh Giá Cao Nhất</option>
                                         </select>
                                     </c:if>
-                                    <c:if test="${sortOrder=='ascendingSalePrice'}">
-                                        <select style="font-size: 15px;" name="sortOrder" onchange="change()">
+                                    <c:if test="${headPhonesortOrder=='ascendingSalePrice'}">
+                                        <select style="font-size: 15px;" name="headPhonesortOrder" onchange="change()">
                                             <option value="rate">Bán chạy nhất</option>
                                             <option value="descendingSalePrice">Giá giảm dần</option>
                                             <option value="ascendingSalePrice" selected>Giá tăng dần</option>
@@ -346,220 +346,123 @@
                                         </select>
                                     </c:if>
                                     <%--<c:if test="${sortOrder=='rate'}">--%>
-<!--                                        <select style="font-size: 15px;" name="sortOrder" onchange="change()">
-                                            <option value="rate">Bán chạy nhất</option>
-                                            <option value="descendingSalePrice">Giá giảm dần</option>
-                                            <option value="ascendingSalePrice">Giá tăng dần</option>
-                                            <option value="rate" selected>Đánh Giá Cao Nhất</option>
-                                        </select>-->
+                                    <!--                                        <select style="font-size: 15px;" name="sortOrder" onchange="change()">
+                                                                                <option value="rate">Bán chạy nhất</option>
+                                                                                <option value="descendingSalePrice">Giá giảm dần</option>
+                                                                                <option value="ascendingSalePrice">Giá tăng dần</option>
+                                                                                <option value="rate" selected>Đánh Giá Cao Nhất</option>
+                                                                            </select>-->
                                     <%--</c:if>--%>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 product__love-title">
                                 <div class="show-entries">
                                     <label class="hint-text" style="margin-right: 3px;">Hiển thị </label>
-                                    <c:if test="${amountElementInPage==5}">
-                                        <select class="form-control" style="font-size: 15px;" name="amountElementInPage">
-                                            <option value="5" selected>5</option>
-                                            <option value="10">10</option>
-                                            <option value="15">15</option>
-                                            <option value="20">20</option>
+                                    <c:if test="${headPhoneamountElementInPage==6}">
+                                        <select class="form-control" style="font-size: 15px;" name="headPhoneamountElementInPage">
+                                            <option value="6" selected>6</option>
+                                            <option value="12">12</option>
+                                            <option value="18">18</option>
+                                            <option value="24">24</option>
                                         </select>
                                     </c:if>
-                                    <c:if test="${amountElementInPage==10}">
-                                        <select class="form-control" style="font-size: 15px;" name="amountElementInPage">
-                                            <option value="5">5</option>
-                                            <option value="10" selected>10</option>
-                                            <option value="15">15</option>
-                                            <option value="20">20</option>
+                                    <c:if test="${headPhoneamountElementInPage==12}">
+                                        <select class="form-control" style="font-size: 15px;" name="headPhoneamountElementInPage">
+                                            <option value="6" >6</option>
+                                            <option value="12" selected>12</option>
+                                            <option value="18">18</option>
+                                            <option value="24">24</option>
                                         </select>
                                     </c:if>
-                                    <c:if test="${amountElementInPage==15}">
-                                        <select class="form-control" style="font-size: 15px;" name="amountElementInPage">
-                                            <option value="5">5</option>
-                                            <option value="10">10</option>
-                                            <option value="15" selected>15</option>
-                                            <option value="20">20</option>
+                                    <c:if test="${headPhoneamountElementInPage==18}">
+                                        <select class="form-control" style="font-size: 15px;" name="headPhoneamountElementInPage">
+                                            <option value="6" selected>6</option>
+                                            <option value="12">12</option>
+                                            <option value="18" selected>18</option>
+                                            <option value="24">24</option>
                                         </select>
                                     </c:if>
-                                    <c:if test="${amountElementInPage==20}">
-                                        <select class="form-control" style="font-size: 15px;" name="amountElementInPage">
-                                            <option value="5">5</option>
-                                            <option value="10">10</option>
-                                            <option value="15">15</option>
-                                            <option value="20" selected>20</option>
+                                    <c:if test="${headPhoneamountElementInPage==24}">
+                                        <select class="form-control" style="font-size: 15px;" name="headPhoneamountElementInPage">
+                                            <option value="6" selected>6</option>
+                                            <option value="12">12</option>
+                                            <option value="18">18</option>
+                                            <option value="24" selected>24</option>
                                         </select>
                                     </c:if>
+
                                 </div>
                             </div>
                         </div>
                         <div class="row bg-white">
-                            <c:forEach items="${headPhoneData}" var="item">
-                                <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                    <div class="product__panel-img-wrap">
-                                        <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
-                                    </div>
-                                    <h3 class="product__panel-heading">
-                                        <a href="product.jsp"  class="product__panel-link">${item.getName()}</a>
-                                    </h3>                       
-                                    <div class="product__panel-rate-wrap">
-                                        <i class="product__panel-rate" style="text-decoration: underline; margin-right: 5px">${item.getRateStar()}</i>
-                                        <i class="fas fa-star product__panel-rate"></i>
-                                        <i class="fas fa-star product__panel-rate"></i>
-                                        <i class="fas fa-star product__panel-rate"></i>
-                                        <i class="fas fa-star product__panel-rate"></i>
-                                        <i class="fas fa-star product__panel-rate"></i>
-                                    </div>
-                                    <div class="product__panel-price">
-                                        <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                            <div>    
-                                                <button class="bestselling__product-btn">So sánh</button>
+                            <c:if test="${headPhonepageAmount>0}">
+                                <c:set var="i" value="${(headPhonepageIndex-1)*headPhoneamountElementInPage}"></c:set>
+                                <c:set var="end" value="${headPhonepageIndex*headPhoneamountElementInPage-1}"></c:set>
+                                <c:set var="countDisplayElement" value="0"></c:set>
+                                <c:forEach begin="${i}" end="${end}" >
+                                    <c:if test="${i<headPhoneData.size()}">
+                                        <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
+                                            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                                                <div class="product__panel-img-wrap">
+                                                    <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
+                                                </div>
+                                                <h3 class="product__panel-heading">
+                                                    <a href="product.jsp"  class="product__panel-link">${headPhoneData.get(i).getName()}</a>
+                                            </h3>                       
+                                            <div class="product__panel-rate-wrap">
+                                                <i class="product__panel-rate" style="text-decoration: underline; margin-right: 5px">${headPhoneData.get(i).getRateStar()}</i>
+                                                <i class="fas fa-star product__panel-rate"></i>
+                                                <i class="fas fa-star product__panel-rate"></i>
+                                                <i class="fas fa-star product__panel-rate"></i>
+                                                <i class="fas fa-star product__panel-rate"></i>
+                                                <i class="fas fa-star product__panel-rate"></i>
                                             </div>
-                                        </span>
-                                        <span class="product__panel-price-current">
-                                            <button href="compareProduct.jsp" class="bestselling__product-btn">${item.getSalePrice()}đ</button>
-                                        </span>
-                                    </div>  
-                                </div>
-                            </c:forEach>
-                            <!--                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                                        <div class="product__panel-img-wrap">
-                                                            <a href="product.jsp"><img src="images1/product/t2.jpg" alt="" class="product__panel-img"></a>
-                                                        </div>
-                                                        <h3 class="product__panel-heading">
-                                                            <a href="product.jsp" class="p-name product__panel-link">Tai nghe Havit H2002D</a>
-                                                        </h3>
-                                                        <div class="product__panel-rate-wrap">
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                        </div>
-                                                        <div class="product__panel-price">
-                                                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                                                            </span>
-                                                            <span class="product__panel-price-current">
-                                                                <button>291.650đ</button>
-                                                            </span>
-                                                        </div> 
+                                            <div class="product__panel-price">
+                                                <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
+                                                    <div>    
+                                                        <button class="bestselling__product-btn">So sánh</button>
                                                     </div>
-                            
-                                                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                                        <div class="product__panel-img-wrap">
-                                                            <a href="product.jsp"><img src="images1/product/t3.jpg" alt="" class="product__panel-img"></a>
-                                                        </div>
-                                                        <h3 class="product__panel-heading">
-                                                            <a href="product.jsp" class="product__panel-link">Tai nghe Gaming HAVIT H2028U</a>
-                                                        </h3>
-                                                        <div class="product__panel-rate-wrap">
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                        </div>
-                            
-                                                        <div class="product__panel-price">
-                                                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                                                            </span>
-                                                            <span class="product__panel-price-current">
-                                                                <button>291.650đ</button>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                                        <div class="product__panel-img-wrap">
-                                                            <a href="product.jsp"><img src="images1/product/t4.jpg" alt="" class="product__panel-img"></a>
-                                                        </div>
-                                                        <h3 class="product__panel-heading">
-                                                            <a href="product.jsp" class=" product__panel-link">Tai nghe Havit H2008D</a>
-                                                        </h3>
-                                                        <div class="product__panel-rate-wrap">
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                        </div>
-                            
-                                                        <div class="product__panel-price">
-                                                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                                                            </span>
-                                                            <span class="product__panel-price-current">
-                                                                <button>291.650đ</button>
-                                                            </span>
-                                                        </div> 
-                                                    </div>
-                            
-                                                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                                        <div class="product__panel-img-wrap">
-                                                            <a href="product.jsp"><img src="images1/product/t5.jpg" alt="" class="product__panel-img" ></a>
-                                                        </div>
-                                                        <h3 class="product__panel-heading">
-                                                            <a href="product.jsp" class="product__panel-link">Tai nghe Razer Hammerhead PRO V2</a>
-                                                        </h3>
-                                                        <div class="product__panel-rate-wrap">
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                        </div>
-                            
-                                                        <div class="product__panel-price">
-                                                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                                                            </span>
-                                                            <span class="product__panel-price-current">
-                                                                <button>291.650đ</button>
-                                                            </span>
-                                                        </div> 
-                                                    </div>
-                            
-                                                    <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                                        <div class="product__panel-img-wrap">
-                                                            <img src="images1/product/t6.jpg" alt="" class="product__panel-img" >
-                                                        </div>
-                                                        <h3 class="product__panel-heading">
-                                                            <a href="product.jsp" class="product__panel-link">Tai nghe HyperX Cloud Earbuds 
-                                                            </a>
-                                                        </h3>
-                                                        <div class="product__panel-rate-wrap">
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                            <i class="fas fa-star product__panel-rate"></i>
-                                                        </div>
-                            
-                                                        <div class="product__panel-price">
-                                                            <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
-                                                                <h2><button><a href="compareProduct.jsp" class="my-class">SO SÁNH</a></button></h2>
-                                                            </span>
-                                                            <span class="product__panel-price-current">
-                                                                <button>291.650đ</button>
-                                                            </span>
-                                                        </div> 
-                                                    </div>-->
+                                                </span>
+                                                <span class="product__panel-price-current">
+                                                    <button href="compareProduct.jsp" class="bestselling__product-btn">${headPhoneData.get(i).getSalePrice()}đ</button>
+                                                </span>
+                                            </div>
+                                            <c:if test="${headPhoneData.get(i).getSale()>0}">
+                                                <div class="product__panel-price-sale-off">
+                                                    -${headPhoneData.get(i).getSale()}%
+                                                </div>
+                                            </c:if>
+
+                                        </div>
+                                    </c:if>
+                                    <c:set var="i" value="${i+1}"></c:set>
+                                </c:forEach>
+                            </c:if>
                         </div>
                         <div class="clearfix">
-                            <div class="hint-text" style="font-size: 15px;">Hiển thị 5 trong số 25 sản phẩm1111</div>
-                            <ul class="pagination">
-                                <%--<c:set var="active" value="active"> </c:set>--%>
-                                <li class="page-item disabled"><a href="#">Previous</a></li>
-                                <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                <li class="page-item ${active}"><a href="#" class="page-link">3</a></li>
-                                <li class="page-item ${active}"><a href="#" class="page-link">4</a></li>
-                                <li class="page-item ${active}"><a href="#" class="page-link">5</a></li>
-                                <li class="page-item ${active}"><a href="#" class="page-link">6</a></li>
-                                <li class="page-item ${active}" ><a href="#" class="page-link">7</a></li>
-                                <li class="page-item active"><a href="#" class="page-link">Next</a></li>
-                            </ul>
+                            <c:if test="${headPhonepageAmount>0}">
+                                <div class="hint-text" style="font-size: 15px;">Hiển thị ${countDisplayElement} trong số ${headPhoneData.size()} sản phẩm</div>
+                                <ul class="pagination">
+                                    <%--<c:set var="active" value="active"> </c:set>--%>
+                                    <c:set var="count" value="1"></c:set>
+                                    <c:if test="${headPhonepageIndex!=1}">
+                                        <li class="page-item disabled"><a href="ProductListController?tab=${tab}&headPhonepageIndex=${headPhonepageIndex-1}">Previous</a></li>
+                                        </c:if>
+                                        <c:forEach begin="${count}" end="${headPhonepageAmount}">
+                                            <c:if test="${headPhonepageIndex==count}">
+                                            <li class="page-item active"><a href="ProductListController?tab=${tab}&headPhonepageIndex=${count}" class="page-link">${count}</a></li>
+                                            </c:if>
+                                            <c:if test="${headPhonepageIndex!=count}">
+                                            <li class="page-item"><a href="ProductListController?tab=${tab}&headPhonepageIndex=${count}" class="page-link">${count}</a></li>
+                                            </c:if>
+                                            <c:set var="count" value="${count+1}"></c:set>
+                                        </c:forEach>
+                                        <c:if test="${headPhonepageIndex!=headPhonepageAmount}">
+                                        <li class="page-item disabled"><a href="ProductListController?tab=${tab}&headPhonepageIndex=${headPhonepageIndex+1}">Next</a></li>
+                                        </c:if>
+                                    <!--<li class="page-item active"><a href="#" class="page-link">Next</a></li>-->
+                                </ul>
+                            </c:if>
                         </div>
                     </div>
                 </section>

@@ -34,63 +34,56 @@ public class ProductListController extends HttpServlet {
 //                request.setAttribute("headPhoneData", headPhoneData);
             } else if (tab.equals("headphone")) {
                 session.setAttribute("tab", "headphone");
-                int pageIndex = 0;
-                if (request.getParameter("pageIndex") != null) {// click phan trang
-                    pageIndex = Integer.parseInt(request.getParameter("pageIndex"));
+                int headPhonepageIndex = 1;
+                if (request.getParameter("headPhonepageIndex") != null) {// click phan trang
+                    headPhonepageIndex = Integer.parseInt(request.getParameter("headPhonepageIndex"));
                 } else {
                     ArrayList<Products> headPhoneData;
                     String searchInput = "";
-                    String sortOrder = null;
+                    String headPhonesortOrder = null;
                     String searchSubmit = request.getParameter("searchSubmit");
-//                    String searchSubmit = "a";
                     if (searchSubmit != null) {// click search
                         searchInput = request.getParameter("searchInput");
-                        headPhoneData = pdao.getProductListByCategoryIDAndNameAndSort("1", searchInput, "rate");
+                        headPhonesortOrder = (String) session.getAttribute("headPhonesortOrder");
+                        headPhoneData = pdao.getProductListByCategoryIDAndNameAndSort("1", searchInput, headPhonesortOrder);
                     } else {//  click sortOrder //searchSubmit == null
-//                        sortOrder = request.getParameter("sortOrder");
-                        sortOrder = request.getParameter("sortOrder");
-                        if (sortOrder != null) {
+                        headPhonesortOrder = request.getParameter("headPhonesortOrder");
+                        if (headPhonesortOrder != null) {
                             searchInput = (String) session.getAttribute("searchInput");
-                            headPhoneData = pdao.getProductListByCategoryIDAndNameAndSort("1", searchInput, sortOrder);
-                        } else {
-                            // first time called sortorder= rate(default)
-                            headPhoneData = pdao.getProductListByCategoryIDAndNameAndSort("1", "", "rate");
+                            headPhoneData = pdao.getProductListByCategoryIDAndNameAndSort("1", searchInput, headPhonesortOrder);
+                        } else {// first time called sortorder= rate(default)
+                            headPhoneData = pdao.getProductListByCategoryIDAndNameAndSort("1", searchInput, "rate");
                         }
                     }
-                    session.setAttribute("sortOrder", sortOrder);
+                    session.setAttribute("headPhonesortOrder", headPhonesortOrder);
                     session.setAttribute("searchInput", searchInput);
                     session.setAttribute("headPhoneData", headPhoneData);
-                    int amountElementInPage = 0;
-                    if (request.getParameter("amountElementInPage") != null) {
-                        amountElementInPage = Integer.parseInt(request.getParameter("amountElementInPage"));
-                    } else {
-                        if (session.getAttribute("amountElementInPage") == null) {
-                            amountElementInPage = 5;
+                    int headPhoneamountElementInPage;
+                    if (request.getParameter("headPhoneamountElementInPage") != null) {
+                        headPhoneamountElementInPage = Integer.parseInt(request.getParameter("headPhoneamountElementInPage"));
+                    }
+                    else {
+                        if (session.getAttribute("headPhoneamountElementInPage") == null) {
+                            headPhoneamountElementInPage = 6;
                         } else {
-                            out.print("size = " + headPhoneData.size());
-                            amountElementInPage = (int) session.getAttribute("amountElementInPage");
+                            headPhoneamountElementInPage = (int) session.getAttribute("headPhoneamountElementInPage");
                         }
                     }
-                    session.setAttribute("amountElementInPage", amountElementInPage);
-                    int pageAmount = headPhoneData.size() / amountElementInPage;
-                    if (headPhoneData.size() % amountElementInPage != 0) {
-                        ++pageAmount;
+                    session.setAttribute("headPhoneamountElementInPage", headPhoneamountElementInPage);
+                    int headPhonepageAmount = headPhoneData.size() / headPhoneamountElementInPage;
+                    if (headPhoneData.size() % headPhoneamountElementInPage != 0) {
+                        ++headPhonepageAmount;
                     }
-                    session.setAttribute("pageAmount", pageAmount);
-                    if (pageAmount > 0) {
-                        pageIndex = 1;
-                    }
-                    out.print("pageIndex = " + pageIndex + "<br>");
-                    out.print("pageAmount = " + pageAmount + "<br>");
-//                    out.print("pageIndex = "+pageIndex); 
+                    session.setAttribute("headPhonepageAmount", headPhonepageAmount);
+                    
                 }
-                request.setAttribute("pageIndex", pageIndex);
+                request.setAttribute("headPhonepageIndex", headPhonepageIndex);
+                request.setAttribute("active", "active");
             } else if (tab.equals("mouse")) {
                 session.setAttribute("tab", "mouse");
             } else if (tab.equals("keyboard")) {
                 session.setAttribute("tab", "keyboard");
             }
-
             request.getRequestDispatcher("/view/listProduct.jsp").forward(request, response);
         }
     }
