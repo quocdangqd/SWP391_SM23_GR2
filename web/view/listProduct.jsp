@@ -629,8 +629,9 @@
             </c:if>
         </form> 
         <!-- category 3: bàn phím -->
+        <form method="post" action="ProductListController?tab=${tab}" id="formm3">
         <c:if test="${tab=='allProduct'||tab=='keyboard'}">
-            <form method="post" action="ProductListController?tab=${tab}" id="formm3">
+            
                 <section id ='category3' class="product__love">
                     <div class="container">
                         <div class="row bg-white">
