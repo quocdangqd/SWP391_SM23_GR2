@@ -22,9 +22,7 @@ public class ProductListController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-//            String tab = "mouse";
-            String tab = "allProduct";
-//            String tab = request.getParameter("tab");
+            String tab = request.getParameter("tab");
             HttpSession session = request.getSession();
 //            session.setAttribute("tab", tab);
             ProductDAO pdao = new ProductDAO();
@@ -89,7 +87,7 @@ public class ProductListController extends HttpServlet {
             
             ///mouse
             if (tab.equals("mouse") || tab.equals("allProduct")) {
-                if (tab.equals("headphone")) {
+                if (tab.equals("mouse")) {
                     session.setAttribute("tab", "mouse");
                 } else {
                     session.setAttribute("tab", "allProduct");
@@ -202,7 +200,6 @@ public class ProductListController extends HttpServlet {
                         ++keyboardpageAmount;
                     }
                     session.setAttribute("keyboardpageAmount", keyboardpageAmount);
-// out.print("keyboardData: "+keyboardData.size()); 
                 }
                 session.setAttribute("keyboardpageIndex", keyboardpageIndex);
             }
