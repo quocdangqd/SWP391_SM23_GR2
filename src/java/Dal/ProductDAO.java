@@ -232,21 +232,25 @@ public class ProductDAO extends ConnectMySQL {
 //            System.out.print("saleprice: " + p.getSalePrice() + " ");
 //            System.out.println("");
 //        }
-        for (Products p : productDAO.getProductListByType("wired")) {
-            System.out.println("productid: " + p.getProductID() + " ");
-            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
-            System.out.println("Name: " + p.getName() + " ");
-            System.out.println("Description: " + p.getDesciption() + " ");
-            System.out.println("picture: " + p.getPicture() + " ");
-            System.out.println("picture2: " + p.getPicture2() + " ");
-            System.out.println("picture3: " + p.getPicture3() + " ");
-            System.out.println("price: " + p.getPrice() + " ");
-            System.out.println("quantity: " + p.getQuantity() + " ");
-            System.out.println("status: " + p.getStatus() + " ");
-            System.out.println("sale: " + p.getSale() + " ");
-            System.out.println("rateStar: " + p.getRateStar() + " ");
-            System.out.println("saleprice: " + p.getSalePrice() + " ");
-            System.out.println("");
-        }
+DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+            decimalFormat.applyPattern("#,###");
+            double x= 3.44;
+            System.out.println(new DecimalFormat("#.0").format(x));
+//        for (Products p : productDAO.getProductListByType("wired")) {
+//            System.out.println("productid: " + p.getProductID() + " ");
+//            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
+//            System.out.println("Name: " + p.getName() + " ");
+//            System.out.println("Description: " + p.getDesciption() + " ");
+//            System.out.println("picture: " + p.getPicture() + " ");
+//            System.out.println("picture2: " + p.getPicture2() + " ");
+//            System.out.println("picture3: " + p.getPicture3() + " ");
+//            System.out.println("price: " + p.getPrice() + " ");
+//            System.out.println("quantity: " + p.getQuantity() + " ");
+//            System.out.println("status: " + p.getStatus() + " ");
+//            System.out.println("sale: " + p.getSale() + " ");
+//            System.out.println("rateStar: " + p.getRateStar() + " ");
+//            System.out.println("saleprice: " + p.getSalePrice() + " ");
+//            System.out.println("");
+//        }
     }
 }
