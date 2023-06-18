@@ -629,9 +629,8 @@
             </c:if>
         </form> 
         <!-- category 3: bàn phím -->
-        <c:if test="${tab=='allProduct'||tab=='keyboard'}">
-            <form method="post" action="ProductListController?tab=${tab}" id="formm3">
-                <section id ='category3' class="product__love">
+        <form method="post" action="ProductListController?tab=${tab}" id="formm3">
+            <section id ='category3' class="product__love">
                     <div class="container">
                         <div class="row bg-white">
                             <div class="col-lg-10 col-md-10 col-sm-10 product__love-title">
@@ -786,8 +785,7 @@
                         </div>
                     </div>
                 </section>
-            </form>
-        </c:if>
+        </form>
         <!-- footer -->
         <jsp:include page="footer.jsp"></jsp:include>
 
