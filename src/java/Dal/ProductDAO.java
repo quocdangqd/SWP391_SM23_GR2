@@ -83,7 +83,7 @@ public class ProductDAO extends ConnectMySQL {
                     rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                 }
                 String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
-                salePrice=salePrice.replaceAll(",", ".");
+                salePrice = salePrice.replaceAll(",", ".");
                 String picture2 = String.valueOf(rs.getString(12));
                 String picture3 = String.valueOf(rs.getString(13));
                 data.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rateStar, salePrice, picture2, picture3));
@@ -144,7 +144,7 @@ public class ProductDAO extends ConnectMySQL {
                             rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                         }
                         String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
-                        salePrice=salePrice.replaceAll(",", ".");
+                        salePrice = salePrice.replaceAll(",", ".");
                         String picture2 = String.valueOf(rs.getString(12));
                         String picture3 = String.valueOf(rs.getString(13));
                         data.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rateStar, salePrice, picture2, picture3));
@@ -161,16 +161,28 @@ public class ProductDAO extends ConnectMySQL {
     public ArrayList<Products> getProductListByType(String type) {
         ArrayList<Products> data = new ArrayList<>();
         try {
-            String sqlSelectString = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
-                    + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice',picture2,picture3\n"
-                    + "from swp.earphone e, swp.orderdetail od right outer join swp.product p \n"
-                    + "on p.ProductID=od.orderdetail_productID  where e.earphone_ProductID=p.ProductID and e.type=?\n"
-                    + "group by productid ,e.type\n"
-                    + "order by rate desc;";
+            String sqlSelectString;
+            if (type.equals("HighPrice")) {
+                sqlSelectString = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
+                        + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice',picture2,picture3\n"
+                        + "from swp.earphone e, swp.orderdetail od right outer join swp.product p \n"
+                        + "on p.ProductID=od.orderdetail_productID  where e.earphone_ProductID=p.ProductID and COALESCE(p.price-p.price*p.sale/100,p.price) >'1000000'\n"
+                        + "group by productid ,e.type\n"
+                        + "order by rate desc;";
+            } else {
+                sqlSelectString = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
+                        + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice',picture2,picture3\n"
+                        + "from swp.earphone e, swp.orderdetail od right outer join swp.product p \n"
+                        + "on p.ProductID=od.orderdetail_productID  where e.earphone_ProductID=p.ProductID and e.type=?\n"
+                        + "group by productid ,e.type\n"
+                        + "order by rate desc;";
+            }
             DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
             decimalFormat.applyPattern("#,###");
             pstm = connection.prepareStatement(sqlSelectString);
-            pstm.setString(1, type);
+            if (!type.equals("HighPrice")) {
+                pstm.setString(1, type);
+            }
             rs = pstm.executeQuery();
             while (rs.next()) {
                 String ProductID = String.valueOf(rs.getInt(1));
@@ -187,7 +199,7 @@ public class ProductDAO extends ConnectMySQL {
                     rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                 }
                 String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
-                salePrice=salePrice.replaceAll(",", ".");
+                salePrice = salePrice.replaceAll(",", ".");
                 String picture2 = String.valueOf(rs.getString(12));
                 String picture3 = String.valueOf(rs.getString(13));
                 data.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rateStar, salePrice, picture2, picture3));
@@ -200,6 +212,7 @@ public class ProductDAO extends ConnectMySQL {
 
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
+        System.out.println(productDAO.getProductListByType("HighPrice").size());
         // Định dạng số với dấu chấm
 //        int size = productDAO.getProductListByCategoryIDAndNameAndSort("1","a","ascendingSalePrice").size();
 //        size = productDAO.BestSellerProducts().size();
@@ -232,10 +245,10 @@ public class ProductDAO extends ConnectMySQL {
 //            System.out.print("saleprice: " + p.getSalePrice() + " ");
 //            System.out.println("");
 //        }
-DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
-            decimalFormat.applyPattern("#,###");
-            double x= 3.44;
-            System.out.println(new DecimalFormat("#.0").format(x));
+//        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+//        decimalFormat.applyPattern("#,###");
+//        double x = 3.44;
+//        System.out.println(new DecimalFormat("#.0").format(x));
 //        for (Products p : productDAO.getProductListByType("wired")) {
 //            System.out.println("productid: " + p.getProductID() + " ");
 //            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
