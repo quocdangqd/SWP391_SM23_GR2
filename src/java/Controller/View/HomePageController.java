@@ -31,15 +31,18 @@ public class HomePageController extends HttpServlet {
                 session.setAttribute("bestProductList", bestProductList);
 //                out.print(bestProductList.size()+"<br>"); 
                 String type = request.getParameter("type");
-                ArrayList<Products> typeProductList;
+                ArrayList<Products> typeProductList =null;
                 if (type != null) {
                     typeProductList = productDAO.getProductListByType(type);
+                } else if (session.getAttribute("type") != null) {
+                    type = (String) session.getAttribute("type");
                 } else {
-                    type="Wired";
+                    type = "Wired";
                     typeProductList = productDAO.getProductListByType(type);
                 }
-                session.setAttribute("typeProductList", "typeProductList");
-                session.setAttribute("type", "type");
+                session.setAttribute("typeProductList", typeProductList);
+                session.setAttribute("type", type);
+//                out.print(typeProductList.size()); 
             } else if (tab.equals("logOut")) {
                 session.removeAttribute("role");
             }

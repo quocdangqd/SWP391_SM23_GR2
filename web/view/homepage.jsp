@@ -147,136 +147,6 @@
                                     </div>
                                 </div>
                             </c:forEach>
-                            <!--                                <div class="bestselling__product col-lg-4 col-md-6 col-sm-12">
-                                                                <div class="bestselling__product-img-box">
-                                                                    <img src="images1/product/better3.jpg" alt="Tai nghe gaming INZONE H7 SONY WH-G700" class="bestselling__product-img">
-                                                                </div>
-                                                                <div class="bestselling__product-text">
-                                                                    <h3 class="bestselling__product-title">
-                                                                        <a href="#" class="bestselling__product-link">Tai nghe gaming INZONE H7 SONY WH-G700</a>
-                                                                    </h3>
-                            
-                                                                    <div class="bestselling__product-rate-wrap">
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                    </div>
-                            
-                                                                    <span class="bestselling__product-price">
-                                                                        5.019.000đ
-                                                                    </span>
-                            
-                                                                    <div class="bestselling__product-btn-wrap">
-                                                                        <button class="bestselling__product-btn">Xem hàng</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>-->
-                            <!--                                <div class="bestselling__product col-lg-4 col-md-6 col-sm-12">
-                                                                <div class="bestselling__product-img-box">
-                                                                    <img src="images1/product/better4.jpg" alt="CHUỘT GAME KHÔNG DÂY LOGITECH G502X RGB PLUS LIGHTSPEED ĐEN" class="bestselling__product-img">
-                                                                </div>
-                                                                <div class="bestselling__product-text">
-                                                                    <h3 class="bestselling__product-title">
-                                                                        <a href="#" class="bestselling__product-link">Chuột game không dây Logitech G502x RGB PLUS LIGHTSPEED</a>
-                                                                    </h3>
-                            
-                                                                    <div class="bestselling__product-rate-wrap">
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                    </div>
-                            
-                                                                    <span class="bestselling__product-price">
-                                                                        3.549.000đ
-                                                                    </span>
-                            
-                                                                    <div class="bestselling__product-btn-wrap">
-                                                                        <button class="bestselling__product-btn">Xem hàng</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>-->
-                            <!--                                <div class="bestselling__product col-lg-4 col-md-6 col-sm-12">
-                                                                <div class="bestselling__product-img-box">
-                                                                    <img src="images1/product/better5.jpg" alt="Chuột gaming không dây Razer Basilisk V3 Pro RZ01-04620100-R3A1" class="bestselling__product-img">
-                                                                </div>
-                                                                <div class="bestselling__product-text">
-                                                                    <h3 class="bestselling__product-title">
-                                                                        <a href="#" class="bestselling__product-link">Chuột Gaming không dây Razer Basilisk V3 Pro RZ01-04620100-R3A1</a>
-                                                                    </h3>
-                            
-                                                                    <div class="bestselling__product-rate-wrap">
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                    </div>
-                            
-                                                                    <span class="bestselling__product-price">
-                                                                        3.579.000đ
-                                                                    </span>
-                            
-                                                                    <div class="bestselling__product-btn-wrap">
-                                                                        <button class="bestselling__product-btn">Xem hàng</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>-->
-                            <!--                                <div class="bestselling__product col-lg-4 col-md-6 col-sm-12">
-                                                                <div class="bestselling__product-img-box">
-                                                                    <img src="images1/product/better6.jpg" alt="Bàn phím cơ FL-Esports CMK87SAM 3 Mode Wireless Cool Mint Kailh Box Red switch" class="bestselling__product-img">
-                                                                </div>
-                                                                <div class="bestselling__product-text">
-                                                                    <h3 class="bestselling__product-title">
-                                                                        <a href="#" class="bestselling__product-link">Bàn phím cơ FL-Esports CMK87SAM 3 Mode Wireless</a>
-                                                                    </h3>
-                            
-                                                                    <div class="bestselling__product-rate-wrap">
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                    </div>
-                            
-                                                                    <span class="bestselling__product-price">
-                                                                        3.980.000đ
-                                                                    </span>
-                            
-                                                                    <div class="bestselling__product-btn-wrap">
-                                                                        <button class="bestselling__product-btn" >Xem hàng</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>-->
-                            <!--                                <div class="bestselling__product col-lg-4 col-md-6 col-sm-12">
-                                                                <div class="bestselling__product-img-box">
-                                                                    <img src="images1/product/better7.jpg" alt="Bàn phím chơi game cơ học HyperX Alloy Origins" class="bestselling__product-img">
-                                                                </div>
-                                                                <div class="bestselling__product-text">
-                                                                    <h3 class="bestselling__product-title">
-                                                                        <a href="#" class="bestselling__product-link">Bàn phím chơi game cơ học HyperX Alloy Origins</a>
-                                                                    </h3>
-                            
-                                                                    <div class="bestselling__product-rate-wrap">
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                        <i class="fas fa-star bestselling__product-rate"></i>
-                                                                    </div>
-                            
-                                                                    <span class="bestselling__product-price">
-                                                                        2.119.000đ
-                                                                    </span>
-                            
-                                                                    <div class="bestselling__product-btn-wrap">
-                                                                        <button class="bestselling__product-btn">Xem hàng</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>-->
                         </section>
 
                         <div class="row bestselling__banner">
@@ -385,232 +255,43 @@
                             </nav>
 
                             <div class="row product__panel">
+                                <c:forEach items="${typeProductList}" var="item">
+                                    <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
+                                        <div class="product__panel-item-wrap">
+                                            <div class="product__panel-img-wrap">
+                                                <img src="images1/product/1.jpg" alt="" class="product__panel-img">
+                                            </div>
+                                            <h3 class="product__panel-heading">
+                                                <a href="product.html" class="product__panel-link">${item.getName()}</a>
+                                            </h3>
+                                            <div class="product__panel-rate-wrap">
+                                                <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${item.getRateStar()}</i>
+                                                <i class="fas fa-star product__panel-rate"></i>
+                                                <i class="fas fa-star product__panel-rate"></i>
+                                                <i class="fas fa-star product__panel-rate"></i>
+                                                <i class="fas fa-star product__panel-rate"></i>
+                                                <i class="fas fa-star product__panel-rate"></i>
+                                            </div>
 
-                                <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
-                                    <div class="product__panel-item-wrap">
-                                        <div class="product__panel-img-wrap">
-                                            <img src="images1/product/1.jpg" alt="" class="product__panel-img">
-                                        </div>
-                                        <h3 class="product__panel-heading">
-                                            <a href="product.html" class="product__panel-link">Tai Nghe Gaming PRESONUS</a>
-                                        </h3>
-                                        <div class="product__panel-rate-wrap">
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                        </div>
-
-                                        <div class="product__panel-price">
-                                            <span class="product__panel-price-old">
-                                                2.800.000đ
-                                            </span>
-                                            <span class="product__panel-price-current">
-                                                2.709.580đ
-                                            </span>
-                                        </div>
-
-                                        <div class="product__panel-price-sale-off">
-                                            -10%
+                                            <div class="product__panel-price">
+                                                <c:if test="${item.getSale() !='0'}">
+                                                    <span class="product__panel-price-old">
+                                                        ${item.getPrice()}đ
+                                                    </span>
+                                                </c:if>
+                                                <span class="product__panel-price-current">
+                                                    ${item.getSalePrice()}đ
+                                                </span>
+                                            </div>
+                                            <c:if test="${item.getSale() !='0'}">
+                                                <div class="product__panel-price-sale-off">
+                                                    -${item.getSale()}%
+                                                </div>
+                                            </c:if>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
-                                    <div class="product__panel-item-wrap">
-                                        <div class="product__panel-img-wrap">
-                                            <img src="images1/product/2.jpg" alt="" class="product__panel-img">
-                                        </div>
-                                        <h3 class="product__panel-heading">
-                                            <a href="#" class="product__panel-link">Tai Nghe In-Ear JBL C200SIUGMTCN</a>
-                                        </h3>
-                                        <div class="product__panel-rate-wrap">
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                        </div>
-
-                                        <div class="product__panel-price">
-                                            <span class="product__panel-price-old">
-                                                2.800.000đ
-                                            </span>
-                                            <span class="product__panel-price-current">
-                                                2.600.400đ
-                                            </span>
-                                        </div>
-                                        <div class="product__panel-price-sale-off">
-                                            -20%
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
-                                    <div class="product__panel-item-wrap">
-                                        <div class="product__panel-img-wrap">
-                                            <img src="images1/product/apple1.jpg" alt="" class="product__panel-img">
-                                        </div>
-                                        <h3 class="product__panel-heading">
-                                            <a href="#" class="product__panel-link">Tai Nghe HeadPhone Apple</a>
-                                        </h3>
-                                        <div class="product__panel-rate-wrap">
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                        </div>
-
-                                        <div class="product__panel-price">
-                                            <span class="product__panel-price-old">
-                                                5.900.500đ
-                                            </span>
-                                            <span class="product__panel-price-current">
-                                                5.000.575đ
-                                            </span>
-                                        </div>
-                                        <div class="product__panel-price-sale-off">
-                                            -10%
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
-                                    <div class="product__panel-item-wrap">
-                                        <div class="product__panel-img-wrap">
-                                            <img src="images1/product/4.jpg" alt="" class="product__panel-img">
-                                        </div>
-                                        <h3 class="product__panel-heading">
-                                            <a href="#" class="product__panel-link">Bàn Phím Cơ Dell Alienware RGB AW410K</a>
-                                        </h3>
-                                        <div class="product__panel-rate-wrap">
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                        </div>
-
-                                        <div class="product__panel-price">
-                                            <span class="product__panel-price-old">
-                                                3.000.000đ
-                                            </span>
-                                            <span class="product__panel-price-current">
-                                                2.700.000đ
-                                            </span>
-                                        </div>
-
-                                        <div class="product__panel-price-sale-off">
-                                            -10%
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
-                                <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
-                                    <div class="product__panel-item-wrap">
-                                        <div class="product__panel-img-wrap">
-                                            <img src="images1/product/5.jpg" alt="" class="product__panel-img">
-                                        </div>
-                                        <h3 class="product__panel-heading">
-                                            <a href="#" class="product__panel-link">Bàn phím cơ FL-Esports GP75CPM Taro Purple 3 Mode Kailh Box V2 Red switch</a>
-                                        </h3>
-                                        <div class="product__panel-rate-wrap">
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                        </div>
-
-                                        <div class="product__panel-price">
-                                            <span class="product__panel-price-current">
-                                                2.500.000đ
-                                            </span>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
-                                <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
-                                    <div class="product__panel-item-wrap">
-                                        <div class="product__panel-img-wrap">
-                                            <img src="images1/product/6.jpg" alt="" class="product__panel-img" >
-                                        </div>
-                                        <h3 class="product__panel-heading">
-                                            <a href="#" class="product__panel-link">Bàn phím cơ E-DRA EK387L RGB Brown Switch</a>
-                                        </h3>
-                                        <div class="product__panel-rate-wrap">
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                        </div>
-
-                                        <div class="product__panel-price">
-                                            <span class="product__panel-price-current">
-                                                2.900.000đ
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
-                                    <div class="product__panel-item-wrap">
-                                        <div class="product__panel-img-wrap">
-                                            <img src="images1/product/7.jpg" alt="" class="product__panel-img">
-                                        </div>
-                                        <h3 class="product__panel-heading">
-                                            <a href="#" class="product__panel-link">Chuột Dare-U EM908 RGB</a>
-                                        </h3>
-                                        <div class="product__panel-rate-wrap">
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                        </div>
-
-                                        <div class="product__panel-price">
-                                            <span class="product__panel-price-current">
-                                                1.020.000đ
-                                            </span>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
-                                <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
-                                    <div class="product__panel-item-wrap">
-                                        <div class="product__panel-img-wrap">
-                                            <img src="images1/product/8.jpg" alt="" class="product__panel-img">
-                                        </div>
-                                        <h3 class="product__panel-heading">
-                                            <a href="#" class="product__panel-link">Chuột Razer Basilisk V3 (RZ01-04000100-R3M1)</a>
-                                        </h3>
-                                        <div class="product__panel-rate-wrap">
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                        </div>
-
-                                        <div class="product__panel-price">
-                                            <span class="product__panel-price-current">
-                                                999.000đ
-                                            </span>
-                                        </div> 
-                                    </div>
-
-                                </div>
-                            <!--</div>-->
+                                </c:forEach>
+                            </div>
                         </article>
                     </div>
                 </div>
