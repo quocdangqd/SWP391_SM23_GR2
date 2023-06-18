@@ -410,7 +410,7 @@
                                                     <a href="product.jsp"  class="product__panel-link">${headPhoneData.get(i).getName()}</a>
                                             </h3>                       
                                             <div class="product__panel-rate-wrap">
-                                                <i class="product__panel-rate" style="text-decoration: underline; margin-right: 5px">${headPhoneData.get(i).getRateStar()}</i>
+                                                <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${headPhoneData.get(i).getRateStar()}</i>
                                                 <i class="fas fa-star product__panel-rate"></i>
                                                 <i class="fas fa-star product__panel-rate"></i>
                                                 <i class="fas fa-star product__panel-rate"></i>
@@ -570,7 +570,7 @@
                                                     <a href="product.jsp"  class="product__panel-link">${mouseData.get(i).getName()}</a>
                                             </h3>                       
                                             <div class="product__panel-rate-wrap">
-                                                <i class="product__panel-rate" style="text-decoration: underline; margin-right: 5px">${mouseData.get(i).getRateStar()}</i>
+                                                <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${mouseData.get(i).getRateStar()}</i>
                                                 <i class="fas fa-star product__panel-rate"></i>
                                                 <i class="fas fa-star product__panel-rate"></i>
                                                 <i class="fas fa-star product__panel-rate"></i>
@@ -731,7 +731,7 @@
                                                     <a href="product.jsp"  class="product__panel-link">${keyboardData.get(i).getName()}</a>
                                             </h3>                       
                                             <div class="product__panel-rate-wrap">
-                                                <i class="product__panel-rate" style="text-decoration: underline; margin-right: 5px">${keyboardData.get(i).getRateStar()}</i>
+                                                <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${keyboardData.get(i).getRateStar()}</i>
                                                 <i class="fas fa-star product__panel-rate"></i>
                                                 <i class="fas fa-star product__panel-rate"></i>
                                                 <i class="fas fa-star product__panel-rate"></i>

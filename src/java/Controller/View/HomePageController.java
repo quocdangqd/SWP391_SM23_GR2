@@ -17,11 +17,34 @@ import java.util.ArrayList;
  * @author DucPhaoLo
  */
 public class HomePageController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-
+            String tab = request.getParameter("tab");
+            ProductDAO productDAO = new ProductDAO();
+            HttpSession session = request.getSession();
+            if (tab == null || tab.equals("homepage")) {
+                ArrayList<Products> bestProductList = new ArrayList<>();
+                bestProductList = productDAO.BestSellerProducts();
+                session.setAttribute("bestProductList", bestProductList);
+//                out.print(bestProductList.size()+"<br>"); 
+                String type = request.getParameter("type");
+                ArrayList<Products> typeProductList;
+                if (type != null) {
+                    typeProductList = productDAO.getProductListByType(type);
+                } else {
+                    type="Wired";
+                    typeProductList = productDAO.getProductListByType(type);
+                }
+                session.setAttribute("typeProductList", "typeProductList");
+                session.setAttribute("type", "type");
+            } else if (tab.equals("logOut")) {
+                session.removeAttribute("role");
+            }
+            session.setAttribute("tab", "allProduct");
+            request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
         }
     }
 
@@ -37,27 +60,7 @@ public class HomePageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            String tab =request.getParameter("tab"); 
-            ProductDAO productDAO = new ProductDAO();
-            HttpSession session = request.getSession();
-            if (tab!=null&&tab.equals("logOut")) {
-                session.removeAttribute("role");
-            }
-//            else if(tab==null||tab.equals("homepage"))
-//            {
-//                ArrayList<Products> bestProductList = new ArrayList<>();
-//                bestProductList=productDAO.BestSellerProducts();
-//                session.setAttribute("bestProductList", bestProductList);
-//                request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
-//                return;
-//            }
-            session.setAttribute("tab", "allProduct");
-            request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
-
-        }
-
+        processRequest(request, response);
     }
 
     /**
@@ -71,7 +74,7 @@ public class HomePageController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /**

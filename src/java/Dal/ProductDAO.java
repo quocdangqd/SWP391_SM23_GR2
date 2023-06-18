@@ -83,6 +83,7 @@ public class ProductDAO extends ConnectMySQL {
                     rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                 }
                 String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
+                salePrice=salePrice.replaceAll(",", ".");
                 String picture2 = String.valueOf(rs.getString(12));
                 String picture3 = String.valueOf(rs.getString(13));
                 data.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rateStar, salePrice, picture2, picture3));
@@ -143,6 +144,7 @@ public class ProductDAO extends ConnectMySQL {
                             rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                         }
                         String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
+                        salePrice=salePrice.replaceAll(",", ".");
                         String picture2 = String.valueOf(rs.getString(12));
                         String picture3 = String.valueOf(rs.getString(13));
                         data.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rateStar, salePrice, picture2, picture3));
@@ -152,45 +154,6 @@ public class ProductDAO extends ConnectMySQL {
             }
         } catch (Exception e) {
             System.out.println("BestSellerProductsByCategoryID: " + e);
-        }
-        return data;
-    }
-
-    public ArrayList<Products> GetProductListByNameAndCategoryID(String pName, String product_categoryId) {
-        ArrayList<Products> data = new ArrayList<>();
-        try {
-            String sqlSelectString = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
-                    + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice',picture2,picture3\n"
-                    + "from  swp.orderdetail od right outer join swp.product p \n"
-                    + "on p.ProductID=od.orderdetail_productID  where p.name like '%" + pName + "%' and product_categoryID=?\n"
-                    + "group by productid \n"
-                    + "order by rate desc";
-            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
-            decimalFormat.applyPattern("#,###");
-            pstm = connection.prepareStatement(sqlSelectString);
-            pstm.setInt(1, Integer.parseInt(product_categoryId));
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                String ProductID = String.valueOf(rs.getInt(1));
-                String product_categoryID = String.valueOf(rs.getInt(2));
-                String name = String.valueOf(rs.getString(3));
-                String desciption = String.valueOf(rs.getString(4));
-                String picture = String.valueOf(rs.getString(5));
-                String price = String.valueOf(decimalFormat.format((int) rs.getFloat(6)));
-                String quantity = String.valueOf(rs.getInt(7));
-                String status = String.valueOf(rs.getInt(8));
-                String sale = String.valueOf(decimalFormat.format((int) rs.getFloat(9)));
-                String rateStar = String.valueOf(new DecimalFormat("#.0").format(rs.getFloat(10)));
-                if (rs.getFloat(10) - (int) rs.getFloat(10) == 0) {
-                    rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
-                }
-                String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
-                String picture2 = String.valueOf(rs.getString(12));
-                String picture3 = String.valueOf(rs.getString(13));
-                data.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rateStar, salePrice, picture2, picture3));
-            }
-        } catch (Exception e) {
-            System.out.println("getProductListByType: " + e);
         }
         return data;
     }
@@ -224,6 +187,7 @@ public class ProductDAO extends ConnectMySQL {
                     rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                 }
                 String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
+                salePrice=salePrice.replaceAll(",", ".");
                 String picture2 = String.valueOf(rs.getString(12));
                 String picture3 = String.valueOf(rs.getString(13));
                 data.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rateStar, salePrice, picture2, picture3));
@@ -242,33 +206,7 @@ public class ProductDAO extends ConnectMySQL {
 //        size=productDAO.getProductListByCategoryIDAndSort("1", "rate").size();
 //        System.out.println(size);
 //        System.out.println(formattedNumber);
-        for (Products p : productDAO.getProductListByCategoryIDAndNameAndSort("1", "a", "rate")) {
-            System.out.println("productid: " + p.getProductID() + " ");
-            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
-            System.out.println("Name: " + p.getName() + " ");
-            System.out.println("Description: " + p.getDesciption() + " ");
-            System.out.println("picture: " + p.getPicture() + " ");
-            System.out.println("picture2: " + p.getPicture2() + " ");
-            System.out.println("picture3: " + p.getPicture3() + " ");
-            System.out.println("price: " + p.getPrice() + " ");
-            System.out.println("quantity: " + p.getQuantity() + " ");
-            System.out.println("status: " + p.getStatus() + " ");
-            System.out.println("sale: " + p.getSale() + " ");
-            System.out.println("rateStar: " + p.getRateStar() + " ");
-            System.out.println("saleprice: " + p.getSalePrice() + " ");
-            System.out.println("");
-        }
-
-//        for (Products p : productDAO.BestSellerProducts()) {
-//            System.out.print("productid: " + p.getProductID() + " ");
-//            System.out.print("productName: " + p.getName() + " ");
-//            System.out.print("price: " + p.getPrice() + " ");
-//            System.out.print("sale: " + p.getSale() + " ");
-//            System.out.print("rateStar: " + p.getRateStar() + " ");
-//            System.out.print("saleprice: " + p.getSalePrice() + " ");
-//            System.out.println("");
-//        }
-//        for (Products p : productDAO.getProductListByType("wired")) {
+//        for (Products p : productDAO.getProductListByCategoryIDAndNameAndSort("1", "a", "rate")) {
 //            System.out.println("productid: " + p.getProductID() + " ");
 //            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
 //            System.out.println("Name: " + p.getName() + " ");
@@ -284,5 +222,31 @@ public class ProductDAO extends ConnectMySQL {
 //            System.out.println("saleprice: " + p.getSalePrice() + " ");
 //            System.out.println("");
 //        }
+
+//        for (Products p : productDAO.BestSellerProducts()) {
+//            System.out.print("productid: " + p.getProductID() + " ");
+//            System.out.print("productName: " + p.getName() + " ");
+//            System.out.print("price: " + p.getPrice() + " ");
+//            System.out.print("sale: " + p.getSale() + " ");
+//            System.out.print("rateStar: " + p.getRateStar() + " ");
+//            System.out.print("saleprice: " + p.getSalePrice() + " ");
+//            System.out.println("");
+//        }
+        for (Products p : productDAO.getProductListByType("wired")) {
+            System.out.println("productid: " + p.getProductID() + " ");
+            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
+            System.out.println("Name: " + p.getName() + " ");
+            System.out.println("Description: " + p.getDesciption() + " ");
+            System.out.println("picture: " + p.getPicture() + " ");
+            System.out.println("picture2: " + p.getPicture2() + " ");
+            System.out.println("picture3: " + p.getPicture3() + " ");
+            System.out.println("price: " + p.getPrice() + " ");
+            System.out.println("quantity: " + p.getQuantity() + " ");
+            System.out.println("status: " + p.getStatus() + " ");
+            System.out.println("sale: " + p.getSale() + " ");
+            System.out.println("rateStar: " + p.getRateStar() + " ");
+            System.out.println("saleprice: " + p.getSalePrice() + " ");
+            System.out.println("");
+        }
     }
 }

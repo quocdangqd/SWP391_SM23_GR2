@@ -23,16 +23,17 @@ public class ProductListController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             String tab = request.getParameter("tab");
-//            out.print("tab: "+tab); 
+            if(tab==null)
+                tab = "allProduct";
             HttpSession session = request.getSession();
-            tab="allProduct";
-//            session.setAttribute("tab", tab);
             ProductDAO pdao = new ProductDAO();
             if (tab.equals("headphone") || tab.equals("allProduct")) {
                 if (tab.equals("headphone")) {
-                    session.setAttribute("tab", "headphone");
+//                    session.setAttribute("tab", "headphone");
+                    request.setAttribute("tab", "headphone");
                 } else {
-                    session.setAttribute("tab", "allProduct");
+//                    session.setAttribute("tab", "allProduct");
+                    request.setAttribute("tab", "allProduct");
                 }
                 int headPhonepageIndex = 1;
                 if (request.getParameter("headPhonepageIndex") != null
@@ -53,7 +54,13 @@ public class ProductListController extends HttpServlet {
                     if (searchSubmit != null) {// click search
                         searchInput = request.getParameter("searchInput");
                         headPhonesortOrder = (String) session.getAttribute("headPhonesortOrder");
-                        headPhoneData = pdao.getProductListByCategoryIDAndNameAndSort("1", searchInput, headPhonesortOrder);
+//                        out.print("e"); 
+                        if (headPhonesortOrder == null) {
+                            headPhoneData = pdao.getProductListByCategoryIDAndNameAndSort("1", searchInput, "rate");
+                        } else {
+                            headPhoneData = pdao.getProductListByCategoryIDAndNameAndSort("1", searchInput, headPhonesortOrder);
+                        }
+//                        return; 
                     } else {//  click sortOrder //searchSubmit == null
                         headPhonesortOrder = request.getParameter("headPhonesortOrder");
                         if (headPhonesortOrder != null) {
@@ -90,9 +97,11 @@ public class ProductListController extends HttpServlet {
             ///mouse
             if (tab.equals("mouse") || tab.equals("allProduct")) {
                 if (tab.equals("mouse")) {
-                    session.setAttribute("tab", "mouse");
+                    request.setAttribute("tab", "mouse");
+//                    session.setAttribute("tab", "mouse");
                 } else {
-                    session.setAttribute("tab", "allProduct");
+//                    session.setAttribute("tab", "allProduct");
+                    request.setAttribute("tab", "allProduct");
                 }
                 int mousepageIndex = 1;
                 if (request.getParameter("mousepageIndex") != null
@@ -113,7 +122,11 @@ public class ProductListController extends HttpServlet {
                     if (searchSubmit != null) {// click search
                         searchInput = request.getParameter("searchInput");
                         mousesortOrder = (String) session.getAttribute("mousesortOrder");
-                        mouseData = pdao.getProductListByCategoryIDAndNameAndSort("3", searchInput, mousesortOrder);
+                        if (mousesortOrder == null) {
+                            mouseData = pdao.getProductListByCategoryIDAndNameAndSort("3", searchInput, "rate");
+                        } else {
+                            mouseData = pdao.getProductListByCategoryIDAndNameAndSort("3", searchInput, mousesortOrder);
+                        }
                     } else {//  click sortOrder //searchSubmit == null
                         mousesortOrder = request.getParameter("mousesortOrder");
                         if (mousesortOrder != null) {
@@ -150,9 +163,11 @@ public class ProductListController extends HttpServlet {
             //keyboard
             if (tab.equals("keyboard") || tab.equals("allProduct")) {
                 if (tab.equals("keyboard")) {
-                    session.setAttribute("tab", "keyboard");
+                    request.setAttribute("tab", "keyboard");
+//                    session.setAttribute("tab", "keyboard");
                 } else {
-                    session.setAttribute("tab", "allProduct");
+//                    session.setAttribute("tab", "allProduct");
+                    request.setAttribute("tab", "allProduct");
                 }
                 int keyboardpageIndex = 1;
                 if (request.getParameter("keyboardpageIndex") != null
@@ -173,7 +188,11 @@ public class ProductListController extends HttpServlet {
                     if (searchSubmit != null) {// click search
                         searchInput = request.getParameter("searchInput");
                         keyboardsortOrder = (String) session.getAttribute("keyboardsortOrder");
-                        keyboardData = pdao.getProductListByCategoryIDAndNameAndSort("2", searchInput, keyboardsortOrder);
+                        if (keyboardsortOrder == null) {
+                            keyboardData = pdao.getProductListByCategoryIDAndNameAndSort("2", searchInput, "rate");
+                        } else {
+                            keyboardData = pdao.getProductListByCategoryIDAndNameAndSort("2", searchInput, keyboardsortOrder);
+                        }
                     } else {//  click sortOrder //searchSubmit == null
                         keyboardsortOrder = request.getParameter("keyboardsortOrder");
                         if (keyboardsortOrder != null) {
