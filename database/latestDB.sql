@@ -1,9 +1,14 @@
+
+
+
+
 -- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
--- Host: localhost    Database: swpp
+-- Host: localhost    Database: swp
 -- ------------------------------------------------------
 -- Server version	8.0.33
-
+create database swp;
+use swp;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -27,7 +32,7 @@ CREATE TABLE `cart` (
   ` title` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `price` float DEFAULT NULL,
   `quantity` int DEFAULT NULL,
-  `totalcost` int DEFAULT NULL,
+  `totalcost` float DEFAULT NULL,
   `productID` int DEFAULT NULL,
   `userID` int DEFAULT NULL,
   `status` bit(1) DEFAULT NULL,
@@ -36,7 +41,7 @@ CREATE TABLE `cart` (
   KEY `userID_idx` (`userID`),
   CONSTRAINT `ProductID` FOREIGN KEY (`productID`) REFERENCES `product` (`ProductID`),
   CONSTRAINT `userID` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,6 +52,40 @@ LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `calculate_totalcost` BEFORE INSERT ON `cart` FOR EACH ROW BEGIN
+    SET NEW.totalcost = NEW.price * NEW.quantity;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `calculate_totalcost1` BEFORE UPDATE ON `cart` FOR EACH ROW BEGIN
+    SET NEW.totalcost = NEW.price * NEW.quantity;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `category`
@@ -211,7 +250,7 @@ CREATE TABLE `orderdetail` (
   `quantity` int DEFAULT NULL,
   `price` float DEFAULT NULL,
   `orderdetail_productID` int DEFAULT NULL,
-  `rate` float DEFAULT NULL,
+  `product_rate` float DEFAULT NULL,
   PRIMARY KEY (`orderdetailID`),
   KEY `orderdetial_orderID_idx` (`orderdetail_orderID`),
   KEY `orderdetail_productID_idx` (`orderdetail_productID`),
@@ -226,7 +265,7 @@ CREATE TABLE `orderdetail` (
 
 LOCK TABLES `orderdetail` WRITE;
 /*!40000 ALTER TABLE `orderdetail` DISABLE KEYS */;
-INSERT INTO `orderdetail` VALUES (1,1,2,NULL,1,NULL),(2,2,4,NULL,1,NULL),(3,3,1,NULL,1,NULL),(4,4,1,NULL,2,NULL),(5,5,4,NULL,2,NULL),(6,6,2,NULL,3,NULL),(7,7,2,NULL,4,NULL),(8,8,5,NULL,5,NULL);
+INSERT INTO `orderdetail` VALUES (1,1,2,NULL,1,5),(2,2,4,NULL,1,5),(3,3,1,NULL,1,5),(4,4,1,NULL,2,4),(5,5,4,NULL,2,4),(6,6,2,NULL,3,3),(7,7,2,NULL,4,2),(8,8,5,NULL,5,5);
 /*!40000 ALTER TABLE `orderdetail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,7 +291,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`ProductID`),
   KEY `product_categoryID_idx` (`product_categoryID`),
   CONSTRAINT `product_categoryID` FOREIGN KEY (`product_categoryID`) REFERENCES `category` (`categoryID`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,7 +324,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'Admin'),(2,'Manager'),(3,'User'),(4,'Saler');
+INSERT INTO `role` VALUES (1,'Admin'),(2,'Manager'),(3,'User');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,7 +353,31 @@ LOCK TABLES `salecode` WRITE;
 INSERT INTO `salecode` VALUES (1,'jjijfidsj',5,'2023-05-30'),(2,'12bjbqbwe',2,'2023-06-30'),(3,'e21fqw',69,'2023-07-23'),(4,'1313da',60,'2023-08-04'),(5,'fwqeq',42,'2023-09-30');
 /*!40000 ALTER TABLE `salecode` ENABLE KEYS */;
 UNLOCK TABLES;
+--
+-- Table structure for table `saler`
+--
 
+DROP TABLE IF EXISTS `saler`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `saler` (
+  `salerID` int NOT NULL,
+  `shift` varchar(45) DEFAULT NULL,
+  `saler_userID` int DEFAULT NULL,
+  PRIMARY KEY (`salerID`),
+  KEY `saler_userID_idx` (`saler_userID`),
+  CONSTRAINT `saler_userID` FOREIGN KEY (`saler_userID`) REFERENCES `user` (`userID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `saler`
+--
+
+LOCK TABLES `saler` WRITE;
+/*!40000 ALTER TABLE `saler` DISABLE KEYS */;
+/*!40000 ALTER TABLE `saler` ENABLE KEYS */;
+UNLOCK TABLES;
 --
 -- Table structure for table `sex`
 --
@@ -390,7 +453,7 @@ CREATE TABLE `user` (
   KEY `user_sexID_idx` (`user_sexID`),
   CONSTRAINT `user_roleID` FOREIGN KEY (`user_roleID`) REFERENCES `role` (`roleID`),
   CONSTRAINT `user_sexID` FOREIGN KEY (`user_sexID`) REFERENCES `sex` (`sexID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -399,9 +462,17 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'hoang@fu','1',1,'hoang',27,2,NULL,'0932233424','',NULL,'a@gmail.com',_binary ''),(2,'ha','1',1,'ha',20,3,NULL,'0784888822',NULL,NULL,'ha@gmail.com',_binary '\0'),(3,'dang2012','1',2,'dang',22,2,NULL,'0293929994',NULL,NULL,'dang@gmail.com',_binary ''),(4,'tri2k8','1',2,'tri',18,1,NULL,'0299402888',NULL,NULL,'tri@gmail.com',_binary '\0'),(5,'bestFlo','1',2,'dan',19,1,NULL,'0485003032',NULL,NULL,'dan@gmail.com',_binary ''),(6,'trancalli','1',4,'tran',47,2,NULL,'0912827474',NULL,NULL,'tran@gmail.com',_binary ''),(7,'momo','1',3,'dao',29,1,NULL,'0288899444',NULL,NULL,'dao@gmail.com',_binary ''),(8,'hunggg','1',4,'hung',45,2,NULL,'0494777364',NULL,NULL,'hung@gmail.com',_binary '\0'),(9,'dangnguyen','1',3,'dang',31,1,NULL,'0487563344',NULL,NULL,'dangtr@gmail.com',_binary '');
+INSERT INTO `user` VALUES (1,'hoang@fu','1',1,'hoang',17,2,NULL,'0932233424','',NULL,'a@gmail.com',_binary ''),(2,'ha','1',1,'ha',20,3,NULL,'0784888822',NULL,NULL,'ha@gmail.com',_binary '\0'),(3,'dang2012','1',2,'dang',22,2,NULL,'0293929994',NULL,NULL,'dang@gmail.com',_binary ''),(4,'tri2k8','1',2,'tri',18,1,NULL,'0299402888',NULL,NULL,'tri@gmail.com',_binary '\0'),(5,'bestFlo','1',2,'dan',19,1,NULL,'0485003032',NULL,NULL,'dan@gmail.com',_binary ''),(6,'trancalli','1',3,'tran',NULL,3,NULL,'0912827474',NULL,NULL,'tran@gmail.com',_binary ''),(7,'momo','1',3,'dao',NULL,4,NULL,'0288899444',NULL,NULL,'dao@gmail.com',_binary ''),(8,'hunggay','1',3,'hung',NULL,5,NULL,'0494777364',NULL,NULL,'hung@gmail.com',_binary '\0'),(9,'dangnguyen','1',3,'dang',NULL,6,NULL,'0487563344',NULL,NULL,'dangtr@gmail.com',_binary ''),(10,'sirducdz2','Sirducdz7a@@',3,'NGUYEN VAN DUC',21,1,NULL,'0862702611',NULL,NULL,'ducnvhe160331@fpt.edu.vn',_binary '');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'swp'
+--
+
+--
+-- Dumping routines for database 'swp'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -412,4 +483,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-14 15:19:51
+-- Dump completed on 2023-06-14  9:12:15

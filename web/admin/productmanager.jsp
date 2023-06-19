@@ -135,8 +135,17 @@
                                     <c:forEach items="${product}" var="p">
                                     <tr>
                                         <!--<td width="10"><input type="checkbox" name="check1" value="1"></td>-->
-                                       
+                                        
+                                        <td></td>
+                                        <td>${p.productID}</td>
+                                        <td>${p.categories.name}</td>
                                         <td>${p.name}</td>
+                                        <td>${p.desciption}</td>
+                                        <td>${p.picture} ${p.picture2}  ${p.picture3}</td>
+                                        <td>${p.productID}</td>
+                                        <td>${p.productID}</td> 
+                                        <td>${p.productID}</td>  
+                                        <td>${p.productID}</td>
 <!--                                        <td>Loại sản phẩm</td>
                                         <td>Tên sản phẩm</td>
                                         <td>Mô tả</td>
