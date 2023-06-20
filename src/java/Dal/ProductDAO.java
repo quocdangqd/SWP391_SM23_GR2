@@ -209,6 +209,70 @@ public class ProductDAO extends ConnectMySQL {
         }
         return data;
     }
+    
+    // Duc Anh
+    public int CountProduct() {
+        int count = 0;
+        String sqlSelect = "SELECT COUNT(*) as 'count' FROM product";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return count;
+    }
+    
+    public int CountSaler() {
+        int count = 0;
+        String sqlSelect = "SELECT COUNT(*) as 'count' FROM user\n" +
+                            "where user_roleID = '4'";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return count;
+    }
+
+    public int CountOrder() {
+        int count = 0;
+        String sqlSelect = "SELECT COUNT(*) as 'count' FROM swpp.order";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return count;
+    }
+
+    public int CountProductLow() {
+        int count = 0;
+        String sqlSelect = "SELECT COUNT(*) as 'count' FROM product\n" +
+                            "where quantity < 20;";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return count;
+    }
+    // Duc Anh 
 
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();

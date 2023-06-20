@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -134,6 +135,14 @@
             </div>
             <div class="row">
                 <div class="col-md-6 col-lg-4">
+                    <div class="widget-small primary coloured-icon"><i class="icon  bx bxs-user fa-3x"></i>
+                        <div class="info">
+                            <h4>Tổng Nhân viên</h4>
+                            <p><b>26 nhân viên</b></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
                     <div class="widget-small info coloured-icon"><i class='icon bx bxs-purchase-tag-alt fa-3x' ></i>
                         <div class="info">
                             <h4>Tổng sản phẩm</h4>
@@ -146,14 +155,6 @@
                         <div class="info">
                             <h4>Tổng đơn hàng</h4>
                             <p><b>457 đơn hàng</b></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="widget-small danger coloured-icon"><i class='icon fa-3x bx bxs-info-circle' ></i>
-                        <div class="info">
-                            <h4>Bị cấm</h4>
-                            <p><b>4 tài khoản</b></p>
                         </div>
                     </div>
                 </div>
