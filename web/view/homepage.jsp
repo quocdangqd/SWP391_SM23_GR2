@@ -121,7 +121,7 @@
                             <c:forEach items="${bestProductList}" var="item">
                                 <div class="bestselling__product col-lg-4 col-md-6 col-sm-12">
                                     <div class="bestselling__product-img-box">
-                                        <img src="images1/product/better1.jpg" alt="Tai nghe gaming PLYR Wireless" class="bestselling__product-img">
+                                        <img src="${item.getPicture()}" alt="Tai nghe gaming PLYR Wireless" class="bestselling__product-img">
                                     </div>
                                     <div class="bestselling__product-text">
                                         <h3 class="bestselling__product-title">

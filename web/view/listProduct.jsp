@@ -404,7 +404,7 @@
                                         <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
                                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                                                 <div class="product__panel-img-wrap">
-                                                    <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
+                                                    <a href="product.jsp"> <img src="${headPhoneData.get(i).getPicture()}" class="product__panel-img"></a>
                                                 </div>
                                                 <h3 class="product__panel-heading">
                                                     <a href="product.jsp"  class="product__panel-link">${headPhoneData.get(i).getName()}</a>
@@ -564,7 +564,7 @@
                                         <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
                                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                                                 <div class="product__panel-img-wrap">
-                                                    <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
+                                                    <a href="product.jsp"> <img src="${mouseData.get(i).getPicture()}" class="product__panel-img"></a>
                                                 </div>
                                                 <h3 class="product__panel-heading">
                                                     <a href="product.jsp"  class="product__panel-link">${mouseData.get(i).getName()}</a>
@@ -725,7 +725,7 @@
                                         <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
                                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                                                 <div class="product__panel-img-wrap">
-                                                    <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
+                                                    <a href="product.jsp"> <img src="${keyboardData.get(i).getPicture()}" class="product__panel-img"></a>
                                                 </div>
                                                 <h3 class="product__panel-heading">
                                                     <a href="product.jsp"  class="product__panel-link">${keyboardData.get(i).getName()}</a>
