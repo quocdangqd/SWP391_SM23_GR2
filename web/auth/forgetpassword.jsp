@@ -31,12 +31,13 @@
                         </div>
 
                         <div class="signin-form"><h2>Quên mật khẩu</h2>
-                            <form method="POST" class="register-form" id="login-form">
-                                <input type="text" name="your_name" id="your_name" style="padding: 6px 1px;" placeholder="Nhập vào đây email của bạn"/>
+                            <form method="POST" action="forgetPassword?forgetPassword=true"class="register-form" id="login-form">
+                                <input type="text" name="email" value="${email}" id="your_name" style="padding: 6px 1px;" placeholder="Nhập vào đây email của bạn"/>
                                                                                           
                                 <div class="form-group form-button">
-                                    <input type="submit" name="signin" id="signin" class="form-submit" value="Xác nhận"/>
+                                    <input type="submit" name="confirm" id="signin" class="form-submit" value="Xác nhận"/>
                                 </div>
+                                ${message}
                             </form>
 
                         </div>

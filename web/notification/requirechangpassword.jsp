@@ -32,7 +32,7 @@
                     <div style="color: rgb(0, 0, 0); text-align: left;">
                       <h1 style="margin: 1rem 0">Đăng nhập không thành công</h1>
                       <p style="padding-bottom: 16px">Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản người dùng này.</p>
-                      <p style="padding-bottom: 16px"><a href="#" target="_blank"
+                      <p style="padding-bottom: 16px"><a href="http://localhost:9999/TechZone/auth/Register?allowRegister=true&fullName=" target="_blank"
                           style="padding: 12px 24px; border-radius: 4px; color: #FFF; background: #2B52F5;display: inline-block;margin: 0.5rem 0;text-decoration: none;">Đặt lại mật khẩu</a></p>
                       <p style="padding-bottom: 16px">Nếu không yêu cầu đặt lại mật khẩu, bạn có thể bỏ qua email này.</p>
                     </div>
