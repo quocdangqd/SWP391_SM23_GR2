@@ -6,7 +6,6 @@ import Model.Categories;
 import Model.Products;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
 
 /**
  *
@@ -209,7 +208,7 @@ public class ProductDAO extends ConnectMySQL {
         }
         return data;
     }
-    
+
     // Duc Anh
     public int CountProduct() {
         int count = 0;
@@ -225,26 +224,11 @@ public class ProductDAO extends ConnectMySQL {
         }
         return count;
     }
-    
+
     public int CountSaler() {
         int count = 0;
-        String sqlSelect = "SELECT COUNT(*) as 'count' FROM user\n" +
-                            "where user_roleID = '4'";
-        try {
-            pstm = connection.prepareStatement(sqlSelect);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                count = rs.getInt(1);
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return count;
-    }
-
-    public int CountOrder() {
-        int count = 0;
-        String sqlSelect = "SELECT COUNT(*) as 'count' FROM swpp.order";
+        String sqlSelect = "SELECT COUNT(*) as 'count' FROM user\n"
+                + "where user_roleID = '4'";
         try {
             pstm = connection.prepareStatement(sqlSelect);
             rs = pstm.executeQuery();
@@ -259,8 +243,8 @@ public class ProductDAO extends ConnectMySQL {
 
     public int CountProductLow() {
         int count = 0;
-        String sqlSelect = "SELECT COUNT(*) as 'count' FROM product\n" +
-                            "where quantity < 20;";
+        String sqlSelect = "SELECT COUNT(*) as 'count' FROM swp.product\n"
+                + "where quantity = '0';";
         try {
             pstm = connection.prepareStatement(sqlSelect);
             rs = pstm.executeQuery();
@@ -272,11 +256,69 @@ public class ProductDAO extends ConnectMySQL {
         }
         return count;
     }
-    // Duc Anh 
 
+    public ArrayList<Products> limitProducts() {
+        ArrayList<Products> data = new ArrayList<>();
+        try {
+            String sqlSelect = "Select * from product\n"
+                    + "where quantity = 0";
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                Products p = new Products();
+                p.setProductID(String.valueOf(rs.getInt(1)));
+                String categories = String.valueOf(rs.getInt(2));
+                p.setProduct_categoryID(categories);
+                p.setName(String.valueOf(rs.getString(3)));
+                p.setDesciption(String.valueOf(rs.getString(4)));
+                p.setPicture(rs.getString(5));
+                p.setPicture2(rs.getString(6));
+                p.setPicture3(rs.getString(7));
+                p.setPrice(String.valueOf(rs.getFloat(8)));
+                p.setQuantity(String.valueOf(rs.getInt(9)));
+                p.setStatus(String.valueOf(rs.getInt(10)));
+                p.setCategories(new CategoriesDAO().getCategoryById(categories));
+                data.add(p);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return data;
+    }
+
+//    public ArrayList<Products> limitProducts() {
+//        ArrayList<Products> data = new ArrayList<>();
+//        String sqlSelect = "SELECT p.ProductID, p.name, p.picture, p.price, c.name\n"
+//                + "FROM product p\n"
+//                + "join category c\n"
+//                + "on p.product_categoryID = c.categoryID\n"
+//                + "where p.quantity = 0";
+//        try {
+//            pstm = connection.prepareStatement(sqlSelect);
+//            rs = pstm.executeQuery();
+//            while (rs.next()) {
+//                Products p = new Products();
+//                p.setProductID(String.valueOf(rs.getInt(1)));
+//                p.setName(String.valueOf(rs.getString(3)));
+//                String categories = String.valueOf(rs.getInt(2));
+//                p.setPicture(rs.getString(5));
+//                p.setProduct_categoryID(categories);
+//                p.setPrice(String.valueOf(rs.getFloat(8)));
+//                p.setCategories(new CategoriesDAO().getCategoryById(categories));
+//                data.add(new Products());
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        return data;
+//    }
+    // Duc Anh 
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
         System.out.println(productDAO.getProductListByType("HighPrice").size());
+        ArrayList list = new ArrayList();
+        list = productDAO.limitProducts();
+        System.out.println(list);
         // Định dạng số với dấu chấm
 //        int size = productDAO.getProductListByCategoryIDAndNameAndSort("1","a","ascendingSalePrice").size();
 //        size = productDAO.BestSellerProducts().size();

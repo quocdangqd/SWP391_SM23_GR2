@@ -138,7 +138,7 @@
                     <div class="widget-small primary coloured-icon"><i class="icon  bx bxs-user fa-3x"></i>
                         <div class="info">
                             <h4>Tổng Nhân viên</h4>
-                            <p><b>26 nhân viên</b></p>
+                            <p><b>${requestScope.saler} nhân viên</b></p>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                     <div class="widget-small info coloured-icon"><i class='icon bx bxs-purchase-tag-alt fa-3x' ></i>
                         <div class="info">
                             <h4>Tổng sản phẩm</h4>
-                            <p><b>8580 sản phẩm</b></p>
+                            <p><b>${requestScope.product} sản phẩm</b></p>
                         </div>
                     </div>
                 </div>
@@ -154,7 +154,7 @@
                     <div class="widget-small warning coloured-icon"><i class='icon fa-3x bx bxs-shopping-bag-alt'></i>
                         <div class="info">
                             <h4>Tổng đơn hàng</h4>
-                            <p><b>457 đơn hàng</b></p>
+                            <p><b>${requestScope.order} đơn hàng</b></p>
                         </div>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
                     <div class="widget-small warning coloured-icon"><i class='icon fa-3x bx bxs-tag-x' ></i>
                         <div class="info">
                             <h4>Hết hàng</h4>
-                            <p><b>1 sản phẩm</b></p>
+                            <p><b>${requestScope.het} sản phẩm</b></p>
                         </div>
                     </div>
                 </div>
@@ -202,30 +202,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:forEach items="${listpro}" var="p">
                                     <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
+                                        <td>${p.getProductID()}</td>
+                                        <td>${p.getName()}</td>
+                                        <td>${p.getPrice()}</td>
+                                        <td>${p.categories.getName()}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
-                                    </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -250,34 +234,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:forEach items="${lorder}" var="o">
                                     <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
+                                        <td>${o.getOrderId()}</td>
+                                        <td>${o.getUserId()}</td>
+                                        <td>${o.getNote()}</td>
+                                        <td>${o.getSalecode()}</td>
+                                        <td></td>
                                     </tr>
-                                    <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                    </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -297,22 +262,20 @@
                                         <th>Mã sản phẩm</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Ảnh</th>
-                                        <th>Số lượng</th>
-                                        <th>Tình trạng</th>
                                         <th>Giá tiền</th>
                                         <th>Danh mục</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:forEach items="${listun}" var="l">
                                     <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Ảnh</td>
-                                        <td>Số lượng</td>
-                                        <td>Tình trạng</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
+                                        <td>${l.getProductID()}</td>
+                                        <td>${l.getName()}</td>
+                                        <td>${l.getPicture()}</td>
+                                        <td>${l.getPrice()}</td>
+                                        <td>${l.categories.getName()}</td>
                                     </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>

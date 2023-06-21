@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package Controller.Manager;
 
 import Dal.CartDAO;
+import Dal.OrderDAO;
 import Dal.ProductDAO;
 import Model.User;
 import jakarta.servlet.ServletException;
@@ -14,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  *
@@ -34,22 +32,33 @@ public class IncomeManager extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            Model.User user = (User) session.getAttribute("manager");
-            if (user.getUser_roleID().equalsIgnoreCase("true")) {
-                ProductDAO dao = new ProductDAO();
-                CartDAO bdao = new CartDAO();
-                int count = dao.CountProduct();
-                request.setAttribute("product", count);
-                request.getRequestDispatcher("/manager/incomemanager.jsp").forward(request, response);
-            } else {
-                out.print("Access Denied!");
-            }
-        } 
+            
+            ProductDAO dao = new ProductDAO();
+            OrderDAO od = new OrderDAO();
+
+            int count = dao.CountProduct();
+            int count2 = dao.CountSaler();
+            int count3 = od.CountOrder();
+            int count4 = dao.CountProductLow();
+            List listpro = dao.BestSellerProducts();
+            List listun = dao.limitProducts();
+            List lorder = od.getAllOrder();
+
+            request.setAttribute("product", count);
+            request.setAttribute("saler", count2);
+            request.setAttribute("order", count3);
+            request.setAttribute("het", count4);
+            request.setAttribute("listpro", listpro);
+            request.setAttribute("listun", listun);
+            request.setAttribute("lorder", lorder);
+
+            request.getRequestDispatcher("/manager/incomemanager.jsp").forward(request, response);
+
+        }
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
