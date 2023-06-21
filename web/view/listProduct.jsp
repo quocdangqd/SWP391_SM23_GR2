@@ -404,10 +404,10 @@
                                         <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
                                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                                                 <div class="product__panel-img-wrap">
-                                                    <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
-                                                </div>
-                                                <h3 class="product__panel-heading">
-                                                    <a href="product.jsp"  class="product__panel-link">${headPhoneData.get(i).getName()}</a>
+                                                    <a href="product.jsp"> <img src="${headPhoneData.get(i).getPicture()}" class="product__panel-img"></a>
+                                            </div>
+                                            <h3 class="product__panel-heading">
+                                                <a href="product.jsp"  class="product__panel-link">${headPhoneData.get(i).getName()}</a>
                                             </h3>                       
                                             <div class="product__panel-rate-wrap">
                                                 <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${headPhoneData.get(i).getRateStar()}</i>
@@ -446,19 +446,19 @@
                                     <%--<c:set var="active" value="active"> </c:set>--%>
                                     <c:set var="count" value="1"></c:set>
                                     <c:if test="${headPhonepageIndex!=1}">
-                                        <li class="page-item disabled"><a href="ProductListController?tab=${tab}&headPhonepageIndex=${headPhonepageIndex-1}">Previous</a></li>
+                                        <li class="page-item disabled"><a id="myLink1" href="ProductListController?tab=${tab}&headPhonepageIndex=${headPhonepageIndex-1}">Previous</a></li>
                                         </c:if>
                                         <c:forEach begin="${count}" end="${headPhonepageAmount}">
                                             <c:if test="${headPhonepageIndex==count}">
-                                            <li class="page-item active"><a href="ProductListController?tab=${tab}&headPhonepageIndex=${count}" class="page-link">${count}</a></li>
+                                            <li class="page-item active"><a id="myLink2" href="ProductListController?tab=${tab}&headPhonepageIndex=${count}" class="page-link">${count}</a></li>
                                             </c:if>
                                             <c:if test="${headPhonepageIndex!=count}">
-                                            <li class="page-item"><a href="ProductListController?tab=${tab}&headPhonepageIndex=${count}" class="page-link">${count}</a></li>
+                                            <li class="page-item"><a id="myLink3" href="ProductListController?tab=${tab}&headPhonepageIndex=${count}" class="page-link">${count}</a></li>
                                             </c:if>
                                             <c:set var="count" value="${count+1}"></c:set>
                                         </c:forEach>
                                         <c:if test="${headPhonepageIndex!=headPhonepageAmount}">
-                                        <li class="page-item disabled"><a href="ProductListController?tab=${tab}&headPhonepageIndex=${headPhonepageIndex+1}">Next</a></li>
+                                        <li class="page-item disabled"><a id="myLink4" href="ProductListController?tab=${tab}&headPhonepageIndex=${headPhonepageIndex+1}">Next</a></li>
                                         </c:if>
                                     <!--<li class="page-item active"><a href="#" class="page-link">Next</a></li>-->
                                 </ul>
@@ -564,10 +564,10 @@
                                         <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
                                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                                                 <div class="product__panel-img-wrap">
-                                                    <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
-                                                </div>
-                                                <h3 class="product__panel-heading">
-                                                    <a href="product.jsp"  class="product__panel-link">${mouseData.get(i).getName()}</a>
+                                                    <a href="product.jsp"> <img src="${mouseData.get(i).getPicture()}" class="product__panel-img"></a>
+                                            </div>
+                                            <h3 class="product__panel-heading">
+                                                <a href="product.jsp"  class="product__panel-link">${mouseData.get(i).getName()}</a>
                                             </h3>                       
                                             <div class="product__panel-rate-wrap">
                                                 <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${mouseData.get(i).getRateStar()}</i>
@@ -630,8 +630,8 @@
         </form> 
         <!-- category 3: bàn phím -->
         <form method="post" action="ProductListController?tab=${tab}" id="formm3">
-        <c:if test="${tab=='allProduct'||tab=='keyboard'}">
-            
+            <c:if test="${tab=='allProduct'||tab=='keyboard'}">
+
                 <section id ='category3' class="product__love">
                     <div class="container">
                         <div class="row bg-white">
@@ -725,10 +725,10 @@
                                         <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
                                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                                                 <div class="product__panel-img-wrap">
-                                                    <a href="product.jsp"> <img src="images1/product/t1.jpg" class="product__panel-img"></a>
-                                                </div>
-                                                <h3 class="product__panel-heading">
-                                                    <a href="product.jsp"  class="product__panel-link">${keyboardData.get(i).getName()}</a>
+                                                    <a href="product.jsp"> <img src="${keyboardData.get(i).getPicture()}" class="product__panel-img"></a>
+                                            </div>
+                                            <h3 class="product__panel-heading">
+                                                <a href="product.jsp"  class="product__panel-link">${keyboardData.get(i).getName()}</a>
                                             </h3>                       
                                             <div class="product__panel-rate-wrap">
                                                 <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${keyboardData.get(i).getRateStar()}</i>
@@ -818,6 +818,102 @@
             document.getElementById("formm3").submit();
         }
 
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#myLink1").click(function (event) {
+                event.preventDefault(); // Ngăn chặn hành vi mặc định khi người dùng nhấp vào liên kết
+                var linkHref = $(this).attr("href"); // Lấy giá trị href của thẻ a
+                // Thực hiện AJAX tại đây
+                $.ajax({
+                    url: linkHref,
+                    type: "post",
+                    data: {checkResponse: "true", param2: "2"},
+                    success: function (data) {
+//                        window.location.reload();
+                        var row = document.getElementById("category1");
+                            row.innerHTML = data;
+                        // Xử lý kết quả AJAX ở đây
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý lỗi nếu có
+                        console.log(error);
+                    }
+                });
+            });
+        });
+        
+        $(document).ready(function () {
+            $("#myLink2").click(function (event) {
+                event.preventDefault(); // Ngăn chặn hành vi mặc định khi người dùng nhấp vào liên kết
+                var linkHref = $(this).attr("href"); // Lấy giá trị href của thẻ a
+                // Thực hiện AJAX tại đây
+                $.ajax({
+                    url: linkHref,
+                    type: "post",
+                    data: {checkResponse: "true", param2: "2"},
+                    success: function (data) {
+//                        window.location.reload();
+                        var row = document.getElementById("category1");
+                            row.innerHTML = data;
+                        // Xử lý kết quả AJAX ở đây
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý lỗi nếu có
+                        console.log(error);
+                    }
+                });
+            });
+        });
+        $(document).ready(function () {
+            $("#myLink3").click(function (event) {
+                event.preventDefault(); // Ngăn chặn hành vi mặc định khi người dùng nhấp vào liên kết
+                var linkHref = $(this).attr("href"); // Lấy giá trị href của thẻ a
+                // Thực hiện AJAX tại đây
+                $.ajax({
+                    url: linkHref,
+                    type: "post",
+                    data: {checkResponse: "true", param2: "2"},
+                    success: function (data) {
+//                        window.location.reload();
+                        var row = document.getElementById("category1");
+                            row.innerHTML = data;
+                            
+                        // Xử lý kết quả AJAX ở đây
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý lỗi nếu có
+                        console.log(error);
+                    }
+                });
+            });
+        });
+        $(document).ready(function () {
+            $("#myLink4").click(function (event) {
+                event.preventDefault(); // Ngăn chặn hành vi mặc định khi người dùng nhấp vào liên kết
+                var linkHref = $(this).attr("href"); // Lấy giá trị href của thẻ a
+                // Thực hiện AJAX tại đây
+                $.ajax({
+                    url: linkHref,
+                    type: "post",
+                    data: {checkResponse: "true", param2: "2"},
+                    success: function (data) {
+                        var row = document.getElementById("category1");
+                            row.innerHTML = data;
+                            event.preventDefault();
+                            
+                        // Xử lý kết quả AJAX ở đây
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý lỗi nếu có
+                        console.log(error);
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

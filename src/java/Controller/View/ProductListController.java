@@ -23,17 +23,18 @@ public class ProductListController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             String tab = request.getParameter("tab");
-            if(tab==null)
+            if (tab == null) {
                 tab = "allProduct";
+            }
             HttpSession session = request.getSession();
             ProductDAO pdao = new ProductDAO();
             if (tab.equals("headphone") || tab.equals("allProduct")) {
                 if (tab.equals("headphone")) {
-//                    session.setAttribute("tab", "headphone");
-                    request.setAttribute("tab", "headphone");
+                    session.setAttribute("tab", "headphone");
+//                    request.setAttribute("tab", "headphone");
                 } else {
-//                    session.setAttribute("tab", "allProduct");
-                    request.setAttribute("tab", "allProduct");
+                    session.setAttribute("tab", "allProduct");
+//                    request.setAttribute("tab", "allProduct");
                 }
                 int headPhonepageIndex = 1;
                 if (request.getParameter("headPhonepageIndex") != null
@@ -46,6 +47,7 @@ public class ProductListController extends HttpServlet {
                     } else {
                         headPhonepageIndex = (int) session.getAttribute("headPhonepageIndex");
                     }
+
                 } else {// làn dau = null, các l?n click vao nut khac
                     ArrayList<Products> headPhoneData;
                     String searchInput = "";
@@ -224,7 +226,9 @@ public class ProductListController extends HttpServlet {
                 }
                 session.setAttribute("keyboardpageIndex", keyboardpageIndex);
             }
-
+            if (request.getParameter("checkResponse") != null) {
+                return;
+            }
             request.getRequestDispatcher("/view/listProduct.jsp").forward(request, response);
         }
     }
@@ -277,7 +281,161 @@ public class ProductListController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            if (request.getParameter("headPhonepageIndex") != null) {
+                HttpSession session = request.getSession();
+                String tab = (String) session.getAttribute("tab");
+                String headPhonesortOrder = (String) session.getAttribute("headPhonesortOrder");
+                int headPhoneamountElementInPage = (int) session.getAttribute("headPhoneamountElementInPage");
+                int headPhonepageAmount = (int) session.getAttribute("headPhonepageAmount");
+                
+//            int headPhonepageIndex = (int) session.getAttribute("headPhonepageIndex");
+                int headPhonepageIndex = Integer.parseInt(request.getParameter("headPhonepageIndex"));
+                ArrayList<Products> headPhoneData = (ArrayList<Products>) session.getAttribute("headPhoneData");
+                if (tab.equals("allProduct") || tab.equals("headphone")) {
+                    out.print("                    <div class=\"container\">\n"
+                            + "                        <div class=\"row bg-white\">\n"
+                            + "                            <div class=\"col-lg-10 col-md-10 col-sm-10 product__love-title\">\n"
+                            + "                                <h2 class=\"product__love-heading upper\">\n"
+                            + "                                    Tai Nghe  \n"
+                            + "                                </h2>\n"
+                            + "                            </div>\n"
+                            + "                            <div class=\"col-lg-2 col-md-2 col-sm-2 product__love-title\">\n"
+                            + "                                <div class=\"show-entries\">");
+                    if ((headPhonesortOrder == null) || headPhonesortOrder.equals("rate")) {
+                        out.print("<select name=\"headPhonesortOrder\" style=\"font-size: 15px;\"  onchange=\"changeHeadPhone()\">\n"
+                                + "                                            <option value=\"rate\" selected>Bán chạy nhất</option>\n"
+                                + "                                            <option value=\"descendingSalePrice\">Giá giảm dần</option>\n"
+                                + "                                            <option value=\"ascendingSalePrice\">Giá tăng dần</option>\n"
+                                + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
+                                + "                                        </select>");
+                    } else if (headPhonesortOrder.equals("descendingSalePrice")) {
+                        out.print("<select name=\"headPhonesortOrder\" style=\"font-size: 15px;\"  onchange=\"changeHeadPhone()\">\n"
+                                + "                                            <option value=\"rate\">Bán chạy nhất</option>\n"
+                                + "                                            <option value=\"descendingSalePrice\" selected>Giá giảm dần</option>\n"
+                                + "                                            <option value=\"ascendingSalePrice\">Giá tăng dần</option>\n"
+                                + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
+                                + "                                        </select>");
+                    } else if (headPhonesortOrder.equals("ascendingSalePrice")) {
+                        out.print("<select style=\"font-size: 15px;\" name=\"headPhonesortOrder\" onchange=\"changeHeadPhone()\">\n"
+                                + "                                            <option value=\"rate\">Bán chạy nhất</option>\n"
+                                + "                                            <option value=\"descendingSalePrice\">Giá giảm dần</option>\n"
+                                + "                                            <option value=\"ascendingSalePrice\" selected>Giá tăng dần</option>\n"
+                                + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
+                                + "                                        </select>");
+                    }
+                    out.print("</div>\n"
+                            + "                            </div>\n"
+                            + "                            <div class=\"col-lg-12 col-md-12 col-sm-12 product__love-title\">\n"
+                            + "                                <div class=\"show-entries\">\n"
+                            + "                                    <label class=\"hint-text\" style=\"margin-right: 3px;\">Hiển thị </label>");
+                    if (headPhoneamountElementInPage == 6) {
+                        out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"headPhoneamountElementInPage\">\n"
+                                + "                                            <option value=\"6\" selected>6</option>\n"
+                                + "                                            <option value=\"12\">12</option>\n"
+                                + "                                            <option value=\"18\">18</option>\n"
+                                + "                                            <option value=\"24\">24</option>\n"
+                                + "                                        </select>");
+                    } else if (headPhoneamountElementInPage == 12) {
+                        out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"headPhoneamountElementInPage\">\n"
+                                + "                                            <option value=\"6\" >6</option>\n"
+                                + "                                            <option value=\"12\" selected>12</option>\n"
+                                + "                                            <option value=\"18\">18</option>\n"
+                                + "                                            <option value=\"24\">24</option>\n"
+                                + "                                        </select>");
+                    } else if (headPhoneamountElementInPage == 18) {
+                        out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"headPhoneamountElementInPage\">\n"
+                                + "                                            <option value=\"6\" selected>6</option>\n"
+                                + "                                            <option value=\"12\">12</option>\n"
+                                + "                                            <option value=\"18\" selected>18</option>\n"
+                                + "                                            <option value=\"24\">24</option>\n"
+                                + "                                        </select>");
+                    } else if (headPhoneamountElementInPage == 24) {
+                        out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"headPhoneamountElementInPage\">\n"
+                                + "                                            <option value=\"6\" selected>6</option>\n"
+                                + "                                            <option value=\"12\">12</option>\n"
+                                + "                                            <option value=\"18\">18</option>\n"
+                                + "                                            <option value=\"24\" selected>24</option>\n"
+                                + "                                        </select>");
+                    }
+                    out.print("\n"
+                            + "                                </div>\n"
+                            + "                            </div>\n"
+                            + "                        </div>\n"
+                            + "                        <div class=\"row bg-white\">");
+                    int countDisplayElement = 0;
+                    if (headPhonepageAmount > 0) {
+                        int i = (headPhonepageIndex - 1) * headPhoneamountElementInPage;
+                        int end = headPhonepageIndex * headPhoneamountElementInPage - 1;
+
+                        for (int j = i; j <= end; ++j) {
+                            if (i < headPhoneData.size()) {
+                                countDisplayElement++;
+                                out.print("<div class=\"product__panel-item col-lg-2 col-md-3 col-sm-6\">\n"
+                                        + "                                                <div class=\"product__panel-img-wrap\">\n"
+                                        + "                                                    <a href=\"product.jsp\"> <img src=\"" + headPhoneData.get(i).getPicture() + "\" class=\"product__panel-img\"></a>\n"
+                                        + "                                            </div>\n"
+                                        + "                                            <h3 class=\"product__panel-heading\">\n"
+                                        + "                                                <a href=\"product.jsp\"  class=\"product__panel-link\">" + headPhoneData.get(i).getName() + "</a>\n"
+                                        + "                                            </h3>                       \n"
+                                        + "                                            <div class=\"product__panel-rate-wrap\">\n"
+                                        + "                                                <i class=\"product__panel-rate\" style=\"text-decoration: underline;font-size: 20px; margin-right: 5px\">" + headPhoneData.get(i).getRateStar() + "</i>\n"
+                                        + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                        + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                        + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                        + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                        + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                        + "                                            </div>\n"
+                                        + "                                            <div class=\"product__panel-price\">\n"
+                                        + "                                                <span class=\"product__panel-price-old-1 product__panel-price-old-1-hide\">\n"
+                                        + "                                                    <div>    \n"
+                                        + "                                                        <button class=\"bestselling__product-btn\">So sánh</button>\n"
+                                        + "                                                    </div>\n"
+                                        + "                                                </span>\n"
+                                        + "                                                <span class=\"product__panel-price-current\">\n"
+                                        + "                                                    <button href=\"compareProduct.jsp\" class=\"bestselling__product-btn\">" + headPhoneData.get(i).getSalePrice() + "đ</button>\n"
+                                        + "                                                </span>\n"
+                                        + "                                            </div>");
+                                if (Double.parseDouble(headPhoneData.get(i).getSale()) > 0) {
+                                    out.print("<div class=\"product__panel-price-sale-off\">\n"
+                                            + "                                                    -" + headPhoneData.get(i).getSale() + "%\n"
+                                            + "                                                </div>");
+                                }
+                                out.print("</div>");
+                            }
+                            i++;
+                        }
+                    }
+                    out.print("</div>\n"
+                            + "                        <div class=\"clearfix\">");
+                    if (headPhonepageAmount > 0) {
+                        out.print("<div class=\"hint-text\" style=\"font-size: 15px;\">Hiển thị " + countDisplayElement + " trong số " + headPhoneData.size() + " sản phẩm</div>\n"
+                                + "                                <ul class=\"pagination\">");
+                        int count = 1;
+                        if (headPhonepageIndex != 1) {
+                            out.print("<li class=\"page-item disabled\"><a id=\"myLink1\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + (headPhonepageIndex - 1) + "\">Previous</a></li>");
+                        }
+                        for (count = 1; count <= headPhonepageAmount; ++count) {
+                            if (headPhonepageIndex == count) {
+                                out.print("<li class=\"page-item active\"><a id=\"myLink2\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                            } else {
+                                out.print("<li class=\"page-item \"><a id=\"myLink3\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                            }
+                        }
+                        if (headPhonepageIndex != headPhonepageAmount) {
+                            out.print("<li class=\"page-item disabled\"><a id=\"myLink4\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + (headPhonepageIndex + 1) + "\">Next</a></li>");
+                        }
+                        out.print("</ul>");
+                    }
+                    out.print("</div>\n");
+                }
+            } else {
+                processRequest(request, response);
+                return;
+            }
+
+        }
     }
 
     /**

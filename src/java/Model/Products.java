@@ -65,8 +65,6 @@ public class Products {
         this.picture2 = picture2;
         this.picture3 = picture3;
     }
-
-    
     
     public String getProductID() {
         return ProductID;
