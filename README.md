@@ -1,7 +1,8 @@
 # TechZone
 
-- [Description](#description)
-TechZone is a website that sells headphones, keyboard and mouse to help users have a new look at quality products at reasonable prices. This website also supports online shopping & selling products online. This system supports the following types of users
+- [Description]
+  
+- TechZone is a website that sells headphones, keyboard and mouse to help users have a new look at quality products at reasonable prices. This website also supports online shopping & selling products online. This system   supports the following types of users
 • Guest: unregistered user
 • Customers: they are registered users, are actual customers or potential customers
 • Manager: the sales manager in the organization
@@ -75,7 +76,7 @@ TechZone is a website that sells headphones, keyboard and mouse to help users ha
     - Define a clear policy for returns, exchanges, and refunds.
     - Communicate the process and guidelines to customers.
 
-- [Installation](#installation)
+- [Installation]
   
 1. GitHub Desktop: https://desktop.github.com/
    
@@ -85,12 +86,12 @@ TechZone is a website that sells headphones, keyboard and mouse to help users ha
    
 7. MySQL Workbench 8.0.33: https://dev.mysql.com/downloads/workbench/
    
-- [Usage](#usage)
+- [Usage]
   Usage and usecases:
   
   https://docs.google.com/document/d/1kZ95JwruTE5CmOoDGrJF_qJiilHjUxIv/edit?usp=sharing&ouid=115043609019063508555&rtpof=true&sd=true
   
-- [Contributing](#contributing)
+- [Contributing]
 
 
 1. Fork the Project
@@ -104,7 +105,7 @@ TechZone is a website that sells headphones, keyboard and mouse to help users ha
 5. Open a Pull Request
 
 
-- [License](#license)
+- [License]
 
 ## Description
 
