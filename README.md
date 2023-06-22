@@ -1,5 +1,6 @@
 # TechZone
 
+- [Description](#description)
 TechZone is a website that sells headphones, keyboard and mouse to help users have a new look at quality products at reasonable prices. This website also supports online shopping & selling products online. This system supports the following types of users
 • Guest: unregistered user
 • Customers: they are registered users, are actual customers or potential customers
@@ -8,10 +9,8 @@ TechZone is a website that sells headphones, keyboard and mouse to help users ha
 • Admin: the leader/manager of the organization, acting as the system administrator
 
 ## Table of Contents
-
-- [Description](#description)
   
-- [Features](#features)
+- [Features]
 
 1. User Registration and Authentication:
    - Allow users to create accounts and log in securely.
