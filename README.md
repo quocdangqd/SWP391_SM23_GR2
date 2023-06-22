@@ -107,8 +107,6 @@
 
 - [License]
 
-## Description
-
 [MIT License]
 
 Copyright (c) 2023 TechZone
