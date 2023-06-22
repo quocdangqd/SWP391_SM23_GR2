@@ -31,11 +31,12 @@ public class HomePageController extends HttpServlet {
                 session.setAttribute("bestProductList", bestProductList);
 //                out.print(bestProductList.size()+"<br>"); 
                 String type = request.getParameter("type");
-                ArrayList<Products> typeProductList =null;
+                ArrayList<Products> typeProductList = null;
                 if (type != null) {
                     typeProductList = productDAO.getProductListByType(type);
                 } else if (session.getAttribute("type") != null) {
                     type = (String) session.getAttribute("type");
+                    typeProductList = productDAO.getProductListByType(type);
                 } else {
                     type = "Wired";
                     typeProductList = productDAO.getProductListByType(type);

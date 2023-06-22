@@ -27,10 +27,11 @@
         <jsp:include page="header.jsp"></jsp:include>
             <!--end header nav -->
             <!-- score-top-->
-            <button onclick="topFunction()" id="myBtn-scroll" title="Go to top"><i class="fas fa-chevron-down"></i></button>
+            <button onclick="topFunction()" id="myBtn-scroll" title="Go to top"><i class="fas fa-chevron-up"></i></button>
             <!-- cart -->
+
             <form action="action">
-                <section class="cart">
+                <section id="allCart" class="cart">
                     <div class="container">
                         <article class="row cart__head pc">
                             <nav class="menu__nav col-lg-3 col-md-12 col-sm-0">
@@ -64,98 +65,34 @@
                             </div>
                         </article>
 
-                        <article class="row cart__body">
+                    <c:forEach items="${cartList}" var="item">
+                        <article  class="row cart__body">
                             <div class="col-6 cart__body-name">
+                                <input type="checkbox" name="${item.getCartID()}" value=""> 
                                 <div class="cart__body-name-img">
-                                    <img src="images1/product/8936049524905.jpg">
+                                    <img src="${item.getPicture()}">
                                 </div>
                                 <a href="" class="cart__body-name-title">
-                                    5 Centimet Trên Giây
+                                    ${item.getProductName()}
                                 </a>
                             </div>
-                            <div class="col-3 cart__body-quantity">
-                                <input type="button" value="-"  class="cart__body-quantity-minus">
-                                <input type="number" step="1" min="1" max="999" value="1" class="cart__body-quantity-total">
-                                <input type="button" value="+" class="cart__body-quantity-plus">
-                            </div>
-                            <div class="col-3 cart__body-price">
-                                <span>39.500đ</span>
 
-                                <a href="#">Xóa</a>
+                            <div class="col-3 cart__body-quantity">
+                                <input type="button" value="-" class="cart__body-quantity-minus" onclick="decreaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}');">
+                                <input type="number" name="quantityValue" step="1" min="1" max="999" value="${item.getQuantity()}" class="cart__body-quantity-total" id="${item.getCartID()}">
+                                <input type="button" value="+" class="cart__body-quantity-plus" onclick="increaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}');">
+                            </div>
+
+                            <div class="col-3 cart__body-price">
+                                <span>${item.getTotalcost()}đ</span>
+
+                                <a href="CartController?DeleteProduct&cartID=${item.getCartID()}">Xóa</a>
                             </div>
                         </article>
-
-                        <article class="row cart__body">
-                            <div class="col-6 cart__body-name">
-                                <div class="cart__body-name-img">
-                                    <img src="images1/product/untitled-1_9_25_1.jpg">
-                                </div>
-                                <a href="" class="cart__body-name-title">
-                                    Tôi Thích Bản Thân Nỗ Lực Hơn ( Tái bản 2019)
-                                </a>
-                            </div>
-                            <div class="col-3 cart__body-quantity">
-                                <input type="button" value="-" class="cart__body-quantity-minus" onclick="decreaseQuantity()">
-                                <input type="number" name="quantityValue" step="1" min="1" max="999" value="1" class="cart__body-quantity-total" id="quantityInput">
-                                <input type="button" value="+" class="cart__body-quantity-plus" onclick="increaseQuantity()">
-                            </div>
-                            <div class="col-3 cart__body-price">
-                                <span>76.800đ</span>
-
-                                <a href="#">Xóa</a>
-                            </div>
-                        </article>
-
-                        <article class="row cart__body">
-                            <div class="col-6 cart__body-name">
-                                <div class="cart__body-name-img">
-                                    <img src="images1/product/8936186542176.jpg">
-                                </div>
-                                <a href="" class="cart__body-name-title">
-                                    Tôi Thích Một Cô Gái Nhưng Không Dám Ngỏ Lời
-                                </a>
-                            </div>
-                        <c:set var="quantityInput1" value="quantityInput1" />
-                        <c:set var="quantityInput2" value="quantityInput2" />
-                        <div class="col-3 cart__body-quantity">
-                            <input type="button" value="-" class="cart__body-quantity-minus" onclick="decreaseQuantity('${quantityInput1}')">
-                            <input type="number" name="quantityValue" step="1" min="1" max="999" value="1" class="cart__body-quantity-total" id="${quantityInput1}">
-                            <input type="button" value="+" class="cart__body-quantity-plus" onclick="increaseQuantity('${quantityInput1}')">
-                        </div>
-                        <div class="col-3 cart__body-price">
-                            <span>70.000đ</span>
-
-                            <a href="#">Xóa</a>
-                        </div>
-                    </article>
-
-                    <article class="row cart__body">
-                        <div class="col-6 cart__body-name">
-                            <div class="cart__body-name-img">
-                                <img src="images1/product/biamem.jpg">
-                            </div>
-                            <a href="" class="cart__body-name-title">
-                                Con Chim Xanh Biếc Bay Về - Tặng Kèm 6
-                            </a>
-                        </div>
-
-                        <c:set var="quantityInput3" value="3" />
-                        <div class="col-3 cart__body-quantity">
-                            <input type="button" value="-" class="cart__body-quantity-minus" onclick="decreaseQuantity('${quantityInput3}')">
-                            <input type="number" name="quantityValue" step="1" min="1" max="999" value="1" class="cart__body-quantity-total" id="${quantityInput3}">
-                            <input type="button" value="+" class="cart__body-quantity-plus" onclick="increaseQuantity('${quantityInput3}')">
-                        </div>
-
-                        <div class="col-3 cart__body-price">
-                            <span>112.500đ</span>
-
-                            <a href="#">Xóa</a>
-                        </div>
-                    </article>
-                    <!--<form action="action">-->
+                    </c:forEach>
                     <article class="row cart__foot">
                         <div class="col-6 col-lg-6 col-sm-6 cart__foot-update">
-                            <button class="cart__foot-update-btn">Cập nhật giỏ hàng</button>
+                            <!--<button class="cart__foot-update-btn">Cập nhật giỏ hàng</button>-->
                         </div>
 
                         <p class="col-3 col-lg-3 col-sm-3 cart__foot-total">
@@ -163,12 +100,11 @@
                         </p>
 
                         <span class="col-3 col-lg-3 col-sm-3 cart__foot-price">
-                            298.8000đ <br>
+                            ${totalAmount}đ <br>
 
                             <button class="cart__foot-price-btn">Mua hàng</button>
                         </span>
                     </article>
-                    <!--</form>-->
                 </div>
             </section>
         </form>
@@ -180,19 +116,41 @@
         <!-- end footer -->
         <script src="js/jq.js"></script>
         <script>
-                                function decreaseQuantity(inputId) {
-                                    var input = document.getElementById(inputId);
-                                    if (input.value > 1) {
-                                        input.value = parseInt(input.value) - 1;
+                                    function decreaseQuantity(inputId) {
+                                        var input = document.getElementById(inputId);
+                                        if (input.value > 1) {
+                                            input.value = parseInt(input.value) - 1;
+                                        }
                                     }
-                                }
 
-                                function increaseQuantity(inputId) {
-                                    var input = document.getElementById(inputId);
-                                    if (input.value < 999) {
-                                        input.value = parseInt(input.value) + 1;
+                                    function increaseQuantity(inputId) {
+                                        var input = document.getElementById(inputId);
+                                        if (input.value < 999) {
+                                            input.value = parseInt(input.value) + 1;
+                                        }
                                     }
-                                }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+                                    function UpdateContent(cartID) {
+                                        var quantity = document.getElementById(cartID);
+                                        $.ajax({
+                                            url: "/TechZone/view/CartController",
+                                            type: "post", //send it through get method
+                                            data: {
+                                                updatequantity: true,
+                                                cartID: cartID,
+                                                quantity: quantity.value
+                                            },
+                                            success: function (data) {
+                                                var row = document.getElementById("allCart");
+                                                row.innerHTML = data;
+                                            },
+                                            error: function (xhr) {
+                                                //Do Something to handle error
+                                            }
+                                        });
+                                    }
         </script>
     </body>
 </html>
