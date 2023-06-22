@@ -150,7 +150,7 @@
                         </div>
                     </div>
 
-                    <a href="listCart.jsp" class="col-lg-1 col-md-1 col-sm-0 header__cart">
+                    <a href="CartController?tab=cartList" class="col-lg-1 col-md-1 col-sm-0 header__cart">
                         <div class="header__cart-icon-wrap">
                             <span class="header__notice">4</span>
                             <i class="fas fa-shopping-cart header__nav-cart-icon"></i>

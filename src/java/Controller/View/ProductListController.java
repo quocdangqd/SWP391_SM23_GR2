@@ -246,28 +246,6 @@ public class ProductListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-//        response.setContentType("text/html;charset=UTF-8");
-//        try ( PrintWriter out = response.getWriter()) {
-//            String tab = request.getParameter("tab");
-//            out.print("tab: "+tab); 
-//            if(tab.equals("allProduct"))
-//            {
-//                out.print("Show all product");  
-//            }
-//            else if(tab.equals("headphone"))
-//            {
-//                out.print("Show all headphone");  
-//            }
-//            else if(tab.equals("mouse"))
-//            {
-//                out.print("Show all mouse");  
-//            }
-//            else if(tab.equals("keyboard"))
-//            {
-//                out.print("Show all keyboard");  
-//            }
-//        }
-
     }
 
     /**
@@ -281,158 +259,448 @@ public class ProductListController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if (request.getParameter("headPhonesortOrder") != null || request.getParameter("keyboardsortOrder") != null || request.getParameter("mousesortOrder") != null||request.getParameter("searchInput") != null) {
+            processRequest(request, response);
+            return;
+        }
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+//            out.print(request.getParameter("tab")+"<br>"); 
+//            out.print(request.getParameter("headPhonepageIndex")); 
+            HttpSession session = request.getSession();
+            String tab = (String) session.getAttribute("tab");
             if (request.getParameter("headPhonepageIndex") != null) {
-                HttpSession session = request.getSession();
-                String tab = (String) session.getAttribute("tab");
                 String headPhonesortOrder = (String) session.getAttribute("headPhonesortOrder");
                 int headPhoneamountElementInPage = (int) session.getAttribute("headPhoneamountElementInPage");
                 int headPhonepageAmount = (int) session.getAttribute("headPhonepageAmount");
-                
-//            int headPhonepageIndex = (int) session.getAttribute("headPhonepageIndex");
                 int headPhonepageIndex = Integer.parseInt(request.getParameter("headPhonepageIndex"));
                 ArrayList<Products> headPhoneData = (ArrayList<Products>) session.getAttribute("headPhoneData");
-                if (tab.equals("allProduct") || tab.equals("headphone")) {
-                    out.print("                    <div class=\"container\">\n"
-                            + "                        <div class=\"row bg-white\">\n"
-                            + "                            <div class=\"col-lg-10 col-md-10 col-sm-10 product__love-title\">\n"
-                            + "                                <h2 class=\"product__love-heading upper\">\n"
-                            + "                                    Tai Nghe  \n"
-                            + "                                </h2>\n"
-                            + "                            </div>\n"
-                            + "                            <div class=\"col-lg-2 col-md-2 col-sm-2 product__love-title\">\n"
-                            + "                                <div class=\"show-entries\">");
-                    if ((headPhonesortOrder == null) || headPhonesortOrder.equals("rate")) {
-                        out.print("<select name=\"headPhonesortOrder\" style=\"font-size: 15px;\"  onchange=\"changeHeadPhone()\">\n"
-                                + "                                            <option value=\"rate\" selected>Bán chạy nhất</option>\n"
-                                + "                                            <option value=\"descendingSalePrice\">Giá giảm dần</option>\n"
-                                + "                                            <option value=\"ascendingSalePrice\">Giá tăng dần</option>\n"
-                                + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
-                                + "                                        </select>");
-                    } else if (headPhonesortOrder.equals("descendingSalePrice")) {
-                        out.print("<select name=\"headPhonesortOrder\" style=\"font-size: 15px;\"  onchange=\"changeHeadPhone()\">\n"
-                                + "                                            <option value=\"rate\">Bán chạy nhất</option>\n"
-                                + "                                            <option value=\"descendingSalePrice\" selected>Giá giảm dần</option>\n"
-                                + "                                            <option value=\"ascendingSalePrice\">Giá tăng dần</option>\n"
-                                + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
-                                + "                                        </select>");
-                    } else if (headPhonesortOrder.equals("ascendingSalePrice")) {
-                        out.print("<select style=\"font-size: 15px;\" name=\"headPhonesortOrder\" onchange=\"changeHeadPhone()\">\n"
-                                + "                                            <option value=\"rate\">Bán chạy nhất</option>\n"
-                                + "                                            <option value=\"descendingSalePrice\">Giá giảm dần</option>\n"
-                                + "                                            <option value=\"ascendingSalePrice\" selected>Giá tăng dần</option>\n"
-                                + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
-                                + "                                        </select>");
-                    }
-                    out.print("</div>\n"
-                            + "                            </div>\n"
-                            + "                            <div class=\"col-lg-12 col-md-12 col-sm-12 product__love-title\">\n"
-                            + "                                <div class=\"show-entries\">\n"
-                            + "                                    <label class=\"hint-text\" style=\"margin-right: 3px;\">Hiển thị </label>");
-                    if (headPhoneamountElementInPage == 6) {
-                        out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"headPhoneamountElementInPage\">\n"
-                                + "                                            <option value=\"6\" selected>6</option>\n"
-                                + "                                            <option value=\"12\">12</option>\n"
-                                + "                                            <option value=\"18\">18</option>\n"
-                                + "                                            <option value=\"24\">24</option>\n"
-                                + "                                        </select>");
-                    } else if (headPhoneamountElementInPage == 12) {
-                        out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"headPhoneamountElementInPage\">\n"
-                                + "                                            <option value=\"6\" >6</option>\n"
-                                + "                                            <option value=\"12\" selected>12</option>\n"
-                                + "                                            <option value=\"18\">18</option>\n"
-                                + "                                            <option value=\"24\">24</option>\n"
-                                + "                                        </select>");
-                    } else if (headPhoneamountElementInPage == 18) {
-                        out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"headPhoneamountElementInPage\">\n"
-                                + "                                            <option value=\"6\" selected>6</option>\n"
-                                + "                                            <option value=\"12\">12</option>\n"
-                                + "                                            <option value=\"18\" selected>18</option>\n"
-                                + "                                            <option value=\"24\">24</option>\n"
-                                + "                                        </select>");
-                    } else if (headPhoneamountElementInPage == 24) {
-                        out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"headPhoneamountElementInPage\">\n"
-                                + "                                            <option value=\"6\" selected>6</option>\n"
-                                + "                                            <option value=\"12\">12</option>\n"
-                                + "                                            <option value=\"18\">18</option>\n"
-                                + "                                            <option value=\"24\" selected>24</option>\n"
-                                + "                                        </select>");
-                    }
-                    out.print("\n"
-                            + "                                </div>\n"
-                            + "                            </div>\n"
-                            + "                        </div>\n"
-                            + "                        <div class=\"row bg-white\">");
-                    int countDisplayElement = 0;
-                    if (headPhonepageAmount > 0) {
-                        int i = (headPhonepageIndex - 1) * headPhoneamountElementInPage;
-                        int end = headPhonepageIndex * headPhoneamountElementInPage - 1;
-
-                        for (int j = i; j <= end; ++j) {
-                            if (i < headPhoneData.size()) {
-                                countDisplayElement++;
-                                out.print("<div class=\"product__panel-item col-lg-2 col-md-3 col-sm-6\">\n"
-                                        + "                                                <div class=\"product__panel-img-wrap\">\n"
-                                        + "                                                    <a href=\"product.jsp\"> <img src=\"" + headPhoneData.get(i).getPicture() + "\" class=\"product__panel-img\"></a>\n"
-                                        + "                                            </div>\n"
-                                        + "                                            <h3 class=\"product__panel-heading\">\n"
-                                        + "                                                <a href=\"product.jsp\"  class=\"product__panel-link\">" + headPhoneData.get(i).getName() + "</a>\n"
-                                        + "                                            </h3>                       \n"
-                                        + "                                            <div class=\"product__panel-rate-wrap\">\n"
-                                        + "                                                <i class=\"product__panel-rate\" style=\"text-decoration: underline;font-size: 20px; margin-right: 5px\">" + headPhoneData.get(i).getRateStar() + "</i>\n"
-                                        + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
-                                        + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
-                                        + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
-                                        + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
-                                        + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
-                                        + "                                            </div>\n"
-                                        + "                                            <div class=\"product__panel-price\">\n"
-                                        + "                                                <span class=\"product__panel-price-old-1 product__panel-price-old-1-hide\">\n"
-                                        + "                                                    <div>    \n"
-                                        + "                                                        <button class=\"bestselling__product-btn\">So sánh</button>\n"
-                                        + "                                                    </div>\n"
-                                        + "                                                </span>\n"
-                                        + "                                                <span class=\"product__panel-price-current\">\n"
-                                        + "                                                    <button href=\"compareProduct.jsp\" class=\"bestselling__product-btn\">" + headPhoneData.get(i).getSalePrice() + "đ</button>\n"
-                                        + "                                                </span>\n"
-                                        + "                                            </div>");
-                                if (Double.parseDouble(headPhoneData.get(i).getSale()) > 0) {
-                                    out.print("<div class=\"product__panel-price-sale-off\">\n"
-                                            + "                                                    -" + headPhoneData.get(i).getSale() + "%\n"
-                                            + "                                                </div>");
-                                }
-                                out.print("</div>");
-                            }
-                            i++;
-                        }
-                    }
-                    out.print("</div>\n"
-                            + "                        <div class=\"clearfix\">");
-                    if (headPhonepageAmount > 0) {
-                        out.print("<div class=\"hint-text\" style=\"font-size: 15px;\">Hiển thị " + countDisplayElement + " trong số " + headPhoneData.size() + " sản phẩm</div>\n"
-                                + "                                <ul class=\"pagination\">");
-                        int count = 1;
-                        if (headPhonepageIndex != 1) {
-                            out.print("<li class=\"page-item disabled\"><a id=\"myLink1\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + (headPhonepageIndex - 1) + "\">Previous</a></li>");
-                        }
-                        for (count = 1; count <= headPhonepageAmount; ++count) {
-                            if (headPhonepageIndex == count) {
-                                out.print("<li class=\"page-item active\"><a id=\"myLink2\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
-                            } else {
-                                out.print("<li class=\"page-item \"><a id=\"myLink3\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
-                            }
-                        }
-                        if (headPhonepageIndex != headPhonepageAmount) {
-                            out.print("<li class=\"page-item disabled\"><a id=\"myLink4\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + (headPhonepageIndex + 1) + "\">Next</a></li>");
-                        }
-                        out.print("</ul>");
-                    }
-                    out.print("</div>\n");
+                String category1="category1";
+                out.print("                    <div class=\"container\">\n"
+                        + "                        <div class=\"row bg-white\">\n"
+                        + "                            <div class=\"col-lg-10 col-md-10 col-sm-10 product__love-title\">\n"
+                        + "                                <h2 class=\"product__love-heading upper\">\n"
+                        + "                                    Tai Nghe  \n"
+                        + "                                </h2>\n"
+                        + "                            </div>\n"
+                        + "                            <div class=\"col-lg-2 col-md-2 col-sm-2 product__love-title\">\n"
+                        + "                                <div class=\"show-entries\">");
+                if ((headPhonesortOrder == null) || headPhonesortOrder.equals("rate")) {
+                    out.print("<select name=\"headPhonesortOrder\" style=\"font-size: 15px;\"  onchange=\"changeHeadPhone()\">\n"
+                            + "                                            <option value=\"rate\" selected>Bán chạy nhất</option>\n"
+                            + "                                            <option value=\"descendingSalePrice\">Giá giảm dần</option>\n"
+                            + "                                            <option value=\"ascendingSalePrice\">Giá tăng dần</option>\n"
+                            + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
+                            + "                                        </select>");
+                } else if (headPhonesortOrder.equals("descendingSalePrice")) {
+                    out.print("<select name=\"headPhonesortOrder\" style=\"font-size: 15px;\"  onchange=\"changeHeadPhone()\">\n"
+                            + "                                            <option value=\"rate\">Bán chạy nhất</option>\n"
+                            + "                                            <option value=\"descendingSalePrice\" selected>Giá giảm dần</option>\n"
+                            + "                                            <option value=\"ascendingSalePrice\">Giá tăng dần</option>\n"
+                            + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
+                            + "                                        </select>");
+                } else if (headPhonesortOrder.equals("ascendingSalePrice")) {
+                    out.print("<select style=\"font-size: 15px;\" name=\"headPhonesortOrder\" onchange=\"changeHeadPhone()\">\n"
+                            + "                                            <option value=\"rate\">Bán chạy nhất</option>\n"
+                            + "                                            <option value=\"descendingSalePrice\">Giá giảm dần</option>\n"
+                            + "                                            <option value=\"ascendingSalePrice\" selected>Giá tăng dần</option>\n"
+                            + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
+                            + "                                        </select>");
                 }
-            } else {
-                processRequest(request, response);
-                return;
+                out.print("</div>\n"
+                        + "                            </div>\n"
+                        + "                            <div class=\"col-lg-12 col-md-12 col-sm-12 product__love-title\">\n"
+                        + "                                <div class=\"show-entries\">\n"
+                        + "                                    <label class=\"hint-text\" style=\"margin-right: 3px;\">Hiển thị </label>");
+                if (headPhoneamountElementInPage == 6) {
+                    out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"headPhoneamountElementInPage\">\n"
+                            + "                                            <option value=\"6\" selected>6</option>\n"
+                            + "                                            <option value=\"12\">12</option>\n"
+                            + "                                            <option value=\"18\">18</option>\n"
+                            + "                                            <option value=\"24\">24</option>\n"
+                            + "                                        </select>");
+                } else if (headPhoneamountElementInPage == 12) {
+                    out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"headPhoneamountElementInPage\">\n"
+                            + "                                            <option value=\"6\" >6</option>\n"
+                            + "                                            <option value=\"12\" selected>12</option>\n"
+                            + "                                            <option value=\"18\">18</option>\n"
+                            + "                                            <option value=\"24\">24</option>\n"
+                            + "                                        </select>");
+                } else if (headPhoneamountElementInPage == 18) {
+                    out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"headPhoneamountElementInPage\">\n"
+                            + "                                            <option value=\"6\" selected>6</option>\n"
+                            + "                                            <option value=\"12\">12</option>\n"
+                            + "                                            <option value=\"18\" selected>18</option>\n"
+                            + "                                            <option value=\"24\">24</option>\n"
+                            + "                                        </select>");
+                } else if (headPhoneamountElementInPage == 24) {
+                    out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"headPhoneamountElementInPage\">\n"
+                            + "                                            <option value=\"6\" selected>6</option>\n"
+                            + "                                            <option value=\"12\">12</option>\n"
+                            + "                                            <option value=\"18\">18</option>\n"
+                            + "                                            <option value=\"24\" selected>24</option>\n"
+                            + "                                        </select>");
+                }
+                out.print("\n"
+                        + "                                </div>\n"
+                        + "                            </div>\n"
+                        + "                        </div>\n"
+                        + "                        <div class=\"row bg-white\">");
+                int countDisplayElement = 0;
+                if (headPhonepageAmount > 0) {
+                    int i = (headPhonepageIndex - 1) * headPhoneamountElementInPage;
+                    int end = headPhonepageIndex * headPhoneamountElementInPage - 1;
+
+                    for (int j = i; j <= end; ++j) {
+                        if (i < headPhoneData.size()) {
+                            countDisplayElement++;
+                            out.print("<div class=\"product__panel-item col-lg-2 col-md-3 col-sm-6\">\n"
+                                    + "                                                <div class=\"product__panel-img-wrap\">\n"
+                                    + "                                                    <a href=\"product.jsp\"> <img src=\"" + headPhoneData.get(i).getPicture() + "\" class=\"product__panel-img\"></a>\n"
+                                    + "                                            </div>\n"
+                                    + "                                            <h3 class=\"product__panel-heading\">\n"
+                                    + "                                                <a href=\"product.jsp\"  class=\"product__panel-link\">" + headPhoneData.get(i).getName() + "</a>\n"
+                                    + "                                            </h3>                       \n"
+                                    + "                                            <div class=\"product__panel-rate-wrap\">\n"
+                                    + "                                                <i class=\"product__panel-rate\" style=\"text-decoration: underline;font-size: 20px; margin-right: 5px\">" + headPhoneData.get(i).getRateStar() + "</i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                            </div>\n"
+                                    + "                                            <div class=\"product__panel-price\">\n"
+                                    + "                                                <span class=\"product__panel-price-old-1 product__panel-price-old-1-hide\">\n"
+                                    + "                                                    <div>    \n"
+                                    + "                                                        <button class=\"bestselling__product-btn\">So sánh</button>\n"
+                                    + "                                                    </div>\n"
+                                    + "                                                </span>\n"
+                                    + "                                                <span class=\"product__panel-price-current\">\n"
+                                    + "                                                    <button href=\"compareProduct.jsp\" class=\"bestselling__product-btn\">" + headPhoneData.get(i).getSalePrice() + "đ</button>\n"
+                                    + "                                                </span>\n"
+                                    + "                                            </div>");
+                            if (Double.parseDouble(headPhoneData.get(i).getSale()) > 0) {
+                                out.print("<div class=\"product__panel-price-sale-off\">\n"
+                                        + "                                                    -" + headPhoneData.get(i).getSale() + "%\n"
+                                        + "                                                </div>");
+                            }
+                            out.print("</div>");
+                        }
+                        i++;
+                    }
+                }
+                out.print("</div>\n"
+                        + "                        <div class=\"clearfix\">");
+                if (headPhonepageAmount > 0) {
+                    out.print("<div class=\"hint-text\" style=\"font-size: 15px;\">Hiển thị " + countDisplayElement + " trong số " + headPhoneData.size() + " sản phẩm</div>\n"
+                            + "                                <ul class=\"pagination\">");
+                    int count = 1;
+                    if (headPhonepageIndex != 1) {
+                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('" + (headPhonepageIndex - 1) + "','"+category1+"')\" id=\"" + (headPhonepageIndex - 1) + "\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + (headPhonepageIndex - 1) + "\">Previous</a></li>");
+                    }
+                    for (count = 1; count <= headPhonepageAmount; ++count) {
+                        if (headPhonepageIndex == count) {
+                            out.print("<li class=\"page-item active\"><a onclick=\"Paging('" + count + "','"+category1+"')\"  id=\"" + count + "\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                        } else {
+                            out.print("<li class=\"page-item \"><a onclick=\"Paging('" + count + "','"+category1+"')\"  id=\"" + count + "\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                        }
+                    }
+                    if (headPhonepageIndex != headPhonepageAmount) {
+                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('" + (headPhonepageIndex + 1) + "','"+category1+"')\"  id=\"" + (headPhonepageIndex + 1) + "\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + (headPhonepageIndex + 1) + "\">Next</a></li>");
+                    }
+                    out.print("</ul>");
+                }
+                out.print("</div>\n");
+
+            }//mouse 
+            else if (request.getParameter("mousepageIndex") != null) {
+                String mousesortOrder = (String) session.getAttribute("mousesortOrder");
+                int mouseamountElementInPage = (int) session.getAttribute("mouseamountElementInPage");
+                int mousepageAmount = (int) session.getAttribute("mousepageAmount");
+                int mousepageIndex = Integer.parseInt(request.getParameter("mousepageIndex"));
+                ArrayList<Products> mouseData = (ArrayList<Products>) session.getAttribute("mouseData");
+                String category2="category2";
+                out.print("                    <div class=\"container\">\n"
+                        + "                        <div class=\"row bg-white\">\n"
+                        + "                            <div class=\"col-lg-10 col-md-10 col-sm-10 product__love-title\">\n"
+                        + "                                <h2 class=\"product__love-heading upper\">\n"
+                        + "                                    Chuột  \n"
+                        + "                                </h2>\n"
+                        + "                            </div>\n"
+                        + "                            <div class=\"col-lg-2 col-md-2 col-sm-2 product__love-title\">\n"
+                        + "                                <div class=\"show-entries\">");
+                if ((mousesortOrder == null) || mousesortOrder.equals("rate")) {
+                    out.print("<select name=\"mousesortOrder\" style=\"font-size: 15px;\"  onchange=\"changeMouse()\">\n"
+                            + "                                            <option value=\"rate\" selected>Bán chạy nhất</option>\n"
+                            + "                                            <option value=\"descendingSalePrice\">Giá giảm dần</option>\n"
+                            + "                                            <option value=\"ascendingSalePrice\">Giá tăng dần</option>\n"
+                            + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
+                            + "                                        </select>");
+                } else if (mousesortOrder.equals("descendingSalePrice")) {
+                    out.print("<select name=\"mousesortOrder\" style=\"font-size: 15px;\"  onchange=\"changeMouse()\">\n"
+                            + "                                            <option value=\"rate\">Bán chạy nhất</option>\n"
+                            + "                                            <option value=\"descendingSalePrice\" selected>Giá giảm dần</option>\n"
+                            + "                                            <option value=\"ascendingSalePrice\">Giá tăng dần</option>\n"
+                            + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
+                            + "                                        </select>");
+                } else if (mousesortOrder.equals("ascendingSalePrice")) {
+                    out.print("<select style=\"font-size: 15px;\" name=\"mousesortOrder\" onchange=\"changeMouse()\">\n"
+                            + "                                            <option value=\"rate\">Bán chạy nhất</option>\n"
+                            + "                                            <option value=\"descendingSalePrice\">Giá giảm dần</option>\n"
+                            + "                                            <option value=\"ascendingSalePrice\" selected>Giá tăng dần</option>\n"
+                            + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
+                            + "                                        </select>");
+                }
+                out.print("</div>\n"
+                        + "                            </div>\n"
+                        + "                            <div class=\"col-lg-12 col-md-12 col-sm-12 product__love-title\">\n"
+                        + "                                <div class=\"show-entries\">\n"
+                        + "                                    <label class=\"hint-text\" style=\"margin-right: 3px;\">Hiển thị </label>");
+                if (mouseamountElementInPage == 6) {
+                    out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"mouseamountElementInPage\">\n"
+                            + "                                            <option value=\"6\" selected>6</option>\n"
+                            + "                                            <option value=\"12\">12</option>\n"
+                            + "                                            <option value=\"18\">18</option>\n"
+                            + "                                            <option value=\"24\">24</option>\n"
+                            + "                                        </select>");
+                } else if (mouseamountElementInPage == 12) {
+                    out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"mouseamountElementInPage\">\n"
+                            + "                                            <option value=\"6\" >6</option>\n"
+                            + "                                            <option value=\"12\" selected>12</option>\n"
+                            + "                                            <option value=\"18\">18</option>\n"
+                            + "                                            <option value=\"24\">24</option>\n"
+                            + "                                        </select>");
+                } else if (mouseamountElementInPage == 18) {
+                    out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"mouseamountElementInPage\">\n"
+                            + "                                            <option value=\"6\" selected>6</option>\n"
+                            + "                                            <option value=\"12\">12</option>\n"
+                            + "                                            <option value=\"18\" selected>18</option>\n"
+                            + "                                            <option value=\"24\">24</option>\n"
+                            + "                                        </select>");
+                } else if (mouseamountElementInPage == 24) {
+                    out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"mouseamountElementInPage\">\n"
+                            + "                                            <option value=\"6\" selected>6</option>\n"
+                            + "                                            <option value=\"12\">12</option>\n"
+                            + "                                            <option value=\"18\">18</option>\n"
+                            + "                                            <option value=\"24\" selected>24</option>\n"
+                            + "                                        </select>");
+                }
+                out.print("\n"
+                        + "                                </div>\n"
+                        + "                            </div>\n"
+                        + "                        </div>\n"
+                        + "                        <div class=\"row bg-white\">");
+                int countDisplayElement = 0;
+                if (mousepageAmount > 0) {
+                    int i = (mousepageIndex - 1) * mouseamountElementInPage;
+                    int end = mousepageIndex * mouseamountElementInPage - 1;
+
+                    for (int j = i; j <= end; ++j) {
+                        if (i < mouseData.size()) {
+                            countDisplayElement++;
+                            out.print("<div class=\"product__panel-item col-lg-2 col-md-3 col-sm-6\">\n"
+                                    + "                                                <div class=\"product__panel-img-wrap\">\n"
+                                    + "                                                    <a href=\"product.jsp\"> <img src=\"" + mouseData.get(i).getPicture() + "\" class=\"product__panel-img\"></a>\n"
+                                    + "                                            </div>\n"
+                                    + "                                            <h3 class=\"product__panel-heading\">\n"
+                                    + "                                                <a href=\"product.jsp\"  class=\"product__panel-link\">" + mouseData.get(i).getName() + "</a>\n"
+                                    + "                                            </h3>                       \n"
+                                    + "                                            <div class=\"product__panel-rate-wrap\">\n"
+                                    + "                                                <i class=\"product__panel-rate\" style=\"text-decoration: underline;font-size: 20px; margin-right: 5px\">" + mouseData.get(i).getRateStar() + "</i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                            </div>\n"
+                                    + "                                            <div class=\"product__panel-price\">\n"
+                                    + "                                                <span class=\"product__panel-price-old-1 product__panel-price-old-1-hide\">\n"
+                                    + "                                                    <div>    \n"
+                                    + "                                                        <button class=\"bestselling__product-btn\">So sánh</button>\n"
+                                    + "                                                    </div>\n"
+                                    + "                                                </span>\n"
+                                    + "                                                <span class=\"product__panel-price-current\">\n"
+                                    + "                                                    <button href=\"compareProduct.jsp\" class=\"bestselling__product-btn\">" + mouseData.get(i).getSalePrice() + "đ</button>\n"
+                                    + "                                                </span>\n"
+                                    + "                                            </div>");
+                            if (Double.parseDouble(mouseData.get(i).getSale()) > 0) {
+                                out.print("<div class=\"product__panel-price-sale-off\">\n"
+                                        + "                                                    -" + mouseData.get(i).getSale() + "%\n"
+                                        + "                                                </div>");
+                            }
+                            out.print("</div>");
+                        }
+                        i++;
+                    }
+                }
+                out.print("</div>\n"
+                        + "                        <div class=\"clearfix\">");
+                if (mousepageAmount > 0) {
+                    out.print("<div class=\"hint-text\" style=\"font-size: 15px;\">Hiển thị " + countDisplayElement + " trong số " + mouseData.size() + " sản phẩm</div>\n"
+                            + "                                <ul class=\"pagination\">");
+                    int count = 1;
+                    if (mousepageIndex != 1) {
+                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('m" + (mousepageIndex - 1) + "','"+category2+"')\" id=\"m" + (mousepageIndex - 1) + "\" href=\"ProductListController?tab=" + tab + "&mousepageIndex=" + (mousepageIndex - 1) + "\">Previous</a></li>");
+                    }
+                    for (count = 1; count <= mousepageAmount; ++count) {
+                        if (mousepageIndex == count) {
+                            out.print("<li class=\"page-item active\"><a onclick=\"Paging('m" + count + "','"+category2+"')\"  id=\"m" + count + "\" href=\"ProductListController?tab=" + tab + "&mousepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                        } else {
+                            out.print("<li class=\"page-item \"><a onclick=\"Paging('m" + count + "','"+category2+"')\"  id=\"m" + count + "\" href=\"ProductListController?tab=" + tab + "&mousepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                        }
+                    }
+                    if (mousepageIndex != mousepageAmount) {
+                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('m" + (mousepageIndex + 1) + "','"+category2+"')\"  id=\"m" + (mousepageIndex + 1) + "\" href=\"ProductListController?tab=" + tab + "&mousepageIndex=" + (mousepageIndex + 1) + "\">Next</a></li>");
+                    }
+                    out.print("</ul>");
+                }
+                out.print("</div>\n");
+
+            }
+            else // keyboard
+            {
+                String keyboardsortOrder = (String) session.getAttribute("keyboardsortOrder");
+                int keyboardamountElementInPage = (int) session.getAttribute("keyboardamountElementInPage");
+                int keyboardpageAmount = (int) session.getAttribute("keyboardpageAmount");
+                int keyboardpageIndex = Integer.parseInt(request.getParameter("keyboardpageIndex"));
+                ArrayList<Products> keyboardData = (ArrayList<Products>) session.getAttribute("keyboardData");
+                String category3="category3";
+                out.print("                    <div class=\"container\">\n"
+                        + "                        <div class=\"row bg-white\">\n"
+                        + "                            <div class=\"col-lg-10 col-md-10 col-sm-10 product__love-title\">\n"
+                        + "                                <h2 class=\"product__love-heading upper\">\n"
+                        + "                                    Chuột  \n"
+                        + "                                </h2>\n"
+                        + "                            </div>\n"
+                        + "                            <div class=\"col-lg-2 col-md-2 col-sm-2 product__love-title\">\n"
+                        + "                                <div class=\"show-entries\">");
+                if ((keyboardsortOrder == null) || keyboardsortOrder.equals("rate")) {
+                    out.print("<select name=\"keyboardsortOrder\" style=\"font-size: 15px;\"  onchange=\"changeMouse()\">\n"
+                            + "                                            <option value=\"rate\" selected>Bán chạy nhất</option>\n"
+                            + "                                            <option value=\"descendingSalePrice\">Giá giảm dần</option>\n"
+                            + "                                            <option value=\"ascendingSalePrice\">Giá tăng dần</option>\n"
+                            + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
+                            + "                                        </select>");
+                } else if (keyboardsortOrder.equals("descendingSalePrice")) {
+                    out.print("<select name=\"keyboardsortOrder\" style=\"font-size: 15px;\"  onchange=\"changeMouse()\">\n"
+                            + "                                            <option value=\"rate\">Bán chạy nhất</option>\n"
+                            + "                                            <option value=\"descendingSalePrice\" selected>Giá giảm dần</option>\n"
+                            + "                                            <option value=\"ascendingSalePrice\">Giá tăng dần</option>\n"
+                            + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
+                            + "                                        </select>");
+                } else if (keyboardsortOrder.equals("ascendingSalePrice")) {
+                    out.print("<select style=\"font-size: 15px;\" name=\"keyboardsortOrder\" onchange=\"changeKeyboard()\">\n"
+                            + "                                            <option value=\"rate\">Bán chạy nhất</option>\n"
+                            + "                                            <option value=\"descendingSalePrice\">Giá giảm dần</option>\n"
+                            + "                                            <option value=\"ascendingSalePrice\" selected>Giá tăng dần</option>\n"
+                            + "                                            <option value=\"rate\">Đánh Giá Cao Nhất</option>\n"
+                            + "                                        </select>");
+                }
+                out.print("</div>\n"
+                        + "                            </div>\n"
+                        + "                            <div class=\"col-lg-12 col-md-12 col-sm-12 product__love-title\">\n"
+                        + "                                <div class=\"show-entries\">\n"
+                        + "                                    <label class=\"hint-text\" style=\"margin-right: 3px;\">Hiển thị </label>");
+                if (keyboardamountElementInPage == 6) {
+                    out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"keyboardamountElementInPage\">\n"
+                            + "                                            <option value=\"6\" selected>6</option>\n"
+                            + "                                            <option value=\"12\">12</option>\n"
+                            + "                                            <option value=\"18\">18</option>\n"
+                            + "                                            <option value=\"24\">24</option>\n"
+                            + "                                        </select>");
+                } else if (keyboardamountElementInPage == 12) {
+                    out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"keyboardamountElementInPage\">\n"
+                            + "                                            <option value=\"6\" >6</option>\n"
+                            + "                                            <option value=\"12\" selected>12</option>\n"
+                            + "                                            <option value=\"18\">18</option>\n"
+                            + "                                            <option value=\"24\">24</option>\n"
+                            + "                                        </select>");
+                } else if (keyboardamountElementInPage == 18) {
+                    out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"keyboardamountElementInPage\">\n"
+                            + "                                            <option value=\"6\" selected>6</option>\n"
+                            + "                                            <option value=\"12\">12</option>\n"
+                            + "                                            <option value=\"18\" selected>18</option>\n"
+                            + "                                            <option value=\"24\">24</option>\n"
+                            + "                                        </select>");
+                } else if (keyboardamountElementInPage == 24) {
+                    out.print("<select class=\"form-control\" style=\"font-size: 15px;\" name=\"keyboardamountElementInPage\">\n"
+                            + "                                            <option value=\"6\" selected>6</option>\n"
+                            + "                                            <option value=\"12\">12</option>\n"
+                            + "                                            <option value=\"18\">18</option>\n"
+                            + "                                            <option value=\"24\" selected>24</option>\n"
+                            + "                                        </select>");
+                }
+                out.print("\n"
+                        + "                                </div>\n"
+                        + "                            </div>\n"
+                        + "                        </div>\n"
+                        + "                        <div class=\"row bg-white\">");
+                int countDisplayElement = 0;
+                if (keyboardpageAmount > 0) {
+                    int i = (keyboardpageIndex - 1) * keyboardamountElementInPage;
+                    int end = keyboardpageIndex * keyboardamountElementInPage - 1;
+
+                    for (int j = i; j <= end; ++j) {
+                        if (i < keyboardData.size()) {
+                            countDisplayElement++;
+                            out.print("<div class=\"product__panel-item col-lg-2 col-md-3 col-sm-6\">\n"
+                                    + "                                                <div class=\"product__panel-img-wrap\">\n"
+                                    + "                                                    <a href=\"product.jsp\"> <img src=\"" + keyboardData.get(i).getPicture() + "\" class=\"product__panel-img\"></a>\n"
+                                    + "                                            </div>\n"
+                                    + "                                            <h3 class=\"product__panel-heading\">\n"
+                                    + "                                                <a href=\"product.jsp\"  class=\"product__panel-link\">" + keyboardData.get(i).getName() + "</a>\n"
+                                    + "                                            </h3>                       \n"
+                                    + "                                            <div class=\"product__panel-rate-wrap\">\n"
+                                    + "                                                <i class=\"product__panel-rate\" style=\"text-decoration: underline;font-size: 20px; margin-right: 5px\">" + keyboardData.get(i).getRateStar() + "</i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                                <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                                    + "                                            </div>\n"
+                                    + "                                            <div class=\"product__panel-price\">\n"
+                                    + "                                                <span class=\"product__panel-price-old-1 product__panel-price-old-1-hide\">\n"
+                                    + "                                                    <div>    \n"
+                                    + "                                                        <button class=\"bestselling__product-btn\">So sánh</button>\n"
+                                    + "                                                    </div>\n"
+                                    + "                                                </span>\n"
+                                    + "                                                <span class=\"product__panel-price-current\">\n"
+                                    + "                                                    <button href=\"compareProduct.jsp\" class=\"bestselling__product-btn\">" + keyboardData.get(i).getSalePrice() + "đ</button>\n"
+                                    + "                                                </span>\n"
+                                    + "                                            </div>");
+                            if (Double.parseDouble(keyboardData.get(i).getSale()) > 0) {
+                                out.print("<div class=\"product__panel-price-sale-off\">\n"
+                                        + "                                                    -" + keyboardData.get(i).getSale() + "%\n"
+                                        + "                                                </div>");
+                            }
+                            out.print("</div>");
+                        }
+                        i++;
+                    }
+                }
+                out.print("</div>\n"
+                        + "                        <div class=\"clearfix\">");
+                if (keyboardpageAmount > 0) {
+                    out.print("<div class=\"hint-text\" style=\"font-size: 15px;\">Hiển thị " + countDisplayElement + " trong số " + keyboardData.size() + " sản phẩm</div>\n"
+                            + "                                <ul class=\"pagination\">");
+                    int count = 1;
+                    if (keyboardpageIndex != 1) {
+                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('k" + (keyboardpageIndex - 1) + "','"+category3+"')\" id=\"k" + (keyboardpageIndex - 1) + "\" href=\"ProductListController?tab=" + tab + "&keyboardpageIndex=" + (keyboardpageIndex - 1) + "\">Previous</a></li>");
+                    }
+                    for (count = 1; count <= keyboardpageAmount; ++count) {
+                        if (keyboardpageIndex == count) {
+                            out.print("<li class=\"page-item active\"><a onclick=\"Paging('k" + count + "','"+category3+"')\"  id=\"k" + count + "\" href=\"ProductListController?tab=" + tab + "&keyboardpageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                        } else {
+                            out.print("<li class=\"page-item \"><a onclick=\"Paging('k" + count + "','"+category3+"')\"  id=\"k" + count + "\" href=\"ProductListController?tab=" + tab + "&keyboardpageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                        }
+                    }
+                    if (keyboardpageIndex != keyboardpageAmount) {
+                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('k" + (keyboardpageIndex + 1) + "','"+category3+"')\"  id=\"k" + (keyboardpageIndex + 1) + "\" href=\"ProductListController?tab=" + tab + "&keyboardpageIndex=" + (keyboardpageIndex + 1) + "\">Next</a></li>");
+                    }
+                    out.print("</ul>");
+                }
+                out.print("</div>\n");
+
             }
 
         }

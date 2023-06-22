@@ -6,11 +6,26 @@ package Model;
  */
 public class Cart {
     private String cartID,  title, price, quantity, totalcost, productID, userID, status;
+    private String picture,productName;
 
     public Cart() {
     }
 
-    public Cart(String cartID, String title, String price, String quantity, String totalcost, String productID, String userID, String status) {
+    public Cart(String cartID, String quantity, String userID) {
+        this.cartID = cartID;
+        this.quantity = quantity;
+        this.userID = userID;
+    }
+    
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public Cart(String cartID, String title, String price, String quantity, String totalcost, String productID, String userID, String status,String productName,String picture) {
         this.cartID = cartID;
         this.title = title;
         this.price = price;
@@ -19,10 +34,20 @@ public class Cart {
         this.productID = productID;
         this.userID = userID;
         this.status = status;
+        this.productName=productName;
+        this.picture=picture;
     }
 
     public String getCartID() {
         return cartID;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public void setCartID(String cartID) {

@@ -74,15 +74,15 @@ public class ProductDAO extends ConnectMySQL {
                 String name = String.valueOf(rs.getString(3));
                 String desciption = String.valueOf(rs.getString(4));
                 String picture = String.valueOf(rs.getString(5));
-                String price = String.valueOf(decimalFormat.format((int) rs.getFloat(6)));
+                String price = String.valueOf(decimalFormat.format( rs.getFloat(6)));
                 String quantity = String.valueOf(rs.getInt(7));
                 String status = String.valueOf(rs.getInt(8));
-                String sale = String.valueOf(decimalFormat.format((int) rs.getFloat(9)));
+                String sale = String.valueOf(decimalFormat.format( rs.getFloat(9)));
                 String rateStar = String.valueOf(new DecimalFormat("#.0").format(rs.getFloat(10)));
                 if (rs.getFloat(10) - (int) rs.getFloat(10) == 0) {
                     rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                 }
-                String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
+                String salePrice = String.valueOf(decimalFormat.format( rs.getDouble(11)));
                 salePrice = salePrice.replaceAll(",", ".");
                 String picture2 = String.valueOf(rs.getString(12));
                 String picture3 = String.valueOf(rs.getString(13));
@@ -135,15 +135,15 @@ public class ProductDAO extends ConnectMySQL {
                         String name = String.valueOf(rs.getString(3));
                         String desciption = String.valueOf(rs.getString(4));
                         String picture = String.valueOf(rs.getString(5));
-                        String price = String.valueOf(decimalFormat.format((int) rs.getFloat(6)));
+                        String price = String.valueOf(decimalFormat.format( rs.getFloat(6)));
                         String quantity = String.valueOf(rs.getInt(7));
                         String status = String.valueOf(rs.getInt(8));
-                        String sale = String.valueOf(decimalFormat.format((int) rs.getFloat(9)));
+                        String sale = String.valueOf(decimalFormat.format(rs.getFloat(9)));
                         String rateStar = String.valueOf(new DecimalFormat("#.0").format(rs.getFloat(10)));
                         if (rs.getFloat(10) - (int) rs.getFloat(10) == 0) {
                             rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                         }
-                        String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
+                        String salePrice = String.valueOf(decimalFormat.format( rs.getDouble(11)));
                         salePrice = salePrice.replaceAll(",", ".");
                         String picture2 = String.valueOf(rs.getString(12));
                         String picture3 = String.valueOf(rs.getString(13));
@@ -190,15 +190,15 @@ public class ProductDAO extends ConnectMySQL {
                 String name = String.valueOf(rs.getString(3));
                 String desciption = String.valueOf(rs.getString(4));
                 String picture = String.valueOf(rs.getString(5));
-                String price = String.valueOf(decimalFormat.format((int) rs.getFloat(6)));
+                String price = String.valueOf(decimalFormat.format( rs.getFloat(6)));
                 String quantity = String.valueOf(rs.getInt(7));
                 String status = String.valueOf(rs.getInt(8));
-                String sale = String.valueOf(decimalFormat.format((int) rs.getFloat(9)));
+                String sale = String.valueOf(decimalFormat.format( rs.getFloat(9)));
                 String rateStar = String.valueOf(new DecimalFormat("#.0").format(rs.getFloat(10)));
                 if (rs.getFloat(10) - (int) rs.getFloat(10) == 0) {
                     rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                 }
-                String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
+                String salePrice = String.valueOf(decimalFormat.format( rs.getDouble(11)));
                 salePrice = salePrice.replaceAll(",", ".");
                 String picture2 = String.valueOf(rs.getString(12));
                 String picture3 = String.valueOf(rs.getString(13));
