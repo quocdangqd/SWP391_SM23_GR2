@@ -12,7 +12,7 @@ import java.util.Locale;
  */
 public class CartDAO extends ConnectMySQL {
 
-        public boolean DeleteCartByID(String cartID) {
+    public boolean DeleteCartByID(String cartID) {
         try {
             String sqlSelect = "DELETE FROM `swp`.`cart` WHERE (`cartID` = ?);";
             pstm = connection.prepareStatement(sqlSelect);
@@ -127,7 +127,7 @@ public class CartDAO extends ConnectMySQL {
         }
     }
 
-    public String getTotalCostbyUserID(String userID) {
+    public String getTotalCostbyUserID(String userID) {// should not use this func
         try {
             DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
             decimalFormat.applyPattern("#,###");
@@ -143,6 +143,21 @@ public class CartDAO extends ConnectMySQL {
             System.out.println("setTotalCostbyUserID: " + e);
         }
         return null;
+    }
+
+    public float getTotalCostbyCartID(String cartID) {// should not use this func
+        try {
+            String sqlString = "select* from cart where cartid =?";
+            pstm = connection.prepareStatement(sqlString);
+            pstm.setInt(1, Integer.parseInt(cartID));
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                return rs.getFloat(5);
+            }
+        } catch (Exception e) {
+            System.out.println("getTotalCostbyCartID: " + e);
+        }
+        return 0;
     }
 
     public ArrayList<Cart> GetCartListByUserId(String userId) {
@@ -180,6 +195,7 @@ public class CartDAO extends ConnectMySQL {
 //        ArrayList<Cart> data = cartDAO.GetCartListByUserId("10");
 //        Cart cart = new Cart(null, null, "2", "1", null, "1", "10", "1", null, null);
         cartDAO.updateQuantity("121", "58", "10");
+        System.out.println(cartDAO.getTotalCostbyCartID("24"));
 //        cartDAO.getTotalCostbyUserID("10");
 //        System.out.println(cartDAO.getTotalCostbyUserID("10"));
 

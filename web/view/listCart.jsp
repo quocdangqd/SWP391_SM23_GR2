@@ -64,11 +64,11 @@
                                 Đơn giá
                             </div>
                         </article>
-
                     <c:forEach items="${cartList}" var="item">
                         <article  class="row cart__body">
                             <div class="col-6 cart__body-name">
-                                <input type="checkbox" name="${item.getCartID()}" value=""> 
+                                <input type="checkbox" name="cartCheckBox" value="${item.getCartID()}"  onclick="cartCheckBoxFunc('cartCheckBox')"> 
+                                <!--<input type="checkbox" name="cartCheckBox" value="${item.getCartID()}" >--> 
                                 <div class="cart__body-name-img">
                                     <img src="${item.getPicture()}">
                                 </div>
@@ -78,9 +78,9 @@
                             </div>
 
                             <div class="col-3 cart__body-quantity">
-                                <input type="button" value="-" class="cart__body-quantity-minus" onclick="decreaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}');">
+                                <input type="button" value="-" class="cart__body-quantity-minus" onclick="decreaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}','cartCheckBox');">
                                 <input type="number" name="quantityValue" step="1" min="1" max="999" value="${item.getQuantity()}" class="cart__body-quantity-total" id="${item.getCartID()}">
-                                <input type="button" value="+" class="cart__body-quantity-plus" onclick="increaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}');">
+                                <input type="button" value="+" class="cart__body-quantity-plus" onclick="increaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}','cartCheckBox');">
                             </div>
 
                             <div class="col-3 cart__body-price">
@@ -100,7 +100,7 @@
                         </p>
 
                         <span class="col-3 col-lg-3 col-sm-3 cart__foot-price">
-                            ${totalAmount}đ <br>
+                            0đ <br>
 
                             <button class="cart__foot-price-btn">Mua hàng</button>
                         </span>
@@ -132,15 +132,26 @@
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-                                    function UpdateContent(cartID) {
+                                    function UpdateContent(cartID,cartCheckBoxName) {
                                         var quantity = document.getElementById(cartID);
+                                        var checkBoxes = document.getElementsByName(cartCheckBoxName);
+                                        var value = [];
+                                        for (var i = 0; i < checkBoxes.length; ++i)
+                                        {
+                                            if (checkBoxes[i].checked)
+                                            {
+                                                value.push(checkBoxes[i].value);
+                                            }
+                                        }
                                         $.ajax({
                                             url: "/TechZone/view/CartController",
                                             type: "post", //send it through get method
                                             data: {
                                                 updatequantity: true,
                                                 cartID: cartID,
-                                                quantity: quantity.value
+                                                quantity: quantity.value,
+                                                cartIDArray: value.toString(),
+                                                tab: 'cartList'
                                             },
                                             success: function (data) {
                                                 var row = document.getElementById("allCart");
@@ -151,6 +162,44 @@
                                             }
                                         });
                                     }
+
+
+        </script>
+        <script>
+            function cartCheckBoxFunc(cartCheckBoxName) {
+                var checkBoxes = document.getElementsByName(cartCheckBoxName);
+                var value = [];
+                for (var i = 0; i < checkBoxes.length; ++i)
+                {
+                    if (checkBoxes[i].checked)
+                    {
+                        value.push(checkBoxes[i].value);
+                    }
+                }
+                console.log(value[0]);
+                console.log(value[1]);
+                console.log(value[2]);
+                console.log(value.toString());
+                $.ajax({
+                    url: "/TechZone/view/CartController",
+                    type: "post", //send it through get method
+                    data: {
+                        cartCheckBox: true,
+                        cartIDArray: value.toString(),
+                        tab: 'cartList'
+                    },
+                    success: function (data) {
+                        var row = document.getElementById("allCart");
+                        row.innerHTML = data;
+                    },
+                    error: function (xhr) {
+                        //Do Something to handle error
+                    }
+                });
+            }
+
+
+
         </script>
     </body>
 </html>

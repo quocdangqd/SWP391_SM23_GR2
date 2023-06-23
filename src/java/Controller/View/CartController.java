@@ -36,7 +36,7 @@ public class CartController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             String tab = request.getParameter("tab");
-            tab = "cartList";// nhap
+//            tab = "cartList";// nhap
             if (tab.equals("cartList")) { // là thành viên m?i du?c quy?n vào gi? hàng ** thi?u di?u ki?n
                 // tao them 1 bien de phan biet khi ma no gui ve day la qua ajax
                 CartDAO cartDAO = new CartDAO();
@@ -45,13 +45,25 @@ public class CartController extends HttpServlet {
                 ArrayList<Cart> cartList;
                 if (request.getParameter("DeleteProduct") != null) {
                     cartDAO.DeleteCartByID(request.getParameter("cartID"));
-                } else if (request.getParameter("updatequantity") != null) {
-                    String quantity = request.getParameter("quantity");
-                    String cartID = request.getParameter("cartID");
-                    Cart cart = new Cart(cartID, quantity, "10");
-                    cartDAO.updateQuantity(quantity, cartID, "10");
-                    cartList = cartDAO.GetCartListByUserId("10");
-                    String totalAmount=cartDAO.getTotalCostbyUserID("10");
+                } else if (request.getParameter("updatequantity") != null || request.getParameter("cartCheckBox") != null) {
+                    float totalAmount = 0;
+                    String cartIDArray[];
+                    String cartIDString = request.getParameter("cartIDArray");
+                    if (request.getParameter("updatequantity") != null) {
+                        String quantity = request.getParameter("quantity");
+                        String cartID = request.getParameter("cartID");
+                        Cart cart = new Cart(cartID, quantity, user.getUserID()); //??
+                        cartDAO.updateQuantity(quantity, cartID, user.getUserID());//??
+
+//                        out.print("cartidArray: "+request.getParameter("cartIDArray")); 
+//                        return;
+                    }
+                    cartIDArray = request.getParameter("cartIDArray").split(",");
+                    for (String string : cartIDArray) {
+                        totalAmount += cartDAO.getTotalCostbyCartID(string);
+                    }
+                    cartList = cartDAO.GetCartListByUserId(user.getUserID());
+//                    String totalAmount = cartDAO.getTotalCostbyUserID("10");
                     out.print("<div class=\"container\">\n"
                             + "                        <article class=\"row cart__head pc\">\n"
                             + "                            <nav class=\"menu__nav col-lg-3 col-md-12 col-sm-0\">\n"
@@ -87,6 +99,7 @@ public class CartController extends HttpServlet {
                     for (Cart item : cartList) {
                         out.print("<article  class=\"row cart__body\">\n"
                                 + "                            <div class=\"col-6 cart__body-name\">\n"
+                                + "<input type=\"checkbox\" " + (cartIDString.contains(item.getCartID()) ? "checked" : "") + " name=\"cartCheckBox\" value=\"" + item.getCartID() + "\"  onclick=\"cartCheckBoxFunc('cartCheckBox')\">\n"
                                 + "                                <div class=\"cart__body-name-img\">\n"
                                 + "                                    <img src=\"" + item.getPicture() + "\">\n"
                                 + "                                </div>\n"
@@ -96,13 +109,13 @@ public class CartController extends HttpServlet {
                                 + "                            </div>\n"
                                 + "\n"
                                 + "                            <div class=\"col-3 cart__body-quantity\">\n"
-                                + "                                <input type=\"button\" value=\"-\" class=\"cart__body-quantity-minus\" onclick=\"decreaseQuantity('" + item.getCartID() + "');UpdateContent('" + item.getCartID() + "');\">\n"
+                                + "                                <input type=\"button\" value=\"-\" class=\"cart__body-quantity-minus\" onclick=\"decreaseQuantity('" + item.getCartID() + "');UpdateContent('" + item.getCartID() + "','cartCheckBox');\">\n"
                                 + "                                <input type=\"number\" name=\"quantityValue\" step=\"1\" min=\"1\" max=\"999\" value=\"" + item.getQuantity() + "\" class=\"cart__body-quantity-total\" id=\"" + item.getCartID() + "\">\n"
-                                + "                                <input type=\"button\" value=\"+\" class=\"cart__body-quantity-plus\" onclick=\"increaseQuantity('" + item.getCartID() + "');UpdateContent('" + item.getCartID() + "');\">\n"
+                                + "                                <input type=\"button\" value=\"+\" class=\"cart__body-quantity-plus\" onclick=\"increaseQuantity('" + item.getCartID() + "');UpdateContent('" + item.getCartID() + "','cartCheckBox');\">\n"
                                 + "                            </div>\n"
                                 + "\n"
                                 + "                            <div class=\"col-3 cart__body-price\">\n"
-                                + "                                <span>"+item.getTotalcost()+"đ</span>\n"
+                                + "                                <span>" + item.getTotalcost() + "đ</span>\n"
                                 + "\n"
                                 + "                                <a href=\"CartController?DeleteProduct&cartID=" + item.getCartID() + "\">Xóa</a>\n"
                                 + "                            </div>\n"
@@ -118,12 +131,13 @@ public class CartController extends HttpServlet {
                             + "                        </p>\n"
                             + "\n"
                             + "                        <span class=\"col-3 col-lg-3 col-sm-3 cart__foot-price\">\n"
-                            + "                            "+totalAmount+"đ <br>\n"
+                            + "                            " + totalAmount + "đ <br>\n"
                             + "\n"
                             + "                            <button class=\"cart__foot-price-btn\">Mua hàng</button>\n"
                             + "                        </span>\n"
                             + "                    </article>\n"
                             + "                </div>");
+
 //                    out.print("cartid: " + request.getParameter("cartID") + "<br>");
 //                    out.print("quantity: " + request.getParameter("quantity") + "<br>");
 //                    out.print("updatequantity: " + request.getParameter("updatequantity") + "<br>");
@@ -133,7 +147,7 @@ public class CartController extends HttpServlet {
                 cartList = cartDAO.GetCartListByUserId("10");
                 request.setAttribute("cartList", cartList);
 //                request.setAttribute("totalAmount",cartDAO.getTotalCostbyUserID(user.getUserID())); 
-                request.setAttribute("totalAmount", cartDAO.getTotalCostbyUserID("10"));
+//                request.setAttribute("totalAmount", cartDAO.getTotalCostbyUserID("10"));
 
                 request.getRequestDispatcher("listCart.jsp").forward(request, response);
             }
