@@ -12,7 +12,7 @@ import java.util.Locale;
  */
 public class CartDAO extends ConnectMySQL {
 
-        public boolean DeleteCartByID(String cartID) {
+    public boolean DeleteCartByID(String cartID) {
         try {
             String sqlSelect = "DELETE FROM `swp`.`cart` WHERE (`cartID` = ?);";
             pstm = connection.prepareStatement(sqlSelect);
@@ -95,8 +95,13 @@ public class CartDAO extends ConnectMySQL {
             boolean checkDuplicateProduct = CheckProductCartByProductIDandUserID(cart.getProductID(), cart.getUserID());
             if (checkDuplicateProduct) {
                 quantity = getQuantityExist(cart.getProductID(), cart.getUserID());
+                System.out.println(quantity);//220
+//                System.out.println(quantity+Integer.parseInt(cart.getQuantity()));
                 cart.setQuantity(String.valueOf(Integer.parseInt(cart.getQuantity()) + quantity));
-                updateQuantity(cart.getQuantity(), cart.getProductID(), cart.getUserID());
+                System.out.println(cart.getQuantity());
+                System.out.println(cart.getUserID());
+                updateCart(cart);
+//                updateQuantity(cart.getQuantity(), cart.getCartID(), cart.getUserID());
                 return true;
             }
             String sqlSelect = "INSERT INTO `swp`.`cart` (`price`, `quantity`, `productID`, `userID`, `status`) VALUES (?, ?, ?, ?,?);";
@@ -109,7 +114,7 @@ public class CartDAO extends ConnectMySQL {
             pstm.execute();
             return true;
         } catch (Exception e) {
-            System.out.println("AddCart: " + e);
+            System.out.println("AddOrUpdateCart: " + e);
         }
         return false;
     }
@@ -127,7 +132,7 @@ public class CartDAO extends ConnectMySQL {
         }
     }
 
-    public String getTotalCostbyUserID(String userID) {
+    public String getTotalCostbyUserID(String userID) {// should not use this func
         try {
             DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
             decimalFormat.applyPattern("#,###");
@@ -143,6 +148,39 @@ public class CartDAO extends ConnectMySQL {
             System.out.println("setTotalCostbyUserID: " + e);
         }
         return null;
+    }
+
+    public String AmountOfProductTypeByUserID(String userID) {// should not use this func
+        try {
+            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+            decimalFormat.applyPattern("#,###");
+            String sqlString = "select count(productID) from cart where userid =?\n"
+                    + "                       group by userid";
+            pstm = connection.prepareStatement(sqlString);
+            pstm.setInt(1, Integer.parseInt(userID));
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                return String.valueOf(decimalFormat.format(rs.getFloat(1)));
+            }
+        } catch (Exception e) {
+            System.out.println("AmountOfProductTypeByUserID: " + e);
+        }
+        return null;
+    }
+
+    public float getTotalCostbyCartID(String cartID) {// should not use this func
+        try {
+            String sqlString = "select* from cart where cartid =?";
+            pstm = connection.prepareStatement(sqlString);
+            pstm.setInt(1, Integer.parseInt(cartID));
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                return rs.getFloat(5);
+            }
+        } catch (Exception e) {
+            System.out.println("getTotalCostbyCartID: " + e);
+        }
+        return 0;
     }
 
     public ArrayList<Cart> GetCartListByUserId(String userId) {
@@ -179,7 +217,15 @@ public class CartDAO extends ConnectMySQL {
         CartDAO cartDAO = new CartDAO();
 //        ArrayList<Cart> data = cartDAO.GetCartListByUserId("10");
 //        Cart cart = new Cart(null, null, "2", "1", null, "1", "10", "1", null, null);
-        cartDAO.updateQuantity("121", "58", "10");
+//        cartDAO.updateQuantity("121", "58", "10");
+//        System.out.println(cartDAO.getTotalCostbyCartID("24"));
+//        System.out.println(cartDAO.AmountOfProductTypeByUserID("10"));
+        Cart cart = new Cart();
+        cart.setUserID("10");
+        cart.setProductID("5");
+        cart.setQuantity("10");
+        System.out.println(cartDAO.AddOrUpdateCart(cart));
+//        cartDAO.AddOrUpdateCart(cart);
 //        cartDAO.getTotalCostbyUserID("10");
 //        System.out.println(cartDAO.getTotalCostbyUserID("10"));
 

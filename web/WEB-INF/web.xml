@@ -32,6 +32,14 @@
         <servlet-name>CartController</servlet-name>
         <servlet-class>Controller.View.CartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckoutController</servlet-name>
+        <servlet-class>Controller.View.CheckoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductDetailController</servlet-name>
+        <servlet-class>Controller.View.ProductDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/auth/Register</url-pattern>
@@ -65,6 +73,14 @@
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
         <url-pattern>/view/CartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutController</servlet-name>
+        <url-pattern>/view/CheckoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductDetailController</servlet-name>
+        <url-pattern>/view/ProductDetailController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

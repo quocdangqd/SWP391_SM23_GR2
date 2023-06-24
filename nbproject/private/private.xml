@@ -3,30 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/auth/changepassword.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/ConnectMySQL.java</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/CartDAO.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/ProductListController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/manager/dist/css/icons/themify-icons/ie7/ie7.css</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/css/style.css</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/auth/forgetpassword.jsp</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/CheckoutController.java</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/ProductDAO.java</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Account/LoginController.java</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/customer/userProfile.jsp</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/HomePageController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/listCart.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/header.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/notification/verifyemail.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Impl/UserGoogleDto.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/listProduct.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/notification/registersuccess.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Impl/Constants.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/index.html</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/auth/login.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/auth/register.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/CustomerController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/notification/changepasssuccess.jsp</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Model/Cart.java</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Model/User.java</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/ProductDetailController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Model/Products.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/notification/requirechangpassword.jsp</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/homepage.jsp</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/productDetail.jsp</file>
         </group>
     </open-files>
 </project-private>
