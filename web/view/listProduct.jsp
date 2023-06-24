@@ -405,10 +405,10 @@
                                         <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
                                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                                                 <div class="product__panel-img-wrap">
-                                                    <a href="product.jsp"> <img src="${headPhoneData.get(i).getPicture()}" class="product__panel-img"></a>
+                                                    <a href="ProductDetailController?ProductID=${headPhoneData.get(i).getProductID()}"> <img src="${headPhoneData.get(i).getPicture()}" class="product__panel-img"></a>
                                             </div>
                                             <h3 class="product__panel-heading">
-                                                <a href="product.jsp"  class="product__panel-link">${headPhoneData.get(i).getName()}</a>
+                                                <a href="ProductDetailController?ProductID=${headPhoneData.get(i).getProductID()}"  class="product__panel-link">${headPhoneData.get(i).getName()}</a>
                                             </h3>                       
                                             <div class="product__panel-rate-wrap">
                                                 <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${headPhoneData.get(i).getRateStar()}</i>
@@ -566,10 +566,10 @@
                                         <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
                                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                                                 <div class="product__panel-img-wrap">
-                                                    <a href="product.jsp"> <img src="${mouseData.get(i).getPicture()}" class="product__panel-img"></a>
+                                                    <a href="ProductDetailController?ProductID=${mouseData.get(i).getProductID()}"> <img src="${mouseData.get(i).getPicture()}" class="product__panel-img"></a>
                                             </div>
                                             <h3 class="product__panel-heading">
-                                                <a href="product.jsp"  class="product__panel-link">${mouseData.get(i).getName()}</a>
+                                                <a href="ProductDetailController?ProductID=${mouseData.get(i).getProductID()}"  class="product__panel-link">${mouseData.get(i).getName()}</a>
                                             </h3>                       
                                             <div class="product__panel-rate-wrap">
                                                 <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${mouseData.get(i).getRateStar()}</i>
@@ -727,10 +727,10 @@
                                         <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
                                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                                                 <div class="product__panel-img-wrap">
-                                                    <a href="product.jsp"> <img src="${keyboardData.get(i).getPicture()}" class="product__panel-img"></a>
+                                                    <a href="ProductDetailController?ProductID=${keyboardData.get(i).getProductID()}"> <img src="${keyboardData.get(i).getPicture()}" class="product__panel-img"></a>
                                             </div>
                                             <h3 class="product__panel-heading">
-                                                <a href="product.jsp"  class="product__panel-link">${keyboardData.get(i).getName()}</a>
+                                                <a href="ProductDetailController?ProductID=${keyboardData.get(i).getProductID()}"  class="product__panel-link">${keyboardData.get(i).getName()}</a>
                                             </h3>                       
                                             <div class="product__panel-rate-wrap">
                                                 <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${keyboardData.get(i).getRateStar()}</i>

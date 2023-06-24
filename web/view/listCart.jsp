@@ -36,19 +36,19 @@
                         <article class="row cart__head pc">
                             <nav class="menu__nav col-lg-3 col-md-12 col-sm-0">
                                 <ul class="menu__list">
-                                    <li class="menu__item menu__item--active">
-                                        <a href="headphone.jsp" class="menu__link">
+                                    <li class="menu__item ">
+                                        <a href="ProductListController?tab=headphone" class="menu__link">
                                             <img src="images1/item/headphone.jpg" alt=""  class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
                                             Tai nghe</a>
                                     </li>
                                     <li class="menu__item">
-                                        <a href="mouse.jsp" class="menu__link">
+                                        <a <a href="ProductListController?tab=mouse" class="menu__link">
                                             <img src="images1/item/mouse.jpg" alt="" class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
                                             Chuột</a>
                                     </li>
 
                                     <li class="menu__item">
-                                        <a href="keyboard.jsp" class="menu__link">
+                                        <a href="ProductListController?tab=keyboard" class="menu__link">
                                             <img src="images1/item/keyboard.jpg" alt="" class="menu__item-icon"  viewBox="0 0 512 512" width="1012" height="512">
                                             Bàn phím</a>
                                     </li>
@@ -78,15 +78,15 @@
                             </div>
 
                             <div class="col-3 cart__body-quantity">
-                                <input type="button" value="-" class="cart__body-quantity-minus" onclick="decreaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}','cartCheckBox');">
+                                <input type="button" value="-" class="cart__body-quantity-minus" onclick="decreaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}', 'cartCheckBox');">
                                 <input type="number" name="quantityValue" step="1" min="1" max="999" value="${item.getQuantity()}" class="cart__body-quantity-total" id="${item.getCartID()}">
-                                <input type="button" value="+" class="cart__body-quantity-plus" onclick="increaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}','cartCheckBox');">
+                                <input type="button" value="+" class="cart__body-quantity-plus" onclick="increaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}', 'cartCheckBox');">
                             </div>
 
                             <div class="col-3 cart__body-price">
                                 <span>${item.getTotalcost()}đ</span>
 
-                                <a href="CartController?DeleteProduct&cartID=${item.getCartID()}">Xóa</a>
+                                <a href="CartController?tab=cartList&DeleteProduct&cartID=${item.getCartID()}">Xóa</a>
                             </div>
                         </article>
                     </c:forEach>
@@ -132,7 +132,7 @@
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-                                    function UpdateContent(cartID,cartCheckBoxName) {
+                                    function UpdateContent(cartID, cartCheckBoxName) {
                                         var quantity = document.getElementById(cartID);
                                         var checkBoxes = document.getElementsByName(cartCheckBoxName);
                                         var value = [];

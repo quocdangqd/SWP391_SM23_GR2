@@ -5,8 +5,9 @@ package Model;
  * @author DucPhaoLo
  */
 public class Cart {
-    private String cartID,  title, price, quantity, totalcost, productID, userID, status;
-    private String picture,productName;
+
+    private String cartID, title, price, quantity, totalcost, productID, userID, status;
+    private String picture, productName;
 
     public Cart() {
     }
@@ -16,7 +17,15 @@ public class Cart {
         this.quantity = quantity;
         this.userID = userID;
     }
-    
+
+    public Cart(String price, String quantity, String productID, String userID, String status) {
+        this.price = price;
+        this.quantity = quantity;
+        this.productID = productID;
+        this.userID = userID;
+        this.status = status;
+    }
+
     public String getProductName() {
         return productName;
     }
@@ -25,7 +34,7 @@ public class Cart {
         this.productName = productName;
     }
 
-    public Cart(String cartID, String title, String price, String quantity, String totalcost, String productID, String userID, String status,String productName,String picture) {
+    public Cart(String cartID, String title, String price, String quantity, String totalcost, String productID, String userID, String status, String productName, String picture) {
         this.cartID = cartID;
         this.title = title;
         this.price = price;
@@ -34,8 +43,8 @@ public class Cart {
         this.productID = productID;
         this.userID = userID;
         this.status = status;
-        this.productName=productName;
-        this.picture=picture;
+        this.productName = productName;
+        this.picture = picture;
     }
 
     public String getCartID() {
@@ -109,5 +118,5 @@ public class Cart {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
 }

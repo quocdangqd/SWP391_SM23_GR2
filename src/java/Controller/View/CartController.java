@@ -14,7 +14,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  *
@@ -36,15 +39,17 @@ public class CartController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             String tab = request.getParameter("tab");
+            HttpSession session = request.getSession();
+            User user = (User) session.getAttribute("user");
 //            tab = "cartList";// nhap
-            if (tab.equals("cartList")) { // là thành viên m?i du?c quy?n vào gi? hàng ** thi?u di?u ki?n
+            if (tab.equals("cartList") && user != null) { // là thành viên m?i du?c quy?n vào gi? hàng ** thi?u di?u ki?n
                 // tao them 1 bien de phan biet khi ma no gui ve day la qua ajax
                 CartDAO cartDAO = new CartDAO();
-                HttpSession session = request.getSession();
-                User user = (User) session.getAttribute("user");
                 ArrayList<Cart> cartList;
                 if (request.getParameter("DeleteProduct") != null) {
+//                    out.print("haha");
                     cartDAO.DeleteCartByID(request.getParameter("cartID"));
+                    
                 } else if (request.getParameter("updatequantity") != null || request.getParameter("cartCheckBox") != null) {
                     float totalAmount = 0;
                     String cartIDArray[];
@@ -62,6 +67,8 @@ public class CartController extends HttpServlet {
                     for (String string : cartIDArray) {
                         totalAmount += cartDAO.getTotalCostbyCartID(string);
                     }
+                    DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+                    decimalFormat.applyPattern("#,###");
                     cartList = cartDAO.GetCartListByUserId(user.getUserID());
 //                    String totalAmount = cartDAO.getTotalCostbyUserID("10");
                     out.print("<div class=\"container\">\n"
@@ -117,7 +124,7 @@ public class CartController extends HttpServlet {
                                 + "                            <div class=\"col-3 cart__body-price\">\n"
                                 + "                                <span>" + item.getTotalcost() + "đ</span>\n"
                                 + "\n"
-                                + "                                <a href=\"CartController?DeleteProduct&cartID=" + item.getCartID() + "\">Xóa</a>\n"
+                                + "                                <a href=\"CartController?tab=cartList&DeleteProduct&cartID=" + item.getCartID() + "\">Xóa</a>\n"
                                 + "                            </div>\n"
                                 + "                        </article>");
                     }
@@ -131,7 +138,7 @@ public class CartController extends HttpServlet {
                             + "                        </p>\n"
                             + "\n"
                             + "                        <span class=\"col-3 col-lg-3 col-sm-3 cart__foot-price\">\n"
-                            + "                            " + totalAmount + "đ <br>\n"
+                            + "                            " + decimalFormat.format(totalAmount) + "đ <br>\n"
                             + "\n"
                             + "                            <button class=\"cart__foot-price-btn\">Mua hàng</button>\n"
                             + "                        </span>\n"
@@ -144,11 +151,10 @@ public class CartController extends HttpServlet {
                     return;
                 }
 //                ArrayList<Cart> cartList =  cartDAO.GetCartListByUserId(user.getUserID());
-                cartList = cartDAO.GetCartListByUserId("10");
+                cartList = cartDAO.GetCartListByUserId(user.getUserID());
                 request.setAttribute("cartList", cartList);
 //                request.setAttribute("totalAmount",cartDAO.getTotalCostbyUserID(user.getUserID())); 
 //                request.setAttribute("totalAmount", cartDAO.getTotalCostbyUserID("10"));
-
                 request.getRequestDispatcher("listCart.jsp").forward(request, response);
             }
 

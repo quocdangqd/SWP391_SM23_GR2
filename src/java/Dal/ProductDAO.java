@@ -210,31 +210,99 @@ public class ProductDAO extends ConnectMySQL {
         return data;
     }
 
+//    public int getProductAmount(String ProductID) {
+//        try {
+//            String sqlSelect = "select quantity from product where ProductID=? ;";
+//            pstm = connection.prepareStatement(sqlSelect);
+//            pstm.setInt(1, Integer.parseInt(ProductID));
+//            rs = pstm.executeQuery();
+//            while (rs.next()) {
+//                return rs.getInt(1);
+//            }
+//        } catch (Exception e) {
+//            System.out.println("getProductAmount: " + e);
+//        }
+//        return 0;
+//    }
+
+    public Products getProductByID(String productID) {
+        try {
+            String sqlSelect = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
+                    + "COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice',picture2,picture3\n"
+                    + "from swp.orderdetail od right outer join swp.product p\n"
+                    + "on p.ProductID=od.orderdetail_productID where p.ProductID=? \n"
+                    + "group by productid ";
+            pstm = connection.prepareStatement(sqlSelect);
+            pstm.setInt(1, Integer.parseInt(productID));
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                String ProductID = String.valueOf(rs.getInt(1));
+                String product_categoryID = String.valueOf(rs.getInt(2));
+                String name = String.valueOf(rs.getString(3));
+                String desciption = String.valueOf(rs.getString(4));
+                String picture = String.valueOf(rs.getString(5));
+                String price = String.valueOf((rs.getFloat(6)));
+                String quantity = String.valueOf(rs.getInt(7));
+                String status = String.valueOf(rs.getInt(8));
+                String sale = String.valueOf((rs.getFloat(9)));
+                String rateStar = String.valueOf(new DecimalFormat("#.0").format(rs.getFloat(10)));
+                if (rs.getFloat(10) - (int) rs.getFloat(10) == 0) {
+                    rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
+                }
+                String salePrice = String.valueOf((rs.getDouble(11)));
+                salePrice = salePrice.replaceAll(",", ".");
+                String picture2 = String.valueOf(rs.getString(12));
+                String picture3 = String.valueOf(rs.getString(13));
+                Products p = new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rateStar, salePrice, picture2, picture3);
+                return p;
+            }
+        } catch (Exception e) {
+            System.out.println("getProductByID: " + e);
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
-        System.out.println(productDAO.getProductListByType("HighPrice").size());
+        Products p = productDAO.getProductByID("1");
+        System.out.println("productid: " + p.getProductID() + " ");
+        System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
+        System.out.println("Name: " + p.getName() + " ");
+        System.out.println("Description: " + p.getDesciption() + " ");
+        System.out.println("picture: " + p.getPicture() + " ");
+        System.out.println("picture2: " + p.getPicture2() + " ");
+        System.out.println("picture3: " + p.getPicture3() + " ");
+        System.out.println("price: " + p.getPrice() + " ");
+        System.out.println("quantity: " + p.getQuantity() + " ");
+        System.out.println("status: " + p.getStatus() + " ");
+        System.out.println("sale: " + p.getSale() + " ");
+        System.out.println("rateStar: " + p.getRateStar() + " ");
+        System.out.println("saleprice: " + p.getSalePrice() + " ");
+        System.out.println("");
+//        System.out.println(productDAO.getProductListByType("HighPrice").size());
+//        System.out.println("getProductAmount: " + productDAO.getProductAmount("2"));
         // Định dạng số với dấu chấm
 //        int size = productDAO.getProductListByCategoryIDAndNameAndSort("1","a","ascendingSalePrice").size();
 //        size = productDAO.BestSellerProducts().size();
 //        size=productDAO.getProductListByCategoryIDAndSort("1", "rate").size();
 //        System.out.println(size);
 //        System.out.println(formattedNumber);
-        for (Products p : productDAO.getProductListByCategoryIDAndNameAndSort("1", "Corsair HS70", "rate")) {
-            System.out.println("productid: " + p.getProductID() + " ");
-            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
-            System.out.println("Name: " + p.getName() + " ");
-            System.out.println("Description: " + p.getDesciption() + " ");
-            System.out.println("picture: " + p.getPicture() + " ");
-            System.out.println("picture2: " + p.getPicture2() + " ");
-            System.out.println("picture3: " + p.getPicture3() + " ");
-            System.out.println("price: " + p.getPrice() + " ");
-            System.out.println("quantity: " + p.getQuantity() + " ");
-            System.out.println("status: " + p.getStatus() + " ");
-            System.out.println("sale: " + p.getSale() + " ");
-            System.out.println("rateStar: " + p.getRateStar() + " ");
-            System.out.println("saleprice: " + p.getSalePrice() + " ");
-            System.out.println("");
-        }
+//        for (Products p : productDAO.getProductListByCategoryIDAndNameAndSort("1", "Corsair HS70", "rate")) {
+//            System.out.println("productid: " + p.getProductID() + " ");
+//            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
+//            System.out.println("Name: " + p.getName() + " ");
+//            System.out.println("Description: " + p.getDesciption() + " ");
+//            System.out.println("picture: " + p.getPicture() + " ");
+//            System.out.println("picture2: " + p.getPicture2() + " ");
+//            System.out.println("picture3: " + p.getPicture3() + " ");
+//            System.out.println("price: " + p.getPrice() + " ");
+//            System.out.println("quantity: " + p.getQuantity() + " ");
+//            System.out.println("status: " + p.getStatus() + " ");
+//            System.out.println("sale: " + p.getSale() + " ");
+//            System.out.println("rateStar: " + p.getRateStar() + " ");
+//            System.out.println("saleprice: " + p.getSalePrice() + " ");
+//            System.out.println("");
+//        }
 
 //        for (Products p : productDAO.BestSellerProducts()) {
 //            if (p.getProductID().equals("1")) {
@@ -251,13 +319,12 @@ public class ProductDAO extends ConnectMySQL {
 //        }
 //        String linkImage1 = productDAO.imageLink();
 //        System.out.println(linkImage1);
-        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
-        decimalFormat.applyPattern("#,###");
-        double x = 123.1;
-        double y = 2.3;
-        String s = decimalFormat.format(x + y);
-        System.out.println("s: " + s);
-
+//        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+//        decimalFormat.applyPattern("#,###");
+//        double x = 123.1;
+//        double y = 2.3;
+//        String s = decimalFormat.format(x + y);
+//        System.out.println("s: " + s);
 //        double x = 3.44;
 //        System.out.println(new DecimalFormat("#.0").format(x));
 //        for (Products p : productDAO.getProductListByType("wired")) {
@@ -277,4 +344,5 @@ public class ProductDAO extends ConnectMySQL {
 //            System.out.println("");
 //        }
     }
+
 }

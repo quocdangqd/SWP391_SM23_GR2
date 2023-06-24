@@ -64,7 +64,7 @@
                         <c:if test="${role==null}" >
                             <ul class="header__top-list">
                                 <li class="header__top-item">
-                                    <a href="../auth/login" class="header__top-link">Giỏ hàng</a>
+                                    <a href="${user!=null?'CartController?tab=cartList':'../auth/login'}" class="header__top-link">Giỏ hàng</a>
                                 </li>
                                 <li class="header__top-item">
                                     <a href="../auth/login" class="header__top-link">Thanh toán</a>
@@ -77,7 +77,7 @@
                         <c:if test="${role!=null}" >
                             <ul class="header__top-list">
                                 <li class="header__top-item">
-                                    <a href="#" class="header__top-link">Giỏ hàng</a>
+                                    <a href="CartController?tab=cartList" class="header__top-link">Giỏ hàng</a>
                                 </li>
                                 <li class="header__top-item">
                                     <a href="#" class="header__top-link">Thanh toán</a>
@@ -150,9 +150,9 @@
                         </div>
                     </div>
 
-                    <a href="CartController?tab=cartList" class="col-lg-1 col-md-1 col-sm-0 header__cart">
+                    <a href="${user!=null?'CartController?tab=cartList':'../auth/login'}" class="col-lg-1 col-md-1 col-sm-0 header__cart">
                         <div class="header__cart-icon-wrap">
-                            <span class="header__notice">4</span>
+                            <span class="header__notice">${user!=null?AmountOfProductType:'0'}</span>
                             <i class="fas fa-shopping-cart header__nav-cart-icon"></i>
                         </div>
                     </a>
