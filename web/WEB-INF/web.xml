@@ -28,6 +28,26 @@
         <servlet-name>ProductListController</servlet-name>
         <servlet-class>Controller.View.ProductListController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManagerHomepageController</servlet-name>
+        <servlet-class>Controller.Manager.ManagerHomepageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerProductController</servlet-name>
+        <servlet-class>Controller.Manager.ManagerProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerAddProductController</servlet-name>
+        <servlet-class>Controller.Manager.ManagerAddProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerDeleteProduct</servlet-name>
+        <servlet-class>Controller.Manager.ManagerDeleteProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerUpdateProductController</servlet-name>
+        <servlet-class>Controller.Manager.ManagerUpdateProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/auth/Register</url-pattern>
@@ -57,6 +77,26 @@
     <servlet-mapping>
         <servlet-name>ProductListController</servlet-name>
         <url-pattern>/view/ProductListController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerHomepageController</servlet-name>
+        <url-pattern>/manager/ManagerHomepageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerProductController</servlet-name>
+        <url-pattern>/manager/ManagerProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerAddProductController</servlet-name>
+        <url-pattern>/manager/ManagerAddProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerDeleteProduct</servlet-name>
+        <url-pattern>/manager/ManagerDeleteProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerUpdateProductController</servlet-name>
+        <url-pattern>/manager/ManagerUpdateProductController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
