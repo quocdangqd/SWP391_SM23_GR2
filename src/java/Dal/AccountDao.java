@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * @author DucPhaoLo
  */
 public class AccountDao extends ConnectMySQL {
-
+// ABCDE
     public boolean checkExistEmail(String email) {
         try {
             String sqlSelect = "SELECT * FROM swp.user where email=?;";
