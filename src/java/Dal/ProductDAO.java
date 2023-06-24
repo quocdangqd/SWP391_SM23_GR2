@@ -285,33 +285,6 @@ public class ProductDAO extends ConnectMySQL {
         }
         return data;
     }
-
-//    public ArrayList<Products> limitProducts() {
-//        ArrayList<Products> data = new ArrayList<>();
-//        String sqlSelect = "SELECT p.ProductID, p.name, p.picture, p.price, c.name\n"
-//                + "FROM product p\n"
-//                + "join category c\n"
-//                + "on p.product_categoryID = c.categoryID\n"
-//                + "where p.quantity = 0";
-//        try {
-//            pstm = connection.prepareStatement(sqlSelect);
-//            rs = pstm.executeQuery();
-//            while (rs.next()) {
-//                Products p = new Products();
-//                p.setProductID(String.valueOf(rs.getInt(1)));
-//                p.setName(String.valueOf(rs.getString(3)));
-//                String categories = String.valueOf(rs.getInt(2));
-//                p.setPicture(rs.getString(5));
-//                p.setProduct_categoryID(categories);
-//                p.setPrice(String.valueOf(rs.getFloat(8)));
-//                p.setCategories(new CategoriesDAO().getCategoryById(categories));
-//                data.add(new Products());
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//        return data;
-//    }
     // Duc Anh 
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
