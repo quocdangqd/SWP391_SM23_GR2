@@ -118,7 +118,7 @@ public class CartController extends HttpServlet {
                                 + "                            <div class=\"col-3 cart__body-quantity\">\n"
                                 + "                                <input type=\"button\" value=\"-\" class=\"cart__body-quantity-minus\" onclick=\"decreaseQuantity('" + item.getCartID() + "');UpdateContent('" + item.getCartID() + "','cartCheckBox');\">\n"
                                 + "                                <input type=\"number\" name=\"quantityValue\" step=\"1\" min=\"1\" max=\"999\" value=\"" + item.getQuantity() + "\" class=\"cart__body-quantity-total\" id=\"" + item.getCartID() + "\">\n"
-                                + "                                <input type=\"button\" value=\"+\" class=\"cart__body-quantity-plus\" onclick=\"increaseQuantity('" + item.getCartID() + "');UpdateContent('" + item.getCartID() + "','cartCheckBox');\">\n"
+                                + "                                <input type=\"button\" value=\"+\" class=\"cart__body-quantity-plus\" onclick=\"increaseQuantity('" + item.getCartID() + "','"+item.getProduct_Quantity()+"');UpdateContent('" + item.getCartID() + "','cartCheckBox');\">\n"
                                 + "                            </div>\n"
                                 + "\n"
                                 + "                            <div class=\"col-3 cart__body-price\">\n"

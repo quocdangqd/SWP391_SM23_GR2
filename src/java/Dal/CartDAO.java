@@ -186,7 +186,7 @@ public class CartDAO extends ConnectMySQL {
     public ArrayList<Cart> GetCartListByUserId(String userId) {
         ArrayList<Cart> data = new ArrayList<>();
         String sqlSelect = "select cartID,  c.title, c.price, c.quantity, totalcost,\n"
-                + "                     c.productID, c.userID, c.status,p.name,picture from cart c ,user u,product p \n"
+                + "                     c.productID, c.userID, c.status,p.name,picture,p.quantity from cart c ,user u,product p \n"
                 + "                    where c.userID=u.userID and p.productID=c.productID and c.userID=? ";
         try {
             DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
@@ -205,7 +205,8 @@ public class CartDAO extends ConnectMySQL {
                 String status = String.valueOf(rs.getInt(8));
                 String productName = String.valueOf(rs.getString(9));
                 String picture = rs.getString(10);
-                data.add(new Cart(cartID, title, price, quantity, totalcost, productID, userID, status, productName, picture));
+                String product_Quantity=String.valueOf(rs.getString(11));
+                data.add(new Cart(cartID, title, price, quantity, totalcost, productID, userID, status, productName, picture,product_Quantity));
             }
         } catch (Exception e) {
             System.out.println("GetCartListByUserId: " + e);

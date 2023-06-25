@@ -76,11 +76,11 @@
                                     ${item.getProductName()}
                                 </a>
                             </div>
-
+                                ${item.getProduct_Quantity()}
                             <div class="col-3 cart__body-quantity">
                                 <input type="button" value="-" class="cart__body-quantity-minus" onclick="decreaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}', 'cartCheckBox');">
-                                <input type="number" name="quantityValue" step="1" min="1" max="999" value="${item.getQuantity()}" class="cart__body-quantity-total" id="${item.getCartID()}">
-                                <input type="button" value="+" class="cart__body-quantity-plus" onclick="increaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}', 'cartCheckBox');">
+                                <input type="number" name="quantityValue" step="1" min="1" max="${item.getProduct_Quantity()}" value="${item.getQuantity()}" class="cart__body-quantity-total" id="${item.getCartID()}">
+                                <input type="button" value="+" class="cart__body-quantity-plus" onclick="increaseQuantity('${item.getCartID()}','${item.getProduct_Quantity()}');UpdateContent('${item.getCartID()}', 'cartCheckBox');">
                             </div>
 
                             <div class="col-3 cart__body-price">
@@ -123,9 +123,9 @@
                                         }
                                     }
 
-                                    function increaseQuantity(inputId) {
+                                    function increaseQuantity(inputId,productQuantity) {
                                         var input = document.getElementById(inputId);
-                                        if (input.value < 999) {
+                                        if (input.value < parseInt(productQuantity)) {
                                             input.value = parseInt(input.value) + 1;
                                         }
                                     }

@@ -7,7 +7,7 @@ package Model;
 public class Cart {
 
     private String cartID, title, price, quantity, totalcost, productID, userID, status;
-    private String picture, productName;
+    private String picture, productName,product_Quantity;
 
     public Cart() {
     }
@@ -34,7 +34,7 @@ public class Cart {
         this.productName = productName;
     }
 
-    public Cart(String cartID, String title, String price, String quantity, String totalcost, String productID, String userID, String status, String productName, String picture) {
+    public Cart(String cartID, String title, String price, String quantity, String totalcost, String productID, String userID, String status, String productName, String picture,String product_Quantity) {
         this.cartID = cartID;
         this.title = title;
         this.price = price;
@@ -45,6 +45,15 @@ public class Cart {
         this.status = status;
         this.productName = productName;
         this.picture = picture;
+        this.product_Quantity=product_Quantity;
+    }
+
+    public String getProduct_Quantity() {
+        return product_Quantity;
+    }
+
+    public void setProduct_Quantity(String product_Quantity) {
+        this.product_Quantity = product_Quantity;
     }
 
     public String getCartID() {

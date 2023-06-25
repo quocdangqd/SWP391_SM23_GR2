@@ -5,8 +5,10 @@
 package Controller.View;
 
 import Dal.CartDAO;
+import Dal.FeedbackDAO;
 import Dal.ProductDAO;
 import Model.Cart;
+import Model.Feedback;
 import Model.Products;
 import Model.User;
 import jakarta.servlet.ServletException;
@@ -16,6 +18,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  *
@@ -38,7 +44,7 @@ public class ProductDetailController extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
-            ProductDAO pdao= new ProductDAO();
+            ProductDAO pdao = new ProductDAO();
             if (request.getParameter("addToCart") != null) {
                 if (user == null) {
                     response.sendRedirect(request.getContextPath() + "/auth/login");
@@ -48,21 +54,24 @@ public class ProductDetailController extends HttpServlet {
                 Products productDetail = (Products) session.getAttribute("productDetail");
                 String quantity = request.getParameter("quantity");
                 Cart cart = new Cart(productDetail.getSalePrice(), quantity, productDetail.getProductID(), user.getUserID(), "1");//1 default 
-//                out.print("quantity: "+quantity); 
                 CartDAO cartDAO = new CartDAO();
                 boolean checkAddToCart = cartDAO.AddOrUpdateCart(cart);
-                request.setAttribute("checkAddToCart",checkAddToCart); 
-//                out.print("checkadd: "+checkAddToCart);      
-//                return;
+                request.setAttribute("checkAddToCart", checkAddToCart);
             } else if (request.getParameter("submitComment") != null) {
                 out.print("submitComment");
             } else {
+                DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+                decimalFormat.applyPattern("#,###");
                 String ProductID = request.getParameter("ProductID");
-                Products productDetail =pdao.getProductByID(ProductID);
+                Products productDetail = pdao.getProductByID(ProductID);
+                String salePrice = decimalFormat.format(Float.parseFloat(productDetail.getSalePrice()));
+                salePrice = salePrice.replaceAll(",", ".");
+                FeedbackDAO feedbackDAO = new FeedbackDAO();
+                ArrayList<Feedback> feedbackList = feedbackDAO.getFeedbackListByProductId(ProductID);
+                request.setAttribute("feedbackList", feedbackList);
+                request.setAttribute("salePrice", salePrice);
                 session.setAttribute("productDetail", productDetail);
-                out.print(" "+productDetail.getQuantity()); 
-//                out.print(pdao.getProductAmount(ProductID)); 
-
+//                out.print(" " + productDetail.getQuantity());
             }
             request.getRequestDispatcher("productDetail.jsp").forward(request, response);
         }

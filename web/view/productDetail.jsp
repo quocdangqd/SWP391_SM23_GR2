@@ -77,44 +77,43 @@
                                 <div class="row">
                                     <div class="product__main-img col-lg-4 col-md-4 col-sm-12">
                                         <div class="product__main-img-primary">
-                                            <img src="images1/product/t1.jpg">
-                                        </div>
-
-                                        <div class="product__main-img-list">
-                                            <img src="images1/product/t1.1.jpg">
-                                            <img src="images1/product/t1.2.jpg">
-                                            <img src="images1/product/t1.3.jpg">
-                                            <img src="images1/product/t1.4.jpg">
-
-                                        </div>
+                                            <img src="${productDetail.getPicture()}">
                                     </div>
 
-                                    <div class="product__main-info col-lg-8 col-md-8 col-sm-12">
-                                        <div class="product__main-info-breadcrumb">
-                                            Trang chủ / Sản phẩm
-                                        </div>
+                                    <div class="product__main-img-list">
+                                        <img src="${productDetail.getPicture2()}">
+                                        <img src="${productDetail.getPicture3()}">
+                                        <img src="${productDetail.getPicture()}">
+                                    </div>
+                                </div>
 
-                                        <a href="#" class="product__main-info-title">
-                                            <h2 class="product__main-info-heading">
-                                                Tai nghe Corsair HS70 Pro Wireless Carbon
-                                            </h2>
-                                        </a>
+                                <div class="product__main-info col-lg-8 col-md-8 col-sm-12">
+                                    <div class="product__main-info-breadcrumb">
+                                        Trang chủ / Sản phẩm
+                                    </div>
 
-                                        <div class="product__main-info-rate-wrap">
-                                            <i class="fas fa-star product__main-info-rate"></i>
-                                            <i class="fas fa-star product__main-info-rate"></i>
-                                            <i class="fas fa-star product__main-info-rate"></i>
-                                            <i class="fas fa-star product__main-info-rate"></i>
-                                            <i class="fas fa-star product__main-info-rate"></i>
-                                        </div>
+                                    <a href="#" class="product__main-info-title">
+                                        <h2 class="product__main-info-heading">
+                                            ${productDetail.getName()}
+                                        </h2>
+                                    </a>
 
-                                        <div class="product__main-info-price">
-                                            <span class="product__main-info-price-current">
-                                                140.000đ
-                                            </span>
-                                        </div>
+                                    <div class="product__main-info-rate-wrap">
+                                        <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${productDetail.getRateStar()}</i>
+                                        <i class="fas fa-star product__main-info-rate"></i>
+                                        <i class="fas fa-star product__main-info-rate"></i>
+                                        <i class="fas fa-star product__main-info-rate"></i>
+                                        <i class="fas fa-star product__main-info-rate"></i>
+                                        <i class="fas fa-star product__main-info-rate"></i>
+                                    </div>
 
-                                        <div class="product__main-info-description">
+                                    <div class="product__main-info-price">
+                                        <span class="product__main-info-price-current">
+                                            ${salePrice} đ
+                                        </span>
+                                    </div>
+
+                                    <div class="product__main-info-description">
                                         <c:if test="${productDetail.getQuantity()!=0}">${productDetail.getQuantity()} sản phẩm có sẵn.</c:if>
                                         <c:if test="${productDetail.getQuantity()==0}">${productDetail.getQuantity()} Hết hàng.</c:if>
 
@@ -150,7 +149,7 @@
                                                     Gọi điện tư vấn
                                                 </div>
                                                 <div class="product__main-info-contact-phone-number">
-                                                    ( 0352.860.701)
+                                                    (0352.860.701)
                                                 </div>
                                             </div>
 
@@ -326,54 +325,44 @@
                     <div class="customer-reviews row pb-4 pb-4  py-4 pb-4 py-4 py-4">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <h3 >Bình luận sản phẩm</h3>
-                            <!--<form id ="formgroupcomment" method="post">-->
-                            <div class="form-group">
-                                <label>Tên:</label>
-                                <input name="comm_name"  type="text" id ='form-name' class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Email:</label>
-                                <input name="comm_mail"  type="email"  class="form-control" id="pwd">
-                            </div>
+                            <input type="radio" name="star" value="1"> 1 <i class="fas fa-star product__panel-rate"></i> <br>
+                            <input type="radio" name="star" value="1"> 2 <i class="fas fa-star product__panel-rate"></i> <br>
+                            <input type="radio" name="star" value="1"> 3 <i class="fas fa-star product__panel-rate"></i> <br>
+                            <input type="radio" name="star" value="1"> 4 <i class="fas fa-star product__panel-rate"></i> <br>
+                            <input type="radio" name="star" value="1"> 5 <i class="fas fa-star product__panel-rate"></i> <br>
                             <div class="form-group">
                                 <label>Nội dung:</label>
                                 <textarea name="comm_details"  rows="8" id ='formcontent' class="form-control"></textarea>     
                             </div>
                             <button type="submit" name="submitComment" id= "submitcomment" class="btn btn-primary">Gửi</button>
-                            <!--</form>--> 
                         </div>
                     </div>
 
                     <div class="product-comment row pb-4 pb-4  py-4 pb-4 py-4 py-4">
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="comment-item">
-                                <ul class = item-reviewer>
-                                    <div class="comment-item-user">
-                                        <img src="images/img/1.png" alt="" class="comment-item-user-img">
-
-                                        <li><b>Nguyễn Nhung</b></li> 
-                                    </div>
-
-                                    <br>
-                                    <li>2021-08-17 20:40:10</li>
-                                    <li>
-                                        <h4>Sản phẩm tốt</h4>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="comment-item">
-                                <ul class = item-reviewer> 
-                                    <div class="comment-item-user">
-                                        <img src="images/img/2.png" alt="" class="comment-item-user-img">
-                                        <li><b>Tùng Lương</b></li> 
-                                    </div>
-
-                                    <br>
-                                    <li>2021-02-17 12:20:10</li>
-                                    <li>
-                                        <h4>Hàng được đóng rất cẩn thận, hộp ko bị móp méo gì cả .... , giao hàng chậm cả tuần, Rõ trên app báo hàng đến kho rồi cả tuần k thấy đâu </h4>
-                                </ul>
-                            </div>                                 
+                            <c:forEach items="${feedbackList}" var="item">
+                                <div class="comment-item">
+                                    <ul class = item-reviewer>
+                                        <div class="comment-item-user">
+                                            <img src="images/img/1.png" alt="" class="comment-item-user-img">
+                                            <!--<img src="images/img/2.png" alt="" class="comment-item-user-img">-->
+                                            <li><b>${item.getUsername()}</b></li> 
+                                        </div>
+                                        <div class="product__panel-rate-wrap">
+                                            <i class="fas fa-star product__panel-rate"></i>
+                                            <i class="fas fa-star product__panel-rate"></i>
+                                            <i class="fas fa-star product__panel-rate"></i>
+                                            <i class="fas fa-star product__panel-rate"></i>
+                                            <i class="fas fa-star product__panel-rate"></i>
+                                        </div>
+                                        <br>
+                                        <li>${item.getDate()}</li>
+                                        <li>
+                                            <h4>${item.getInformation()}</h4>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <section class="product__love col-12 mt-4">
@@ -468,6 +457,7 @@
                                     <a href="#" class="product__panel-link">Tai nghe Havit H2008D</a>
                                 </h3>
                                 <div class="product__panel-rate-wrap">
+                                    <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px"></i>
                                     <i class="fas fa-star product__panel-rate"></i>
                                     <i class="fas fa-star product__panel-rate"></i>
                                     <i class="fas fa-star product__panel-rate"></i>
@@ -651,10 +641,9 @@
                         <h4 class="modal-title w-100">Hoàn thành</h4>
                     </div>
                     <div class="modal-body">
-                        <p class="text-center">
-                            <%--<c:if test="${allowRegister!=null}">Đăng kí tài khoản thành công!</c:if>--%>
-                            <%--<c:if test="${(allowResetPassword!=null)||(changepasswordSuccess!=null)}">Bạn đã đổi mật khẩu thành công!!</c:if>--%>
-                        </p>
+                        <!--<p class="text-center">-->
+                        <h6 class="text-center">Hàng được thêm vào giỏ hàng thành công!</h6>
+                        <!--</p>-->
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-success btn-block" data-dismiss="modal">
@@ -685,7 +674,7 @@
 
                                                 function increaseQuantity(quantity) {
                                                     var input = document.getElementById(quantity);
-                                                    if (input.value < ${productDetail.getQuantity()}) {
+                                                    if (input.value < parseInt(${productDetail.getQuantity()})) {
                                                         input.value = parseInt(input.value) + 1;
                                                     }
                                                 }
