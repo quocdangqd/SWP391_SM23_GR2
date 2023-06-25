@@ -1,56 +1,35 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package Controller.View;
 
-import Dal.ProductDAO;
-import Model.Categories;
-import Model.Products;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-
 /**
  *
- * @author DucPhaoLo
+ * @author PC
  */
-public class HomePageController extends HttpServlet {
+public class CheckoutController extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String tab = request.getParameter("tab");
-            ProductDAO productDAO = new ProductDAO();
-            HttpSession session = request.getSession();
-            if (tab == null || tab.equals("homepage")) {
-                ArrayList<Products> bestProductList = new ArrayList<>();
-                bestProductList = productDAO.BestSellerProducts();
-                session.setAttribute("bestProductList", bestProductList);
-//                out.print(bestProductList.size()+"<br>"); 
-                String type = request.getParameter("type");
-                ArrayList<Products> typeProductList = null;
-                if (type != null) {
-                    typeProductList = productDAO.getProductListByType(type);
-                } else if (session.getAttribute("type") != null) {
-                    type = (String) session.getAttribute("type");
-                    typeProductList = productDAO.getProductListByType(type);
-                } else {
-                    type = "Wired";
-                    typeProductList = productDAO.getProductListByType(type);
-                }
-                session.setAttribute("typeProductList", typeProductList);
-                session.setAttribute("type", type);
-//                out.print(typeProductList.size()); 
-            } else if (tab.equals("logOut")) {
-                session.removeAttribute("role");
-            }
             
-            session.setAttribute("tab", "allProduct");
-            
-            request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
         }
     }
 
