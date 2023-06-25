@@ -7,22 +7,22 @@ package Controller.View;
 
 import Dal.CategoriesDAO;
 import Dal.ProductDAO;
+import Model.Categories;
 import Model.Products;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author dell
  */
-public class AdminController extends HttpServlet {
-   
+public class EditProductController extends HttpServlet {
+   ProductDAO productDAO = new ProductDAO();
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -38,10 +38,10 @@ public class AdminController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AdminController</title>");  
+            out.println("<title>Servlet EditProductController</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AdminController at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet EditProductController at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,14 +58,14 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        ProductDAO productDAO = new ProductDAO();      
-         List product = productDAO.searchProducts();
-         
-         request.setAttribute("product", product);
-         request.getRequestDispatcher("productmanager.jsp").forward(request,response);
-       
-            
+                
+        String id = request.getParameter("id");
         
+        Products p = productDAO.getProductsByID(id);
+            CategoriesDAO ca = new CategoriesDAO();
+            request.setAttribute("categoriesList", ca.GetCategoriesList());
+            request.setAttribute("p", p);
+            request.getRequestDispatcher("Edit.jsp").forward(request,response);
     } 
 
     /** 
@@ -78,7 +78,30 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String id = request.getParameter("id");
+        String category = request.getParameter("category");
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        String image = request.getParameter("image");
+        String image2 = request.getParameter("image2");
+        String image3 = request.getParameter("image3");
+        String quantity = request.getParameter("quantity");
+        String price = request.getParameter("price");
+        String status = request.getParameter("status");
+        Products p = new Products();
+        p.setProductID(id);
+        p.setProduct_categoryID(category);
+        p.setName(name);
+        p.setDesciption(description);
+        p.setPicture(image);
+        p.setPicture2(image2);
+        p.setPicture3(image3);
+        p.setQuantity(quantity);
+        p.setPrice(price);
+        p.setStatus(status);
+        productDAO.updateProduct(p);
+        response.sendRedirect("AdminController");
+        
     }
 
     /** 

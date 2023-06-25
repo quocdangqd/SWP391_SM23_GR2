@@ -27,7 +27,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-
+           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
 
     <body onload="time()" class="app sidebar-mini rtl">
@@ -59,7 +64,7 @@
                             class="app-menu__label">Bảng điều khiển</span></a></li>
                 <li><a class="app-menu__item " href="usermanager.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
                             class="app-menu__label">Quản lý người dùng</span></a></li>
-                <li><a class="app-menu__item active" href="productmanager.jsp"><i
+                <li><a class="app-menu__item active" href="AdminController"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
                 </li>
                 <li><a class="app-menu__item" href="ordermanager.jsp"><i class='app-menu__icon bx bx-task'></i><span
@@ -126,9 +131,10 @@
                                         <th>Mô tả</th>
                                         <th>Ảnh</th>
                                         <th>Số lượng</th>
-                                        <th>Tình trạng</th>
+                                        
                                         <th>Giá tiền</th>
-                                        <th>Tính năng</th>
+                                        <th>Tình trạng</th>
+                                        <th>Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -141,12 +147,16 @@
                                         <td>${p.categories.name}</td>
                                         <td>${p.name}</td>
                                         <td>${p.desciption}</td>
-                                        <td>${p.picture} ${p.picture2}  ${p.picture3}</td>
-                                        <td>${p.productID}</td>
-                                        <td>${p.productID}</td> 
-                                        <td>${p.productID}</td>  
-                                        <td>${p.productID}</td>
-<!--                                        <td>Loại sản phẩm</td>
+                                        <td><img class="col-4" src="${p.picture}"> <img class="col-4" src="${p.picture2}">  <img class="col-4" src="${p.picture3}"></td>
+                                        <td>${p.quantity}</td>
+                                        <td>${p.price}</td> 
+                                        <td>${p.status}</td>  
+                                        
+                                        <td><a href="editproduct?id=${p.productID}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="editproduct" class="delete" data-toggle="modal" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
+<!--                                    
+
+                                        <td>Loại sản phẩm</td>
                                         <td>Tên sản phẩm</td>
                                         <td>Mô tả</td>
                                         <td>Ảnh</td>
