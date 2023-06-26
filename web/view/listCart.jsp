@@ -76,7 +76,7 @@
                                     ${item.getProductName()}
                                 </a>
                             </div>
-                                ${item.getProduct_Quantity()}
+                                <!--${item.getProduct_Quantity()}-->
                             <div class="col-3 cart__body-quantity">
                                 <input type="button" value="-" class="cart__body-quantity-minus" onclick="decreaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}', 'cartCheckBox');">
                                 <input type="number" name="quantityValue" step="1" min="1" max="${item.getProduct_Quantity()}" value="${item.getQuantity()}" class="cart__body-quantity-total" id="${item.getCartID()}">

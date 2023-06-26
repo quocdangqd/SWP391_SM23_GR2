@@ -42,6 +42,7 @@ public class ProductDetailController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            FeedbackDAO feedbackDAO = new FeedbackDAO();
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
             ProductDAO pdao = new ProductDAO();
@@ -57,21 +58,101 @@ public class ProductDetailController extends HttpServlet {
                 CartDAO cartDAO = new CartDAO();
                 boolean checkAddToCart = cartDAO.AddOrUpdateCart(cart);
                 request.setAttribute("checkAddToCart", checkAddToCart);
+                ArrayList<Feedback> feedbackList = feedbackDAO.getFeedbackListByProductId(productDetail.getProductID(), "3", "0");;
+                request.setAttribute("feedbackList", feedbackList);//??? mai lam tiep
+//                out.print("checkAddToCart: "+checkAddToCart); 
+//                return;
             } else if (request.getParameter("submitComment") != null) {
-                out.print("submitComment");
+                String commentContent = request.getParameter("comm_details");
+                String productRate = request.getParameter("star");
+                Products productDetail = (Products) session.getAttribute("productDetail");
+                String orderdetailID = feedbackDAO.getLatestOrderdetailIDByProductIDAndUserId(productDetail.getProductID(), user.getUserID());
+                Feedback f = new Feedback(productDetail.getProductID(), user.getUserID(), commentContent, productRate, orderdetailID);
+                feedbackDAO.addFeedback(f);
+                ArrayList<Feedback> feedbackList;
+                feedbackList = feedbackDAO.getFeedbackListByProductId(productDetail.getProductID(), "3", "0");
+                for (Feedback item : feedbackList) {
+                    out.print("<div class=\"comment-item\">\n"
+                            + "                                    <ul class = item-reviewer>\n"
+                            + "                                        <div class=\"comment-item-user\">\n"
+                            + "                                            <img src=\"images/img/1.png\" alt=\"\" class=\"comment-item-user-img\">\n"
+                            + "                                            <!--<img src=\"images/img/2.png\" alt=\"\" class=\"comment-item-user-img\">-->\n"
+                            + "                                            <li><b>" + item.getUsername() + "</b></li> \n"
+                            + "                                        </div>\n"
+                            + "                                        <div class=\"product__panel-rate-wrap\">\n"
+                            + "                                            <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                            + "                                            <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                            + "                                            <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                            + "                                            <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                            + "                                            <i class=\"fas fa-star product__panel-rate\"></i>\n"
+                            + "                                        </div>\n"
+                            + "                                        <br>\n"
+                            + "                                        <li>" + item.getDate() + "</li>\n"
+                            + "                                        <li>\n"
+                            + "                                            <h4>" + item.getInformation() + "</h4>\n"
+                            + "                                        </li>\n"
+                            + "                                    </ul>\n"
+                            + "                                </div>");
+                }
+                if (feedbackList.size() >= 3) {
+                    out.print("<style>\n"
+                            + "                                    .load-more-button {\n"
+                            + "                                        background-color: #4CAF50; /* Màu nền */\n"
+                            + "                                        color: white; /* Màu chữ */\n"
+                            + "                                        padding: 10px 20px; /* Kích thước nút */\n"
+                            + "                                        border: none; /* Loại bỏ đường viền */\n"
+                            + "                                        border-radius: 4px; /* Bo góc nút */\n"
+                            + "                                        cursor: pointer; /* Hiển thị con trỏ khi di chuột vào nút */\n"
+                            + "                                        font-size: 16px; /* Kích thước chữ */\n"
+                            + "                                        margin-left: 500px;\n"
+                            + "                                    }\n"
+                            + "                                    .load-more-button:hover {\n"
+                            + "                                        background-color: #45a049; /* Màu nền khi di chuột vào nút */\n"
+                            + "                                    }\n"
+                            + "\n"
+                            + "                                </style>\n"
+                            + "                                <button class=\"load-more-button\" id=\"load-more-button\" onclick=\"LoadMoreFuction('comment-item', 'feedbackContent', 'load-more-button')\" >Load More</button>");
+                }
+                return;
             } else {
-                DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
-                decimalFormat.applyPattern("#,###");
-                String ProductID = request.getParameter("ProductID");
+                String ProductID = "1";
                 Products productDetail = pdao.getProductByID(ProductID);
-                String salePrice = decimalFormat.format(Float.parseFloat(productDetail.getSalePrice()));
-                salePrice = salePrice.replaceAll(",", ".");
-                FeedbackDAO feedbackDAO = new FeedbackDAO();
-                ArrayList<Feedback> feedbackList = feedbackDAO.getFeedbackListByProductId(ProductID);
+                ArrayList<Feedback> feedbackList;
+                if (request.getParameter("loadMore") != null) {
+                    String offset = request.getParameter("amount");
+                    feedbackList = feedbackDAO.getFeedbackListByProductId(ProductID, "3", offset);
+                    for (Feedback item : feedbackList) {
+                        out.print("<div class=\"comment-item\">\n"
+                                + "                                    <ul class = item-reviewer>\n"
+                                + "                                        <div class=\"comment-item-user\">\n"
+                                + "                                            <img src=\"images/img/1.png\" alt=\"\" class=\"comment-item-user-img\">\n"
+                                + "                                            <!--<img src=\"images/img/2.png\" alt=\"\" class=\"comment-item-user-img\">-->\n"
+                                + "                                            <li><b>" + item.getUsername() + "</b></li> \n"
+                                + "                                        </div>\n"
+                                + "                                        <div class=\"product__panel-rate-wrap\">\n"
+                                + "                                            <i class=\"product__panel-rate\" style=\"text-decoration: underline;font-size: 20px; margin-right: 5px\">" + item.getProduct_rate() + "</i>");
+                        for (int i = 1; i <= Integer.parseInt(item.getProduct_rate()); ++i) {
+                            out.print("<i class=\"fas fa-star product__panel-rate\"></i>");
+                        }
+                        out.print("</div>\n"
+                                + "                                        <br>\n"
+                                + "                                        <li>" + item.getDate() + "</li>\n"
+                                + "                                        <li>\n"
+                                + "                                            <h4>" + item.getInformation() + "</h4>\n"
+                                + "                                        </li>\n"
+                                + "                                    </ul>\n"
+                                + "                                </div>");
+                    }
+                    if (feedbackList.size() != 0) {
+                        out.print("<button class=\"load-more-button\" id=\"" + request.getParameter("amount") + "\" onclick=\"LoadMoreFuction('comment-item', 'feedbackContent','" + request.getParameter("amount") + "')\" >Load More</button>");
+                    }
+                    return;
+                }
+//                String ProductID = request.getParameter("ProductID");
+                feedbackList = feedbackDAO.getFeedbackListByProductId(ProductID, "3", "0");
                 request.setAttribute("feedbackList", feedbackList);
-                request.setAttribute("salePrice", salePrice);
                 session.setAttribute("productDetail", productDetail);
-//                out.print(" " + productDetail.getQuantity());
+
             }
             request.getRequestDispatcher("productDetail.jsp").forward(request, response);
         }
@@ -104,6 +185,16 @@ public class ProductDetailController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+//        response.setContentType("text/html;charset=UTF-8");
+//        try ( PrintWriter out = response.getWriter()) {
+//            if (request.getParameter("Loadmore") != null) {
+//                out.print("amount: " + request.getParameter("amount"));
+//                out.print("Loadmore: " + request.getParameter("Loadmore"));
+//                out.print("haha");
+//                    return;
+//            }
+//        }
+
     }
 
     /**

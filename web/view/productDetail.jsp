@@ -48,7 +48,7 @@
             <!-- score-top-->
             <button onclick="topFunction()" id="myBtn-scroll" title="Go to top"><i class="fas fa-chevron-up"></i></button>                        
             <!-- product -->
-            <form action="ProductDetailController?">
+            <form action="ProductDetailController ">
                 <section class="product">
                     <div class="container">
                         <div class="row bg-white pt-4 pb-4 border-bt pc">
@@ -89,7 +89,7 @@
 
                                 <div class="product__main-info col-lg-8 col-md-8 col-sm-12">
                                     <div class="product__main-info-breadcrumb">
-                                        Trang chủ / Sản phẩm
+                                        Trang chủ / Sản phẩm  
                                     </div>
 
                                     <a href="#" class="product__main-info-title">
@@ -109,7 +109,7 @@
 
                                     <div class="product__main-info-price">
                                         <span class="product__main-info-price-current">
-                                            ${salePrice} đ
+                                            ${productDetail.getSalePrice()} đ
                                         </span>
                                     </div>
 
@@ -325,21 +325,21 @@
                     <div class="customer-reviews row pb-4 pb-4  py-4 pb-4 py-4 py-4">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <h3 >Bình luận sản phẩm</h3>
-                            <input type="radio" name="star" value="1"> 1 <i class="fas fa-star product__panel-rate"></i> <br>
-                            <input type="radio" name="star" value="1"> 2 <i class="fas fa-star product__panel-rate"></i> <br>
-                            <input type="radio" name="star" value="1"> 3 <i class="fas fa-star product__panel-rate"></i> <br>
-                            <input type="radio" name="star" value="1"> 4 <i class="fas fa-star product__panel-rate"></i> <br>
-                            <input type="radio" name="star" value="1"> 5 <i class="fas fa-star product__panel-rate"></i> <br>
+                            <input type="radio" name="star" value="1" checked=""> 1 <i class="fas fa-star product__panel-rate"></i> <br>
+                            <input type="radio" name="star" value="2"> 2 <i class="fas fa-star product__panel-rate"></i> <br>
+                            <input type="radio" name="star" value="3"> 3 <i class="fas fa-star product__panel-rate"></i> <br>
+                            <input type="radio" name="star" value="4"> 4 <i class="fas fa-star product__panel-rate"></i> <br>
+                            <input type="radio" name="star" value="5"> 5 <i class="fas fa-star product__panel-rate"></i> <br>
                             <div class="form-group">
                                 <label>Nội dung:</label>
                                 <textarea name="comm_details"  rows="8" id ='formcontent' class="form-control"></textarea>     
                             </div>
-                            <button type="submit" name="submitComment" id= "submitcomment" class="btn btn-primary">Gửi</button>
+                            <button type="submit" name="submitComment" id= "submitcomment" onclick="SubmitContent('feedbackContent')" class="btn btn-primary" >Gửi</button>
                         </div>
                     </div>
 
                     <div class="product-comment row pb-4 pb-4  py-4 pb-4 py-4 py-4">
-                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12" id="feedbackContent">
                             <c:forEach items="${feedbackList}" var="item">
                                 <div class="comment-item">
                                     <ul class = item-reviewer>
@@ -349,11 +349,10 @@
                                             <li><b>${item.getUsername()}</b></li> 
                                         </div>
                                         <div class="product__panel-rate-wrap">
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
-                                            <i class="fas fa-star product__panel-rate"></i>
+                                            <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${item.getProduct_rate()}</i>
+                                            <c:forEach begin="1" end="${item.getProduct_rate()}" step="1">
+                                                <i class="fas fa-star product__panel-rate"></i>
+                                            </c:forEach>
                                         </div>
                                         <br>
                                         <li>${item.getDate()}</li>
@@ -363,6 +362,25 @@
                                     </ul>
                                 </div>
                             </c:forEach>
+                            <c:if test="${feedbackList.size()>=3}">
+                                <style>
+                                    .load-more-button {
+                                        background-color: #4CAF50; /* Màu nền */
+                                        color: white; /* Màu chữ */
+                                        padding: 10px 20px; /* Kích thước nút */
+                                        border: none; /* Loại bỏ đường viền */
+                                        border-radius: 4px; /* Bo góc nút */
+                                        cursor: pointer; /* Hiển thị con trỏ khi di chuột vào nút */
+                                        font-size: 16px; /* Kích thước chữ */
+                                        margin-left: 500px;
+                                    }
+                                    .load-more-button:hover {
+                                        background-color: #45a049; /* Màu nền khi di chuột vào nút */
+                                    }
+
+                                </style>
+                                <button class="load-more-button" id="load-more-button" onclick="LoadMoreFuction('comment-item', 'feedbackContent', 'load-more-button')" >Load More</button>
+                            </c:if>
                         </div>
                     </div>
                     <section class="product__love col-12 mt-4">
@@ -664,20 +682,79 @@
 
             <script src="js/jq.js"></script>
             <script src="js/product.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script>
-                                                function decreaseQuantity(quantity) {
-                                                    var input = document.getElementById(quantity);
-                                                    if (input.value > 1) {
-                                                        input.value = parseInt(input.value) - 1;
-                                                    }
-                                                }
 
-                                                function increaseQuantity(quantity) {
-                                                    var input = document.getElementById(quantity);
-                                                    if (input.value < parseInt(${productDetail.getQuantity()})) {
-                                                        input.value = parseInt(input.value) + 1;
-                                                    }
-                                                }
+                                    function SubmitContent(feedbackContent) {
+                                        event.preventDefault();
+                                        var comm_details = document.getElementById('formcontent').value;
+                                        var starArray = document.getElementsByName('star');
+                                        var starValue;
+                                        for (var i = 0; i < starArray.length; ++i)
+                                        {
+                                            if (starArray[i].checked)
+                                            {
+                                                starValue = starArray[i].value;
+                                                break;
+                                            }
+                                        }
+//                                        console.log(starValue);
+//                                        console.log(comm_details);
+                                        var comm_details = document.getElementById('formcontent').value;
+                                        $.ajax({
+                                            url: "/TechZone/view/ProductDetailController",
+                                            type: "post", //send it through get method
+                                            data: {
+                                                submitComment: true,
+                                                comm_details: comm_details,
+                                                star: starValue,
+                                            },
+                                            success: function (data) {
+                                                var row = document.getElementById('feedbackContent');
+                                                row.innerHTML = data;
+                                                console.log(data);
+                                            },
+                                            error: function (xhr) {
+                                                //Do Something to handle error
+                                            }
+                                        });
+                                    }
+                                    function LoadMoreFuction(commentListAmount, feedbackContent, loadmoreButton) {
+                                        event.preventDefault();
+                                        var amount = document.getElementsByClassName('comment-item').length;
+                                        var loadMorebtn = document.getElementById(loadmoreButton);
+                                        loadMorebtn.style.display = "none";
+                                        $.ajax({
+                                            url: "/TechZone/view/ProductDetailController",
+                                            type: "post", //send it through get method
+                                            data: {
+                                                loadMore: true,
+                                                amount: amount
+                                            },
+                                            success: function (data) {
+                                                var row = document.getElementById('feedbackContent');
+                                                row.innerHTML += data;
+                                                console.log(data);
+                                            },
+                                            error: function (xhr) {
+                                                //Do Something to handle error
+                                            }
+                                        });
+                                    }
+
+                                    function decreaseQuantity(quantity) {
+                                        var input = document.getElementById(quantity);
+                                        if (input.value > 1) {
+                                            input.value = parseInt(input.value) - 1;
+                                        }
+                                    }
+
+                                    function increaseQuantity(quantity) {
+                                        var input = document.getElementById(quantity);
+                                        if (input.value < parseInt(${productDetail.getQuantity()})) {
+                                            input.value = parseInt(input.value) + 1;
+                                        }
+                                    }
         </script>
         <c:if test="${checkAddToCart!=null}">
             <script>
@@ -687,5 +764,6 @@
                 });
             </script>
         </c:if>
+
     </body>
 </html>
