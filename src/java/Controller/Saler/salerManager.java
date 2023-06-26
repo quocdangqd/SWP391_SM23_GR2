@@ -1,4 +1,8 @@
-package Controller.Manager;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package Controller.Saler;
 
 import Dal.OrderDAO;
 import Dal.ProductDAO;
@@ -14,7 +18,7 @@ import java.util.List;
  *
  * @author trand
  */
-public class IncomeManager extends HttpServlet {
+public class salerManager extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,10 +56,9 @@ public class IncomeManager extends HttpServlet {
             request.getRequestDispatcher("/manager/incomemanager.jsp").forward(request, response);
 
         }
-
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

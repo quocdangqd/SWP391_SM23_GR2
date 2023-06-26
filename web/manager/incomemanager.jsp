@@ -164,7 +164,7 @@
                     <div class="widget-small primary coloured-icon"><i class='icon fa-3x bx bxs-chart' ></i>
                         <div class="info">
                             <h4>Tổng thu nhập</h4>
-                            <p><b>104.890.000 đ</b></p>
+                            <p><b>${requestScope.tong} đ</b></p>
                         </div>
                     </div>
                 </div>
@@ -271,7 +271,7 @@
                                     <tr>
                                         <td>${l.getProductID()}</td>
                                         <td>${l.getName()}</td>
-                                        <td>${l.getPicture()}</td>
+                                        <td><img src="${l.getPicture()}"/></td>
                                         <td>${l.getPrice()}</td>
                                         <td>${l.categories.getName()}</td>
                                     </tr>

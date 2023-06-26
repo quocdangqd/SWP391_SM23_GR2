@@ -257,6 +257,24 @@ public class ProductDAO extends ConnectMySQL {
         return count;
     }
 
+    public int totalIncome() {
+        int total = 0;
+        String sqlSelect = "SELECT SUM(od.quantity*p.price) as 'total' FROM \n"
+                + "swp.orderdetail od\n"
+                + "join product p\n"
+                + "on od.orderdetail_productID = p.ProductID";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return total;
+    }
+
     public ArrayList<Products> limitProducts() {
         ArrayList<Products> data = new ArrayList<>();
         try {
@@ -285,6 +303,40 @@ public class ProductDAO extends ConnectMySQL {
         }
         return data;
     }
+
+    public ArrayList<Products> bestSale() {
+        ArrayList<Products> data = new ArrayList<>();
+        try {
+            String sqlSelect = "SELECT * FROM swp.product p\n"
+                    + "join orderdetail od \n"
+                    + "on p.ProductID = od.orderdetail_productID\n"
+                    + "join category c\n"
+                    + "on p.product_categoryID = c.categoryID\n"
+                    + "where od.quantity > 3";
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                Products p = new Products();
+                p.setProductID(String.valueOf(rs.getInt(1)));
+                String categories = String.valueOf(rs.getInt(2));
+                p.setProduct_categoryID(categories);
+                p.setName(String.valueOf(rs.getString(3)));
+                p.setDesciption(String.valueOf(rs.getString(4)));
+                p.setPicture(rs.getString(5));
+                p.setPicture2(rs.getString(6));
+                p.setPicture3(rs.getString(7));
+                p.setPrice(String.valueOf(rs.getFloat(8)));
+                p.setQuantity(String.valueOf(rs.getInt(9)));
+                p.setStatus(String.valueOf(rs.getInt(10)));
+                p.setCategories(new CategoriesDAO().getCategoryById(categories));
+                data.add(p);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return data;
+    }
+
     // Duc Anh 
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
