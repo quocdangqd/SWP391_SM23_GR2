@@ -169,7 +169,7 @@
                 <li><a class="app-menu__item active" href="ManagerProductController"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
                 </li>
-                <li><a class="app-menu__item" href="ordermanager.jsp"><i class='app-menu__icon bx bx-task'></i><span
+                <li><a class="app-menu__item" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
                 <li><a class="app-menu__item" href="accountmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
@@ -204,12 +204,15 @@
                                             class="fas fa-folder-plus"></i> Thêm tình trạng</a>
                                 </div>
                             </div>
-                            <!--<form class="row" action="ManagerAddProductController" method="post">-->
-<!--                                <p class="text-danger">${wrongText}</p>
-                                <p class="text-success">${successText}</p>-->
+                            
+                                <p class="text-danger">${wrongText}</p>
+                                <p class="text-success">${successText}</p>                                <br> <br>
+
+                            <form class="row" action="ManagerAddProductController" method="post">
+
                                 <div class="form-group col-md-3">
                                     <label class="control-label" >Mã sản phẩm </label>
-                                    <input class="form-control" type="number" placeholder="">
+                                    <input name="pid" value="${pid}" class="form-control" type="number" placeholder="" hidden="">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label class="control-label">Tên sản phẩm</label>
@@ -224,18 +227,18 @@
                                 <div class="form-group col-md-3 ">
                                     <label for="exampleSelect1" class="control-label">Tình trạng</label>
                                     <select class="form-control" id="exampleSelect1" name="status">
-                                        <option>-- Chọn tình trạng --</option>
+                                        <option value="2">-- Chọn tình trạng --</option>
                                         <option value="1">Còn hàng</option>
-                                        <option value="2">Hết hàng</option>
+                                        <option value="0">Hết hàng</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
                                     <select class="form-control" id="exampleSelect1" name="cid">
-                                        <option>-- Chọn danh mục --</option>
+                                        <option value="0">-- Chọn danh mục --</option>
                                         <option value="1">Tai nghe</option>
                                         <option value="2">Chuột</option>
-                                        <option value="3">bàn phím</option>
+                                        <option value="3">Bàn phím</option>
 
                                     </select>
                                 </div>
@@ -260,7 +263,7 @@
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Ảnh sản phẩm</label>
                                     <div id="myfileupload">
-                                        <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" value="${image}"/>
+                                        <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" value="${image1}"/>
                                     </div>
                                     <div id="thumbbox">
                                         <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
@@ -276,9 +279,11 @@
                                     <textarea class="form-control" name="mota" id="mota" value="${desciption}"></textarea>
                                     <script>CKEDITOR.replace('mota');</script>
                                 </div>
-                                    <button class="btn btn-save" type="submit">Lưu lại</button>
+                                
+                                <button class="btn btn-save" type="submit">Lưu lại</button>
                                 <a class="btn btn-cancel" href="ManagerProductController">Hủy bỏ</a>
-<!--                            </form>-->
+                                
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -344,15 +349,10 @@
                             <div class="form-group col-md-12">
                                 <label class="control-label">Danh mục sản phẩm hiện đang có</label>
                                 <ul style="padding-left: 20px;">
-                                    <li>Bàn ăn</li>
-                                    <li>Bàn thông minh</li>
-                                    <li>Tủ</li>
-                                    <li>Ghế gỗ</li>
-                                    <li>Ghế sắt</li>
-                                    <li>Giường người lớn</li>
-                                    <li>Giường trẻ em</li>
-                                    <li>Bàn trang điểm</li>
-                                    <li>Giá đỡ</li>
+                                    <li>Tai nghe</li>
+                                    <li>Chuột</li>
+                                    <li>Bàn phím</li>
+
                                 </ul>
                             </div>
                         </div>

@@ -17,6 +17,13 @@ public class ManagerUpdateProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        ManagerDAO dao = new ManagerDAO();
+        String id = req.getParameter("id");
+        dao.LoadOneProduct(id);
+        Products p = dao.getOneProduct();
+        req.setAttribute("o", p);
+        req.getRequestDispatcher("editproduct.jsp").forward(req, resp);
+
     }
 
     @Override
@@ -32,7 +39,7 @@ public class ManagerUpdateProductController extends HttpServlet {
         String Quantity = req.getParameter("quantity");
         String Status = req.getParameter("status");
 
-        dao.updateProduct(Cid, Cid, Name, Desciption, Image, Quantity, Status, Price);
+        dao.updateProduct(Pid, Cid, Name, Desciption, Image, Quantity, Status, Price);
         req.setAttribute("name", Name);
         req.setAttribute("price", Price);
         req.setAttribute("image", Image);
@@ -42,7 +49,7 @@ public class ManagerUpdateProductController extends HttpServlet {
         req.setAttribute("quantity", Quantity);
         req.setAttribute("status", Status);
         req.setAttribute("successText", "Add Successful!!!");
-        req.getRequestDispatcher("productmanager.jsp").forward(req, resp);
+        req.getRequestDispatcher("editproduct.jsp").forward(req, resp);
 
     }
 
