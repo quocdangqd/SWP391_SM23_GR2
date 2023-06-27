@@ -60,6 +60,7 @@ public class ProductDetailController extends HttpServlet {
                 request.setAttribute("checkAddToCart", checkAddToCart);
                 ArrayList<Feedback> feedbackList = feedbackDAO.getFeedbackListByProductId(productDetail.getProductID(), "3", "0");;
                 request.setAttribute("feedbackList", feedbackList);//??? mai lam tiep
+//                request.getRequestDispatcher("productDetail.jsp").forward(request, response);
 //                out.print("checkAddToCart: "+checkAddToCart); 
 //                return;
             } else if (request.getParameter("submitComment") != null) {
@@ -115,7 +116,8 @@ public class ProductDetailController extends HttpServlet {
                 }
                 return;
             } else {
-                String ProductID = "1";
+                String ProductID = request.getParameter("ProductID");
+//                String ProductID = "1";
                 Products productDetail = pdao.getProductByID(ProductID);
                 ArrayList<Feedback> feedbackList;
                 if (request.getParameter("loadMore") != null) {
@@ -148,12 +150,20 @@ public class ProductDetailController extends HttpServlet {
                     }
                     return;
                 }
-//                String ProductID = request.getParameter("ProductID");
+                DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+                decimalFormat.applyPattern("#,###");
+                String salePrice = String.valueOf(decimalFormat.format(Float.parseFloat(productDetail.getSalePrice())));
+                salePrice = salePrice.replaceAll(",", ".");
+                session.setAttribute("salePrice", salePrice);
                 feedbackList = feedbackDAO.getFeedbackListByProductId(ProductID, "3", "0");
                 request.setAttribute("feedbackList", feedbackList);
                 session.setAttribute("productDetail", productDetail);
-
             }
+            if (user != null) {
+                request.setAttribute("checkBuyProduct", feedbackDAO.checkBuyProductByUserID(user.getUserID(), request.getParameter("ProductID")));
+            }
+//            request.setAttribute("checkBuyProduct",feedbackDAO.checkBuyProductByUserID(user.getUserID(), request.getParameter("ProductID"))); 
+//            out.print(feedbackDAO.checkBuyProductByUserID(user.getUserID(), request.getParameter("ProductID"))); 
             request.getRequestDispatcher("productDetail.jsp").forward(request, response);
         }
     }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class FeedbackDAO extends ConnectMySQL {
 
-    public ArrayList<Feedback> getFeedbackListByProductId(String productID,String limit,String offset) {
+    public ArrayList<Feedback> getFeedbackListByProductId(String productID, String limit, String offset) {
         ArrayList<Feedback> data = new ArrayList<>();
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
@@ -25,7 +25,7 @@ public class FeedbackDAO extends ConnectMySQL {
                     + " from feedback f,user u  ,orderdetail od  ,swp.order o\n"
                     + " where f.feedbackID_userID=u.userID  and u.userID=o.order_userID\n"
                     + " and o.orderID=od.orderdetail_orderID and f.orderdetailID=od.orderdetailID and od.orderdetail_productID=? order by f.date desc\n"
-                    + "limit "+limit+" offset "+offset+"";
+                    + "limit " + limit + " offset " + offset + "";
             pstm = connection.prepareStatement(sqlSelect);
             pstm.setInt(1, Integer.parseInt(productID));
             rs = pstm.executeQuery();
@@ -53,13 +53,17 @@ public class FeedbackDAO extends ConnectMySQL {
         return data;
     }
 
-    public boolean checkBuyProductByUserID(String userID) {
+    public boolean checkBuyProductByUserID(String userID,String productid) {
         try {
+//            String sqlSelect = "select* from swp.order o, orderdetail od,product p \n"
+//                    + "where o.orderID=od.orderdetail_orderID  and od.orderdetail_productID=p.ProductID \n"
+//                    + "and o.order_userID=?";
             String sqlSelect = "select* from swp.order o, orderdetail od,product p \n"
                     + "where o.orderID=od.orderdetail_orderID  and od.orderdetail_productID=p.ProductID \n"
-                    + "and o.order_userID=?";
+                    + "and o.order_userID=? and ProductID=?";
             pstm = connection.prepareStatement(sqlSelect);
             pstm.setInt(1, Integer.parseInt(userID));
+            pstm.setInt(2, Integer.parseInt(productid));
             rs = pstm.executeQuery();
             while (rs.next()) {
                 return true;
@@ -99,7 +103,7 @@ public class FeedbackDAO extends ConnectMySQL {
 
     public boolean addFeedback(Feedback feedback) {
         try {
-            Timestamp datetime =  new Timestamp(System.currentTimeMillis());
+            Timestamp datetime = new Timestamp(System.currentTimeMillis());
             String sqlSelect = "UPDATE `swp`.`orderdetail` SET `product_rate` = ? WHERE (`orderdetailID` = ?);";
             pstm = connection.prepareStatement(sqlSelect);
             pstm.setFloat(1, Float.parseFloat(feedback.getProduct_rate()));
@@ -107,12 +111,12 @@ public class FeedbackDAO extends ConnectMySQL {
             pstm.execute();
             sqlSelect = "INSERT INTO `swp`.`feedback` (`FeedbackID_ProductID`, `feedbackID_userID`, `information`, `status`, `date`,`orderdetailID`) \n"
                     + "VALUES (?, ?, ?, '1',?,?);";
-            pstm=connection.prepareStatement(sqlSelect);
+            pstm = connection.prepareStatement(sqlSelect);
             pstm.setInt(1, Integer.parseInt(feedback.getFeedbackID_ProductID()));
             pstm.setInt(2, Integer.parseInt(feedback.getFeedbackID_userID()));
-            pstm.setString(3,feedback.getInformation());
-            pstm.setTimestamp(4,datetime);
-            pstm.setInt(5,Integer.parseInt(feedback.getOrderdetailID()));
+            pstm.setString(3, feedback.getInformation());
+            pstm.setTimestamp(4, datetime);
+            pstm.setInt(5, Integer.parseInt(feedback.getOrderdetailID()));
             pstm.execute();
             return true;
         } catch (Exception e) {
@@ -123,18 +127,18 @@ public class FeedbackDAO extends ConnectMySQL {
 
     public static void main(String[] args) {
         FeedbackDAO feedbackDAO = new FeedbackDAO();
-        System.out.println("checkBuyProductByUserID: " + feedbackDAO.checkBuyProductByUserID("7"));
-        System.out.println("getLatestOrderdetailIDByProductIDAndUserId: " + feedbackDAO.getLatestOrderdetailIDByProductIDAndUserId("1", "7"));
-        if (feedbackDAO.checkBuyProductByUserID("7")) {
-            String orderdetailID=feedbackDAO.getLatestOrderdetailIDByProductIDAndUserId("1", "7");
-            Feedback f=new Feedback();
-            f.setFeedbackID_ProductID("1");
-            f.setProduct_rate("5");
-            f.setOrderdetailID(orderdetailID);
-            f.setFeedbackID_userID("7");
-            f.setInformation("Con Lon Con1");
-            feedbackDAO.addFeedback(f);
-        }
+        System.out.println("checkBuyProductByUserID: " + feedbackDAO.checkBuyProductByUserID("10","9"));
+//        System.out.println("getLatestOrderdetailIDByProductIDAndUserId: " + feedbackDAO.getLatestOrderdetailIDByProductIDAndUserId("1", "7"));
+//        if (feedbackDAO.checkBuyProductByUserID("7")) {
+//            String orderdetailID = feedbackDAO.getLatestOrderdetailIDByProductIDAndUserId("1", "7");
+//            Feedback f = new Feedback();
+//            f.setFeedbackID_ProductID("1");
+//            f.setProduct_rate("5");
+//            f.setOrderdetailID(orderdetailID);
+//            f.setFeedbackID_userID("7");
+//            f.setInformation("Con Lon Con1");
+//            feedbackDAO.addFeedback(f);
+//        }
 //        for (Feedback feedback : feedbackDAO.getFeedbackLi    stByProductId("1")) {
 //            System.out.println("FeedbackID: " + feedback.getFeedbackID());
 //            System.out.println("FeedbackID_ProductID: " + feedback.getFeedbackID_ProductID());

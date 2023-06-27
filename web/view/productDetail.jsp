@@ -48,7 +48,7 @@
             <!-- score-top-->
             <button onclick="topFunction()" id="myBtn-scroll" title="Go to top"><i class="fas fa-chevron-up"></i></button>                        
             <!-- product -->
-            <form action="ProductDetailController ">
+            <form action="ProductDetailController">
                 <section class="product">
                     <div class="container">
                         <div class="row bg-white pt-4 pb-4 border-bt pc">
@@ -109,7 +109,7 @@
 
                                     <div class="product__main-info-price">
                                         <span class="product__main-info-price-current">
-                                            ${productDetail.getSalePrice()} đ
+                                            ${salePrice} đ
                                         </span>
                                     </div>
 
@@ -325,16 +325,18 @@
                     <div class="customer-reviews row pb-4 pb-4  py-4 pb-4 py-4 py-4">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <h3 >Bình luận sản phẩm</h3>
-                            <input type="radio" name="star" value="1" checked=""> 1 <i class="fas fa-star product__panel-rate"></i> <br>
-                            <input type="radio" name="star" value="2"> 2 <i class="fas fa-star product__panel-rate"></i> <br>
-                            <input type="radio" name="star" value="3"> 3 <i class="fas fa-star product__panel-rate"></i> <br>
-                            <input type="radio" name="star" value="4"> 4 <i class="fas fa-star product__panel-rate"></i> <br>
-                            <input type="radio" name="star" value="5"> 5 <i class="fas fa-star product__panel-rate"></i> <br>
-                            <div class="form-group">
-                                <label>Nội dung:</label>
-                                <textarea name="comm_details"  rows="8" id ='formcontent' class="form-control"></textarea>     
-                            </div>
-                            <button type="submit" name="submitComment" id= "submitcomment" onclick="SubmitContent('feedbackContent')" class="btn btn-primary" >Gửi</button>
+                            <c:if test="${checkBuyProduct==true}">
+                                <input type="radio" name="star" value="1" checked=""> 1 <i class="fas fa-star product__panel-rate"></i> <br>
+                                <input type="radio" name="star" value="2"> 2 <i class="fas fa-star product__panel-rate"></i> <br>
+                                <input type="radio" name="star" value="3"> 3 <i class="fas fa-star product__panel-rate"></i> <br>
+                                <input type="radio" name="star" value="4"> 4 <i class="fas fa-star product__panel-rate"></i> <br>
+                                <input type="radio" name="star" value="5"> 5 <i class="fas fa-star product__panel-rate"></i> <br>
+                                <div class="form-group">
+                                    <label>Nội dung:</label>
+                                    <textarea name="comm_details"  rows="8" id ='formcontent' class="form-control"></textarea>     
+                                </div>
+                                <button type="submit" name="submitComment" id= "submitcomment" onclick="SubmitContent('feedbackContent')" class="btn btn-primary" >Gửi</button>
+                            </c:if>
                         </div>
                     </div>
 
@@ -682,7 +684,7 @@
 
             <script src="js/jq.js"></script>
             <script src="js/product.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
             <script>
 
                                     function SubmitContent(feedbackContent) {
@@ -729,7 +731,8 @@
                                             type: "post", //send it through get method
                                             data: {
                                                 loadMore: true,
-                                                amount: amount
+                                                amount: amount,
+                                                ProductID: ${productDetail.getProductID()}
                                             },
                                             success: function (data) {
                                                 var row = document.getElementById('feedbackContent');
