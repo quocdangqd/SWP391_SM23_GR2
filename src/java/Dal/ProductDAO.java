@@ -232,7 +232,7 @@ public class ProductDAO extends ConnectMySQL {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    void addNewProduct(Products p){
+    public void addNewProduct(Products p){
         try {
             String sql ="INSERT INTO swp.`product` "
                     + "(product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, status) "

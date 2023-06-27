@@ -92,7 +92,7 @@
                             <div class="row element-button">
                                 <div class="col-sm-2">
 
-                                    <a class="btn btn-add btn-sm" href="addproduct.jsp" title="Thêm"><i class="fas fa-plus"></i>
+                                    <a class="btn btn-add btn-sm" href="editproduct?action=add" title="Thêm"><i class="fas fa-plus"></i>
                                         Tạo mới sản phẩm</a>
                                 </div>
                                 <div class="col-sm-2">
@@ -152,7 +152,7 @@
                                         <td>${p.price}</td> 
                                         <td>${p.status}</td>  
                                         
-                                        <td><a href="editproduct?id=${p.productID}"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <td><a href="editproduct?id=${p.productID}&action=edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                         <a href="editproduct" class="delete" data-toggle="modal" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
 <!--                                    
 
