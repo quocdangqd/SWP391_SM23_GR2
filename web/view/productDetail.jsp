@@ -712,7 +712,7 @@
                                                 star: starValue,
                                             },
                                             success: function (data) {
-                                                var row = document.getElementById('feedbackContent');
+                                                var row = document.getElementById(feedbackContent);
                                                 row.innerHTML = data;
                                                 console.log(data);
                                             },

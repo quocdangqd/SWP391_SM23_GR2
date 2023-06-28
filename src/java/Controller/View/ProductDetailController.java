@@ -81,12 +81,11 @@ public class ProductDetailController extends HttpServlet {
                             + "                                            <li><b>" + item.getUsername() + "</b></li> \n"
                             + "                                        </div>\n"
                             + "                                        <div class=\"product__panel-rate-wrap\">\n"
-                            + "                                            <i class=\"fas fa-star product__panel-rate\"></i>\n"
-                            + "                                            <i class=\"fas fa-star product__panel-rate\"></i>\n"
-                            + "                                            <i class=\"fas fa-star product__panel-rate\"></i>\n"
-                            + "                                            <i class=\"fas fa-star product__panel-rate\"></i>\n"
-                            + "                                            <i class=\"fas fa-star product__panel-rate\"></i>\n"
-                            + "                                        </div>\n"
+                            + "                                            <i class=\"product__panel-rate\" style=\"text-decoration: underline;font-size: 20px; margin-right: 5px\">" + item.getProduct_rate() + "</i>");
+                    for (int i = 1; i <= Integer.parseInt(item.getProduct_rate()); ++i) {
+                        out.print("<i class=\"fas fa-star product__panel-rate\"></i>");
+                    }
+                    out.print("</div>\n"
                             + "                                        <br>\n"
                             + "                                        <li>" + item.getDate() + "</li>\n"
                             + "                                        <li>\n"
@@ -117,7 +116,6 @@ public class ProductDetailController extends HttpServlet {
                 return;
             } else {
                 String ProductID = request.getParameter("ProductID");
-//                String ProductID = "1";
                 Products productDetail = pdao.getProductByID(ProductID);
                 ArrayList<Feedback> feedbackList;
                 if (request.getParameter("loadMore") != null) {
@@ -160,10 +158,8 @@ public class ProductDetailController extends HttpServlet {
                 session.setAttribute("productDetail", productDetail);
             }
             if (user != null) {
-                request.setAttribute("checkBuyProduct", feedbackDAO.checkBuyProductByUserID(user.getUserID(), request.getParameter("ProductID")));
+                session.setAttribute("checkBuyProduct", feedbackDAO.checkBuyProductByUserID(user.getUserID(), request.getParameter("ProductID")));
             }
-//            request.setAttribute("checkBuyProduct",feedbackDAO.checkBuyProductByUserID(user.getUserID(), request.getParameter("ProductID"))); 
-//            out.print(feedbackDAO.checkBuyProductByUserID(user.getUserID(), request.getParameter("ProductID"))); 
             request.getRequestDispatcher("productDetail.jsp").forward(request, response);
         }
     }
