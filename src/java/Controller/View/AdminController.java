@@ -58,9 +58,15 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        ProductDAO productDAO = new ProductDAO();      
-         List product = productDAO.searchProducts();
-         
+        String search = request.getParameter("search");
+        ProductDAO productDAO = new ProductDAO();
+        List product ;      
+        if(search==null)
+           product = productDAO.searchProducts(""); 
+        else
+           product = productDAO.searchProducts(search);
+        
+        request.setAttribute("search", search);
          request.setAttribute("product", product);
          request.getRequestDispatcher("productmanager.jsp").forward(request,response);
        
@@ -79,6 +85,8 @@ public class AdminController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
+        
+        
     }
 
     /** 

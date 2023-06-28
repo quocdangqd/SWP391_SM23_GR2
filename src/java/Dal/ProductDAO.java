@@ -155,11 +155,13 @@ public class ProductDAO extends ConnectMySQL {
         return data;
     }
     
-   public List<Products> searchProducts() {
-        List<Products> data = new ArrayList<>();
+   public List<Products> searchProducts(String keyword) {
+       
+       List<Products> data = new ArrayList<>();
         try {
-            String sqlSelect = "Select * from product";
+            String sqlSelect = "Select * from product where name like ?  ";
             pstm = connection.prepareStatement(sqlSelect);
+              pstm.setString(1, "%" + keyword + "%");
              rs = pstm.executeQuery();
             while (rs.next()) {
                        Products p = new Products();
@@ -174,6 +176,7 @@ public class ProductDAO extends ConnectMySQL {
                        p.setPrice(String.valueOf(rs.getFloat(8)));
                        p.setQuantity(String.valueOf(rs.getInt(9)));
                        p.setStatus(String.valueOf(rs.getInt(10)));
+                       p.setDate(String.valueOf(rs.getDate(12)));
                        p.setCategories(new CategoriesDAO().getCategoryById(categories));
                        data.add(p);
                     }          
@@ -258,22 +261,11 @@ public class ProductDAO extends ConnectMySQL {
 
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
-        Products p = new Products();
-        p.setProduct_categoryID("1");
-        p.setName("hngu");
-        p.setDesciption("ngu vcl");
-        p.setPicture("c");
-        p.setPicture2("b");
-        p.setPicture3("a");
-        p.setPrice("160");
-        p.setQuantity("12");
-        p.setStatus("1");
-        p.setProductID("47");
-        productDAO.updateProduct(p);
-//        for(Products p  :productDAO.searchProducts()){
-//            System.out.println(p.getCategories().getName());
-//            
-//        }
+        
+        for(Products p  :productDAO.searchProducts("")){
+            System.out.println(p.getDate());
+            
+        }
             System.out.println(productDAO.getProductsByID("1").getName());
             
 //        for (Products p : productDAO.getProductListByCategoryIDAndSort("", "descendingSalePrice")) {
