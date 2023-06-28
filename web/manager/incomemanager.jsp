@@ -271,7 +271,7 @@
                                     <tr>
                                         <td>${l.getProductID()}</td>
                                         <td>${l.getName()}</td>
-                                        <td><img src="${l.getPicture()}"/></td>
+                                        <td><img src="${l.getPicture()}" width="100px" height="100px"></td>
                                         <td>${l.getPrice()}</td>
                                         <td>${l.categories.getName()}</td>
                                     </tr>
