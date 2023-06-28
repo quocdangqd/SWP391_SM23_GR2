@@ -4,6 +4,8 @@
  */
 package Controller.View;
 
+import Dal.CartDAO;
+import Dal.SaleCodeDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +24,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 import Impl.Config;
+import Model.Cart;
+import jakarta.servlet.http.HttpSession;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  *
@@ -32,12 +39,15 @@ public class CheckoutController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            if (request.getParameter("checkoutButton") != null) {
+        try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession();
+            if (request.getParameter("btnDatHang") != null) {
+                float totalPrice = (float) session.getAttribute("totalPrice");
                 String vnp_Version = "2.1.0";
                 String vnp_Command = "pay";
                 String orderType = request.getParameter("ordertype");
-                long amount = Integer.parseInt(request.getParameter("amount")) * 100;
+//                long amount = Integer.parseInt(request.getParameter("amount")) * 100;
+                long amount = (int)totalPrice * 100;
                 String bankCode = request.getParameter("bankCode");
                 String vnp_TxnRef = Config.getRandomNumber(8);
                 String vnp_IpAddr = Config.getIpAddress(request);
@@ -103,6 +113,47 @@ public class CheckoutController extends HttpServlet {
                 queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
                 String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
                 response.sendRedirect(paymentUrl);
+            } else if (request.getParameter("confirmSalecode") != null) {
+//                out.print("confirmDiscount!"); 
+                CartDAO cartDAO = new CartDAO();
+
+                SaleCodeDAO saleCodeDAO = new SaleCodeDAO();
+                ArrayList<Cart> data = (ArrayList<Cart>) session.getAttribute("data");
+                String inputSalecode = request.getParameter("inputSalecode");
+                float saleCodeRate = saleCodeDAO.checkValidSaleCodeAndReturnSaleRate(inputSalecode);
+
+                float totalPrice = (float) session.getAttribute("totalPrice");
+                out.print("<ul>");
+                for (Cart item : data) {
+//                    totalPrice += cartDAO.getTotalCostbyCartID(item.getCartID());
+                    out.print("<li class=\"list-group-item d-flex justify-content-between lh-condensed\">\n"
+                            + "                                        <div>\n"
+                            + "                                            <h6 class=\"my-0\">" + item.getProductName() + "</h6>\n"
+                            + "                                            <small class=\"text-muted\">" + item.getPrice() + " x " + item.getQuantity() + "</small>\n"
+                            + "                                        </div>\n"
+                            + "                                        <span class=\"text-muted\">" + item.getTotalcost() + " đ</span>\n"
+                            + "                                    </li>");
+                }
+                DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+                decimalFormat.applyPattern("#,###");
+                if (saleCodeRate != 0) {
+
+                    out.print("<li class=\"list-group-item d-flex justify-content-between\">\n"
+                            + "                                        <span>Đã áp dụng giảm giá</span>\n"
+                            + "                                        <strong>- " + decimalFormat.format(totalPrice * saleCodeRate / 100) + " đ</strong>\n"
+                            + "                                    </li>");
+                    totalPrice = totalPrice - totalPrice * saleCodeRate / 100;
+                }
+                out.print("<li class=\"list-group-item d-flex justify-content-between\">\n"
+                        + "                                        <span>Tổng thành tiền</span>\n"
+                        + "                                        <strong>" + decimalFormat.format(totalPrice).replaceAll(",", ".") + " đ</strong>\n"
+                        + "                                    </li>\n"
+                        + "                                </ul>");
+                if (saleCodeRate == 0) {
+                    out.print("<h6 style=\"font-size: 15px\" >Mã không tồn tại hoặc đã hết hạn!</h6>");
+                }
+                session.setAttribute("totalPrice", totalPrice);
+                return;
             }
 
         }

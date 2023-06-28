@@ -30,7 +30,7 @@
             <button onclick="topFunction()" id="myBtn-scroll" title="Go to top"><i class="fas fa-chevron-up"></i></button>
             <!-- cart -->
 
-            <form action="action">
+            <form action="CartController?tab=cartList" method="post">
                 <section id="allCart" class="cart">
                     <div class="container">
                         <article class="row cart__head pc">
@@ -43,8 +43,8 @@
                                     </li>
                                     <li class="menu__item">
                                         <a <a href="ProductListController?tab=mouse" class="menu__link">
-                                            <img src="images1/item/mouse.jpg" alt="" class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
-                                            Chuột</a>
+                                                <img src="images1/item/mouse.jpg" alt="" class="menu__item-icon" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
+                                                Chuột</a>
                                     </li>
 
                                     <li class="menu__item">
@@ -76,11 +76,11 @@
                                     ${item.getProductName()}
                                 </a>
                             </div>
-                                <!--${item.getProduct_Quantity()}-->
+                            <!--${item.getProduct_Quantity()}-->
                             <div class="col-3 cart__body-quantity">
                                 <input type="button" value="-" class="cart__body-quantity-minus" onclick="decreaseQuantity('${item.getCartID()}');UpdateContent('${item.getCartID()}', 'cartCheckBox');">
                                 <input type="number" name="quantityValue" step="1" min="1" max="${item.getProduct_Quantity()}" value="${item.getQuantity()}" class="cart__body-quantity-total" id="${item.getCartID()}">
-                                <input type="button" value="+" class="cart__body-quantity-plus" onclick="increaseQuantity('${item.getCartID()}','${item.getProduct_Quantity()}');UpdateContent('${item.getCartID()}', 'cartCheckBox');">
+                                <input type="button" value="+" class="cart__body-quantity-plus" onclick="increaseQuantity('${item.getCartID()}', '${item.getProduct_Quantity()}');UpdateContent('${item.getCartID()}', 'cartCheckBox');">
                             </div>
 
                             <div class="col-3 cart__body-price">
@@ -101,8 +101,10 @@
 
                         <span class="col-3 col-lg-3 col-sm-3 cart__foot-price">
                             0đ <br>
-
-                            <button class="cart__foot-price-btn">Mua hàng</button>
+                            <button class="cart__foot-price-btn" name="buyProductsSubmit">Mua hàng</button>
+                        </span>
+                        <span class="col-3 col-lg-3 col-sm-3 cart__foot-price">
+                            ${message}
                         </span>
                     </article>
                 </div>
@@ -123,7 +125,7 @@
                                         }
                                     }
 
-                                    function increaseQuantity(inputId,productQuantity) {
+                                    function increaseQuantity(inputId, productQuantity) {
                                         var input = document.getElementById(inputId);
                                         if (input.value < parseInt(productQuantity)) {
                                             input.value = parseInt(input.value) + 1;
@@ -132,6 +134,7 @@
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
+
                                     function UpdateContent(cartID, cartCheckBoxName) {
                                         var quantity = document.getElementById(cartID);
                                         var checkBoxes = document.getElementsByName(cartCheckBoxName);
