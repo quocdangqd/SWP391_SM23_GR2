@@ -317,7 +317,7 @@
                     swal({
                         title: "Cảnh báo",
 
-                        text: "Bạn có chắc chắn là muốn xóa nhân viên này?",
+                        text: "Bạn có chắc chắn là muốn xóa đơn hàng này?",
                         buttons: ["Hủy bỏ", "Đồng ý"],
                     })
                             .then((willDelete) => {

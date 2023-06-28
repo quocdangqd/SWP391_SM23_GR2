@@ -743,7 +743,7 @@
                 </section>
                 <!--end product love -->
 
-                <!-- footer -->
+            <!-- footer -->
             <jsp:include page="footer.jsp"></jsp:include>
             <!-- end footer -->
         </div>
