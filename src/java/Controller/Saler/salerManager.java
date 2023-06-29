@@ -33,27 +33,8 @@ public class salerManager extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            
-            ProductDAO dao = new ProductDAO();
-            OrderDAO od = new OrderDAO();
 
-            int count = dao.CountProduct();
-            int count2 = dao.CountSaler();
-            int count3 = od.CountOrder();
-            int count4 = dao.CountProductLow();
-            int total = dao.totalIncome();
-            List listpro = dao.bestSale();
-            List listun = dao.limitProducts();
-
-            request.setAttribute("product", count);
-            request.setAttribute("saler", count2);
-            request.setAttribute("order", count3);
-            request.setAttribute("het", count4);
-            request.setAttribute("tong", total);
-            request.setAttribute("listpro", listpro);
-            request.setAttribute("listun", listun);
-
-            request.getRequestDispatcher("/manager/incomemanager.jsp").forward(request, response);
+            request.getRequestDispatcher("/saler/homepage.jsp").forward(request, response);
 
         }
     }

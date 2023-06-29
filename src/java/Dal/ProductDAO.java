@@ -336,8 +336,39 @@ public class ProductDAO extends ConnectMySQL {
         }
         return data;
     }
+    
+    public Products getProductsByID(String id) {
+       
+        try {
+            String sqlSelect = "Select * from product where ProductID="+ id;
+            pstm = connection.prepareStatement(sqlSelect);
+             rs = pstm.executeQuery();
+            if (rs.next()) {
+                       Products p = new Products();
+                       p.setProductID(String.valueOf(rs.getInt(1)));
+                       String categories = String.valueOf(rs.getInt(2));
+                       p.setProduct_categoryID(categories);
+                       p.setName(String.valueOf(rs.getString(3)));
+                       p.setDesciption(String.valueOf(rs.getString(4)));
+                       p.setPicture( rs.getString(5));
+                       p.setPicture2( rs.getString(6));
+                       p.setPicture3( rs.getString(7));
+                       p.setPrice(String.valueOf(rs.getFloat(8)));
+                       p.setQuantity(String.valueOf(rs.getInt(9)));
+                       p.setStatus(String.valueOf(rs.getInt(10)));
+                       p.setCategories(new CategoriesDAO().getCategoryById(categories));
+                       return p;
+                    }          
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        return null;
+   }
 
     // Duc Anh 
+    
+    
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
         System.out.println(productDAO.getProductListByType("HighPrice").size());

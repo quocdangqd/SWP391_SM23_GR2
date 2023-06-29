@@ -37,17 +37,21 @@ public class IncomeManager extends HttpServlet {
             int count2 = dao.CountSaler();
             int count3 = od.CountOrder();
             int count4 = dao.CountProductLow();
+            int count5 = od.countCancelOrder();
             int total = dao.totalIncome();
             List listpro = dao.bestSale();
             List listun = dao.limitProducts();
+            List listorder = od.totalOfOrder();
 
             request.setAttribute("product", count);
             request.setAttribute("saler", count2);
             request.setAttribute("order", count3);
             request.setAttribute("het", count4);
+            request.setAttribute("huy", count4);
             request.setAttribute("tong", total);
             request.setAttribute("listpro", listpro);
             request.setAttribute("listun", listun);
+            request.setAttribute("listorder", listorder);
 
             request.getRequestDispatcher("/manager/incomemanager.jsp").forward(request, response);
 

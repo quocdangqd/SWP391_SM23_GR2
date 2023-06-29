@@ -180,7 +180,7 @@
                     <div class="widget-small danger coloured-icon"><i class='icon fa-3x bx bxs-receipt' ></i>
                         <div class="info">
                             <h4>Đơn hàng hủy</h4>
-                            <p><b>2 đơn hàng</b></p>
+                            <p><b>${requestScope.huy} đơn hàng</b></p>
                         </div>
                     </div>
                 </div>
@@ -234,12 +234,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${lorder}" var="o">
+                                    <c:forEach items="${listorder}" var="o">
                                     <tr>
                                         <td>${o.getOrderId()}</td>
-                                        <td>${o.getUserId()}</td>
-                                        <td>${o.getNote()}</td>
-                                        <td>${o.getSalecode()}</td>
+                                        <td>${o.user.getName()}</td>
+                                        <td>${o.product.getName()}</td>
+                                        <td>${o.orderdetail.getQuantity()}</td>
                                         <td></td>
                                     </tr>
                                     </c:forEach>
