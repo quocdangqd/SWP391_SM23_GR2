@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package Controller.View;
 
+import Dal.AccountDao;
 import Dal.CartDAO;
 import Model.Cart;
 import Model.User;
@@ -37,11 +34,14 @@ public class CartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             String tab = request.getParameter("tab");
             HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("user");
-//            tab = "cartList";// nhap
+//            User user = (User) session.getAttribute("user");
+            AccountDao accountDao = new AccountDao();
+            User user = accountDao.GetUserByEmail("ducnvhe160331@fpt.edu.vn");
+            session.setAttribute("user", user);
+            tab = "cartList";// nhap
             if (tab.equals("cartList") && user != null) { // là thành viên m?i du?c quy?n vào gi? hàng ** thi?u di?u ki?n
                 // tao them 1 bien de phan biet khi ma no gui ve day la qua ajax
                 CartDAO cartDAO = new CartDAO();
@@ -49,21 +49,45 @@ public class CartController extends HttpServlet {
                 if (request.getParameter("DeleteProduct") != null) {
 //                    out.print("haha");
                     cartDAO.DeleteCartByID(request.getParameter("cartID"));
-                    
+
+                } else if (request.getParameter("buyProductsSubmit") != null) {
+                    DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+                    decimalFormat.applyPattern("#,###");
+                    ArrayList<Cart> data = new ArrayList<>();
+                    String cartIDArray[] = request.getParameterValues("cartCheckBox");
+                    if (cartIDArray != null) {
+                        float totalPrice = 0;
+                        for (String string : cartIDArray) {
+                            Cart cart = cartDAO.getCartbyCartID(string);
+                            totalPrice += Float.parseFloat(cart.getTotalcost().replace(".", ""));
+                            data.add(cart);
+                        }
+                        session.setAttribute("totalPrice", totalPrice);
+                        request.setAttribute("totalPrice", decimalFormat.format(totalPrice).replace(",", "."));
+                        session.setAttribute("data", data); 
+                        request.getRequestDispatcher("checkout.jsp").forward(request, response);
+                    } else {
+                        cartList = cartDAO.GetCartListByUserId(user.getUserID());
+                        request.setAttribute("message", "Bạn cần chọn sản phẩm để thanh toán!");
+                        request.setAttribute("cartList", cartList);
+                        request.getRequestDispatcher("listCart.jsp").forward(request, response);
+                    }
+                    return;
                 } else if (request.getParameter("updatequantity") != null || request.getParameter("cartCheckBox") != null) {
                     float totalAmount = 0;
                     String cartIDArray[];
                     String cartIDString = request.getParameter("cartIDArray");
                     if (request.getParameter("updatequantity") != null) {
+
                         String quantity = request.getParameter("quantity");
                         String cartID = request.getParameter("cartID");
                         Cart cart = new Cart(cartID, quantity, user.getUserID()); //??
                         cartDAO.updateQuantity(quantity, cartID, user.getUserID());//??
-
 //                        out.print("cartidArray: "+request.getParameter("cartIDArray")); 
 //                        return;
                     }
                     cartIDArray = request.getParameter("cartIDArray").split(",");
+
                     for (String string : cartIDArray) {
                         totalAmount += cartDAO.getTotalCostbyCartID(string);
                     }
@@ -118,7 +142,7 @@ public class CartController extends HttpServlet {
                                 + "                            <div class=\"col-3 cart__body-quantity\">\n"
                                 + "                                <input type=\"button\" value=\"-\" class=\"cart__body-quantity-minus\" onclick=\"decreaseQuantity('" + item.getCartID() + "');UpdateContent('" + item.getCartID() + "','cartCheckBox');\">\n"
                                 + "                                <input type=\"number\" name=\"quantityValue\" step=\"1\" min=\"1\" max=\"999\" value=\"" + item.getQuantity() + "\" class=\"cart__body-quantity-total\" id=\"" + item.getCartID() + "\">\n"
-                                + "                                <input type=\"button\" value=\"+\" class=\"cart__body-quantity-plus\" onclick=\"increaseQuantity('" + item.getCartID() + "');UpdateContent('" + item.getCartID() + "','cartCheckBox');\">\n"
+                                + "                                <input type=\"button\" value=\"+\" class=\"cart__body-quantity-plus\" onclick=\"increaseQuantity('" + item.getCartID() + "','" + item.getProduct_Quantity() + "');UpdateContent('" + item.getCartID() + "','cartCheckBox');\">\n"
                                 + "                            </div>\n"
                                 + "\n"
                                 + "                            <div class=\"col-3 cart__body-price\">\n"
@@ -140,7 +164,7 @@ public class CartController extends HttpServlet {
                             + "                        <span class=\"col-3 col-lg-3 col-sm-3 cart__foot-price\">\n"
                             + "                            " + decimalFormat.format(totalAmount) + "đ <br>\n"
                             + "\n"
-                            + "                            <button class=\"cart__foot-price-btn\">Mua hàng</button>\n"
+                            + "                            <button class=\"cart__foot-price-btn\" name=\"buyProductsSubmit\">Mua hàng</button>\n"
                             + "                        </span>\n"
                             + "                    </article>\n"
                             + "                </div>");
