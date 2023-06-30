@@ -85,7 +85,7 @@ public class ManagerDAO extends ConnectMySQL {
                 String price = String.valueOf(decimalFormat.format((int) rs.getFloat(8)));
                 String quantity = String.valueOf(rs.getInt(9));
                 String status = String.valueOf(rs.getInt(10));
-                product.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status));
+                product.add(new Products(ProductID, product_categoryID, name, desciption, picture, "","","", "","",price, quantity, status));
             }
 
         } catch (Exception e) {
@@ -129,9 +129,14 @@ public class ManagerDAO extends ConnectMySQL {
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10)));
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12),
+                        rs.getString(13)));
             }
         } catch (Exception e) {
             System.out.println("LoadOneProduct: " + e.getMessage());
