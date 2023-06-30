@@ -24,9 +24,8 @@ public class ConnectMySQL {
             ex.printStackTrace();
         }
     }
-//    public static void main(String[] args) {
-//        ConnectMySQL obj = new ConnectMySQL();
-//        
-//    }
+    public static void main(String[] args) {
+        ConnectMySQL obj = new ConnectMySQL();
+    }
     
 }

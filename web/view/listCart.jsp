@@ -27,7 +27,7 @@
         <jsp:include page="header.jsp"></jsp:include>
             <!--end header nav -->
             <!-- score-top-->
-            <button onclick="topFunction()" id="myBtn-scroll" title="Go to top"><i class="fas fa-chevron-down"></i></button>
+            <button onclick="topFunction()" id="myBtn-scroll" title="Go to top"><i class="fas fa-chevron-up"></i></button>
             <!-- cart -->
             <form action="action">
                 <section class="cart">

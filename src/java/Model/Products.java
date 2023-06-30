@@ -65,19 +65,6 @@ public class Products {
         this.picture2 = picture2;
         this.picture3 = picture3;
     }
-
-    public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status) {
-        this.ProductID = ProductID;
-        this.product_categoryID = product_categoryID;
-        this.name = name;
-        this.desciption = desciption;
-        this.picture = picture;
-        this.price = price;
-        this.quantity = quantity;
-        this.status = status;
-    }
-
-    
     
     public String getProductID() {
         return ProductID;
@@ -142,11 +129,5 @@ public class Products {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    @Override
-    public String toString() {
-        return "Products{" + "ProductID=" + ProductID + ", product_categoryID=" + product_categoryID + ", name=" + name + ", desciption=" + desciption + ", picture=" + picture + ", price=" + price + ", quantity=" + quantity + ", status=" + status + ", sale=" + sale + ", rateStar=" + rateStar + ", salePrice=" + salePrice + ", picture2=" + picture2 + ", picture3=" + picture3 + '}';
-    }
-    
     
 }
