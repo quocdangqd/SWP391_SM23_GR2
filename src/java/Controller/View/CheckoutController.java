@@ -6,6 +6,7 @@ package Controller.View;
 
 import Dal.CartDAO;
 import Dal.OrderDAO;
+import Dal.OrderdetailDAO;
 import Dal.ProductDAO;
 import Dal.SaleCodeDAO;
 import jakarta.servlet.ServletException;
@@ -29,6 +30,7 @@ import Impl.Config;
 import Impl.SendMail;
 import Model.Cart;
 import Model.Order;
+import Model.Orderdetail;
 import Model.SaleCode;
 import Model.User;
 import jakarta.servlet.http.HttpSession;
@@ -77,8 +79,11 @@ public class CheckoutController extends HttpServlet {
                     order = new Order(user.getUserID(), null, orderDate, "Pending");
                 }
                 orderDAO.addOrder(order);
+                String orderID = orderDAO.getOrderAfterAddByUserID(user.getUserID()).getOrderID();
+                OrderdetailDAO orderdetailDAO = new OrderdetailDAO();
                 for (Cart cart : cartData) {
                     cartDAO.DeleteCartByID(cart.getCartID());
+                    orderdetailDAO.addOrderDetail(new Orderdetail(orderID, cart.getQuantity(), cart.getTotalcost().replace(".", ""), cart.getProductID()));
                     productDAO.decreaseProductAmount(cart.getProductID(), cart.getQuantity());
                 }
                 out.print("");
@@ -205,7 +210,7 @@ public class CheckoutController extends HttpServlet {
                     out.print("<h6 style=\"font-size: 15px\" >Mã không tồn tại hoặc đã hết hạn!</h6>");
                 }
                 session.setAttribute("totalPriceAfter", totalPrice);
-                System.out.println("r: " + session.getAttribute("totalPriceAfter"));
+//                System.out.println("r: " + session.getAttribute("totalPriceAfter"));
                 return;
             }
 

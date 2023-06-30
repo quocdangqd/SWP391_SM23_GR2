@@ -42,10 +42,35 @@ public class OrderDAO extends ConnectMySQL {
         return false;
     }
 
+    public Order getOrderAfterAddByUserID(String userID) {
+        try {
+            String sqlSelect = " SELECT * FROM swp.order where order_userID=? \n"
+                    + " order by date desc\n"
+                    + " limit 1;";
+            pstm=connection.prepareStatement(sqlSelect);
+            pstm.setInt(1, Integer.parseInt(userID));
+            rs=pstm.executeQuery();
+            while (rs.next()) {                
+                String orderID=String.valueOf(rs.getInt(1));
+                String order_userID=String.valueOf(rs.getInt(2));
+                String order_salecodeID=String.valueOf(rs.getInt(3));
+                String note=String.valueOf(rs.getString(4));
+                String date=String.valueOf(rs.getTimestamp(5));
+                String status=String.valueOf(rs.getString(6));
+                return  new Order(orderID, order_userID, order_salecodeID, note, date, status);
+            }
+        } catch (Exception e) {
+            System.out.println("getOrderAfterAdd: " + e);
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         OrderDAO orderDAO = new OrderDAO();
         Timestamp datetime = new Timestamp(System.currentTimeMillis());
-        Order order = new Order("6", "2", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(datetime), "Completed");
+        Order order = new Order("10", "2", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(datetime), "Pending");
         orderDAO.addOrder(order);
+        order = orderDAO.getOrderAfterAddByUserID("10");
+        System.out.println(order.getOrderID());
     }
 }

@@ -1,0 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Controller.View;
+
+import Dal.ConnectMySQL;
+import Model.Order;
+import Model.Orderdetail;
+
+/**
+ *
+ * @author PC
+ */
+public class OrderdetailController {
+
+    
+}

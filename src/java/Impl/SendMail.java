@@ -224,11 +224,11 @@ public class SendMail {
         }
 
 //        String inputSalecode = (String) session1.getAttribute("inputSalecode");
-        System.out.println("cartdate.size = " + cartData.size());
-        System.out.println("totalPriceAfter " + totalPriceAfter);
-        System.out.println("totalPriceBefore " + totalPriceBefore);
+//        System.out.println("cartdate.size = " + cartData.size());
+//        System.out.println("totalPriceAfter " + totalPriceAfter);
+//        System.out.println("totalPriceBefore " + totalPriceBefore);
 //        System.out.println("inputSalecode " + inputSalecode);
-        System.out.println("discountPrice " + discountPrice);
+//        System.out.println("discountPrice " + discountPrice);
         String emailContent = "<!DOCTYPE html>\n"
                 + "<link href=\"//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css\" rel=\"stylesheet\" id=\"bootstrap-css\">\n"
                 + "<script src=\"//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js\"></script>\n"
