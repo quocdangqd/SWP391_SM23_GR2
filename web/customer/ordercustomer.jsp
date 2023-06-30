@@ -3,8 +3,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Bootstrap Order Details Table with Search Filter</title>
+        <!--        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Danh sách đơn hàng</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -32,6 +34,7 @@
             }
             .font-0{
                 font-size: 2.5rem;
+                width: 100%;
             }
             .font-1{
                 font-size: 2rem;
@@ -45,7 +48,7 @@
                 font-style:
             }
             .page-item.active .page-link{
-                background-color: #ff794b; 
+                background-color: #ff794b;
                 border-color: #ff794b;
             }
             .pagination li.active a:hover{
@@ -61,7 +64,7 @@
                 margin-left: 10px;
             }
             .col-sm-3{
-                font-size: 4rem;
+                font-size: 3rem;
                 color: black;
             }
             .table-wrapper .btn:hover {
@@ -224,6 +227,9 @@
                 float: right;
                 margin: 0 0 5px;
             }
+            .show-entries{
+
+            }
             .pagination li a {
                 border: none;
                 font-size: 13px;
@@ -258,6 +264,22 @@
                 font-size: 1.8rem;
                 color: black;
             }
+            .show-entries {
+                font-size: 2.5rem;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                color: black;
+
+            }
+            .hover-order:hover{
+                background: white;
+                background-color: #f24137;
+                color: white;
+                text-decoration: none;
+            }
+            @media all and (max-width:375px){
+                
+            }
         </style>
     </head>
     <body>
@@ -270,34 +292,52 @@
                                 <div class="col-sm-4">
                                     <h2>Danh sách đơn hàng</h2>
                                 </div>
-                                <div class="col-sm-8">						
-                                    <a href="#" class="btn btn-primary"><span>Làm mới</span></a>
-                                    <a href="#" class="btn btn-secondary"><span>Xuất file</span></a>
-                                </div>
+
                             </div>
                         </div>
+
                         <div class="table-filter">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="show-entries">
-                                        <span>Hiển thị</span>
-                                        <select class="form-control" style="font-size: 1.8rem;">
-                                            <option>5</option>
-                                            <option>10</option>
-                                            <option>15</option>
-                                            <option>20</option>
-                                        </select>
-                                        <span>trang</span>
-                                    </div>
-                                </div>
-                                <!--                                <div class="col-sm-9">
-                                                                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                                                                    <div class="filter-group">
-                                                                        <label>Name</label>
-                                                                        <input type="text" class="form-control">
-                                                                    </div>                                  
-                                                                    <span class="filter-icon"><i class="fa fa-filter"></i></span>
-                                                                </div>-->
+                            <div class="container">
+                                <section class="row">
+                                    <a href="" class="show-entries hover-order col-lg-2">
+                                        <div>Tất cả</div>
+                                    </a>
+                                    <a href="" class="show-entries hover-order col-lg-3">
+                                        <div>Chờ xác nhận</div>
+                                    </a>
+                                    <a href="" class="show-entries hover-order col-lg-3">
+                                        <div>Đang giao</div>
+                                    </a>
+                                    <a href="" class="show-entries hover-order col-lg-2">
+                                        <div>Hoàn thành</div>
+                                    </a>
+                                    <a href="" class="show-entries hover-order col-lg-2">
+                                        <div>Đã hủy</div>
+                                    </a>                          
+
+                                    <!--                                    <div class="col-lg-3">
+                                                                            <div class="show-entries">
+                                                                                <a href="">Chờ xác nhận</a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-3">
+                                                                            <div class="show-entries">
+                                                                                <a href="">Đang giao</a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-2">
+                                                                            <div class="show-entries">
+                                                                                <a href="">Hoàn thành</a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-2">
+                                                                            <div class="show-entries">
+                                                                                <a href="">Đã hủy</a>
+                                                                            </div>
+                                                                        </div>-->
+
+                                </section>
+
                             </div>
                         </div>
                         <table class="table table-striped table-hover">
@@ -305,12 +345,12 @@
                                 <tr class="font-0">
                                     <th>ID</th>
                                     <th>Tên khách hàng</th>
-                                    <th>Nhân viên sale</th>
+                                    <th style="width: 200px;">Nhân viên sale</th>
                                     <th>Địa chỉ</th>
                                     <th>Ngày đặt</th>						
                                     <th>Trạng thái</th>						
                                     <th>Giá tiền</th>
-                                    <th>Tính năng</th>
+                                    <th style="width: 120px;">Tính năng</th>
 
                                 </tr>
                             </thead>
@@ -325,33 +365,24 @@
                                     <td>$254</td>                                  
                                     <td>
                                         <div class="row">
-                                            <button class="btn btn-primary col-6" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
+                                            <button class="btn btn-primary cols-1" type="button" title="Xóa" style="width: 31px;
+                                                    height: 52px;"
+                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt" style="width: 16px;
+                                                                          height: 19px;"></i>
                                             </button>
-<!--                                            <button class="btn btn-primary col-6" type="button" title="chỉnh sửa">
+                                            <button class="btn btn-primary cols-1" type="button" title="Xóa" style="width: 31px;
+                                                    height: 52px;"
+                                                    onclick="myFunction(this)"><i class="fas fa-edit" style="width: 16px;
+                                                                          height: 19px;"></i>
+                                            </button>
 
-                                            </button>-->
                                         </div>
-
                                     </td>
                                 </tr>
 
                             </tbody>
                         </table>
-                        <div class="clearfix">
-                            <div class="hint-text">Hiển thị 5 của 25 trang</div>
-                            <ul class="pagination">
-                                <li class="page-item"><a href="#" class="page-link">Previous</a></li>
-                                <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                <li class="page-item"><a href="#" class="page-link">3</a></li>
-                                <li class="page-item active"><a href="#" class="page-link">4</a></li>
-                                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                <li class="page-item"><a href="#" class="page-link">6</a></li>
-                                <li class="page-item"><a href="#" class="page-link">7</a></li>
-                                <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                            </ul>
-                        </div>
+
                     </div>
                 </div> 
             </div>     
