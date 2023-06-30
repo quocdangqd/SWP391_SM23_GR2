@@ -127,7 +127,7 @@ public class FeedbackDAO extends ConnectMySQL {
 
     public static void main(String[] args) {
         FeedbackDAO feedbackDAO = new FeedbackDAO();
-        System.out.println("checkBuyProductByUserID: " + feedbackDAO.checkBuyProductByUserID("10","9"));
+        System.out.println("checkBuyProductByUserID: " + feedbackDAO.checkBuyProductByUserID("10",null));
 //        System.out.println("getLatestOrderdetailIDByProductIDAndUserId: " + feedbackDAO.getLatestOrderdetailIDByProductIDAndUserId("1", "7"));
 //        if (feedbackDAO.checkBuyProductByUserID("7")) {
 //            String orderdetailID = feedbackDAO.getLatestOrderdetailIDByProductIDAndUserId("1", "7");

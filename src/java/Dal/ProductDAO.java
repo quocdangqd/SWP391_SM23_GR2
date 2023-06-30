@@ -261,24 +261,39 @@ public class ProductDAO extends ConnectMySQL {
         }
         return null;
     }
+    public boolean decreaseProductAmount(String productID, String quantity) {
+        try {   
+            Products p = getProductByID(productID);
+            String sqlSelect = "update product set quantity =?  where productid =?;";
+            pstm = connection.prepareStatement(sqlSelect);
+            pstm.setInt(1, Integer.parseInt(p.getQuantity())- Integer.parseInt(quantity));
+            pstm.setInt(2, Integer.parseInt(productID));
+            pstm.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println("decreaseProductAmount: " + e);
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
-        Products p = productDAO.getProductByID("1");
-        System.out.println("productid: " + p.getProductID() + " ");
-        System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
-        System.out.println("Name: " + p.getName() + " ");
-        System.out.println("Description: " + p.getDesciption() + " ");
-        System.out.println("picture: " + p.getPicture() + " ");
-        System.out.println("picture2: " + p.getPicture2() + " ");
-        System.out.println("picture3: " + p.getPicture3() + " ");
-        System.out.println("price: " + p.getPrice() + " ");
-        System.out.println("quantity: " + p.getQuantity() + " ");
-        System.out.println("status: " + p.getStatus() + " ");
-        System.out.println("sale: " + p.getSale() + " ");
-        System.out.println("rateStar: " + p.getRateStar() + " ");
-        System.out.println("saleprice: " + p.getSalePrice() + " ");
-        System.out.println("");
+        System.out.println(productDAO.decreaseProductAmount("1", "5"));
+//        Products p = productDAO.getProductByID("1");
+//        System.out.println("productid: " + p.getProductID() + " ");
+//        System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
+//        System.out.println("Name: " + p.getName() + " ");
+//        System.out.println("Description: " + p.getDesciption() + " ");
+//        System.out.println("picture: " + p.getPicture() + " ");
+//        System.out.println("picture2: " + p.getPicture2() + " ");
+//        System.out.println("picture3: " + p.getPicture3() + " ");
+//        System.out.println("price: " + p.getPrice() + " ");
+//        System.out.println("quantity: " + p.getQuantity() + " ");
+//        System.out.println("status: " + p.getStatus() + " ");
+//        System.out.println("sale: " + p.getSale() + " ");
+//        System.out.println("rateStar: " + p.getRateStar() + " ");
+//        System.out.println("saleprice: " + p.getSalePrice() + " ");
+//        System.out.println("");
 //        System.out.println(productDAO.getProductListByType("HighPrice").size());
 //        System.out.println("getProductAmount: " + productDAO.getProductAmount("2"));
         // Định dạng số với dấu chấm

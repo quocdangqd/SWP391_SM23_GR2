@@ -23,6 +23,13 @@ public class Order {
         this.status = status;
     }
 
+    public Order(String order_userID, String order_salecodeID, String date, String status) {
+        this.order_userID = order_userID;
+        this.order_salecodeID = order_salecodeID;
+        this.date = date;
+        this.status = status;
+    }
+
     public String getOrderID() {
         return orderID;
     }

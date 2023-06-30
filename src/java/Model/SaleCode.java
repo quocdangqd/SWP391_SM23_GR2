@@ -9,7 +9,7 @@ package Model;
  * @author PC
  */
 public class SaleCode {
-    private String salecodeID, code, amount, expiration_date;
+    private String salecodeID, code, amount, expiration_date,salecodeRate;
 
     public SaleCode() {
     }
@@ -19,6 +19,14 @@ public class SaleCode {
         this.code = code;
         this.amount = amount;
         this.expiration_date = expiration_date;
+    }
+
+    public SaleCode(String salecodeID, String code, String amount, String expiration_date, String salecodeRate) {
+        this.salecodeID = salecodeID;
+        this.code = code;
+        this.amount = amount;
+        this.expiration_date = expiration_date;
+        this.salecodeRate = salecodeRate;
     }
 
     public String getSalecodeID() {

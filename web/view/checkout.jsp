@@ -111,13 +111,13 @@
 
                             <div class="d-block my-3">
                                 <div class="custom-control custom-radio">
-                                    <input id="httt-1" name="httt_ma" type="radio" class="custom-control-input" required=""
-                                           value="1">
+                                    <input id="httt-1" name="checkoutType" type="radio" class="custom-control-input" required=""
+                                           value="cash">
                                     <label class="custom-control-label" for="httt-1">Tiền mặt</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input id="httt-2" name="httt_ma" type="radio" class="custom-control-input" required=""
-                                           value="2">
+                                    <input id="httt-2" name="checkoutType" type="radio" class="custom-control-input" required=""
+                                           value="transfer">
                                     <label class="custom-control-label" for="httt-2">Chuyển khoản</label>
                                 </div>                             
                             </div>

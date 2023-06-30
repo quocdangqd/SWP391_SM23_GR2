@@ -111,6 +111,35 @@ public class AccountDao extends ConnectMySQL {
         }
         return null;
     }
+    
+    public User GetUserByID(String userID) {
+        String sqlSelect = "select* from swp.user where userID= ?";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            pstm.setInt(1, Integer.parseInt(userID));
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+//                String userID = String.valueOf(rs.getInt(1));
+                String username = String.valueOf(rs.getString(2));
+                String password = String.valueOf(rs.getString(3));
+                String user_roleID = String.valueOf(rs.getInt(4));
+                String name = String.valueOf(rs.getString(5));
+                String age = String.valueOf(rs.getInt(6));
+                String user_sexID = String.valueOf(rs.getInt(7));
+                String address = String.valueOf(rs.getString(8));
+                String phone_number = String.valueOf(rs.getString(9));
+                String avatar = String.valueOf(rs.getString(10));
+                String register_code = String.valueOf(rs.getString(11));
+                String email = rs.getString(12);
+                String status = String.valueOf(rs.getInt(13));
+                User user = new User(userID, username, password, user_roleID, name, age, user_sexID, address, phone_number, avatar, register_code, email, status);
+                return user;
+            }
+        } catch (Exception e) {
+            System.out.println("GetUserByID: " + e);
+        }
+        return null;
+    }
 
     public boolean resetPassword(String email, String newPassword) {
         try {
@@ -158,6 +187,8 @@ public class AccountDao extends ConnectMySQL {
 
     public static void main(String[] args) {
         AccountDao dao = new AccountDao();
+        User u =dao.GetUserByID("10");
+        System.out.println(u.getEmail());
 //        User u=dao.getUserByUserName("sirducdz");
 //        System.out.println(u.getEmail());
 //        System.out.println(dao.checkExistAccount("admin1"));
