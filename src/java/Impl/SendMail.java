@@ -187,7 +187,7 @@ public class SendMail {
                 MimeMessage message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(email));// change accordingly
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-                message.setSubject("Yêu cầu cấp lại mật khẩu");
+                message.setSubject("Yêu cầu cấp lại mật khẩu","UTF-8");
 //				message.setText("your OTP is: " + otpvalue+"<a href='http://localhost:9999/LoginAndRegisterForm/forgotPasswordX.jsp?name="+email+"'> click me</a>");
 //                                message.setText("your OTP is: " + otpvalue);
                 message.setContent(emailContent, "text/html;charset=UTF-8");
@@ -357,7 +357,7 @@ public class SendMail {
                 MimeMessage message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(email));// change accordingly
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-                message.setSubject("Chi Tiết Hóa Đơn Thanh Toán");
+                message.setSubject("Chi Tiết Hóa Đơn Thanh Toán","UTF-8");
 //				message.setText("your OTP is: " + otpvalue+"<a href='http://localhost:9999/LoginAndRegisterForm/forgotPasswordX.jsp?name="+email+"'> click me</a>");
 //                                message.setText("your OTP is: " + otpvalue);
                 message.setContent(emailContent, "text/html;charset=UTF-8");

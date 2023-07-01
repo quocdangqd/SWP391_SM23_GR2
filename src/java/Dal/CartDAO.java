@@ -95,13 +95,8 @@ public class CartDAO extends ConnectMySQL {
             boolean checkDuplicateProduct = CheckProductCartByProductIDandUserID(cart.getProductID(), cart.getUserID());
             if (checkDuplicateProduct) {
                 quantity = getQuantityExist(cart.getProductID(), cart.getUserID());
-                System.out.println(quantity);//220
-//                System.out.println(quantity+Integer.parseInt(cart.getQuantity()));
                 cart.setQuantity(String.valueOf(Integer.parseInt(cart.getQuantity()) + quantity));
-                System.out.println(cart.getQuantity());
-                System.out.println(cart.getUserID());
                 updateCart(cart);
-//                updateQuantity(cart.getQuantity(), cart.getCartID(), cart.getUserID());
                 return true;
             }
             String sqlSelect = "INSERT INTO `swp`.`cart` (`price`, `quantity`, `productID`, `userID`, `status`) VALUES (?, ?, ?, ?,?);";
@@ -150,7 +145,7 @@ public class CartDAO extends ConnectMySQL {
         return null;
     }
 
-    public String AmountOfProductTypeByUserID(String userID) {// should not use this func
+    public String AmountOfProductTypeByUserID(String userID) {
         try {
             DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
             decimalFormat.applyPattern("#,###");
