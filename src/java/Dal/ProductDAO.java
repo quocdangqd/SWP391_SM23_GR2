@@ -197,6 +197,7 @@ public class ProductDAO extends ConnectMySQL {
                        p.setProductID(String.valueOf(rs.getInt(1)));
                        String categories = String.valueOf(rs.getInt(2));
                        p.setProduct_categoryID(categories);
+                       
                        p.setName(String.valueOf(rs.getString(3)));
                        p.setDesciption(String.valueOf(rs.getString(4)));
                        p.setPicture( rs.getString(5));
@@ -263,11 +264,11 @@ public class ProductDAO extends ConnectMySQL {
         ProductDAO productDAO = new ProductDAO();
         
         for(Products p  :productDAO.searchProducts("")){
-            System.out.println(p.getDate());
+            System.out.println(p.getCategories().getName());
             
         }
-            System.out.println(productDAO.getProductsByID("1").getName());
-            
+ //         System.out.println(productDAO.getProductsByID("1").getName());
+//            
 //        for (Products p : productDAO.getProductListByCategoryIDAndSort("", "descendingSalePrice")) {
 //            System.out.println("productid: " + p.getProductID() + " ");
 //            System.out.println("categoriID: " + p.getProduct_categoryID()+ " ");

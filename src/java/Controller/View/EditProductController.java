@@ -116,7 +116,7 @@ public class EditProductController extends HttpServlet {
             
         } 
         else {
-            p= new Products();
+            p = new Products();
             String category = request.getParameter("category");
             String name = request.getParameter("name");
             String description = request.getParameter("description");
