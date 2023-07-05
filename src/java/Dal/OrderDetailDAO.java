@@ -35,7 +35,7 @@ public class OrderDetailDAO extends ConnectMySQL{
     
     public OrderDetail getOrderDetailById(String ID) {
         try {
-            String sqlSelectString = "select * from user where orderdetailID=?";
+            String sqlSelectString = "select * from Orderdetail where orderdetailID =?";
             pstm = connection.prepareStatement(sqlSelectString);
             pstm.setInt(1, Integer.parseInt(ID));
             rs = pstm.executeQuery();

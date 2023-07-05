@@ -10,7 +10,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Danh sách nhân viên | Quản trị Admin</title>
+        <title>Thông tin khách hàng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -107,9 +107,9 @@
             <hr>
             <ul class="app-menu">
                 <li><a class="app-menu__item" href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
-                            class="app-menu__label">Quản lý đơn hàng</span></a></li>
+                            class="app-menu__label">Thông tin đơn hàng</span></a></li>
                 <li><a class="app-menu__item active" href="customermanager.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
-                            class="app-menu__label">Quản lý khách hàng</span></a></li>
+                            class="app-menu__label">Thông tin khách hàng</span></a></li>
             </ul>
         </aside>
         <main class="app-content">
@@ -117,7 +117,7 @@
                 <div class="col-md-12">
                     <div class="app-title">
                         <ul class="app-breadcrumb breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><b>Quản lí khách hàng</b></a></li>
+                            <li class="breadcrumb-item"><a href="#"><b>Thông tin khách hàng</b></a></li>
                         </ul>
                         <div id="clock"></div>
                     </div>

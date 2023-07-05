@@ -65,7 +65,7 @@ public class UserDAO extends ConnectMySQL {
                 return data;
             }
         } catch (Exception e) {
-            System.out.println("GetCategoriesesList: " + e);
+            System.out.println("UserList: " + e);
         }
         return null;
     }

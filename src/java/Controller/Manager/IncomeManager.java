@@ -41,7 +41,7 @@ public class IncomeManager extends HttpServlet {
             int total = dao.totalIncome();
             List listpro = dao.bestSale();
             List listun = dao.limitProducts();
-            List listorder = od.totalOfOrder();
+//            List listorder = od.totalOfOrder();
 
             request.setAttribute("product", count);
             request.setAttribute("saler", count2);
@@ -51,7 +51,7 @@ public class IncomeManager extends HttpServlet {
             request.setAttribute("tong", total);
             request.setAttribute("listpro", listpro);
             request.setAttribute("listun", listun);
-            request.setAttribute("listorder", listorder);
+//            request.setAttribute("listorder", listorder);
 
             request.getRequestDispatcher("/manager/incomemanager.jsp").forward(request, response);
 

@@ -10,7 +10,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Danh sách nhân viên | Quản trị Admin</title>
+        <title>Thông tin đơn hàng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -107,9 +107,9 @@
             <hr>
             <ul class="app-menu">
                 <li><a class="app-menu__item active" href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
-                            class="app-menu__label">Quản lý đơn hàng</span></a></li>
+                            class="app-menu__label">Thông tin đơn hàng</span></a></li>
                 <li><a class="app-menu__item " href="customermanager.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
-                            class="app-menu__label">Quản lý khách hàng</span></a></li>
+                            class="app-menu__label">Thông tin khách hàng</span></a></li>
             </ul>
         </aside>
         <main class="app-content">
@@ -131,7 +131,7 @@
                         <div class="col-md-12">
                             <div class="tile">
                                 <h3 class="tile-title">Tình trạng đơn hàng</h3>
-                                <h4 class="tile-title"> Nguyễn Việt Dũng </h4>
+                                <h4 class="tile-title">Saler: Nguyễn Việt Dũng </h4>
                                 <div>
                                     <table class="table table-bordered">
                                         <thead>
