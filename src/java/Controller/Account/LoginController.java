@@ -48,6 +48,7 @@ public class LoginController extends HttpServlet {
                     user=accountDao.GetUserByEmail(email);
                     CartDAO cartDAO=new CartDAO();
                     mySession.setAttribute("AmountOfProductType", cartDAO.AmountOfProductTypeByUserID(user.getUserID()));
+//                    System.out.println("cartDAO.AmountOfProductTypeByUserID(user.getUserID()): "+cartDAO.AmountOfProductTypeByUserID(user.getUserID()));
                     mySession.setAttribute("user", user); 
                     response.sendRedirect(request.getContextPath()+"/view/homepage");
                 }

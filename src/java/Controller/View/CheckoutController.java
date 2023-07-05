@@ -86,7 +86,7 @@ public class CheckoutController extends HttpServlet {
                     orderdetailDAO.addOrderDetail(new Orderdetail(orderID, cart.getQuantity(), cart.getTotalcost().replace(".", ""), cart.getProductID()));
                     productDAO.decreaseProductAmount(cart.getProductID(), cart.getQuantity());
                 }
-                out.print("");
+                session.setAttribute("AmountOfProductType", cartDAO.AmountOfProductTypeByUserID(user.getUserID()));
                 SendMail sendMail = new SendMail();
                 sendMail.SendMailCheckOut(order, request, response);
                 request.setAttribute("successCheckout", true);

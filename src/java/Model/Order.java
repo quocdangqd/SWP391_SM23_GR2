@@ -9,7 +9,9 @@ package Model;
  * @author PC
  */
 public class Order {
+
     private String orderID, order_userID, order_salecodeID, note, date, status;
+    private String address, phone_number, orderdetail_productID;
 
     public Order() {
     }
@@ -28,6 +30,42 @@ public class Order {
         this.order_salecodeID = order_salecodeID;
         this.date = date;
         this.status = status;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public String getOrderdetail_productID() {
+        return orderdetail_productID;
+    }
+
+    public void setOrderdetail_productID(String orderdetail_productID) {
+        this.orderdetail_productID = orderdetail_productID;
+    }
+
+    public Order(String orderID, String order_userID, String order_salecodeID, String note, String date, String status, String address, String phone_number, String orderdetail_productID) {
+        this.orderID = orderID;
+        this.order_userID = order_userID;
+        this.order_salecodeID = order_salecodeID;
+        this.note = note;
+        this.date = date;
+        this.status = status;
+        this.address = address;
+        this.phone_number = phone_number;
+        this.orderdetail_productID = orderdetail_productID;
     }
 
     public String getOrderID() {
@@ -77,5 +115,5 @@ public class Order {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
 }

@@ -37,11 +37,11 @@ public class CartController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String tab = request.getParameter("tab");
             HttpSession session = request.getSession();
-//            User user = (User) session.getAttribute("user");
+            User user = (User) session.getAttribute("user");
             AccountDao accountDao = new AccountDao();
-            User user = accountDao.GetUserByEmail("ducnvhe160331@fpt.edu.vn");
-            session.setAttribute("user", user);
-            tab = "cartList";// nhap
+//            User user = accountDao.GetUserByEmail("ducnvhe160331@fpt.edu.vn");
+//            session.setAttribute("user", user);
+//            tab = "cartList";// nhap
             if (tab.equals("cartList") && user != null) { // là thành viên m?i du?c quy?n vào gi? hàng ** thi?u di?u ki?n
                 // tao them 1 bien de phan biet khi ma no gui ve day la qua ajax
                 CartDAO cartDAO = new CartDAO();
@@ -64,7 +64,7 @@ public class CartController extends HttpServlet {
                         }
                         session.setAttribute("totalPrice", totalPrice);
                         request.setAttribute("totalPrice", decimalFormat.format(totalPrice).replace(",", "."));
-                        session.setAttribute("data", data); 
+                        session.setAttribute("data", data);
                         request.getRequestDispatcher("checkout.jsp").forward(request, response);
                     } else {
                         cartList = cartDAO.GetCartListByUserId(user.getUserID());
@@ -179,6 +179,7 @@ public class CartController extends HttpServlet {
                 request.setAttribute("cartList", cartList);
 //                request.setAttribute("totalAmount",cartDAO.getTotalCostbyUserID(user.getUserID())); 
 //                request.setAttribute("totalAmount", cartDAO.getTotalCostbyUserID("10"));
+                session.setAttribute("AmountOfProductType", cartDAO.AmountOfProductTypeByUserID(user.getUserID()));
                 request.getRequestDispatcher("listCart.jsp").forward(request, response);
             }
 

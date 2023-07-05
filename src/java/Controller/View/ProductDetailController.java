@@ -160,6 +160,8 @@ public class ProductDetailController extends HttpServlet {
             if (user != null) {
                 session.setAttribute("checkBuyProduct", feedbackDAO.checkBuyProductByUserID(user.getUserID(), request.getParameter("ProductID")));
             }
+            CartDAO cartDAO = new CartDAO();
+            session.setAttribute("AmountOfProductType", cartDAO.AmountOfProductTypeByUserID(user.getUserID()));
             request.getRequestDispatcher("productDetail.jsp").forward(request, response);
         }
     }

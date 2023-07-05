@@ -421,7 +421,8 @@
                                             <div class="product__panel-price">
                                                 <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
                                                     <div>    
-                                                        <button class="bestselling__product-btn">So sánh</button>
+                                                        <!--<button class="bestselling__product-btn">So sánh</button>-->
+                                                        <a href="CompareProductController?productID=${headPhoneData.get(i).getProductID()}" class="bestselling__product-btn">So sánh</a>
                                                     </div>
                                                 </span>
                                                 <span class="product__panel-price-current">
@@ -769,19 +770,19 @@
                                     <%--<c:set var="active" value="active"> </c:set>--%>
                                     <c:set var="count" value="1"></c:set>
                                     <c:if test="${keyboardpageIndex!=1}">
-                                        <li class="page-item disabled"><a onclick="Paging('k${keyboardpageIndex-1}','${category3}')" id="k${keyboardpageIndex-1}" href="ProductListController?tab=${tab}&keyboardpageIndex=${keyboardpageIndex-1}">Previous</a></li>
+                                        <li class="page-item disabled"><a onclick="Paging('k${keyboardpageIndex-1}', '${category3}')" id="k${keyboardpageIndex-1}" href="ProductListController?tab=${tab}&keyboardpageIndex=${keyboardpageIndex-1}">Previous</a></li>
                                         </c:if>
                                         <c:forEach begin="${count}" end="${keyboardpageAmount}">
                                             <c:if test="${keyboardpageIndex==count}">
-                                            <li class="page-item active"><a onclick="Paging('k${count}','${category3}')" id="k${count}" href="ProductListController?tab=${tab}&keyboardpageIndex=${count}" class="page-link">${count}</a></li>
+                                            <li class="page-item active"><a onclick="Paging('k${count}', '${category3}')" id="k${count}" href="ProductListController?tab=${tab}&keyboardpageIndex=${count}" class="page-link">${count}</a></li>
                                             </c:if>
                                             <c:if test="${keyboardpageIndex!=count}">
-                                            <li class="page-item"><a onclick="Paging('k${count}','${category3}')" id="k${count}" href="ProductListController?tab=${tab}&keyboardpageIndex=${count}" class="page-link">${count}</a></li>
+                                            <li class="page-item"><a onclick="Paging('k${count}', '${category3}')" id="k${count}" href="ProductListController?tab=${tab}&keyboardpageIndex=${count}" class="page-link">${count}</a></li>
                                             </c:if>
                                             <c:set var="count" value="${count+1}"></c:set>
                                         </c:forEach>
                                         <c:if test="${keyboardpageIndex!=keyboardpageAmount}">
-                                        <li class="page-item disabled"><a onclick="Paging('k${keyboardpageIndex+1}','${category3}')" id="k${keyboardpageIndex+1}" href="ProductListController?tab=${tab}&keyboardpageIndex=${keyboardpageIndex+1}">Next</a></li>
+                                        <li class="page-item disabled"><a onclick="Paging('k${keyboardpageIndex+1}', '${category3}')" id="k${keyboardpageIndex+1}" href="ProductListController?tab=${tab}&keyboardpageIndex=${keyboardpageIndex+1}">Next</a></li>
                                         </c:if>
                                     <!--<li class="page-item active"><a href="#" class="page-link">Next</a></li>-->
                                 </ul>

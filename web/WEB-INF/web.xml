@@ -40,6 +40,14 @@
         <servlet-name>ProductDetailController</servlet-name>
         <servlet-class>Controller.View.ProductDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TrackingController</servlet-name>
+        <servlet-class>Controller.View.TrackingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CompareProductController</servlet-name>
+        <servlet-class>Controller.View.CompareProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/auth/Register</url-pattern>
@@ -81,6 +89,14 @@
     <servlet-mapping>
         <servlet-name>ProductDetailController</servlet-name>
         <url-pattern>/view/ProductDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrackingController</servlet-name>
+        <url-pattern>/view/TrackingController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompareProductController</servlet-name>
+        <url-pattern>/view/CompareProductController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

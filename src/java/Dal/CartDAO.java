@@ -155,7 +155,7 @@ public class CartDAO extends ConnectMySQL {
             pstm.setInt(1, Integer.parseInt(userID));
             rs = pstm.executeQuery();
             while (rs.next()) {
-                return String.valueOf(decimalFormat.format(rs.getFloat(1)));
+                return String.valueOf(decimalFormat.format(rs.getInt(1)));
             }
         } catch (Exception e) {
             System.out.println("AmountOfProductTypeByUserID: " + e);

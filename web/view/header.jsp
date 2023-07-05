@@ -146,7 +146,7 @@
 
                     <a href="${user!=null?'CartController?tab=cartList':'../auth/login'}" class="col-lg-1 col-md-1 col-sm-0 header__cart">
                         <div class="header__cart-icon-wrap">
-                            <span class="header__notice">${user!=null?AmountOfProductType:'0'}</span>
+                            <span class="header__notice">${((user!=null)&&(AmountOfProductType!=null))?AmountOfProductType:'0'}</span>
                             <i class="fas fa-shopping-cart header__nav-cart-icon"></i>
                         </div>
                     </a>

@@ -21,7 +21,7 @@ public class ProductListController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             String tab = request.getParameter("tab");
             if (tab == null) {
                 tab = "allProduct";
@@ -259,12 +259,12 @@ public class ProductListController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("headPhonesortOrder") != null || request.getParameter("keyboardsortOrder") != null || request.getParameter("mousesortOrder") != null||request.getParameter("searchInput") != null) {
+        if (request.getParameter("headPhonesortOrder") != null || request.getParameter("keyboardsortOrder") != null || request.getParameter("mousesortOrder") != null || request.getParameter("searchInput") != null) {
             processRequest(request, response);
             return;
         }
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
 //            out.print(request.getParameter("tab")+"<br>"); 
 //            out.print(request.getParameter("headPhonepageIndex")); 
             HttpSession session = request.getSession();
@@ -275,7 +275,7 @@ public class ProductListController extends HttpServlet {
                 int headPhonepageAmount = (int) session.getAttribute("headPhonepageAmount");
                 int headPhonepageIndex = Integer.parseInt(request.getParameter("headPhonepageIndex"));
                 ArrayList<Products> headPhoneData = (ArrayList<Products>) session.getAttribute("headPhoneData");
-                String category1="category1";
+                String category1 = "category1";
                 out.print("                    <div class=\"container\">\n"
                         + "                        <div class=\"row bg-white\">\n"
                         + "                            <div class=\"col-lg-10 col-md-10 col-sm-10 product__love-title\">\n"
@@ -356,10 +356,10 @@ public class ProductListController extends HttpServlet {
                             countDisplayElement++;
                             out.print("<div class=\"product__panel-item col-lg-2 col-md-3 col-sm-6\">\n"
                                     + "                                                <div class=\"product__panel-img-wrap\">\n"
-                                    + "                                                    <a href=\"ProductDetailController?ProductID="+headPhoneData.get(i).getProductID()+"\"> <img src=\"" + headPhoneData.get(i).getPicture() + "\" class=\"product__panel-img\"></a>\n"
+                                    + "                                                    <a href=\"ProductDetailController?ProductID=" + headPhoneData.get(i).getProductID() + "\"> <img src=\"" + headPhoneData.get(i).getPicture() + "\" class=\"product__panel-img\"></a>\n"
                                     + "                                            </div>\n"
                                     + "                                            <h3 class=\"product__panel-heading\">\n"
-                                    + "                                                <a href=\"ProductDetailController?ProductID="+headPhoneData.get(i).getProductID()+"\"  class=\"product__panel-link\">" + headPhoneData.get(i).getName() + "</a>\n"
+                                    + "                                                <a href=\"ProductDetailController?ProductID=" + headPhoneData.get(i).getProductID() + "\"  class=\"product__panel-link\">" + headPhoneData.get(i).getName() + "</a>\n"
                                     + "                                            </h3>                       \n"
                                     + "                                            <div class=\"product__panel-rate-wrap\">\n"
                                     + "                                                <i class=\"product__panel-rate\" style=\"text-decoration: underline;font-size: 20px; margin-right: 5px\">" + headPhoneData.get(i).getRateStar() + "</i>\n"
@@ -372,7 +372,7 @@ public class ProductListController extends HttpServlet {
                                     + "                                            <div class=\"product__panel-price\">\n"
                                     + "                                                <span class=\"product__panel-price-old-1 product__panel-price-old-1-hide\">\n"
                                     + "                                                    <div>    \n"
-                                    + "                                                        <button class=\"bestselling__product-btn\">So sánh</button>\n"
+                                    + "                                                        <a href=\"CompareProductController?productID=" + headPhoneData.get(i).getProductID() + "\" class=\"bestselling__product-btn\">So sánh</a>\n"
                                     + "                                                    </div>\n"
                                     + "                                                </span>\n"
                                     + "                                                <span class=\"product__panel-price-current\">\n"
@@ -396,17 +396,17 @@ public class ProductListController extends HttpServlet {
                             + "                                <ul class=\"pagination\">");
                     int count = 1;
                     if (headPhonepageIndex != 1) {
-                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('" + (headPhonepageIndex - 1) + "','"+category1+"')\" id=\"" + (headPhonepageIndex - 1) + "\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + (headPhonepageIndex - 1) + "\">Previous</a></li>");
+                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('" + (headPhonepageIndex - 1) + "','" + category1 + "')\" id=\"" + (headPhonepageIndex - 1) + "\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + (headPhonepageIndex - 1) + "\">Previous</a></li>");
                     }
                     for (count = 1; count <= headPhonepageAmount; ++count) {
                         if (headPhonepageIndex == count) {
-                            out.print("<li class=\"page-item active\"><a onclick=\"Paging('" + count + "','"+category1+"')\"  id=\"" + count + "\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                            out.print("<li class=\"page-item active\"><a onclick=\"Paging('" + count + "','" + category1 + "')\"  id=\"" + count + "\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
                         } else {
-                            out.print("<li class=\"page-item \"><a onclick=\"Paging('" + count + "','"+category1+"')\"  id=\"" + count + "\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                            out.print("<li class=\"page-item \"><a onclick=\"Paging('" + count + "','" + category1 + "')\"  id=\"" + count + "\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
                         }
                     }
                     if (headPhonepageIndex != headPhonepageAmount) {
-                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('" + (headPhonepageIndex + 1) + "','"+category1+"')\"  id=\"" + (headPhonepageIndex + 1) + "\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + (headPhonepageIndex + 1) + "\">Next</a></li>");
+                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('" + (headPhonepageIndex + 1) + "','" + category1 + "')\"  id=\"" + (headPhonepageIndex + 1) + "\" href=\"ProductListController?tab=" + tab + "&headPhonepageIndex=" + (headPhonepageIndex + 1) + "\">Next</a></li>");
                     }
                     out.print("</ul>");
                 }
@@ -419,7 +419,7 @@ public class ProductListController extends HttpServlet {
                 int mousepageAmount = (int) session.getAttribute("mousepageAmount");
                 int mousepageIndex = Integer.parseInt(request.getParameter("mousepageIndex"));
                 ArrayList<Products> mouseData = (ArrayList<Products>) session.getAttribute("mouseData");
-                String category2="category2";
+                String category2 = "category2";
                 out.print("                    <div class=\"container\">\n"
                         + "                        <div class=\"row bg-white\">\n"
                         + "                            <div class=\"col-lg-10 col-md-10 col-sm-10 product__love-title\">\n"
@@ -500,10 +500,10 @@ public class ProductListController extends HttpServlet {
                             countDisplayElement++;
                             out.print("<div class=\"product__panel-item col-lg-2 col-md-3 col-sm-6\">\n"
                                     + "                                                <div class=\"product__panel-img-wrap\">\n"
-                                    + "                                                    <a href=\"ProductDetailController?ProductID="+mouseData.get(i).getProductID()+"\"> <img src=\"" + mouseData.get(i).getPicture() + "\" class=\"product__panel-img\"></a>\n"
+                                    + "                                                    <a href=\"ProductDetailController?ProductID=" + mouseData.get(i).getProductID() + "\"> <img src=\"" + mouseData.get(i).getPicture() + "\" class=\"product__panel-img\"></a>\n"
                                     + "                                            </div>\n"
                                     + "                                            <h3 class=\"product__panel-heading\">\n"
-                                    + "                                                <a href=\"ProductDetailController?ProductID="+mouseData.get(i).getProductID()+"\"  class=\"product__panel-link\">" + mouseData.get(i).getName() + "</a>\n"
+                                    + "                                                <a href=\"ProductDetailController?ProductID=" + mouseData.get(i).getProductID() + "\"  class=\"product__panel-link\">" + mouseData.get(i).getName() + "</a>\n"
                                     + "                                            </h3>                       \n"
                                     + "                                            <div class=\"product__panel-rate-wrap\">\n"
                                     + "                                                <i class=\"product__panel-rate\" style=\"text-decoration: underline;font-size: 20px; margin-right: 5px\">" + mouseData.get(i).getRateStar() + "</i>\n"
@@ -540,31 +540,30 @@ public class ProductListController extends HttpServlet {
                             + "                                <ul class=\"pagination\">");
                     int count = 1;
                     if (mousepageIndex != 1) {
-                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('m" + (mousepageIndex - 1) + "','"+category2+"')\" id=\"m" + (mousepageIndex - 1) + "\" href=\"ProductListController?tab=" + tab + "&mousepageIndex=" + (mousepageIndex - 1) + "\">Previous</a></li>");
+                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('m" + (mousepageIndex - 1) + "','" + category2 + "')\" id=\"m" + (mousepageIndex - 1) + "\" href=\"ProductListController?tab=" + tab + "&mousepageIndex=" + (mousepageIndex - 1) + "\">Previous</a></li>");
                     }
                     for (count = 1; count <= mousepageAmount; ++count) {
                         if (mousepageIndex == count) {
-                            out.print("<li class=\"page-item active\"><a onclick=\"Paging('m" + count + "','"+category2+"')\"  id=\"m" + count + "\" href=\"ProductListController?tab=" + tab + "&mousepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                            out.print("<li class=\"page-item active\"><a onclick=\"Paging('m" + count + "','" + category2 + "')\"  id=\"m" + count + "\" href=\"ProductListController?tab=" + tab + "&mousepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
                         } else {
-                            out.print("<li class=\"page-item \"><a onclick=\"Paging('m" + count + "','"+category2+"')\"  id=\"m" + count + "\" href=\"ProductListController?tab=" + tab + "&mousepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                            out.print("<li class=\"page-item \"><a onclick=\"Paging('m" + count + "','" + category2 + "')\"  id=\"m" + count + "\" href=\"ProductListController?tab=" + tab + "&mousepageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
                         }
                     }
                     if (mousepageIndex != mousepageAmount) {
-                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('m" + (mousepageIndex + 1) + "','"+category2+"')\"  id=\"m" + (mousepageIndex + 1) + "\" href=\"ProductListController?tab=" + tab + "&mousepageIndex=" + (mousepageIndex + 1) + "\">Next</a></li>");
+                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('m" + (mousepageIndex + 1) + "','" + category2 + "')\"  id=\"m" + (mousepageIndex + 1) + "\" href=\"ProductListController?tab=" + tab + "&mousepageIndex=" + (mousepageIndex + 1) + "\">Next</a></li>");
                     }
                     out.print("</ul>");
                 }
                 out.print("</div>\n");
 
-            }
-            else // keyboard
+            } else // keyboard
             {
                 String keyboardsortOrder = (String) session.getAttribute("keyboardsortOrder");
                 int keyboardamountElementInPage = (int) session.getAttribute("keyboardamountElementInPage");
                 int keyboardpageAmount = (int) session.getAttribute("keyboardpageAmount");
                 int keyboardpageIndex = Integer.parseInt(request.getParameter("keyboardpageIndex"));
                 ArrayList<Products> keyboardData = (ArrayList<Products>) session.getAttribute("keyboardData");
-                String category3="category3";
+                String category3 = "category3";
                 out.print("                    <div class=\"container\">\n"
                         + "                        <div class=\"row bg-white\">\n"
                         + "                            <div class=\"col-lg-10 col-md-10 col-sm-10 product__love-title\">\n"
@@ -645,10 +644,10 @@ public class ProductListController extends HttpServlet {
                             countDisplayElement++;
                             out.print("<div class=\"product__panel-item col-lg-2 col-md-3 col-sm-6\">\n"
                                     + "                                                <div class=\"product__panel-img-wrap\">\n"
-                                    + "                                                    <a href=\"ProductDetailController?ProductID="+keyboardData.get(i).getProductID()+"\"> <img src=\"" + keyboardData.get(i).getPicture() + "\" class=\"product__panel-img\"></a>\n"
+                                    + "                                                    <a href=\"ProductDetailController?ProductID=" + keyboardData.get(i).getProductID() + "\"> <img src=\"" + keyboardData.get(i).getPicture() + "\" class=\"product__panel-img\"></a>\n"
                                     + "                                            </div>\n"
                                     + "                                            <h3 class=\"product__panel-heading\">\n"
-                                    + "                                                <a href=\"ProductDetailController?ProductID="+keyboardData.get(i).getProductID()+"\"  class=\"product__panel-link\">" + keyboardData.get(i).getName() + "</a>\n"
+                                    + "                                                <a href=\"ProductDetailController?ProductID=" + keyboardData.get(i).getProductID() + "\"  class=\"product__panel-link\">" + keyboardData.get(i).getName() + "</a>\n"
                                     + "                                            </h3>                       \n"
                                     + "                                            <div class=\"product__panel-rate-wrap\">\n"
                                     + "                                                <i class=\"product__panel-rate\" style=\"text-decoration: underline;font-size: 20px; margin-right: 5px\">" + keyboardData.get(i).getRateStar() + "</i>\n"
@@ -685,17 +684,17 @@ public class ProductListController extends HttpServlet {
                             + "                                <ul class=\"pagination\">");
                     int count = 1;
                     if (keyboardpageIndex != 1) {
-                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('k" + (keyboardpageIndex - 1) + "','"+category3+"')\" id=\"k" + (keyboardpageIndex - 1) + "\" href=\"ProductListController?tab=" + tab + "&keyboardpageIndex=" + (keyboardpageIndex - 1) + "\">Previous</a></li>");
+                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('k" + (keyboardpageIndex - 1) + "','" + category3 + "')\" id=\"k" + (keyboardpageIndex - 1) + "\" href=\"ProductListController?tab=" + tab + "&keyboardpageIndex=" + (keyboardpageIndex - 1) + "\">Previous</a></li>");
                     }
                     for (count = 1; count <= keyboardpageAmount; ++count) {
                         if (keyboardpageIndex == count) {
-                            out.print("<li class=\"page-item active\"><a onclick=\"Paging('k" + count + "','"+category3+"')\"  id=\"k" + count + "\" href=\"ProductListController?tab=" + tab + "&keyboardpageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                            out.print("<li class=\"page-item active\"><a onclick=\"Paging('k" + count + "','" + category3 + "')\"  id=\"k" + count + "\" href=\"ProductListController?tab=" + tab + "&keyboardpageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
                         } else {
-                            out.print("<li class=\"page-item \"><a onclick=\"Paging('k" + count + "','"+category3+"')\"  id=\"k" + count + "\" href=\"ProductListController?tab=" + tab + "&keyboardpageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
+                            out.print("<li class=\"page-item \"><a onclick=\"Paging('k" + count + "','" + category3 + "')\"  id=\"k" + count + "\" href=\"ProductListController?tab=" + tab + "&keyboardpageIndex=" + count + "\" class=\"page-link\">" + count + "</a></li>");
                         }
                     }
                     if (keyboardpageIndex != keyboardpageAmount) {
-                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('k" + (keyboardpageIndex + 1) + "','"+category3+"')\"  id=\"k" + (keyboardpageIndex + 1) + "\" href=\"ProductListController?tab=" + tab + "&keyboardpageIndex=" + (keyboardpageIndex + 1) + "\">Next</a></li>");
+                        out.print("<li class=\"page-item disabled\"><a onclick=\"Paging('k" + (keyboardpageIndex + 1) + "','" + category3 + "')\"  id=\"k" + (keyboardpageIndex + 1) + "\" href=\"ProductListController?tab=" + tab + "&keyboardpageIndex=" + (keyboardpageIndex + 1) + "\">Next</a></li>");
                     }
                     out.print("</ul>");
                 }
