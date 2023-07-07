@@ -47,6 +47,24 @@
     <servlet>
         <servlet-name>ManagerUpdateProductController</servlet-name>
         <servlet-class>Controller.Manager.ManagerUpdateProductController</servlet-class>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>Controller.View.CartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutController</servlet-name>
+        <servlet-class>Controller.View.CheckoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductDetailController</servlet-name>
+        <servlet-class>Controller.View.ProductDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TrackingController</servlet-name>
+        <servlet-class>Controller.View.TrackingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CompareProductController</servlet-name>
+        <servlet-class>Controller.View.CompareProductController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManagerOrderController</servlet-name>
@@ -113,6 +131,24 @@
     <servlet-mapping>
         <servlet-name>ManagerUpdateProductController</servlet-name>
         <url-pattern>/manager/ManagerUpdateProductController</url-pattern>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/view/CartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutController</servlet-name>
+        <url-pattern>/view/CheckoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductDetailController</servlet-name>
+        <url-pattern>/view/ProductDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrackingController</servlet-name>
+        <url-pattern>/view/TrackingController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompareProductController</servlet-name>
+        <url-pattern>/view/CompareProductController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManagerOrderController</servlet-name>
