@@ -64,7 +64,7 @@
                         <c:if test="${role==null}" >
                             <ul class="header__top-list">
                                 <li class="header__top-item">
-                                    <a href="../auth/login" class="header__top-link">Giỏ hàng</a>
+                                    <a href="${user!=null?'CartController?tab=cartList':'../auth/login'}" class="header__top-link">Giỏ hàng</a>
                                 </li>
                                 <li class="header__top-item">
                                     <a href="../auth/login" class="header__top-link">Thanh toán</a>
@@ -77,7 +77,7 @@
                         <c:if test="${role!=null}" >
                             <ul class="header__top-list">
                                 <li class="header__top-item">
-                                    <a href="#" class="header__top-link">Giỏ hàng</a>
+                                    <a href="CartController?tab=cartList" class="header__top-link">Giỏ hàng</a>
                                 </li>
                                 <li class="header__top-item">
                                     <a href="#" class="header__top-link">Thanh toán</a>
@@ -116,13 +116,7 @@
 
                     <!--<form action="ProductListController?tab=allproduct" method="get" >-->
                     <div class="col-lg-6 col-md-7 col-sm-0 header__search">
-                        <select name="typeSelect" id="" class="header__search-select">
-                            <option value="0">All</option>
-                            <option value="1">Tai nghe</option>
-                            <option value="2">Chuột</option>
-                            <option value="3">Bàn phím</option>
-
-                        </select>
+                        
                         <input type="text" name="searchInput" class="header__search-input" placeholder="Tìm kiếm tại đây...">
 
                         <button class="header__search-btn" name="searchSubmit" value="submit">
@@ -150,9 +144,9 @@
                         </div>
                     </div>
 
-                    <a href="listCart.jsp" class="col-lg-1 col-md-1 col-sm-0 header__cart">
+                    <a href="${user!=null?'CartController?tab=cartList':'../auth/login'}" class="col-lg-1 col-md-1 col-sm-0 header__cart">
                         <div class="header__cart-icon-wrap">
-                            <span class="header__notice">4</span>
+                            <span class="header__notice">${((user!=null)&&(AmountOfProductType!=null))?AmountOfProductType:'0'}</span>
                             <i class="fas fa-shopping-cart header__nav-cart-icon"></i>
                         </div>
                     </a>

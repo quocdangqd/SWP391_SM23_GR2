@@ -47,7 +47,9 @@ public class HomePageController extends HttpServlet {
             } else if (tab.equals("logOut")) {
                 session.removeAttribute("role");
             }
+            
             session.setAttribute("tab", "allProduct");
+            
             request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
         }
     }
