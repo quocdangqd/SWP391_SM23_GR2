@@ -86,11 +86,11 @@ CREATE TABLE `earphone` (
   `type` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `frequency` float DEFAULT NULL,
   `sensitive` float DEFAULT NULL,
-  `empedance` float DEFAULT NULL,
+  `impedance` float DEFAULT NULL,
   `meterial` varchar(100) DEFAULT NULL,
   `earphone_ProductID` int DEFAULT NULL,
   `size` varchar(45) DEFAULT NULL,
-  `batterry` varchar(45) DEFAULT NULL,
+  `battery` varchar(45) DEFAULT NULL,
   `connection distance` varchar(45) DEFAULT NULL,
   `wire length` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`earphoneID`),
@@ -444,4 +444,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-03 17:46:04
+-- Dump completed on 2023-07-08  0:26:50
