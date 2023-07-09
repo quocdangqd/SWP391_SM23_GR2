@@ -19,7 +19,7 @@ public class ManagerUpdateOrderController extends HttpServlet {
             throws ServletException, IOException {
         ManagerDAO dao = new ManagerDAO();
         String id = req.getParameter("id");
-        dao.LoadOneOrder(id);
+//        dao.LoadOneOrder(id);
         Order order = dao.getOneOrder();
         req.setAttribute("o", order);
         req.getRequestDispatcher("editorder.jsp").forward(req, resp);

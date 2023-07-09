@@ -204,27 +204,27 @@ public class ManagerDAO extends ConnectMySQL {
 //        }
 //        return null;
 //    }
-    public ArrayList<Order> getListOrder() {
-        order = new ArrayList<>();
-        String sql = "SELECT * FROM swp.order;";
-        try {
-            pstm = connection.prepareStatement(sql);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                String orderID = rs.getString(1);
-                String order_userID = rs.getString(4);
-                String order_salecodeID = rs.getString(6);
-                String order_shippingID = rs.getString(2);
-                Date date = rs.getDate(3);
-                String status = rs.getString(7);
-                order.add(new Order(orderID, order_shippingID, order_userID, "", order_salecodeID, status, String.valueOf(date)));
-            }
-
-        } catch (Exception e) {
-            System.out.println("getListOrder: " + e.getMessage());
-        }
-        return order;
-    }
+//    public ArrayList<Order> getListOrder() {
+//        order = new ArrayList<>();
+//        String sql = "SELECT * FROM swp.order;";
+//        try {
+//            pstm = connection.prepareStatement(sql);
+//            rs = pstm.executeQuery();
+//            while (rs.next()) {
+//                String orderID = rs.getString(1);
+//                String order_userID = rs.getString(4);
+//                String order_salecodeID = rs.getString(6);
+//                String order_shippingID = rs.getString(2);
+//                Date date = rs.getDate(3);
+//                String status = rs.getString(7);
+//                order.add(new Order(orderID, order_shippingID, order_userID, "", order_salecodeID, status, String.valueOf(date)));
+//            }
+//
+//        } catch (Exception e) {
+//            System.out.println("getListOrder: " + e.getMessage());
+//        }
+//        return order;
+//    }
 
     public void deleteOrder(String orderID) {
         try {
@@ -239,26 +239,26 @@ public class ManagerDAO extends ConnectMySQL {
         }
     }
 
-    public void LoadOneOrder(String id) {
-        String sql = "SELECT * FROM swp.order where orderID=?;";
-        OneOrder = new Order();
-        try {
-            pstm = connection.prepareStatement(sql);
-            pstm.setString(1, id);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                String orderID = rs.getString(1);
-                String order_userID = rs.getString(4);
-                String order_salecodeID = rs.getString(6);
-                String order_shippingID = rs.getString(2);
-                Date date = rs.getDate(3);
-                String status = rs.getString(7);
-                OneOrder = (new Order(orderID, order_shippingID, order_userID, "", order_salecodeID, status, String.valueOf(date)));
-            }
-        } catch (Exception e) {
-            System.out.println("LoadOneOrder: " + e.getMessage());
-        }
-    }
+//    public void LoadOneOrder(String id) {
+//        String sql = "SELECT * FROM swp.order where orderID=?;";
+//        OneOrder = new Order();
+//        try {
+//            pstm = connection.prepareStatement(sql);
+//            pstm.setString(1, id);
+//            rs = pstm.executeQuery();
+//            while (rs.next()) {
+//                String orderID = rs.getString(1);
+//                String order_userID = rs.getString(4);
+//                String order_salecodeID = rs.getString(6);
+//                String order_shippingID = rs.getString(2);
+//                Date date = rs.getDate(3);
+//                String status = rs.getString(7);
+//                OneOrder = (new Order(orderID, order_shippingID, order_userID, "", order_salecodeID, status, String.valueOf(date)));
+//            }
+//        } catch (Exception e) {
+//            System.out.println("LoadOneOrder: " + e.getMessage());
+//        }
+//    }
 
     public void updateOrder(String orderID, String order_shippingID, String date, String order_userID, String note, String order_salecodeID, String status) {
         try {

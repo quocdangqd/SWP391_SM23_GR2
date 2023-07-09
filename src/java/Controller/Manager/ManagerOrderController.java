@@ -18,7 +18,7 @@ public class ManagerOrderController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
         ManagerDAO dao = new ManagerDAO();
-        dao.getListOrder();
+//        dao.getListOrder();
         req.setAttribute("listO", dao.getOrder());
         req.getRequestDispatcher("ordermanager.jsp").forward(req, resp);
     } 

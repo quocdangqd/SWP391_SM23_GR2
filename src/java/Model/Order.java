@@ -101,9 +101,8 @@ public class Order {
         this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" + "orderID=" + orderID + ", order_shippingID=" + order_shippingID + ", order_userID=" + order_userID + ", note=" + note + ", order_salecodeID=" + order_salecodeID + ", status=" + status + ", date=" + date + '}';
+    public String getDate() {
+        return date;
     }
 
     public String getStatus() {
