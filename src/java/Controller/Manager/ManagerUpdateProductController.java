@@ -4,6 +4,7 @@
  */
 package Controller.Manager;
 
+import Dal.CategoriesDAO;
 import Dal.ManagerDAO;
 import Model.Products;
 import java.io.IOException;
@@ -19,8 +20,9 @@ public class ManagerUpdateProductController extends HttpServlet {
             throws ServletException, IOException {
         ManagerDAO dao = new ManagerDAO();
         String id = req.getParameter("id");
-        dao.LoadOneProduct(id);
-        Products p = dao.getOneProduct();
+        Products p = dao.getProductsByID(id);
+        CategoriesDAO ca = new CategoriesDAO();
+        req.setAttribute("categoriesList", ca.GetCategoriesList());
         req.setAttribute("o", p);
         req.getRequestDispatcher("editproduct.jsp").forward(req, resp);
 
@@ -30,25 +32,53 @@ public class ManagerUpdateProductController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ManagerDAO dao = new ManagerDAO();
-        String Pid = req.getParameter("pid");
-        String Cid = req.getParameter("cid");
+        String id = req.getParameter("pid");
+        Products p = dao.getProductsByID(id);
+        CategoriesDAO ca = new CategoriesDAO();
+        req.setAttribute("categoriesList", ca.GetCategoriesList());
+        req.setAttribute("o", p);
+        
+        String Cid = req.getParameter("category");
         String Name = req.getParameter("name");
         String Desciption = req.getParameter("desciption");
         String Image = req.getParameter("image");
+        String Image2 = req.getParameter("image2");
+        String Image3 = req.getParameter("image3");
         String Price = req.getParameter("price");
         String Quantity = req.getParameter("quantity");
         String Status = req.getParameter("status");
-
-        dao.updateProduct(Pid, Cid, Name, Desciption, Image, Quantity, Status, Price);
+        
+        System.out.println("Cid "+Cid);
+        System.out.println("Name: "+ Name);
+        System.out.println("Description: "+Desciption);
+        System.out.println("Image: "+Image+Image2+Image3);
+        System.out.println("Price: "+ Price);
+        System.out.println("Quantity: "+ Quantity);
+        System.out.println("Status: "+Status);
+        dao.updateProduct(Cid, Name, Desciption, Image, Image2, Image3, Quantity, Status, Price, id);
+        
+        req.setAttribute("pid", id);
         req.setAttribute("name", Name);
         req.setAttribute("price", Price);
         req.setAttribute("image", Image);
-        req.setAttribute("cid", Cid);
-        req.setAttribute("pid", Pid);
-        req.setAttribute("desciption", Desciption);
+        req.setAttribute("image2", Image2);
+        req.setAttribute("image3", Image3);
+        req.setAttribute("category", Cid);
+        req.setAttribute("description", Desciption);
         req.setAttribute("quantity", Quantity);
         req.setAttribute("status", Status);
-        req.setAttribute("successText", "Add Successful!!!");
+//        p.setProductID(id);
+//        p.setProduct_categoryID(Cid);
+//        p.setName(Name);
+//        p.setDesciption(Desciption);
+//        p.setPicture(Image);
+//        p.setPicture2(Image2);
+//        p.setPicture3(Image3);
+//        p.setQuantity(Quantity);
+//        p.setPrice(Price);
+//        p.setStatus(Status);
+//        dao.updateProduct(p);
+//        resp.sendRedirect("ManagerProductController");
         req.getRequestDispatcher("editproduct.jsp").forward(req, resp);
 
     }

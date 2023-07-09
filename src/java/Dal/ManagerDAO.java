@@ -4,10 +4,10 @@
  */
 package Dal;
 
-import Model.Categories;
 import Model.Order;
 import Model.Products;
-import java.sql.Date;
+import Model.User;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -20,10 +20,7 @@ import java.util.Locale;
 public class ManagerDAO extends ConnectMySQL {
 
     private ArrayList<Products> product;
-    private ArrayList<Categories> category;
     private ArrayList<Order> order;
-    private Products OneProduct = null;
-    private Order OneOrder = null;
 
     public ManagerDAO() {
     }
@@ -36,36 +33,12 @@ public class ManagerDAO extends ConnectMySQL {
         this.product = product;
     }
 
-    public ArrayList<Categories> getCategory() {
-        return category;
-    }
-
-    public void setCategory(ArrayList<Categories> category) {
-        this.category = category;
-    }
-
     public ArrayList<Order> getOrder() {
         return order;
     }
 
     public void setOrder(ArrayList<Order> order) {
         this.order = order;
-    }
-
-    public Products getOneProduct() {
-        return OneProduct;
-    }
-
-    public void setOneProduct(Products OneProduct) {
-        this.OneProduct = OneProduct;
-    }
-
-    public Order getOneOrder() {
-        return OneOrder;
-    }
-
-    public void setOneOrder(Order OneOrder) {
-        this.OneOrder = OneOrder;
     }
 
     public ArrayList<Products> getAllProduct() {
@@ -82,16 +55,49 @@ public class ManagerDAO extends ConnectMySQL {
                 String name = String.valueOf(rs.getString(3));
                 String desciption = String.valueOf(rs.getString(4));
                 String picture = String.valueOf(rs.getString(5));
+                String picture2 = String.valueOf(rs.getString(6));
+                String picture3 = String.valueOf(rs.getString(7));
                 String price = String.valueOf(decimalFormat.format((int) rs.getFloat(8)));
                 String quantity = String.valueOf(rs.getInt(9));
                 String status = String.valueOf(rs.getInt(10));
-                product.add(new Products(ProductID, product_categoryID, name, desciption, picture, "","","", "","",price, quantity, status));
+                product.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, "", "", "", picture2, picture3));
             }
 
         } catch (Exception e) {
             System.out.println("getAllProduct: " + e.getMessage());
         }
         return product;
+    }
+
+    public Products getProductsByID(String id) {
+        try {
+            String sqlSelect = "Select * from product where ProductID=" + id;
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+            decimalFormat.applyPattern("#,###");
+            while (rs.next()) {
+                Products p = new Products();
+                p.setProductID(String.valueOf(rs.getInt(1)));
+                String categories = String.valueOf(rs.getInt(2));
+                p.setProduct_categoryID(categories);
+
+                p.setName(String.valueOf(rs.getString(3)));
+                p.setDesciption(String.valueOf(rs.getString(4)));
+                p.setPicture(rs.getString(5));
+                p.setPicture2(rs.getString(6));
+                p.setPicture3(rs.getString(7));
+                p.setPrice(String.valueOf(decimalFormat.format((int) rs.getFloat(8))));
+                p.setQuantity(String.valueOf(rs.getInt(9)));
+                p.setStatus(String.valueOf(rs.getInt(10)));
+                p.setCategories(new CategoriesDAO().getCategoryById(categories));
+                return p;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return null;
     }
 
     public void addNewProduct(String cid, String pname, String desciption, String img1, String img2, String img3, String quantity, String status, String price) {
@@ -116,50 +122,27 @@ public class ManagerDAO extends ConnectMySQL {
         }
     }
 
-    public void LoadOneProduct(String pid) {
-        String sql = "select * from Product where ProductID=?";
-        OneProduct = new Products();
+    public void updateProduct(String cid, String pname, String desciption, String img1, String img2, String img3, String quantity, String status, String price, String pid) {
         try {
-            pstm = connection.prepareStatement(sql);
-            pstm.setString(1, pid);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                OneProduct = (new Products(rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6),
-                        rs.getString(7),
-                        rs.getString(8),
-                        rs.getString(9),
-                        rs.getString(10),
-                        rs.getString(11),
-                        rs.getString(12),
-                        rs.getString(13)));
-            }
-        } catch (Exception e) {
-            System.out.println("LoadOneProduct: " + e.getMessage());
-        }
-    }
-
-    public void updateProduct(String pid, String cid, String pname, String desciption, String img, String quantity, String status, String price) {
-        try {
-            String sql = "UPDATE product set product_categoryID=?, name=?, desciption=?,picture=?, \n"
+            String sql = "UPDATE product set product_categoryID=?, name=?, desciption=?,picture=?,picture2=?,picture3=?,\n"
                     + "price=?,quantity=?, status=? where ProductID = ?;";
             pstm = connection.prepareStatement(sql);
-            pstm.setString(1, cid);
+            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+            decimalFormat.applyPattern("#,###");
+            pstm.setInt(1, Integer.parseInt(cid));
             pstm.setString(2, pname);
             pstm.setString(3, desciption);
-            pstm.setString(4, img);
-            pstm.setString(5, price);
-            pstm.setString(6, quantity);
-            pstm.setString(7, status);
-            pstm.setString(8, pid);
+            pstm.setString(4, img1);
+            pstm.setString(5, img2);
+            pstm.setString(6, img3);
+            pstm.setFloat(7, Float.parseFloat(price));
+            pstm.setInt(8, Integer.parseInt(quantity));
+            pstm.setBoolean(9, status.equals("1"));
+            pstm.setInt(10, Integer.parseInt(pid));
 
             pstm.executeUpdate();
         } catch (Exception e) {
-            System.out.println("addNewProduct: " + e.getMessage());
+            System.out.println("updateProduct: " + e.getMessage());
 
         }
     }
@@ -177,54 +160,50 @@ public class ManagerDAO extends ConnectMySQL {
         }
     }
 
-//    public Products getProductById(String id) {
-//        String query = "select * from Products where ProductID=?";
-//        try {
-//            pstm = connection.prepareStatement(query);
-//            pstm.setString(1, id);
-//            rs = pstm.executeQuery();
-//            while (rs.next()) {
-//                return (new Products(rs.getString(1),
-//                        rs.getString(2),
-//                        rs.getString(3),
-//                        rs.getString(4),
-//                        rs.getString(5),
-//                        rs.getString(6),
-//                        rs.getString(7),
-//                        rs.getString(8),
-//                        rs.getString(9),
-//                        rs.getString(10),
-//                        rs.getString(11),
-//                        rs.getString(12),
-//                        rs.getString(13)));
-//            }
-//            
-//        } catch (Exception e) {
-//            System.out.println("getProductById: " + e.getMessage());
-//        }
-//        return null;
-//    }
-//    public ArrayList<Order> getListOrder() {
-//        order = new ArrayList<>();
-//        String sql = "SELECT * FROM swp.order;";
-//        try {
-//            pstm = connection.prepareStatement(sql);
-//            rs = pstm.executeQuery();
-//            while (rs.next()) {
-//                String orderID = rs.getString(1);
-//                String order_userID = rs.getString(4);
-//                String order_salecodeID = rs.getString(6);
-//                String order_shippingID = rs.getString(2);
-//                Date date = rs.getDate(3);
-//                String status = rs.getString(7);
-//                order.add(new Order(orderID, order_shippingID, order_userID, "", order_salecodeID, status, String.valueOf(date)));
-//            }
-//
-//        } catch (Exception e) {
-//            System.out.println("getListOrder: " + e.getMessage());
-//        }
-//        return order;
-//    }
+    public ArrayList<Order> getListOrder() {
+        order = new ArrayList<>();
+        String sql = "SELECT * FROM swp.order;";
+        try {
+            pstm = connection.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                String orderID = String.valueOf(rs.getString(1));
+                String order_userID = String.valueOf(rs.getString(2));
+                String sale = String.valueOf(rs.getString(3));
+                String note = String.valueOf(rs.getString(4));
+                String date = String.valueOf(rs.getTimestamp(5));
+                String status = rs.getString(6);
+                order.add(new Order(orderID, order_userID, sale, note, date, status));
+            }
+
+        } catch (Exception e) {
+            System.out.println("getListOrder: " + e.getMessage());
+        }
+        return order;
+    }
+
+    public Order getOrderByID(String id) {
+        try {
+            String sqlSelect = "SELECT * FROM swp.order where orderID=" + id;
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                Order o = new Order();
+                o.setOrderID(String.valueOf(rs.getInt(1)));
+                String user = String.valueOf(rs.getString(2));
+                o.setOrder_userID(user);
+                o.setOrder_salecodeID(String.valueOf(rs.getString(3)));
+                o.setDate(String.valueOf(rs.getTimestamp(5)));
+                o.setStatus(String.valueOf(rs.getString(6)));
+                o.setUser(new ManagerDAO().getUserById(user));
+                return o;
+            }
+        } catch (Exception e) {
+            System.out.println("getOrderByID: " + e.getMessage());
+        }
+
+        return null;
+    }
 
     public void deleteOrder(String orderID) {
         try {
@@ -239,39 +218,17 @@ public class ManagerDAO extends ConnectMySQL {
         }
     }
 
-//    public void LoadOneOrder(String id) {
-//        String sql = "SELECT * FROM swp.order where orderID=?;";
-//        OneOrder = new Order();
-//        try {
-//            pstm = connection.prepareStatement(sql);
-//            pstm.setString(1, id);
-//            rs = pstm.executeQuery();
-//            while (rs.next()) {
-//                String orderID = rs.getString(1);
-//                String order_userID = rs.getString(4);
-//                String order_salecodeID = rs.getString(6);
-//                String order_shippingID = rs.getString(2);
-//                Date date = rs.getDate(3);
-//                String status = rs.getString(7);
-//                OneOrder = (new Order(orderID, order_shippingID, order_userID, "", order_salecodeID, status, String.valueOf(date)));
-//            }
-//        } catch (Exception e) {
-//            System.out.println("LoadOneOrder: " + e.getMessage());
-//        }
-//    }
-
-    public void updateOrder(String orderID, String order_shippingID, String date, String order_userID, String note, String order_salecodeID, String status) {
+    public void updateOrder(String orderID, String date, String order_userID, String note, String order_salecodeID, String status) {
         try {
-            String sql = "update swp.order set order_shippingID=?, date=?, order_userID=?, note=?, order_salecodeID=?, status=?\n"
+            String sql = "update swp.order set date=?, order_userID=?, note=?, order_salecodeID=?, status=?\n"
                     + "	where orderID = ?;";
             pstm = connection.prepareStatement(sql);
-            pstm.setString(1, order_shippingID);
-            pstm.setString(2, String.valueOf(date));
-            pstm.setString(3, order_userID);
-            pstm.setString(4, note);
-            pstm.setString(5, order_salecodeID);
-            pstm.setString(6, status);
-            pstm.setString(7, orderID);
+            pstm.setTimestamp(1, Timestamp.valueOf(date));
+            pstm.setString(2, order_userID);
+            pstm.setString(3, note);
+            pstm.setString(4, order_salecodeID);
+            pstm.setString(5, status);
+            pstm.setString(6, orderID);
 
             pstm.executeUpdate();
         } catch (Exception e) {
@@ -279,29 +236,74 @@ public class ManagerDAO extends ConnectMySQL {
 
         }
     }
+//
+//    public void addNewOrder(String order_shippingID, String date, String order_userID, String note, String order_salecodeID, String status) {
+//        try {
+//            String sql = "insert into swp.order (order_shippingID, date, order_userID, note, order_salecodeID, status)\n"
+//                    + "  values (?,?,?,?,?,?);";
+//            pstm = connection.prepareStatement(sql);
+//            pstm.setString(1, order_shippingID);
+//            pstm.setString(2, date);
+//            pstm.setString(3, order_userID);
+//            pstm.setString(4, note);
+//            pstm.setString(5, order_salecodeID);
+//            pstm.setString(6, status);
+//
+//            pstm.executeUpdate();
+//        } catch (Exception e) {
+//            System.out.println("addNewOrder: " + e.getMessage());
+//
+//        }
+//    }
 
-    public void addNewOrder(String order_shippingID, String date, String order_userID, String note, String order_salecodeID, String status) {
+    public ArrayList<User> getUserList() {
+        ArrayList<User> data = new ArrayList<>();
         try {
-            String sql = "insert into swp.order (order_shippingID, date, order_userID, note, order_salecodeID, status)\n"
-                    + "  values (?,?,?,?,?,?);";
-            pstm = connection.prepareStatement(sql);
-            pstm.setString(1, order_shippingID);
-            pstm.setString(2, date);
-            pstm.setString(3, order_userID);
-            pstm.setString(4, note);
-            pstm.setString(5, order_salecodeID);
-            pstm.setString(6, status);
-
-            pstm.executeUpdate();
+            String sqlSelectString = "SELECT * FROM swp.user;";
+            pstm = connection.prepareStatement(sqlSelectString);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                String userID = String.valueOf(rs.getString(1));
+                String name = String.valueOf(rs.getString(5));
+                String address = String.valueOf(rs.getString(8));
+                String phone_number = String.valueOf(rs.getInt(9));
+                String email = String.valueOf(rs.getString(12));
+                data.add(new User(userID, name, address, phone_number, email));
+            }
         } catch (Exception e) {
-            System.out.println("addNewOrder: " + e.getMessage());
-
+            System.out.println("getUserList: " + e);
         }
+        return data;
+    }
+
+    public User getUserById(String id) {
+        try {
+            String sqlSelectString = "SELECT * FROM swp.user where userID=?;";
+            pstm = connection.prepareStatement(sqlSelectString);
+            pstm.setInt(1, Integer.parseInt(id));
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                String userID = String.valueOf(rs.getString(1));
+                String name = String.valueOf(rs.getString(5));
+                String address = String.valueOf(rs.getString(8));
+                String phone_number = String.valueOf(rs.getInt(9));
+                String email = String.valueOf(rs.getString(12));
+                return new User(userID, name, address, phone_number, email);
+            }
+        } catch (Exception e) {
+            System.out.println("getUserById: " + e);
+        }
+        return null;
     }
 
     public static void main(String[] args) {
         ManagerDAO dao = new ManagerDAO();
-//        System.out.println(dao.getAllProduct().get(1));
+        Products p = dao.getProductsByID("1");
+//        dao.updateProduct(p.getProduct_categoryID(), p.getName(), p.getDesciption(), p.getPicture(), p.getPicture2(),
+//                 p.getPicture3(), "438", p.getStatus(), p.getPrice(), p.getProductID());
+
+        System.out.println(dao.getUserList().get(9));
+        System.out.println(dao.getAllProduct().get(1));
 
     }
 }

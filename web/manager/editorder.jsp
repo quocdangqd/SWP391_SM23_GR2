@@ -4,6 +4,7 @@
     Author     : laptop
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -193,7 +194,7 @@
                             <p class="text-danger">${wrongText}</p>
                             <p class="text-success">${successText}</p>
                             
-                            <form action="ManagerUpdateOrderController" method="post"></form>
+                            <form action="ManagerUpdateOrderController" method="post">
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label class="control-label">ID đơn hàng</label>
@@ -201,7 +202,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Khách hàng</label>
-                                    <input class="form-control" type="text" name="user" value="${o.getOrder_userID()}">
+                                    <input class="form-control" type="text" name="user" value="${listU.get(o.getOrder_userID()-1).getName()}">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Tư vấn viên</label>
@@ -209,11 +210,11 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="control-label">Đơn hàng</label>
-                                    <input class="form-control" type="text" name="order" value="${o.getOrder_shippingID()}">
+                                    <input class="form-control" type="text" name="order" value="${o.getNote()}">
                                 </div>
                                 <div class="form-group  col-md-6">
                                     <label class="control-label">Ngày đặt</label>
-                                    <input class="form-control" type="date" name="date" value="${o.getDate()}">
+                                    <input class="form-control" type="text" name="date" value="${o.getDate()}">
                                 </div>
                                 <div class="form-group  col-md-6">
                                     <label class="control-label">Tổng tiền</label>
@@ -222,17 +223,20 @@
                                 <div class="form-group  col-md-6">
                                     <label for="exampleSelect1" class="control-label">Tình trạng</label>
                                     <select class="form-control" id="exampleSelect1" name="status">
-                                        <option value="1">Hoàn thành</option>
+                                        
+                                            <option name="status" value="${o.getStatus()}" selected="selected">${o.getStatus()}</option>
+<!--                                        <option value="1">Hoàn thành</option>
                                         <option value="2">Chờ thanh toán</option>
                                         <option value="3">Đang giao hàng</option>
-                                        <option value="4">Đã hủy</option>
+                                        <option value="4">Đã hủy</option>-->
                                     </select>
                                 </div>
                             </div>
                             <BR>
-                            <button class="btn btn-save" type="button">Lưu lại</button>
-                            <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+                            <button class="btn btn-save" type="submit">Lưu lại</button>
+                            <a class="btn btn-cancel" data-dismiss="modal" href="ManagerOrderController">Hủy bỏ</a>
                             <BR>
+                            </form>
                         </div>
                     </div>
                 </div>

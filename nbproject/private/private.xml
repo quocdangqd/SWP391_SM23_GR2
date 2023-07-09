@@ -3,22 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWP391_SM23_GR2/src/java/Controller/Manager/ManagerOrderController.java</file>
-            <file>file:/D:/SWP391_SM23_GR2/src/java/Controller/Manager/ManagerUpdateOrderController.java</file>
+            <file>file:/D:/SWP391_SM23_GR2/src/java/Dal/ManagerDAO.java</file>
             <file>file:/D:/SWP391_SM23_GR2/src/java/Dal/OrderDAO.java</file>
-            <file>file:/D:/SWP391_SM23_GR2/src/java/Dal/ProductDAO.java</file>
-            <file>file:/D:/SWP391_SM23_GR2/web/WEB-INF/web.xml</file>
-            <file>file:/D:/SWP391/SWP391_SM23_GR2/src/java/Controller/Test.java</file>
-            <file>file:/D:/SWP391/SWP391_SM23_GR2/web/view/header.jsp</file>
-            <file>file:/D:/SWP391/SWP391_SM23_GR2/web/view/homepage.jsp</file>
-            <file>file:/D:/SWP391/SWP391_SM23_GR2/web/admin/homepage.jsp</file>
-            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Controller/View/EditProductController.java</file>
-            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Dal/ProductDAO.java</file>
-            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Dal/CategoriesDAO.java</file>
-            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Model/Products.java</file>
-            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/web/admin/ordermanager.jsp</file>
-            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/web/admin/productmanager.jsp</file>
-            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Controller/View/AdminController.java</file>
+            <file>file:/D:/SWP391_SM23_GR2/web/manager/ordermanager.jsp</file>
+            <file>file:/D:/SWP391_SM23_GR2/src/java/Controller/View/EditProductController.java</file>
+            <file>file:/D:/SWP391_SM23_GR2/web/admin/addproduct.jsp</file>
+            <file>file:/D:/SWP391_SM23_GR2/src/java/Model/Order.java</file>
         </group>
     </open-files>
 </project-private>

@@ -84,6 +84,9 @@
     <servlet>
         <servlet-name>ManagerUpdateOrderController</servlet-name>
         <servlet-class>Controller.Manager.ManagerUpdateOrderController</servlet-class>
+        
+    </servlet>
+    <servlet>
         <servlet-name>AdminController</servlet-name>
         <servlet-class>Controller.View.AdminController</servlet-class>
     </servlet>
@@ -177,6 +180,9 @@
     <servlet-mapping>
         <servlet-name>ManagerUpdateOrderController</servlet-name>
         <url-pattern>/manager/ManagerUpdateOrderController</url-pattern>
+        
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminController</servlet-name>
         <url-pattern>/admin/AdminController</url-pattern>
     </servlet-mapping>

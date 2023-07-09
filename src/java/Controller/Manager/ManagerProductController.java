@@ -4,6 +4,7 @@
  */
 package Controller.Manager;
 
+import Dal.CategoriesDAO;
 import Dal.ManagerDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -24,10 +25,11 @@ public class ManagerProductController extends HttpServlet {
 //            req.getRequestDispatcher("login.jsp").forward(req, resp);
 //        }
         ManagerDAO dao = new ManagerDAO();
+        CategoriesDAO cdao = new CategoriesDAO();
         dao.getAllProduct();
         req.setAttribute("dao", dao);
         req.setAttribute("listP", dao.getProduct());
-
+        req.setAttribute("listC", cdao.GetCategoriesList());
         req.getRequestDispatcher("productmanager.jsp").forward(req, resp);
 
     }

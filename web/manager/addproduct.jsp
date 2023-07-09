@@ -4,6 +4,7 @@
     Author     : trand
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -209,40 +210,33 @@
                                 <p class="text-success">${successText}</p>                                <br> <br>
 
                             <form class="row" action="ManagerAddProductController" method="post">
-
-                                <div class="form-group col-md-3">
-                                    <label class="control-label" >Mã sản phẩm </label>
-                                    <input name="pid" value="${pid}" class="form-control" type="number" placeholder="" hidden="">
-                                </div>
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-4">
                                     <label class="control-label">Tên sản phẩm</label>
                                     <input name="name" class="form-control" type="text" value="${name}">
                                 </div>
-
-
-                                <div class="form-group  col-md-3">
+                                <div class="form-group  col-md-4">
                                     <label class="control-label">Số lượng</label>
                                     <input class="form-control" type="number" name="quantity" value="${quantity}">
                                 </div>
-                                <div class="form-group col-md-3 ">
+                                <div class="form-group col-md-4 ">
                                     <label for="exampleSelect1" class="control-label">Tình trạng</label>
-                                    <select class="form-control" id="exampleSelect1" name="status">
+                                    <input name="status" value="${status}" class="form-control" type="text">
+<!--                                    <select class="form-control" id="exampleSelect1" name="status">
                                         <option value="2">-- Chọn tình trạng --</option>
                                         <option value="1">Còn hàng</option>
                                         <option value="0">Hết hàng</option>
-                                    </select>
+                                    </select>-->
                                 </div>
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                    <select class="form-control" id="exampleSelect1" name="cid">
-                                        <option value="0">-- Chọn danh mục --</option>
-                                        <option value="1">Tai nghe</option>
-                                        <option value="2">Chuột</option>
-                                        <option value="3">Bàn phím</option>
-
-                                    </select>
+                                    <select name="category" class="form-control" id="exampleSelect1">
+                                        <option>-- Chọn danh mục --</option>
+                                        <c:forEach items="${categoriesList}" var="c">
+                                            <option value="${c.getCategoryID()}">${c.getName()}</option>
+                                        </c:forEach>
+                                    </select>   
                                 </div>
-                                <div class="form-group col-md-3 ">
+                                <div class="form-group col-md-4 ">
                                     <label for="exampleSelect1" class="control-label">Nhà cung cấp</label>
                                     <select class="form-control" id="exampleSelect1">
                                         <option>-- Chọn nhà cung cấp --</option>
@@ -252,31 +246,26 @@
                                         <option value="4">Võ Trường</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-4">
                                     <label class="control-label">Giá bán</label>
                                     <input class="form-control" type="text" name='price' value="${price}">
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label class="control-label">Giá vốn</label>
-                                    <input class="form-control" type="text">
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label class="control-label">Ảnh sản phẩm</label>
-                                    <div id="myfileupload">
-                                        <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" value="${image1}"/>
+                                
+                                <div class="form-group col-md-4">
+                                        <label class="control-label">Ảnh 1</label>
+                                        <input value="${image}" name="image" class="form-control" type="text">
                                     </div>
-                                    <div id="thumbbox">
-                                        <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
-                                        <a class="removeimg" href="javascript:"></a>
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Ảnh 2</label>
+                                        <input value="${image2}" name="image2" class="form-control" type="text">
                                     </div>
-                                    <div id="boxchoice">
-                                        <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
-                                        <p style="clear:both"></p>
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Ảnh 3 </label>
+                                        <input value="${image3}" name="image3" class="form-control" type="text">
                                     </div>
-                                </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Mô tả sản phẩm</label>
-                                    <textarea class="form-control" name="mota" id="mota" value="${desciption}"></textarea>
+                                    <textarea class="form-control" name="mota" id="mota" value="${mota}"></textarea>
                                     <script>CKEDITOR.replace('mota');</script>
                                 </div>
                                 

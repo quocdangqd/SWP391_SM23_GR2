@@ -176,8 +176,9 @@
                                         <th>Mô tả</th>
                                         <th>Ảnh</th>
                                         <th>Số lượng</th>
-                                        <th>Tình trạng</th>
                                         <th>Giá tiền</th>
+                                        <th>Tình trạng</th>
+                                        <th>Ngày nhập</th>
                                         <th>Tính năng</th>
                                     </tr>
                                 </thead>
@@ -186,13 +187,17 @@
                                         <tr>
                                             <td width="10"><input type="checkbox" name="check1" value="1"></td>
                                             <td>${o.getProductID()}</td>
-                                            <td>${o.getProduct_categoryID()}</td>
+                                            <td>${listC.get(o.getProduct_categoryID()-1).getName()}</td>
                                             <td>${o.getName()}</td>
                                             <td>${o.getDesciption()}</td>
-                                            <td><img src="${o.getPicture()}" alt="alt" width="150px"/></td>
+                                            <td><img src="${o.getPicture()}" alt="alt" width="100px"/>
+                                                <img src="${o.getPicture2()}" alt="alt" width="50px"/>
+                                                <img src="${o.getPicture3()}" alt="alt" width="50px"/>
+                                            </td>
                                             <td>${o.getQuantity()}</td>
-                                            <td>${o.getStatus()}</td>
                                             <td>${o.getPrice()}</td>
+                                            <td>${o.getStatus()}</td>
+                                            <td>${o.getDate()}</td>
                                             <td><a href="ManagerDeleteProduct?id=${o.getProductID()}">
                                                     <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                                             onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> 

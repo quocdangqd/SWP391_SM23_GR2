@@ -13,38 +13,42 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class ManagerUpdateOrderController extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ManagerDAO dao = new ManagerDAO();
         String id = req.getParameter("id");
-//        dao.LoadOneOrder(id);
-        Order order = dao.getOneOrder();
+        Order order = dao.getOrderByID(id);
         req.setAttribute("o", order);
+        req.setAttribute("listU", dao.getUserList());
         req.getRequestDispatcher("editorder.jsp").forward(req, resp);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ManagerDAO dao = new ManagerDAO();
+        String id = req.getParameter("id");
+        Order order = dao.getOrderByID(id);
+        req.setAttribute("o", order);
+        req.setAttribute("listU", dao.getUserList());
+
         String orderID = req.getParameter("id");
         String order_userID = req.getParameter("user");
         String order_salecodeID = req.getParameter("saler");
-        String order_shippingID = req.getParameter("order");
         String date = req.getParameter("date");
         String status = req.getParameter("status");
-        dao.updateOrder(orderID, order_shippingID, date, order_userID, date, order_salecodeID, status);
+        String note = req.getParameter("note");
+        dao.updateOrder(orderID, date, order_userID, note, order_salecodeID, status);
         
         req.setAttribute("id", orderID);
         req.setAttribute("user", order_userID);
         req.setAttribute("saler", order_salecodeID);
-        req.setAttribute("order", order_shippingID);
         req.setAttribute("date", date);
         req.setAttribute("status", status);
         req.setAttribute("successText", "Add Successful!!!");
         req.getRequestDispatcher("editorder.jsp").forward(req, resp);
     }
-    
+
 }

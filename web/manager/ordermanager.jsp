@@ -203,9 +203,9 @@
                                         <tr>
                                             <td width="10"><input type="checkbox" name="check1" value="1"></td>
                                             <td>${o.getOrderID()}</td>
-                                            <td>${o.getOrder_userID()}</td>
+                                            <td>${listU.get(o.getOrder_userID()-1).getName()}</td>
                                             <td>${o.getOrder_salecodeID()}</td>
-                                            <td>${o.getOrder_shippingID()}</td>
+                                            <td>${o.getNote()}</td>
                                             <td>${o.getDate()}</td>
                                             <td>Tổng tiền</td>
                                             <td>${o.getStatus()}</td>

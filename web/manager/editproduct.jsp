@@ -4,6 +4,7 @@
     Author     : laptop
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -190,56 +191,61 @@
                     <div class="tile">
                         <h3 class="tile-title">Chỉnh sửa thông tin sản phẩm</h3>
                         <div class="tile-body">
-                            <p class="text-danger">${wrongText}</p>
-                            <p class="text-success">${successText}</p>
-
                             <form action="ManagerUpdateProductController" method="post">
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Mã sản phẩm </label>
-                                        <input class="form-control" type="text" value="${o.getProductID()}" name="pid">
+                                        <input class="form-control" type="text" value="${o.productID}" name="pid">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Tên sản phẩm</label>
-                                        <input class="form-control" type="text" name="name" value="${o.getName()}">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Mô tả</label>
-                                        <input class="form-control" type="text" name="desciption" value="${o.getDesciption()}">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Ảnh</label>
-                                        <input class="form-control" type="file" name="image" >
-                                        <img src="${o.getPicture()}" alt="alt" width="50px"/>
+                                        <input class="form-control" type="text" name="name" value="${o.name}">
                                     </div>
                                     <div class="form-group  col-md-6">
                                         <label class="control-label">Số lượng</label>
-                                        <input class="form-control" type="number" name="quantity" value="${o.getQuantity()}">
+                                        <input class="form-control" type="text" name="quantity" value="${o.quantity}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Giá bán</label>
+                                        <input class="form-control" type="text" name="price" value="${o.price}">
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="exampleSelect1" class="control-label">Tình trạng sản phẩm</label>
-                                        <select class="form-control" id="exampleSelect1" name="status" value="${o.getStatus()}">
+                                        <select class="form-control" id="exampleSelect1" name="status" value="${o.status}">
                                             <option value="1">Còn hàng</option>
                                             <option value="2">Hết hàng</option>
                                             <option value="3">Đang nhập hàng</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Giá bán</label>
-                                        <input class="form-control" type="text" name="price" value="${o.getPrice()}">
-                                    </div>
+
                                     <div class="form-group col-md-6">
                                         <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                        <select class="form-control" id="exampleSelect1" name="cid" value="${o.getProduct_categoryID()}">
-                                            <option value="1">Tai nghe</option>
-                                            <option value="2">Bàn phím</option>
-                                            <option value="3">Chuột</option>
+                                        <select name="category" class="form-control" id="exampleSelect1">
+                                            <c:forEach items="${categoriesList}" var="c">
+                                                <option ${(o.getCategories().getCategoryID() == c.getCategoryID())?"selected":""} value="${c.getCategoryID()}">${c.getName()}</option>
+                                            </c:forEach>
                                         </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Ảnh 1</label>
+                                        <input value="${o.picture}" name="image" class="form-control" type="text">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Ảnh 2</label>
+                                        <input value="${o.picture2}" name="image2" class="form-control" type="text">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Ảnh 3 </label>
+                                        <input value="${o.picture3}" name="image3" class="form-control" type="text">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label class="control-label">Mô tả</label>
+                                        <textarea class="form-control" type="text" name="description" >${o.desciption}</textarea>
                                     </div>
                                 </div>
                                 <BR>
                                 <button class="btn btn-save" type="submit">Lưu lại</button>
-                                <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+                                <a class="btn btn-cancel" data-dismiss="modal" href="ManagerProductController">Hủy bỏ</a>
                                 <BR>
                             </form>
                         </div>
@@ -247,125 +253,7 @@
                 </div>
             </div>
         </main>
-        <!--
         
-                
-                MODAL CHỨC VỤ 
-                
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                     data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-        
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="form-group  col-md-12">
-                                        <span class="thong-tin-thanh-toan">
-                                            <h5>Thêm mới nhà cung cấp</h5>
-                                        </span>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label">Nhập tên chức vụ mới</label>
-                                        <input class="form-control" type="text" required>
-                                    </div>
-                                </div>
-                                <BR>
-                                <button class="btn btn-save" type="submit">Lưu lại</button>
-                                <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                                <BR>
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-              MODAL
-                
-        
-        
-        
-                
-                MODAL DANH MỤC
-                
-                <div class="modal fade" id="adddanhmuc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                     data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-        
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="form-group  col-md-12">
-                                        <span class="thong-tin-thanh-toan">
-                                            <h5>Thêm mới danh mục </h5>
-                                        </span>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label">Nhập tên danh mục mới</label>
-                                        <input class="form-control" type="text" required>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label">Danh mục sản phẩm hiện đang có</label>
-                                        <ul style="padding-left: 20px;">
-                                            <li>Tai nghe</li>
-                                            <li>Chuột</li>
-                                            <li>Bàn phím</li>
-        
-                                        </ul>
-                                    </div>
-                                </div>
-                                <BR>
-                                <button class="btn btn-save" type="button">Lưu lại</button>
-                                <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                                <BR>
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-              MODAL
-                
-        
-        
-        
-        
-                
-                MODAL TÌNH TRẠNG
-                
-                <div class="modal fade" id="addtinhtrang" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                     data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-        
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="form-group  col-md-12">
-                                        <span class="thong-tin-thanh-toan">
-                                            <h5>Thêm mới tình trạng</h5>
-                                        </span>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label">Nhập tình trạng mới</label>
-                                        <input class="form-control" type="text" required>
-                                    </div>
-                                </div>
-                                <BR>
-                                <button class="btn btn-save" type="button">Lưu lại</button>
-                                <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                                <BR>
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-              MODAL
-        -->
-
-
 
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/popper.min.js"></script>
