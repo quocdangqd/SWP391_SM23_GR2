@@ -12,3 +12,13 @@
             <file>file:/D:/SWP391/SWP391_SM23_GR2/web/view/header.jsp</file>
             <file>file:/D:/SWP391/SWP391_SM23_GR2/web/view/homepage.jsp</file>
             <file>file:/D:/SWP391/SWP391_SM23_GR2/web/admin/homepage.jsp</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Controller/View/EditProductController.java</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Dal/ProductDAO.java</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Dal/CategoriesDAO.java</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Model/Products.java</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/web/admin/ordermanager.jsp</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/web/admin/productmanager.jsp</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Controller/View/AdminController.java</file>
+        </group>
+    </open-files>
+</project-private>
