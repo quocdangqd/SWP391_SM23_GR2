@@ -181,28 +181,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td><a href="orderdetail.jsp">ID đơn hàng</a></td>
-                                        <td>Khách hàng</td>
-                                        <td>Tư vấn viên</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Ngày đặt</td>
-                                        <td>Tổng tiền</td>
-                                        <td>Tình trạng</td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
-                                        </td>
-                                    </tr>
                                     <c:forEach items="${listO}" var="o">
                                         <tr>
                                             <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                            <td>${o.getOrderID()}</td>
+                                            <td><a href="ManagerOrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>
                                             <td>${listU.get(o.getOrder_userID()-1).getName()}</td>
                                             <td>${o.getOrder_salecodeID()}</td>
                                             <td>${o.getNote()}</td>
@@ -222,92 +204,6 @@
                                             </td>
                                         </tr>
                                     </c:forEach>
-
-                                    <!--                                    <tr>
-                                                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                                                            <td>ID đơn hàng</td>
-                                                                            <td>Khách hàng</td>
-                                                                            <td>Tư vấn viên</td>
-                                                                            <td>Đơn hàng</td>
-                                                                            <td>Số lượng</td>
-                                                                            <td>Tổng tiền</td>
-                                                                            <td><span class="badge bg-secondary">Chờ xác nhận</span></td>
-                                                                            <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                                                                </button>
-                                                                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                                                        data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-                                    
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                                                            <td>ID đơn hàng</td>
-                                                                            <td>Khách hàng</td>
-                                                                            <td>Tư vấn viên</td>
-                                                                            <td>Đơn hàng</td>
-                                                                            <td>Số lượng</td>
-                                                                            <td>Tổng tiền</td>
-                                                                            <td><span class="badge bg-success">Hoàn thành</span></td>
-                                                                            <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                                                                </button>
-                                                                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                                                        data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-                                    
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                                                            <td>ID đơn hàng</td>
-                                                                            <td>Khách hàng</td>
-                                                                            <td>Tư vấn viên</td>
-                                                                            <td>Đơn hàng</td>
-                                                                            <td>Số lượng</td>
-                                                                            <td>Tổng tiền</td>
-                                                                            <td><span class="badge bg-info">Chờ thanh toán</span></td>
-                                                                            <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                                                                </button>
-                                                                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                                                        data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-                                    
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                                                            <td>ID đơn hàng</td>
-                                                                            <td>Khách hàng</td>
-                                                                            <td>Tư vấn viên</td>
-                                                                            <td>Đơn hàng</td>
-                                                                            <td>Số lượng</td>
-                                                                            <td>Tổng tiền</td>
-                                                                            <td><span class="badge bg-warning">Đang giao hàng</span></td>
-                                                                            <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                                                                </button>
-                                                                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                                                        data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-                                    
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                                                            <td>ID đơn hàng</td>
-                                                                            <td>Khách hàng</td>
-                                                                            <td>Tư vấn viên</td>
-                                                                            <td>Đơn hàng</td>
-                                                                            <td>Số lượng</td>
-                                                                            <td>Tổng tiền</td>
-                                                                            <td><span class="badge bg-danger">Đã hủy</span></td>
-                                                                            <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                                                                </button>
-                                                                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                                                        data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-                                    
-                                                                            </td>
-                                                                        </tr>-->
                                 </tbody>
                             </table>
                         </div>

@@ -4,11 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/SWP391_SM23_GR2/src/java/Dal/ManagerDAO.java</file>
-            <file>file:/D:/SWP391_SM23_GR2/src/java/Dal/OrderDAO.java</file>
             <file>file:/D:/SWP391_SM23_GR2/web/manager/ordermanager.jsp</file>
-            <file>file:/D:/SWP391_SM23_GR2/src/java/Controller/View/EditProductController.java</file>
-            <file>file:/D:/SWP391_SM23_GR2/web/admin/addproduct.jsp</file>
-            <file>file:/D:/SWP391_SM23_GR2/src/java/Model/Order.java</file>
+            <file>file:/D:/SWP391_SM23_GR2/web/manager/orderdetail.jsp</file>
+            <file>file:/D:/SWP391_SM23_GR2/web/manager/editproduct.jsp</file>
+            <file>file:/D:/SWP391_SM23_GR2/src/java/Model/DetailOrder.java</file>
+            <file>file:/D:/SWP391_SM23_GR2/src/java/Controller/Manager/ManagerOrderDetailController.java</file>
+            <file>file:/D:/SWP391_SM23_GR2/src/java/Controller/Manager/ManagerUpdateProductController.java</file>
         </group>
     </open-files>
 </project-private>

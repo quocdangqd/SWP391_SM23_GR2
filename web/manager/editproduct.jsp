@@ -195,26 +195,33 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Mã sản phẩm </label>
-                                        <input class="form-control" type="text" value="${o.productID}" name="pid">
+                                        <input class="form-control" type="text" value="${o.getProductID()}" name="pid" readonly="">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Tên sản phẩm</label>
-                                        <input class="form-control" type="text" name="name" value="${o.name}">
+                                        <input class="form-control" type="text" name="name" value="${o.getName()}" 
+                                               >
                                     </div>
                                     <div class="form-group  col-md-6">
                                         <label class="control-label">Số lượng</label>
-                                        <input class="form-control" type="text" name="quantity" value="${o.quantity}">
+                                        <input class="form-control" type="number" name="quantity" value="${o.getQuantity()}"
+                                               >
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Giá bán</label>
-                                        <input class="form-control" type="text" name="price" value="${o.price}">
+                                        <input class="form-control" type="text" name="price" value="${o.getPrice()}">
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="exampleSelect1" class="control-label">Tình trạng sản phẩm</label>
-                                        <select class="form-control" id="exampleSelect1" name="status" value="${o.status}">
-                                            <option value="1">Còn hàng</option>
-                                            <option value="2">Hết hàng</option>
-                                            <option value="3">Đang nhập hàng</option>
+                                        <select class="form-control" id="exampleSelect1" name="status" value="${o.getStatus()}">
+                                            <c:if test="${o.getStatus()=='0'}">
+                                                <option value="1" >Còn hàng</option>
+                                                <option value="0" selected="">Hết hàng</option>
+                                            </c:if>
+                                            <c:if test="${o.getStatus()=='1'}">
+                                                <option value="1" selected="">Còn hàng</option>
+                                                <option value="0">Hết hàng</option>
+                                            </c:if>
                                         </select>
                                     </div>
 
@@ -228,21 +235,24 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Ảnh 1</label>
-                                        <input value="${o.picture}" name="image" class="form-control" type="text">
+                                        <input value="${o.getPicture()}" name="image" class="form-control" type="text">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Ảnh 2</label>
-                                        <input value="${o.picture2}" name="image2" class="form-control" type="text">
+                                        <input value="${o.getPicture2()}" name="image2" class="form-control" type="text">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Ảnh 3 </label>
-                                        <input value="${o.picture3}" name="image3" class="form-control" type="text">
+                                        <input value="${o.getPicture3()}" name="image3" class="form-control" type="text">
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label class="control-label">Mô tả</label>
-                                        <textarea class="form-control" type="text" name="description" >${o.desciption}</textarea>
+                                        <textarea class="form-control"  name="description"  
+
+                                                  >${o.getDesciption()}
+                                        </textarea>
                                     </div>
-                                </div>
+                                </div>  
                                 <BR>
                                 <button class="btn btn-save" type="submit">Lưu lại</button>
                                 <a class="btn btn-cancel" data-dismiss="modal" href="ManagerProductController">Hủy bỏ</a>
@@ -253,7 +263,7 @@
                 </div>
             </div>
         </main>
-        
+
 
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/popper.min.js"></script>

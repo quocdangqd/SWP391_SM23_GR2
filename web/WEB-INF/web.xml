@@ -47,7 +47,6 @@
     <servlet>
         <servlet-name>ManagerUpdateProductController</servlet-name>
         <servlet-class>Controller.Manager.ManagerUpdateProductController</servlet-class>
-        
     </servlet>
     <servlet>
         <servlet-name>CartController</servlet-name>
@@ -84,7 +83,6 @@
     <servlet>
         <servlet-name>ManagerUpdateOrderController</servlet-name>
         <servlet-class>Controller.Manager.ManagerUpdateOrderController</servlet-class>
-        
     </servlet>
     <servlet>
         <servlet-name>AdminController</servlet-name>
@@ -93,6 +91,10 @@
     <servlet>
         <servlet-name>EditProductController</servlet-name>
         <servlet-class>Controller.View.EditProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerOrderDetailController</servlet-name>
+        <servlet-class>Controller.Manager.ManagerOrderDetailController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
@@ -143,7 +145,6 @@
     <servlet-mapping>
         <servlet-name>ManagerUpdateProductController</servlet-name>
         <url-pattern>/manager/ManagerUpdateProductController</url-pattern>
-        
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
@@ -180,7 +181,6 @@
     <servlet-mapping>
         <servlet-name>ManagerUpdateOrderController</servlet-name>
         <url-pattern>/manager/ManagerUpdateOrderController</url-pattern>
-        
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminController</servlet-name>
@@ -189,6 +189,10 @@
     <servlet-mapping>
         <servlet-name>EditProductController</servlet-name>
         <url-pattern>/admin/editproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerOrderDetailController</servlet-name>
+        <url-pattern>/manager/ManagerOrderDetailController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
