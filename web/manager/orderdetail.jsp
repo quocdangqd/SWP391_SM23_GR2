@@ -137,7 +137,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-body printableArea">
-                                <h3><b>Hóa đơn</b> <span class="pull-right" name="id">#${o.getOrderdeatil_orderID()}</span></h3>
+                                <h3><b>Hóa đơn</b> <span class="pull-right" name="id">#${od[0].getOrderdeatil_orderID()}</span></h3>
                                 <hr/>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -157,13 +157,13 @@
                                         <div class="pull-right text-end">
                                             <address>
                                                 <div>Người mua:
-                                                    &nbsp;<b class="text-danger text-uppercase" >${o.getName_user()}</b>
+                                                    &nbsp;<b class="text-danger text-uppercase" >${od[0].getName_user()}</b>
                                                 </div>
                                                 <div>Địa chỉ: 
-                                                    <b class="text-secondary">${o.getAddress()}</b>
+                                                    <b class="text-secondary">${od[2].getAddress()}</b>
                                                 </div>
                                                 <div>Số điện thoại: 
-                                                    <b class="text-secondary">${o.getPhone_number()}</b>
+                                                    <b class="text-secondary">${od[1].getPhone_number()}</b>
                                                 </div>
                                                 <p class="mt-4">
                                                     <b>Ngày đặt:</b>
@@ -189,25 +189,30 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
-                                                    <tr>
-                                                        <td class="text-center"></td>
-                                                        <td>${o.getName_product()}</td>
-                                                        <td class="text-end">${o.getQuantity()}</td>
-                                                        <td class="text-end">${o.getPrice()}</td>
-                                                        <td class="text-end">${totalPrice}</td>
-                                                    </tr>
+                                                    <c:forEach items="${od}" var="o">
+                                                        <tr>
+                                                            <td class="text-center"></td>
+                                                            <td>${o.getName_product()}</td>
+                                                            <td class="text-end" name="quantity">${o.getQuantity()}</td>
+                                                            <td class="text-end" name="price_product">${o.getPrice_product()}</td>
+                                                            <td class="text-end">${o.getQuantity() * o.getPrice_product()}</td>
+                                                        </tr>
+                                                    </c:forEach>
                                                     <tr>
                                                         <td colspan="4" class="text-lg-right">Cộng tiền hàng:</td>
-                                                        <td class="text-end">$13,848</td>
+                                                        <td class="text-end">${total}</td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="4" class="text-lg-right">Cộng tiền thuế GTGT (VAT 10%):</td>
-                                                        <td class="text-end">$138</td>
+                                                        <td class="text-end">${tax}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4" class="text-lg-right">Mã giảm giá (%)</td>
+                                                        <td class="text-end"></td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="4" class="text-lg-right"><b>Tổng cộng tiền thanh toán:</b></td>
-                                                        <td class="text-end"><b>$13,986</b></td>
+                                                        <td class="text-end"><b>${grandTotal}</b></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

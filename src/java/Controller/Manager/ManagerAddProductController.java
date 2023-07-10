@@ -22,10 +22,9 @@ public class ManagerAddProductController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 //        HttpSession session = req.getSession();
-//        if (session.getAttribute("account") == null) {
-//            req.getRequestDispatcher("home.jsp").forward(req, resp);
+//        if (session.getAttribute("user") == null) {
+//            req.getRequestDispatcher("/view/homepage.jsp").forward(req, resp);
 //        }
-//        req.getRequestDispatcher("AddProduct.jsp").forward(req, resp);       
         CategoriesDAO ca = new CategoriesDAO();
         req.setAttribute("categoriesList", ca.GetCategoriesList());
         req.getRequestDispatcher("addproduct.jsp").forward(req, resp);
@@ -44,7 +43,6 @@ public class ManagerAddProductController extends HttpServlet {
         String Quantity = req.getParameter("quantity");
         String Status = req.getParameter("status");
 
-        
         req.setAttribute("name", Name);
         req.setAttribute("price", Price);
         req.setAttribute("image", Image1);
@@ -54,23 +52,6 @@ public class ManagerAddProductController extends HttpServlet {
         req.setAttribute("mota", Desciption);
         req.setAttribute("quantity", Quantity);
         req.setAttribute("status", Status);
-//
-//        if (Name.isEmpty()) {
-//            req.setAttribute("wrongText", "Name is empty!!!");
-//            req.getRequestDispatcher("addproduct.jsp").forward(req, resp);
-//        }
-//        if (Price.isEmpty()) {
-//            req.setAttribute("wrongText", "Price is empty!!!");
-//            req.getRequestDispatcher("addproduct.jsp").forward(req, resp);
-//        }
-//        if (Image1.isEmpty()) {
-//            req.setAttribute("wrongText", "Image is empty!!!");
-//            req.getRequestDispatcher("addproduct.jsp").forward(req, resp);
-//        }
-//        if (Cid.isEmpty()) {
-//            req.setAttribute("wrongText", "Cid is empty!!!");
-//            req.getRequestDispatcher("addproduct.jsp").forward(req, resp);
-//        }
 
         dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Quantity, Status, Price);
         req.setAttribute("successText", "Add Successful!!!");

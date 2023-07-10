@@ -48,6 +48,7 @@ public class ExportFile {
         // Create sheet
         Sheet sheet = workbook.createSheet("Sheet1"); // Create sheet with sheet name
 
+        int rowIndex = 0;
         String[] headers = {"ID", "Tên sản phẩm", "Giá", "Số lượng"};
         Row headerRow = sheet.createRow(0);
         for (int i = 0; i < headers.length; i++) {

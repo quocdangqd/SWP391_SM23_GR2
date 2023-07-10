@@ -9,6 +9,7 @@ import Model.Order;
 import Model.Orderdetail;
 import Model.Products;
 import Model.User;
+import java.sql.Array;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -108,15 +109,16 @@ public class ManagerDAO extends ConnectMySQL {
             String sql = "insert into product (product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, status)\n"
                     + "values (?, ?, ?, ?,?, ?, ?, ?, ?);";
             pstm = connection.prepareStatement(sql);
-            pstm.setString(1, cid);
+            pstm.setInt(1, Integer.parseInt(cid));
             pstm.setString(2, pname);
             pstm.setString(3, desciption);
             pstm.setString(4, img1);
             pstm.setString(5, img2);
             pstm.setString(6, img3);
-            pstm.setString(7, price);
-            pstm.setString(8, quantity);
-            pstm.setString(9, status);
+            price = price.replace(",", "");
+            pstm.setFloat(7, Float.parseFloat(price));
+            pstm.setInt(8, Integer.parseInt(quantity));
+            pstm.setBoolean(9, status.equals("1"));
 
             pstm.executeUpdate();
         } catch (Exception e) {
@@ -130,15 +132,13 @@ public class ManagerDAO extends ConnectMySQL {
             String sql = "UPDATE product set product_categoryID=?, name=?, desciption=?,picture=?,picture2=?,picture3=?,\n"
                     + "price=?,quantity=?, status=? where ProductID = ?;";
             pstm = connection.prepareStatement(sql);
-            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
-            decimalFormat.applyPattern("#,###");
             pstm.setInt(1, Integer.parseInt(cid));
             pstm.setString(2, pname);
             pstm.setString(3, desciption);
             pstm.setString(4, img1);
             pstm.setString(5, img2);
             pstm.setString(6, img3);
-            price=price.replace(",", "");
+            price = price.replace(",", "");
             pstm.setFloat(7, Float.parseFloat(price));
             pstm.setInt(8, Integer.parseInt(quantity));
             pstm.setInt(9, Integer.parseInt(status));
@@ -223,24 +223,24 @@ public class ManagerDAO extends ConnectMySQL {
         }
     }
 
-    public void updateOrder(String orderID, String date, String order_userID, String note, String order_salecodeID, String status) {
-        try {
-            String sql = "update swp.order set date=?, order_userID=?, note=?, order_salecodeID=?, status=?\n"
-                    + "	where orderID = ?;";
-            pstm = connection.prepareStatement(sql);
-            pstm.setTimestamp(1, Timestamp.valueOf(date));
-            pstm.setString(2, order_userID);
-            pstm.setString(3, note);
-            pstm.setString(4, order_salecodeID);
-            pstm.setString(5, status);
-            pstm.setString(6, orderID);
-
-            pstm.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("updateOrder: " + e.getMessage());
-
-        }
-    }
+//    public void updateOrder(String orderID, String date, String order_userID, String note, String order_salecodeID, String status) {
+//        try {
+//            String sql = "update swp.order set date=?, order_userID=?, note=?, order_salecodeID=?, status=?\n"
+//                    + "	where orderID = ?;";
+//            pstm = connection.prepareStatement(sql);
+//            pstm.setTimestamp(1, Timestamp.valueOf(date));
+//            pstm.setString(2, order_userID);
+//            pstm.setString(3, note);
+//            pstm.setString(4, order_salecodeID);
+//            pstm.setString(5, status);
+//            pstm.setString(6, orderID);
+//
+//            pstm.executeUpdate();
+//        } catch (Exception e) {
+//            System.out.println("updateOrder: " + e.getMessage());
+//
+//        }
+//    }
 
     public void addNewOrder(String date, String order_userID, String note, String order_salecodeID, String status) {
         try {
@@ -329,37 +329,36 @@ public class ManagerDAO extends ConnectMySQL {
         return null;
     }
 
-    public DetailOrder getAllDetailOrderByOrderID(String id) {
+    public ArrayList<DetailOrder> getAllDetailOrderByOrderID(String id) {
+        ArrayList<DetailOrder> data = new ArrayList<>();
         try {
-            String sqlSelect = "SELECT distinct u.name, u.phone_number, u.address, od.orderdetail_orderID,\n"
-                    + "od.orderdetail_productID, od.orderdetailID, od.price, od.quantity, p.name \n"
-                    + "FROM swp.user u, swp.order o, swp.orderdetail od, swp.product p \n"
+            String sqlSelect = "SELECT  u.name, u.phone_number, u.address, od.orderdetail_orderID,\n"
+                    + "od.orderdetail_productID, od.orderdetailID, od.price, od.quantity, p.name, p.price\n"
+                    + "FROM swp.user u, swp.orderdetail od, swp.product p ,swp.order o \n"
                     + "WHERE u.userID = o.order_userID and od.orderdetail_orderID = o.orderID \n"
-                    + "and p.ProductID = od.orderdetail_productID and o.orderID =" + id;
-            
-            pstm = connection.prepareStatement(sqlSelect);
-            rs = pstm.executeQuery();
+                    + "and p.ProductID = od.orderdetail_productID  and orderid =" + id;
             DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
             decimalFormat.applyPattern("#,###");
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
             while (rs.next()) {
                 String name_user = rs.getString(1);
                 String phone_number = rs.getString(2);
                 String address = rs.getString(3);
                 String orderdeatil_orderID = String.valueOf(rs.getInt(4));
-                String orderdetail_produstID = String.valueOf(rs.getInt(5));
+                String orderdetail_productID = String.valueOf(rs.getInt(5));
                 String orderdetailID = String.valueOf(rs.getInt(6));
-                String price = String.valueOf( (rs.getFloat(7)));
+                String price = String.valueOf(decimalFormat.format((int)(rs.getFloat(7))));
                 String quantity = String.valueOf(rs.getInt(8));
                 String name_product = rs.getString(9);
-                return new DetailOrder(name_user, phone_number, address, orderdetailID,
-                        orderdeatil_orderID, quantity, price, orderdetail_produstID, name_product);
+                String price_product = String.valueOf(decimalFormat.format((int) rs.getFloat(10)));
+                data.add(new DetailOrder(name_user, phone_number, address, orderdetailID, orderdeatil_orderID,
+                        quantity, price, orderdetail_productID, name_product, price_product));
             }
         } catch (Exception e) {
             System.out.println("getAllOrderDetailByOrderID: " + e.getMessage());
         }
-
-        return null;
-
+        return data;
     }
 
     public static void main(String[] args) {
@@ -368,7 +367,7 @@ public class ManagerDAO extends ConnectMySQL {
 //        dao.updateProduct(p.getProduct_categoryID(), p.getName(), p.getDesciption(), p.getPicture(), p.getPicture2(),
 //                 p.getPicture3(), "438", p.getStatus(), p.getPrice(), p.getProductID());
 //        System.out.println(dao.getOrderDetailByOrderID("66"));
-        System.out.println(dao.getAllDetailOrderByOrderID("1"));
-        
+        System.out.println(dao.getAllDetailOrderByOrderID("4"));
+
     }
 }

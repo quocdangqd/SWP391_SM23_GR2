@@ -11,7 +11,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Chỉnh sửa thông tin đơn hàng</title>
+        <title>Thêm mới đơn hàng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -182,60 +182,57 @@
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb">
-                    <li class="breadcrumb-item">Danh sách sản phẩm</li>
-                    <li class="breadcrumb-item"><a href="#">Chỉnh sửa thông tin đơn hàng</a></li>
+                    <li class="breadcrumb-item">Danh sách đơn hàng</li>
+                    <li class="breadcrumb-item"><a href="#">Thêm đơn hàng</a></li>
                 </ul>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="tile">
-                        <h3 class="tile-title">Chỉnh sửa thông tin đơn hàng</h3>
+                        <h3 class="tile-title">Tạo mới đơn hàng</h3>
                         <div class="tile-body">
                             <p class="text-danger">${wrongText}</p>
                             <p class="text-success">${successText}</p>
-                            
-                            <form action="ManagerUpdateOrderController" method="post">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">ID đơn hàng</label>
-                                    <input class="form-control" type="text" value="${o.getOrderID()}" name="id">
+
+                            <form action="ManagerAddOrderController" method="post">
+                                <div class="row">
+<!--                                    <div class="form-group col-md-6">
+                                        <label class="control-label">ID đơn hàng</label>
+                                        <input class="form-control" type="text" value="${o.getOrderID()}" name="id">
+                                    </div>-->
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Khách hàng</label>
+                                        <input class="form-control" type="text" name="user" value="${listU.get(o.getOrder_userID()-1).getName()}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Tư vấn viên</label>
+                                        <input class="form-control" type="text" name="saler" value="${o.getOrder_salecodeID()}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="control-label">Đơn hàng</label>
+                                        <input class="form-control" type="text" name="order" value="${o.getNote()}">
+                                    </div>
+                                    <div class="form-group  col-md-6">
+                                        <label class="control-label">Ngày đặt</label>
+                                        <input class="form-control" type="datetime-local" name="date" value="${o.getDate()}">
+                                    </div>
+                                    <div class="form-group  col-md-6">
+                                        <label class="control-label">Tổng tiền</label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                    <div class="form-group  col-md-6">
+                                        <label for="exampleSelect1" class="control-label">Tình trạng</label>
+                                        <input name="status" value="${status}" class="form-control" type="text" readonly="" placeholder="Đang xử lý">  
+
+                                        <!--                                    <select class="form-control" id="exampleSelect1" name="status">
+                                                                                    <option name="status" value="${o.getStatus()}" selected="selected">${o.getStatus()}</option>
+                                                                            </select>-->
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Khách hàng</label>
-                                    <input class="form-control" type="text" name="user" value="${listU.get(o.getOrder_userID()-1).getName()}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Tư vấn viên</label>
-                                    <input class="form-control" type="text" name="saler" value="${o.getOrder_salecodeID()}">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Đơn hàng</label>
-                                    <input class="form-control" type="text" name="order" value="${o.getNote()}">
-                                </div>
-                                <div class="form-group  col-md-6">
-                                    <label class="control-label">Ngày đặt</label>
-                                    <input class="form-control" type="text" name="date" value="${o.getDate()}">
-                                </div>
-                                <div class="form-group  col-md-6">
-                                    <label class="control-label">Tổng tiền</label>
-                                    <input class="form-control" type="text">
-                                </div>
-                                <div class="form-group  col-md-6">
-                                    <label for="exampleSelect1" class="control-label">Tình trạng</label>
-                                    <select class="form-control" id="exampleSelect1" name="status">
-                                        
-                                            <option name="status" value="${o.getStatus()}" selected="selected">${o.getStatus()}</option>
-<!--                                        <option value="1">Hoàn thành</option>
-                                        <option value="2">Chờ thanh toán</option>
-                                        <option value="3">Đang giao hàng</option>
-                                        <option value="4">Đã hủy</option>-->
-                                    </select>
-                                </div>
-                            </div>
-                            <BR>
-                            <button class="btn btn-save" type="submit">Lưu lại</button>
-                            <a class="btn btn-cancel" data-dismiss="modal" href="ManagerOrderController">Hủy bỏ</a>
-                            <BR>
+                                <BR>
+                                <button class="btn btn-save" type="submit">Lưu lại</button>
+                                <a class="btn btn-cancel" data-dismiss="modal" href="ManagerOrderController">Hủy bỏ</a>
+                                <BR>
                             </form>
                         </div>
                     </div>

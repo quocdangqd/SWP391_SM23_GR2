@@ -209,7 +209,8 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Giá bán</label>
-                                        <input class="form-control" type="text" name="price" value="${o.getPrice()}">
+                                        <input class="form-control" type="text" name="price" value="${o.getPrice()}" 
+                                               pattern="[0-9&&[^,]">
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="exampleSelect1" class="control-label">Tình trạng sản phẩm</label>
@@ -257,6 +258,8 @@
                                 <button class="btn btn-save" type="submit">Lưu lại</button>
                                 <a class="btn btn-cancel" data-dismiss="modal" href="ManagerProductController">Hủy bỏ</a>
                                 <BR>
+
+                                <p class="text-success">${successText}</p>                                
                             </form>
                         </div>
                     </div>

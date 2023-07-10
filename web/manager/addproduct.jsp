@@ -182,8 +182,8 @@
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb">
-                    <li class="breadcrumb-item">Danh sách sản phẩm</li>
-                    <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
+                    <li class="breadcrumb-item"><a href="ManagerProductController">Danh sách sản phẩm</a></li>
+                    <li class="breadcrumb-item"><a href="ManagerAddProductController">Thêm sản phẩm</a></li>
                 </ul>
             </div>
             <div class="row">
@@ -205,9 +205,9 @@
                                             class="fas fa-folder-plus"></i> Thêm tình trạng</a>
                                 </div>
                             </div>
-                            
-                                <p class="text-danger">${wrongText}</p>
-                                <p class="text-success">${successText}</p>                                <br> <br>
+                            <p class="text-danger">${wrongText}</p>
+                            <p class="text-success">${successText}</p>                                
+                            <br> <br>
 
                             <form class="row" action="ManagerAddProductController" method="post">
                                 <div class="form-group col-md-4">
@@ -218,14 +218,9 @@
                                     <label class="control-label">Số lượng</label>
                                     <input class="form-control" type="number" name="quantity" value="${quantity}">
                                 </div>
-                                <div class="form-group col-md-4 ">
-                                    <label for="exampleSelect1" class="control-label">Tình trạng</label>
-                                    <input name="status" value="${status}" class="form-control" type="text">
-<!--                                    <select class="form-control" id="exampleSelect1" name="status">
-                                        <option value="2">-- Chọn tình trạng --</option>
-                                        <option value="1">Còn hàng</option>
-                                        <option value="0">Hết hàng</option>
-                                    </select>-->
+                                <div class="form-group col-md-4">
+                                    <label class="control-label">Giá bán</label>
+                                    <input class="form-control" type="number" name='price' value="${price}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
@@ -247,39 +242,36 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label class="control-label">Giá bán</label>
-                                    <input class="form-control" type="text" name='price' value="${price}">
+                                    <label for="exampleSelect1" class="control-label">Tình trạng</label>
+                                    <input name="status" value="${status}" class="form-control" type="text" readonly="" placeholder="Còn hàng">  
                                 </div>
-                                
                                 <div class="form-group col-md-4">
-                                        <label class="control-label">Ảnh 1</label>
-                                        <input value="${image}" name="image" class="form-control" type="text">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label class="control-label">Ảnh 2</label>
-                                        <input value="${image2}" name="image2" class="form-control" type="text">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label class="control-label">Ảnh 3 </label>
-                                        <input value="${image3}" name="image3" class="form-control" type="text">
-                                    </div>
+                                    <label class="control-label">Ảnh 1</label>
+                                    <input value="${image}" name="image" class="form-control" type="text">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="control-label">Ảnh 2</label>
+                                    <input value="${image2}" name="image2" class="form-control" type="text">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="control-label">Ảnh 3 </label>
+                                    <input value="${image3}" name="image3" class="form-control" type="text">
+                                </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Mô tả sản phẩm</label>
                                     <textarea class="form-control" name="mota" id="mota" value="${mota}"></textarea>
                                     <script>CKEDITOR.replace('mota');</script>
                                 </div>
-                                
+
                                 <button class="btn btn-save" type="submit">Lưu lại</button>
                                 <a class="btn btn-cancel" href="ManagerProductController">Hủy bỏ</a>
-                                
+
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-
-
         <!--
         MODAL CHỨC VỤ 
         -->
@@ -314,8 +306,6 @@
       MODAL
         -->
 
-
-
         <!--
         MODAL DANH MỤC
         -->
@@ -341,7 +331,6 @@
                                     <li>Tai nghe</li>
                                     <li>Chuột</li>
                                     <li>Bàn phím</li>
-
                                 </ul>
                             </div>
                         </div>
@@ -395,9 +384,6 @@
         <!--
       MODAL
         -->
-
-
-
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
@@ -425,5 +411,4 @@
 
         </script>
     </body>
-
 </html>

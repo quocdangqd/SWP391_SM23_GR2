@@ -9,13 +9,15 @@ package Model;
  * @author laptop
  */
 public class DetailOrder {
-    private String name_user, phone_number, address, orderdetailID, orderdeatil_orderID, 
-            quantity, price, orderdetail_produstID, name_product; 
+
+    private String name_user, phone_number, address, orderdetailID, orderdeatil_orderID,
+            quantity, price, orderdetail_produstID, name_product;
+    private String price_product;
 
     public DetailOrder() {
     }
 
-    public DetailOrder(String name_user, String phone_number, String address, String orderdetailID, String orderdeatil_orderID, String quantity, String price, String orderdetail_produstID, String name_product) {
+    public DetailOrder(String name_user, String phone_number, String address, String orderdetailID, String orderdeatil_orderID, String quantity, String price, String orderdetail_produstID, String name_product, String price_product) {
         this.name_user = name_user;
         this.phone_number = phone_number;
         this.address = address;
@@ -25,6 +27,15 @@ public class DetailOrder {
         this.price = price;
         this.orderdetail_produstID = orderdetail_produstID;
         this.name_product = name_product;
+        this.price_product = price_product;
+    }
+
+    public String getPrice_product() {
+        return price_product;
+    }
+
+    public void setPrice_product(String price_product) {
+        this.price_product = price_product;
     }
 
     public String getName_user() {
@@ -101,8 +112,6 @@ public class DetailOrder {
 
     @Override
     public String toString() {
-        return "DetailOrder{" + "name_user=" + name_user + ", phone_number=" + phone_number + ", address=" + address + ", orderdetailID=" + orderdetailID + ", orderdeatil_orderID=" + orderdeatil_orderID + ", quantity=" + quantity + ", price=" + price + ", orderdetail_produstID=" + orderdetail_produstID + ", name_product=" + name_product + '}';
+        return "DetailOrder{" + "name_user=" + name_user + ", phone_number=" + phone_number + ", address=" + address + ", orderdetailID=" + orderdetailID + ", orderdeatil_orderID=" + orderdeatil_orderID + ", quantity=" + quantity + ", price=" + price + ", orderdetail_produstID=" + orderdetail_produstID + ", name_product=" + name_product + ", price_product=" + price_product + '}';
     }
-    
-    
 }
