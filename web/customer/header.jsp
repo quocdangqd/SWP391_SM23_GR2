@@ -35,6 +35,7 @@
             padding: 16px 16px;
             text-decoration: none;
             display: block;
+            font-size: 1.3rem;
         }
 
         .dropdown-content a:hover {
@@ -73,7 +74,8 @@
                         <li class="header__top-item">
                             <div class="dropdown fas fa-user header__nav-cart-icon">
                                 <div class="dropdown-content">
-                                    <a href="#">Profile</a>
+                                    <a href="#">Thông tin cá nhân</a>
+                                    <a href="#">Đơn hàng của tôi</a>
                                     <a href="#">Đăng xuất</a>
                                 </div>
                             </div>
