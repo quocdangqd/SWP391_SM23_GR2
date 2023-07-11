@@ -1,7 +1,7 @@
 <%-- 
-    Document   : ordermanager
-    Created on : 24-05-2023, 01:35:02
-    Author     : trand
+    Document   : feedbackmanager
+    Created on : Jul 11, 2023, 1:50:02 AM
+    Author     : laptop
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -116,7 +116,7 @@
                 </li>
                 <li><a class="app-menu__item active" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
-                <li><a class="app-menu__item" href="accountmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
+                <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
                 <li><a class="app-menu__item" href="incomemanager.jsp"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
@@ -126,7 +126,7 @@
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb side">
-                    <li class="breadcrumb-item active"><a href="#"><b>Danh sách đơn hàng</b></a></li>
+                    <li class="breadcrumb-item active"><a href="#"><b>Đánh giá</b></a></li>
                 </ul>
                 <div id="clock"></div>
             </div>
@@ -163,40 +163,41 @@
                                 <thead>
                                     <tr>
                                         <th width="10"><input type="checkbox" id="all"></th>
-                                        <th>ID đơn hàng</th>
+                                        <th>ID đánh giá</th>
+                                        <th>Sản phẩm</th>
                                         <th>Khách hàng</th>
-                                        <th>Tư vấn viên</th>
-                                        <th>Đơn hàng</th>
+                                        <th>Nội dung</th>
                                         <th>Ngày đặt</th>
-                                        <th>Tổng tiền</th>
                                         <th>Tình trạng</th>
-                                        <th>Tính năng</th>
+                                        <th>Chi tiết đơn hàng</th>
+                                        <th>Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${listO}" var="o">
-                                        <tr>
-                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                            <td><a href="ManagerOrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>
-                                            <td>${listU.get(o.getOrder_userID()-1).getName()}</td>
-                                            <td>${o.getOrder_salecodeID()}</td>
-                                            <td>${o.getNote()}</td>
-                                            <td>${o.getDate()}</td>
-                                            <td>Tổng tiền</td>
-                                            <td>${o.getStatus()}</td>
-                                            <td>
-                                                <a href="ManagerDeleteOrderController?id=${o.getOrderID()}"><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                                                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </a>
-<!--                                                <a href="ManagerUpdateOrderController?id=${o.getOrderID()}"><button class="btn btn-primary btn-sm edit" type="button" title="Sửa">
+                                <c:forEach items="${listF}" var="o">
+                                    <tr>
+                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                                        <td>${o.getFeedbackID()}</td>
+                                        <td>${o.getFeedbackID_ProductID()}</td>
+                                        <td>${o.getFeedbackID_userID()}</td>
+                                        <td>${o.getInformation()}</td>
+                                        <td>${o.getDate()}</td>
+                                        <td>${o.getStatus()}</td>
+                                        <td>${o.getOrderdetailID()}</td>
+                                        <td>
+                                            <a href="ManagerDeleteOrderController?id=${o.getFeedbackID()}">
+                                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </a>
+                                            <a href="ManagerUpdateOrderController?id=${o.getFeedbackID()}">
+                                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa">
                                                     <i class="fas fa-edit"></i>
-                                                    </button>
-                                                </a>-->
-
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
+                                                </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -334,5 +335,4 @@
             });
         </script>
     </body>
-
 </html>

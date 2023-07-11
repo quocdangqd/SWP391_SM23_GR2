@@ -28,6 +28,10 @@
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/auth/login.jsp</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/compareProduct.jsp</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/homepage.jsp</file>
+            <file>file:/D:/SWP391_SM23_GR2/web/manager/feedbackmanager.jsp</file>
+            <file>file:/D:/SWP391_SM23_GR2/src/java/Dal/ManagerDAO.java</file>
+            <file>file:/D:/SWP391_SM23_GR2/src/java/Controller/Manager/ManagerFeedbackController.java</file>
+            <file>file:/D:/SWP391_SM23_GR2/src/java/Model/Feedback.java</file>
         </group>
     </open-files>
 </project-private>
