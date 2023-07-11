@@ -10,7 +10,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Thông tin đơn hàng</title>
+        <title>Thông tin khách hàng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -101,14 +101,14 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="homepage.jsp"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="orderofsaler.jsp"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item active" href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item" href="orderofsaler.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Thông tin đơn hàng</span></a></li>
-                <li><a class="app-menu__item " href="customermanager.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
+                <li><a class="app-menu__item active" href="customerofsaler.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
                             class="app-menu__label">Thông tin khách hàng</span></a></li>
             </ul>
         </aside>
@@ -117,7 +117,7 @@
                 <div class="col-md-12">
                     <div class="app-title">
                         <ul class="app-breadcrumb breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><b>Đơn hàng</b></a></li>
+                            <li class="breadcrumb-item"><a href="#"><b>Thông tin khách hàng</b></a></li>
                         </ul>
                         <div id="clock"></div>
                     </div>
@@ -127,58 +127,48 @@
                 <!--Left-->
                 <div class="col-md-12 col-lg-12">
                     <div class="row">
-                        <!-- col-12 -->
                         <div class="col-md-12">
                             <div class="tile">
-                                <h3 class="tile-title">Tình trạng đơn hàng</h3>
-                                <h4 class="tile-title">Saler: Nguyễn Việt Dũng </h4>
+                                <h3 class="tile-title">Khách hàng mới</h3>
                                 <div>
-                                    <table class="table table-bordered">
+                                    <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>ID đơn hàng</th>
+                                                <th>ID</th>
                                                 <th>Tên khách hàng</th>
-                                                <th>Tổng tiền</th>
-                                                <th>Trạng thái</th>
+                                                <th>Ngày sinh</th>
+                                                <th>Số điện thoại</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>AL3947</td>
-                                                <td>Phạm Thị Ngọc</td>
-                                                <td>
-                                                    19.770.000 đ
-                                                </td>
-                                                <td><span class="badge bg-info">Chờ xử lý</span></td>
+                                                <td>#183</td>
+                                                <td>Hột vịt muối</td>
+                                                <td>21/7/1992</td>
+                                                <td><span class="tag tag-success">0921387221</span></td>
                                             </tr>
                                             <tr>
-                                                <td>ER3835</td>
-                                                <td>Nguyễn Thị Mỹ Yến</td>
-                                                <td>
-                                                    16.770.000 đ	
-                                                </td>
-                                                <td><span class="badge bg-warning">Đang vận chuyển</span></td>
+                                                <td>#219</td>
+                                                <td>Bánh tráng trộn</td>
+                                                <td>30/4/1975</td>
+                                                <td><span class="tag tag-warning">0912376352</span></td>
                                             </tr>
                                             <tr>
-                                                <td>MD0837</td>
-                                                <td>Triệu Thanh Phú</td>
-                                                <td>
-                                                    9.400.000 đ	
-                                                </td>
-                                                <td><span class="badge bg-success">Đã hoàn thành</span></td>
+                                                <td>#627</td>
+                                                <td>Cút rang bơ</td>
+                                                <td>12/3/1999</td>
+                                                <td><span class="tag tag-primary">01287326654</span></td>
                                             </tr>
                                             <tr>
-                                                <td>MT9835</td>
-                                                <td>Đặng Hoàng Phúc	</td>
-                                                <td>
-                                                    40.650.000 đ	
-                                                </td>
-                                                <td><span class="badge bg-danger">Đã hủy	</span></td>
+                                                <td>#175</td>
+                                                <td>Hủ tiếu nam vang</td>
+                                                <td>4/12/20000</td>
+                                                <td><span class="tag tag-danger">0912376763</span></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <!-- / div trống-->
+
                             </div>
                         </div>
                         <!-- / col-12 -->
