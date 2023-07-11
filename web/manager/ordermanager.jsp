@@ -135,24 +135,16 @@
                     <div class="tile">
                         <div class="tile-body">
                             <div class="row element-button">
-                                <div class="col-sm-2">
+<!--                                <div class="col-sm-2">
                                     <a class="btn btn-add btn-sm" href="addorder.jsp" title="Thêm"><i class="fas fa-plus"></i>
                                         Tạo mới đơn hàng</a>
-                                </div>
+                                </div>-->
                                 <div class="col-sm-2">
                                     <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
                                             class="fas fa-print"></i> In dữ liệu</a>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép"><i
-                                            class="fas fa-copy"></i> Sao chép</a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick="myFunction(this)"><i
-                                            class="fas fa-file-pdf"></i> Xuất PDF</a>
+                                    <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất file</a>
                                 </div>
                                 <div class="col-sm-2">
                                     <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
@@ -163,12 +155,12 @@
                                 <thead>
                                     <tr>
                                         <th width="10"><input type="checkbox" id="all"></th>
-                                        <th>ID đơn hàng</th>
+                                        <th>Mã đơn hàng</th>
                                         <th>Khách hàng</th>
                                         <th>Tư vấn viên</th>
+                                        <th>Ngày tạo đơn</th>
+                                        <th>Trạng thái đơn hàng</th>
                                         <th>Tổng tiền</th>
-                                        <th>Ngày đặt</th>
-                                        <th>Tình trạng</th>
                                         <th>Ghi chú</th>
                                         <th>Tính năng</th>
                                     </tr>
@@ -177,12 +169,12 @@
                                     <c:forEach items="${listO}" var="o">
                                         <tr>
                                             <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                            <td><a href="ManagerOrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>
-                                            <td>${listU.get(o.getOrder_userID()-1).getName()}</td>
+                                            <td><a style="color: #ff6666" href="ManagerOrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>
+                                            <td>${o.getName_user()}</td>
                                             <td>${o.getOrder_salecodeID()}</td>
-                                            <td>Tổng tiền</td>
                                             <td>${o.getDate()}</td>
                                             <td>${o.getStatus()}</td>
+                                            <td>${o.getPrice_order()}</td>
                                             <td>${o.getNote()}</td>
                                             <td>
                                                 <a href="ManagerDeleteOrderController?id=${o.getOrderID()}"><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"

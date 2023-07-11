@@ -20,7 +20,6 @@ public class ManagerOrderController extends HttpServlet {
         ManagerDAO dao = new ManagerDAO();
         dao.getListOrder();
         req.setAttribute("listO", dao.getOrder());
-        req.setAttribute("listU", dao.getUserList());
         req.getRequestDispatcher("ordermanager.jsp").forward(req, resp);
     } 
 

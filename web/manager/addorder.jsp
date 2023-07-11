@@ -200,25 +200,33 @@
                                         <label class="control-label">ID đơn hàng</label>
                                         <input class="form-control" type="text" value="${o.getOrderID()}" name="id">
                                     </div>-->
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Khách hàng</label>
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Tên khách hàng</label>
                                         <input class="form-control" type="text" name="user" value="${listU.get(o.getOrder_userID()-1).getName()}">
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Tư vấn viên</label>
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Địa chỉ</label>
                                         <input class="form-control" type="text" name="saler" value="${o.getOrder_salecodeID()}">
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Đơn hàng</label>
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Số điện thoại</label>
                                         <input class="form-control" type="text" name="order" value="${o.getNote()}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Sản phẩm</label>
+                                        <input class="form-control" type="text" name="order" value="${o.getNote()}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Số lượng</label>
+                                        <input class="form-control" type="text" name="order" value="${o.getNote()}">
+                                    </div>
+                                    <div class="form-group  col-md-4">
+                                        <label class="control-label">Tổng tiền</label>
+                                        <input class="form-control" type="text">
                                     </div>
                                     <div class="form-group  col-md-6">
                                         <label class="control-label">Ngày đặt</label>
                                         <input class="form-control" type="datetime-local" name="date" value="${o.getDate()}">
-                                    </div>
-                                    <div class="form-group  col-md-6">
-                                        <label class="control-label">Tổng tiền</label>
-                                        <input class="form-control" type="text">
                                     </div>
                                     <div class="form-group  col-md-6">
                                         <label for="exampleSelect1" class="control-label">Tình trạng</label>

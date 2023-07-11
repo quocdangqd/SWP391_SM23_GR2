@@ -177,18 +177,23 @@ public class ManagerDAO extends ConnectMySQL {
     //ORDER MANAGER
     public ArrayList<Order> getListOrder() {
         order = new ArrayList<>();
-        String sql = "SELECT * FROM swp.order;";
+        String sql = "select o.*,u.name,od.price from swp.order o, swp.orderdetail od, swp.user u\n"
+                + "where od.orderdetail_orderID=o.orderID and u.userID=o.order_userID;";
+        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+        decimalFormat.applyPattern("#,###");
         try {
             pstm = connection.prepareStatement(sql);
             rs = pstm.executeQuery();
             while (rs.next()) {
-                String orderID = String.valueOf(rs.getString(1));
-                String order_userID = String.valueOf(rs.getString(2));
-                String sale = String.valueOf(rs.getString(3));
+                String orderID = String.valueOf(rs.getInt(1));
+                String order_userID = String.valueOf(rs.getInt(2));
+                String sale = String.valueOf(rs.getInt(3));
                 String note = String.valueOf(rs.getString(4));
                 String date = String.valueOf(rs.getTimestamp(5));
                 String status = rs.getString(6);
-                order.add(new Order(orderID, order_userID, sale, note, date, status));
+                String name_user = rs.getString(7);
+                String price_order = String.valueOf(decimalFormat.format((int) rs.getFloat(8)));
+                order.add(new Order(orderID, order_userID, order_userID, note, date, status, name_user, price_order));
             }
 
         } catch (Exception e) {
@@ -203,15 +208,15 @@ public class ManagerDAO extends ConnectMySQL {
             pstm = connection.prepareStatement(sqlSelect);
             rs = pstm.executeQuery();
             while (rs.next()) {
-                Order o = new Order();
-                o.setOrderID(String.valueOf(rs.getInt(1)));
-                String user = String.valueOf(rs.getString(2));
-                o.setOrder_userID(user);
-                o.setOrder_salecodeID(String.valueOf(rs.getString(3)));
-                o.setDate(String.valueOf(rs.getTimestamp(5)));
-                o.setStatus(String.valueOf(rs.getString(6)));
-                o.setUser(new ManagerDAO().getUserById(user));
-                return o;
+                String orderID = String.valueOf(rs.getInt(1));
+                String order_userID = String.valueOf(rs.getInt(2));
+                String sale = String.valueOf(rs.getInt(3));
+                String note = String.valueOf(rs.getString(4));
+                String date = String.valueOf(rs.getTimestamp(5));
+                String status = rs.getString(6);
+                String name_user = rs.getString(7);
+                String price_order = String.valueOf(rs.getInt(8));
+                return (new Order(orderID, order_userID, sale, note, date, status, name_user, price_order));
             }
         } catch (Exception e) {
             System.out.println("getOrderByID: " + e.getMessage());

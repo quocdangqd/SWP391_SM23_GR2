@@ -12,7 +12,8 @@ public class Order {
 
     private String orderID, order_userID, order_salecodeID, note, date, status;
     private String address, phone_number, orderdetail_productID;
-    private User user;
+    private String name_user, price_order;
+
     public Order() {
     }
 
@@ -113,12 +114,33 @@ public class Order {
         this.status = status;
     }
 
-    public User getUser() {
-        return user;
+    public Order(String orderID, String order_userID, String order_salecodeID, String note, String date, String status, String name_user, String price_order) {
+        this.orderID = orderID;
+        this.order_userID = order_userID;
+        this.order_salecodeID = order_salecodeID;
+        this.note = note;
+        this.date = date;
+        this.status = status;
+        this.name_user = name_user;
+        this.price_order = price_order;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public String getName_user() {
+        return name_user;
     }
+
+    public void setName_user(String name_user) {
+        this.name_user = name_user;
+    }
+
+    public String getPrice_order() {
+        return price_order;
+    }
+
+    public void setPrice_order(String price_order) {
+        this.price_order = price_order;
+    }
+
+    
 
 }
