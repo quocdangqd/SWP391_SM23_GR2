@@ -69,6 +69,20 @@ public class Products {
         this.picture3 = picture3;
     }
 
+    public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status, String picture2, String picture3, String date) {
+        this.ProductID = ProductID;
+        this.product_categoryID = product_categoryID;
+        this.name = name;
+        this.desciption = desciption;
+        this.picture = picture;
+        this.price = price;
+        this.quantity = quantity;
+        this.status = status;
+        this.picture2 = picture2;
+        this.picture3 = picture3;
+        this.date = date;
+    }
+
     public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status, String sale, String rateStar, String salePrice, String picture2, String picture3) {
         this.ProductID = ProductID;
         this.product_categoryID = product_categoryID;

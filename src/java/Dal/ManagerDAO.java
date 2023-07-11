@@ -74,7 +74,8 @@ public class ManagerDAO extends ConnectMySQL {
                 String price = String.valueOf(decimalFormat.format((int) rs.getFloat(8)));
                 String quantity = String.valueOf(rs.getInt(9));
                 String status = String.valueOf(rs.getInt(10));
-                product.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, "", "", "", picture2, picture3));
+                String date = String.valueOf(rs.getString(10));
+                product.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, picture2, picture3, date));
             }
 
         } catch (Exception e) {
@@ -434,14 +435,68 @@ public class ManagerDAO extends ConnectMySQL {
         return feedback;
     }
 
+    //HOMEPAGE
+    public int countProductByProductID() {
+        int count = 0;
+        try {
+            String sqlSelectString = "SELECT count(ProductID) FROM swp.product;";
+            pstm = connection.prepareStatement(sqlSelectString);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("countProductByProductID: " + e);
+        }
+        return count;
+    }
+
+    public int countOrder() {
+        int count = 0;
+        try {
+            String sqlSelectString = "SELECT count(OrderID) FROM swp.order;";
+            pstm = connection.prepareStatement(sqlSelectString);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("countOrder: " + e);
+        }
+        return count;
+    }
+
+    public ArrayList<Order> getNewOrder() {
+        order = new ArrayList<>();
+        String sql = "select o.*,u.name,od.price from swp.order o, swp.orderdetail od, swp.user u\n"
+                + "where od.orderdetail_orderID=o.orderID and u.userID=o.order_userID ORDER BY date DESC LIMIT 5;";
+        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+        decimalFormat.applyPattern("#,###");
+        try {
+            pstm = connection.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                String orderID = String.valueOf(rs.getInt(1));
+                String order_userID = String.valueOf(rs.getInt(2));
+                String sale = String.valueOf(rs.getInt(3));
+                String note = String.valueOf(rs.getString(4));
+                String date = String.valueOf(rs.getTimestamp(5));
+                String status = rs.getString(6);
+                String name_user = rs.getString(7);
+                String price_order = String.valueOf(decimalFormat.format((int) rs.getFloat(8)));
+                order.add(new Order(orderID, order_userID, order_userID, note, date, status, name_user, price_order));
+            }
+
+        } catch (Exception e) {
+            System.out.println("getListOrder: " + e.getMessage());
+        }
+        return order;
+    }
+
     public static void main(String[] args) {
         ManagerDAO dao = new ManagerDAO();
-        Products p = dao.getProductsByID("1");
-//        dao.updateProduct(p.getProduct_categoryID(), p.getName(), p.getDesciption(), p.getPicture(), p.getPicture2(),
-//                 p.getPicture3(), "438", p.getStatus(), p.getPrice(), p.getProductID());
-//        System.out.println(dao.getOrderDetailByOrderID("66"));
-        System.out.println(dao.getAllDetailOrderByOrderID("4"));
-        System.out.println(dao.getFeedbackList().get(0));
 
+        System.out.println(dao.countProductByProductID());
+        System.out.println(dao.countOrder());
     }
 }
