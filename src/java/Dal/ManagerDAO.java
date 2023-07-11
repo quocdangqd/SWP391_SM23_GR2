@@ -358,7 +358,7 @@ public class ManagerDAO extends ConnectMySQL {
                 String orderdetail_productID = String.valueOf(rs.getInt(5));
                 String orderdetailID = String.valueOf(rs.getInt(6));
                 String price = String.valueOf(decimalFormat.format((int) (rs.getFloat(7))));
-                System.out.println("price: "+price);
+                System.out.println("price: " + price);
                 String quantity = String.valueOf(rs.getInt(8));
                 String name_product = rs.getString(9);
                 String price_product = String.valueOf(decimalFormat.format((int) rs.getFloat(10)));
@@ -370,7 +370,7 @@ public class ManagerDAO extends ConnectMySQL {
         }
         return data;
     }
-    
+
     public ArrayList<DetailOrder> getOrderIDList() {
         ArrayList<DetailOrder> data = new ArrayList<>();
         try {
@@ -417,8 +417,11 @@ public class ManagerDAO extends ConnectMySQL {
                 String information = String.valueOf(rs.getString(4));
                 String status = String.valueOf(rs.getString(5));
                 String date = String.valueOf(rs.getTimestamp(6));
-                String orderdetailID = String.valueOf(rs.getInt(7));
-                feedback.add(new Feedback(FeedbackID, FeedbackID_ProductID, feedbackID_userID, information, status, date, orderdetailID));
+                String username = String.valueOf(rs.getString(7));
+                String orderdetailID = String.valueOf(rs.getInt(8));
+                String productName = String.valueOf(rs.getString(9));
+                feedback.add(new Feedback(FeedbackID, FeedbackID_ProductID, feedbackID_userID, information,
+                        status, date, username, orderdetailID, productName));
             }
         } catch (Exception e) {
             System.out.println("getFeedbackList: " + e);

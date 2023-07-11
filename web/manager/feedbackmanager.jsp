@@ -114,9 +114,9 @@
                 <li><a class="app-menu__item" href="ManagerProductController"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
                 </li>
-                <li><a class="app-menu__item active" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
+                <li><a class="app-menu__item " href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
-                <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
+                <li><a class="app-menu__item active" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
                 <li><a class="app-menu__item" href="incomemanager.jsp"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
@@ -178,23 +178,23 @@
                                     <tr>
                                         <td width="10"><input type="checkbox" name="check1" value="1"></td>
                                         <td>${o.getFeedbackID()}</td>
-                                        <td>${o.getFeedbackID_ProductID()}</td>
-                                        <td>${o.getFeedbackID_userID()}</td>
+                                        <td>${o.getProductName()}</td>
+                                        <td>${o.getUsername()}</td>
                                         <td>${o.getInformation()}</td>
                                         <td>${o.getDate()}</td>
                                         <td>${o.getStatus()}</td>
                                         <td>${o.getOrderdetailID()}</td>
                                         <td>
-                                            <a href="ManagerDeleteOrderController?id=${o.getFeedbackID()}">
+                                            <!--<a href="ManagerDeleteOrderController?id=${o.getFeedbackID()}">-->
                                                 <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                                 </button>
-                                            </a>
-                                            <a href="ManagerUpdateOrderController?id=${o.getFeedbackID()}">
+                                            <!--</a>-->
+                                            <!--<a href="ManagerUpdateOrderController?id=${o.getFeedbackID()}">-->
                                                 <button class="btn btn-primary btn-sm edit" type="button" title="Sửa">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
-                                            </a>
+                                            <!--</a>-->
                                         </td>
                                     </tr>
                                 </c:forEach>
