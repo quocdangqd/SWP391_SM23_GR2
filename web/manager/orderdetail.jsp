@@ -4,6 +4,7 @@
     Author     : laptop
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,199 +27,73 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
         <link href="../dist/css/style.min.css" rel="stylesheet" />
+        <style>
+            .dropbtn {
+                background-color: #ef2317;
+                color: white;
+                padding: 16px;
+                font-family: Roboto;
+                border: none;
+            }
+
+            .dropdown {
+                margin-right: 100px;
+                margin-top: 2px;
+                position: relative;
+                display: inline-block;
+                font-size: 30px;
+                color: white;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: white;
+                min-width: 120px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 12px;
+                text-decoration: none;
+                display: block;
+                font-size: 15px;
+            }
+
+            .dropdown-content a:hover {
+                background-color: #ef2317;
+                color: white;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #ef2317;
+            }
+        </style>
     </head>
 
     <body onload="time()" class="app sidebar-mini rtl">
         <!-- Navbar-->
         <header class="app-header">
-            <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
-                                            aria-label="Hide Sidebar"></a>
+            <!-- Sidebar toggle button-->
+            <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
             <!-- Navbar Right Menu-->
             <ul class="app-nav">
-
-
                 <!-- User Menu-->
-                <li><a class="app-nav__item" href="/homepage.jsp"><i class='bx bx-log-out bx-rotate-180'></i> </a>
-
+                <li>
+                    <div class="dropdown fas fa-user header__nav-cart-icon">
+                        <div class="dropdown-content">
+                            <a href="#">Đổi mật khẩu</a>
+                            <a href="#">Đăng xuất</a>
+                        </div>
+                    </div>
                 </li>
             </ul>
-            <div
-                class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                <!-- ============================================================== -->
-                <!-- toggle and nav items -->
-                <!-- ============================================================== -->
-                <ul class="navbar-nav float-start me-auto">
-                    <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle waves-effect waves-dark"
-                            href="#"
-                            id="2"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            >
-                            <i class="font-24 mdi mdi-comment-processing"></i>
-                        </a>
-                        <ul
-                            class="
-                            dropdown-menu dropdown-menu-end
-                            mailbox
-                            animated
-                            bounceInDown
-                            "
-                            aria-labelledby="2"
-                            >
-                            <ul class="list-style-none">
-                                <li>
-                                    <div class="">
-                                        <!-- Message -->
-                                        <a href="javascript:void(0)" class="link border-top">
-                                            <div class="d-flex no-block align-items-center p-10">
-                                                <span
-                                                    class="
-                                                    btn btn-success btn-circle
-                                                    d-flex
-                                                    align-items-center
-                                                    justify-content-center
-                                                    "
-                                                    ><i class="mdi mdi-calendar text-white fs-4"></i
-                                                    ></span>
-                                                <div class="ms-2">
-                                                    <h5 class="mb-0">Event today</h5>
-                                                    <span class="mail-desc"
-                                                          >Just a reminder that event</span
-                                                    >
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="javascript:void(0)" class="link border-top">
-                                            <div class="d-flex no-block align-items-center p-10">
-                                                <span
-                                                    class="
-                                                    btn btn-info btn-circle
-                                                    d-flex
-                                                    align-items-center
-                                                    justify-content-center
-                                                    "
-                                                    ><i class="mdi mdi-settings fs-4"></i
-                                                    ></span>
-                                                <div class="ms-2">
-                                                    <h5 class="mb-0">Settings</h5>
-                                                    <span class="mail-desc"
-                                                          >You can customize this template</span
-                                                    >
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="javascript:void(0)" class="link border-top">
-                                            <div class="d-flex no-block align-items-center p-10">
-                                                <span
-                                                    class="
-                                                    btn btn-primary btn-circle
-                                                    d-flex
-                                                    align-items-center
-                                                    justify-content-center
-                                                    "
-                                                    ><i class="mdi mdi-account fs-4"></i
-                                                    ></span>
-                                                <div class="ms-2">
-                                                    <h5 class="mb-0">Pavan kumar</h5>
-                                                    <span class="mail-desc"
-                                                          >Just see the my admin!</span
-                                                    >
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="javascript:void(0)" class="link border-top">
-                                            <div class="d-flex no-block align-items-center p-10">
-                                                <span
-                                                    class="
-                                                    btn btn-danger btn-circle
-                                                    d-flex
-                                                    align-items-center
-                                                    justify-content-center
-                                                    "
-                                                    ><i class="mdi mdi-link fs-4"></i
-                                                    ></span>
-                                                <div class="ms-2">
-                                                    <h5 class="mb-0">Luanch Admin</h5>
-                                                    <span class="mail-desc"
-                                                          >Just see the my new admin!</span
-                                                    >
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </ul>
-                    </li>
-                    <!-- ============================================================== -->
-                    <!-- End Messages -->
-                    <!-- ============================================================== -->
-
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
-                    <li class="nav-item dropdown">
-                        <a
-                            class="
-                            nav-link
-                            dropdown-toggle
-                            text-muted
-                            waves-effect waves-dark
-                            pro-pic
-                            "
-                            href="#"
-                            id="navbarDropdown"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            >
-                            <img
-                                src="../assets/images/users/1.jpg"
-                                alt="user"
-                                class="rounded-circle"
-                                width="31"
-                                />
-                        </a>
-                        <ul
-                            class="dropdown-menu dropdown-menu-end user-dd animated"
-                            aria-labelledby="navbarDropdown"
-                            >
-                            <a class="dropdown-item" href="javascript:void(0)"
-                               ><i class="mdi mdi-account me-1 ms-1"></i> My Profile</a
-                            >
-                            <a class="dropdown-item" href="javascript:void(0)"
-                               ><i class="mdi mdi-wallet me-1 ms-1"></i> My Balance</a
-                            >
-                            <a class="dropdown-item" href="javascript:void(0)"
-                               ><i class="mdi mdi-email me-1 ms-1"></i> Inbox</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void(0)"
-                               ><i class="mdi mdi-settings me-1 ms-1"></i> Account
-                                Setting</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void(0)"
-                               ><i class="fa fa-power-off me-1 ms-1"></i> Logout</a
-                            >
-                            <div class="dropdown-divider"></div>
-                            <div class="ps-4 p-10">
-                                <a
-                                    href="javascript:void(0)"
-                                    class="btn btn-sm btn-success btn-rounded text-white"
-                                    >View Profile</a
-                                >
-                            </div>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
         </header>
         <!-- Sidebar menu-->
         <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
@@ -233,10 +108,10 @@
                 <li><a class="app-menu__item " href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
-                <li><a class="app-menu__item" href="productmanager.jsp"><i
+                <li><a class="app-menu__item" href="ManagerProductController"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
                 </li>
-                <li><a class="app-menu__item active" href="ordermanager.jsp"><i class='app-menu__icon bx bx-task'></i><span
+                <li><a class="app-menu__item active" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
                 <li><a class="app-menu__item" href="accountmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
@@ -262,8 +137,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-body printableArea">
-                                <h3><b>Hóa đơn</b> <span class="pull-right">#5669626</span></h3>
-                                <hr />
+                                <h3><b>Hóa đơn</b> <span class="pull-right" name="id">#${od[0].getOrderdeatil_orderID()}</span></h3>
+                                <hr/>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="pull-left">
@@ -282,15 +157,14 @@
                                         <div class="pull-right text-end">
                                             <address>
                                                 <div>Người mua:
-                                                    &nbsp;<b class="text-danger text-uppercase" >Bún bò huế </b>
+                                                    &nbsp;<b class="text-danger text-uppercase" >${od[0].getName_user()}</b>
                                                 </div>
                                                 <div>Địa chỉ: 
-                                                    <b class="text-secondary">Bình Yên, Thạch Thất, Hà Nội.</b>
+                                                    <b class="text-secondary">${od[2].getAddress()}</b>
                                                 </div>
                                                 <div>Số điện thoại: 
-                                                    <b class="text-secondary">0276544681</b>
+                                                    <b class="text-secondary">${od[1].getPhone_number()}</b>
                                                 </div>
-                                                
                                                 <p class="mt-4">
                                                     <b>Ngày đặt:</b>
                                                     <i class="mdi mdi-calendar"></i> 23/01/2022
@@ -309,51 +183,36 @@
                                                     <tr>
                                                         <th class="text-center">#</th>
                                                         <th>Tên hàng hóa, dịch vụ </th>
-                                                        <th class="text-end">Số lương</th>
+                                                        <th class="text-end">Số lượng</th>
                                                         <th class="text-end">Đơn giá</th>
                                                         <th class="text-end">Thành tiền</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="text-center">1</td>
-                                                        <td>Milk Powder</td>
-                                                        <td class="text-end">2</td>
-                                                        <td class="text-end">$24</td>
-                                                        <td class="text-end">$48</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">2</td>
-                                                        <td>Air Conditioner</td>
-                                                        <td class="text-end">3</td>
-                                                        <td class="text-end">$500</td>
-                                                        <td class="text-end">$1500</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">3</td>
-                                                        <td>RC Cars</td>
-                                                        <td class="text-end">20</td>
-                                                        <td class="text-end">%600</td>
-                                                        <td class="text-end">$12000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">4</td>
-                                                        <td>Down Coat</td>
-                                                        <td class="text-end">60</td>
-                                                        <td class="text-end">$5</td>
-                                                        <td class="text-end">$300</td>
-                                                    </tr>
+                                                    <c:forEach items="${od}" var="o">
+                                                        <tr>
+                                                            <td class="text-center"></td>
+                                                            <td>${o.getName_product()}</td>
+                                                            <td class="text-end" name="quantity">${o.getQuantity()}</td>
+                                                            <td class="text-end" name="price_product">${o.getPrice_product()}</td>
+                                                            <td class="text-end">${o.getPrice()}</td>
+                                                        </tr>
+                                                    </c:forEach>
                                                     <tr>
                                                         <td colspan="4" class="text-lg-right">Cộng tiền hàng:</td>
-                                                        <td class="text-end">$13,848</td>
+                                                        <td class="text-end">${total}</td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="4" class="text-lg-right">Cộng tiền thuế GTGT (VAT 10%):</td>
-                                                        <td class="text-end">$138</td>
+                                                        <td class="text-end">${tax}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4" class="text-lg-right">Mã giảm giá (%)</td>
+                                                        <td class="text-end"></td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="4" class="text-lg-right"><b>Tổng cộng tiền thanh toán:</b></td>
-                                                        <td class="text-end"><b>$13,986<b></td>
+                                                        <td class="text-end"><b>${grandTotal}</b></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -372,21 +231,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- ============================================================== -->
-                    <!-- End PAge Content -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- Right sidebar -->
-                    <!-- ============================================================== -->
-                    <!-- .right-sidebar -->
-                    <!-- ============================================================== -->
-                    <!-- End Right sidebar -->
-                    <!-- ============================================================== -->
                 </div>
-                <!-- ============================================================== -->
-                <!-- End Container fluid  -->
-                <!-- ============================================================== -->
             </div>
         </main>
         <!-- Essential javascripts for application to work-->
@@ -444,19 +289,19 @@
             e.stopImmediatePropagation();
         });
 
-        //EXCEL
-        // $(document).ready(function () {
-        //   $('#').DataTable({
+//EXCEL
+// $(document).ready(function () {
+//   $('#').DataTable({
 
-        //     dom: 'Bfrtip',
-        //     "buttons": [
-        //       'excel'
-        //     ]
-        //   });
-        // });
+//     dom: 'Bfrtip',
+//     "buttons": [
+//       'excel'
+//     ]
+//   });
+// });
 
 
-        //Thời Gian
+//Thời Gian
         function time() {
             var today = new Date();
             var weekday = new Array(7);
@@ -496,7 +341,7 @@
                 return i;
             }
         }
-        //In dữ liệu
+//In dữ liệu
         var myApp = new function () {
             this.printTable = function () {
                 var tab = document.getElementById('sampleTable');
@@ -506,25 +351,25 @@
                 win.print();
             }
         }
-        //     //Sao chép dữ liệu
-        //     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+//     //Sao chép dữ liệu
+//     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
 
-        // copyTextareaBtn.addEventListener('click', function(event) {
-        //   var copyTextarea = document.querySelector('.js-copytextarea');
-        //   copyTextarea.focus();
-        //   copyTextarea.select();
+// copyTextareaBtn.addEventListener('click', function(event) {
+//   var copyTextarea = document.querySelector('.js-copytextarea');
+//   copyTextarea.focus();
+//   copyTextarea.select();
 
-        //   try {
-        //     var successful = document.execCommand('copy');
-        //     var msg = successful ? 'successful' : 'unsuccessful';
-        //     console.log('Copying text command was ' + msg);
-        //   } catch (err) {
-        //     console.log('Oops, unable to copy');
-        //   }
-        // });
+//   try {
+//     var successful = document.execCommand('copy');
+//     var msg = successful ? 'successful' : 'unsuccessful';
+//     console.log('Copying text command was ' + msg);
+//   } catch (err) {
+//     console.log('Oops, unable to copy');
+//   }
+// });
 
 
-        //Modal
+//Modal
         $("#show-emp").on("click", function () {
             $("#ModalUP").modal({backdrop: false, keyboard: false})
         });

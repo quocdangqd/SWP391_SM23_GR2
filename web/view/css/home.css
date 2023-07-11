@@ -4,8 +4,8 @@
 }
 
 .menu__nav{
-	padding: 0;
-	
+    padding: 0;
+
 }
 .menu__list {
     list-style: none;
@@ -13,18 +13,18 @@
     padding: 0;
 }
 .menu__item{
-   padding-left: .15rem;
+    padding-left: .15rem;
 }
 
 .menu__item-icon{
-	width: 3rem;
-	height: 3rem;
-	display: inline-block;
-	margin-right: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    display: inline-block;
+    margin-right: 1.5rem;
 }
 .menu__item:hover {
     background: var(--primary-color);
-    
+
 }
 
 .menu__item:hover .menu__link{
@@ -82,7 +82,7 @@
 }
 
 .slide__left-bottom-one {
-   margin-right: 0.75rem;
+    margin-right: 0.75rem;
 
 }
 .slide__left-bottom-one-img {
@@ -146,7 +146,7 @@
     width: 10rem;
     height: 0.4rem;
     background: var(--primary-color);
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
 }
 
 
@@ -232,7 +232,6 @@
     cursor: pointer;
     transition: 0.2s;
 }
-
 .bestselling__product-btn:hover{
     background: #ff2014;
 }
@@ -394,7 +393,7 @@
     left: 50%;
     transform: translateX(-50%);
     animation: fadeIn ease-in 0.3s;
-    
+
 }
 
 .product__item:hover .product__link{
@@ -407,7 +406,7 @@
 }
 
 .row.product__panel-wrap{
-    
+
 }
 
 .product__panel{
@@ -417,9 +416,9 @@
 }
 
 .product__panel-item{
-     margin-bottom: 2rem;
-     padding: 0 0.75rem;
-     cursor: pointer;
+    margin-bottom: 2rem;
+    padding: 0 0.75rem;
+    cursor: pointer;
 }
 .product__panel-item-wrap{
     background: var(--white-color);
@@ -487,8 +486,8 @@
     text-decoration: none;
 }
 .product__panel-rate-wrap {
-	text-align: right;
-	margin: 1rem 0;
+    text-align: right;
+    margin: 1rem 0;
 }
 
 .product__panel-rate {
@@ -496,7 +495,9 @@
     color: var(--primary-color);
     margin: 1.2rem 0;
 }
-
+.red {
+    color: white;
+}
 .product__panel-price {
     display: flex;
     justify-content: space-between;
@@ -549,7 +550,7 @@ section.product__love{
 /*post*/
 
 .section.posts {
-    
+
 }
 
 .posts__title {
@@ -578,7 +579,7 @@ section.product__love{
     height: 0.3rem;
     background: var(--primary-color);
     transform: translate(-50%,-90%);
-} 
+}
 
 .posts__list {
     margin-top: 0.8rem;
@@ -725,7 +726,7 @@ section.product__love{
 }
 
 @media (min-width:768px){
-    
+
 }
 
 .main__modal{

@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html lang="en">
 
     <head>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -96,20 +96,20 @@
 
                                     <div class="col-xs-6">
                                         <label for="first_name">
-                                            <h4>Họ</h4>
+                                            <h4>Họ và tên</h4>
                                         </label>
                                         <input type="text" class="form-control" name="first_name" id="first_name"
-                                               placeholder="nhập họ" title="nhập họ của bạn.">
+                                               placeholder="Nhập họ" title="nhập họ của bạn.">
                                     </div>
                                 </div>
                                 <div class="form-group">
 
                                     <div class="col-xs-6">
                                         <label for="last_name">
-                                            <h4>Tên</h4>
+                                            <h4>Tình trạng tài khoản</h4>
                                         </label>
                                         <input type="text" class="form-control" name="last_name" id="last_name"
-                                               placeholder="nhập tên" title="nhập tên của bạn.">
+                                               placeholder="" title="nhập tên của bạn.">
                                     </div>
                                 </div>
 
@@ -120,7 +120,7 @@
                                             <h4>Số điện thoại</h4>
                                         </label>
                                         <input type="text" class="form-control" name="phone" id="phone"
-                                               placeholder="nhập số điện thoại" title="nhập số điện thoại của bạn.">
+                                               placeholder="Nhập số điện thoại" title="nhập số điện thoại của bạn.">
                                     </div>
                                 </div>
 
@@ -140,7 +140,7 @@
                                         <label for="email">
                                             <h4>Địa chỉ</h4>
                                         </label>
-                                        <input type="email" class="form-control" id="location" placeholder="nơi nào đó"
+                                        <input type="text" class="form-control" id="location" placeholder="Địa chỉ nơi ở"
                                                title="nhập địa chỉ của bạn.">
                                     </div>
                                 </div>
@@ -158,16 +158,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-
                                     <div class="col-xs-6">
-                                        <label for="password2">
-                                            <h4>Ngày sinh</h4>
+                                        <label for="age">
+                                            <h4>Tuổi</h4>
                                         </label>
-                                        <input type="date" class="form-control" name="password2" id="password2"
-                                               placeholder="dob" title="enter your password2.">
+                                        <input type="text" class="form-control" name="age" id="age"
+                                               placeholder="Tuổi" title="Nhập tuổi của bạn.">
                                     </div>
                                 </div>
-
 
                                 <div class="form-group">
                                     <div class="col-xs-12">

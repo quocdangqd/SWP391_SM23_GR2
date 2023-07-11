@@ -4,6 +4,7 @@
     Author     : trand
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +27,54 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+        <style>
+            .dropbtn {
+                background-color: #ef2317;
+                color: white;
+                padding: 16px;
+                font-family: Roboto;
+                border: none;
+            }
 
+            .dropdown {
+                margin-right: 100px;
+                margin-top: 2px;
+                position: relative;
+                display: inline-block;
+                font-size: 30px;
+                color: white;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: white;
+                min-width: 120px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 12px;
+                text-decoration: none;
+                display: block;
+                font-size: 15px;
+            }
+
+            .dropdown-content a:hover {
+                background-color: #ef2317;
+                color: white;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #ef2317;
+            }
+        </style>
     </head>
 
     <body onload="time()" class="app sidebar-mini rtl">
@@ -39,7 +87,13 @@
 
 
                 <!-- User Menu-->
-                <li><a class="app-nav__item" href="/homepage.jsp"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                <li>
+                    <div class="dropdown fas fa-user header__nav-cart-icon">
+                        <div class="dropdown-content">
+                            <a href="#">Đổi mật khẩu</a>
+                            <a href="#">Đăng xuất</a>
+                        </div>
+                    </div>
 
                 </li>
             </ul>
@@ -57,10 +111,10 @@
                 <li><a class="app-menu__item " href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
-                <li><a class="app-menu__item" href="productmanager.jsp"><i
+                <li><a class="app-menu__item" href="ManagerProductController"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
                 </li>
-                <li><a class="app-menu__item active" href="ordermanager.jsp"><i class='app-menu__icon bx bx-task'></i><span
+                <li><a class="app-menu__item active" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
                 <li><a class="app-menu__item" href="accountmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
@@ -82,15 +136,9 @@
                         <div class="tile-body">
                             <div class="row element-button">
                                 <div class="col-sm-2">
-
                                     <a class="btn btn-add btn-sm" href="addorder.jsp" title="Thêm"><i class="fas fa-plus"></i>
                                         Tạo mới đơn hàng</a>
                                 </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
-                                            class="fas fa-file-upload"></i> Tải từ file</a>
-                                </div>
-
                                 <div class="col-sm-2">
                                     <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
                                             class="fas fa-print"></i> In dữ liệu</a>
@@ -99,7 +147,6 @@
                                     <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép"><i
                                             class="fas fa-copy"></i> Sao chép</a>
                                 </div>
-
                                 <div class="col-sm-2">
                                     <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
                                 </div>
@@ -120,192 +167,43 @@
                                         <th>Khách hàng</th>
                                         <th>Tư vấn viên</th>
                                         <th>Đơn hàng</th>
-                                        <th>Số lượng</th>
+                                        <th>Ngày đặt</th>
                                         <th>Tổng tiền</th>
                                         <th>Tình trạng</th>
                                         <th>Tính năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td><a href="orderdetail.jsp">ID đơn hàng</a></td>
-                                        <td>Khách hàng</td>
-                                        <td>Tư vấn viên</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                        <td>Tình trạng</td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
+                                    <c:forEach items="${listO}" var="o">
+                                        <tr>
+                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                                            <td><a href="ManagerOrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>
+                                            <td>${listU.get(o.getOrder_userID()-1).getName()}</td>
+                                            <td>${o.getOrder_salecodeID()}</td>
+                                            <td>${o.getNote()}</td>
+                                            <td>${o.getDate()}</td>
+                                            <td>Tổng tiền</td>
+                                            <td>${o.getStatus()}</td>
+                                            <td>
+                                                <a href="ManagerDeleteOrderController?id=${o.getOrderID()}"><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                                                                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </a>
+<!--                                                <a href="ManagerUpdateOrderController?id=${o.getOrderID()}"><button class="btn btn-primary btn-sm edit" type="button" title="Sửa">
+                                                    <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </a>-->
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Tư vấn viên</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                        <td>Tình trạng</td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Tư vấn viên</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                        <td><span class="badge bg-secondary">Chờ xác nhận</span></td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Tư vấn viên</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                        <td><span class="badge bg-success">Hoàn thành</span></td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Tư vấn viên</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                        <td><span class="badge bg-info">Chờ thanh toán</span></td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Tư vấn viên</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                        <td><span class="badge bg-warning">Đang giao hàng</span></td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Tư vấn viên</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                        <td><span class="badge bg-danger">Đã hủy</span></td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-                 data-keyboard="false">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
 
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="form-group  col-md-12">
-                                    <span class="thong-tin-thanh-toan">
-                                        <h5>Chỉnh sửa thông tin</h5>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">ID đơn hàng</label>
-                                    <input class="form-control" type="text">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Khách hàng</label>
-                                    <input class="form-control" type="text">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label">Đơn hàng</label>
-                                    <input class="form-control" type="text">
-                                </div>
-                                <div class="form-group  col-md-6">
-                                    <label class="control-label">Số lượng</label>
-                                    <input class="form-control" type="number">
-                                </div>
-                                <div class="form-group  col-md-6">
-                                    <label class="control-label">Tổng tiền</label>
-                                    <input class="form-control" type="text">
-                                </div>
-                                <div class="form-group  col-md-6">
-                                    <label for="exampleSelect1" class="control-label">Tình trạng</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>Hoàn thành</option>
-                                        <option>Chờ thanh toán</option>
-                                        <option>Đang giao hàng</option>
-                                        <option>Đã hủy</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <BR>
-                            <button class="btn btn-save" type="button">Lưu lại</button>
-                            <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                            <BR>
-                        </div>
-                        <div class="modal-footer">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </main>
         <!-- Essential javascripts for application to work-->
         <script src="js/jquery-3.2.1.min.js"></script>

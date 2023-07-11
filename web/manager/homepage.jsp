@@ -26,7 +26,54 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+        <style>
+            .dropbtn {
+                background-color: #ef2317;
+                color: white;
+                padding: 16px;
+                font-family: Roboto;
+                border: none;
+            }
 
+            .dropdown {
+                margin-right: 100px;
+                margin-top: 2px;
+                position: relative;
+                display: inline-block;
+                font-size: 30px;
+                color: white;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: white;
+                min-width: 120px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 12px;
+                text-decoration: none;
+                display: block;
+                font-size: 15px;
+            }
+
+            .dropdown-content a:hover {
+                background-color: #ef2317;
+                color: white;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #ef2317;
+            }
+        </style>
     </head>
 
     <body onload="time()" class="app sidebar-mini rtl">
@@ -39,7 +86,13 @@
 
 
                 <!-- User Menu-->
-                <li><a class="app-nav__item" href="/homepage.jsp"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                <li>
+                    <div class="dropdown fas fa-user header__nav-cart-icon">
+                        <div class="dropdown-content">
+                            <a href="#">Đổi mật khẩu</a>
+                            <a href="#">Đăng xuất</a>
+                        </div>
+                    </div>
 
                 </li>
             </ul>
@@ -56,17 +109,14 @@
             <ul class="app-menu">
                 <li><a class="app-menu__item active" href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
-                
-                <li><a class="app-menu__item" href="productmanager.jsp"><i
+
+                <li><a class="app-menu__item" href="ManagerProductController"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
                 </li>
-                <li><a class="app-menu__item" href="ordermanager.jsp"><i class='app-menu__icon bx bx-task'></i><span
+                <li><a class="app-menu__item" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
                 <li><a class="app-menu__item" href="accountmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
-                <li><a class="app-menu__item" href="incomemanager.jsp"><i
-                            class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-                </li>
                 <li><a class="app-menu__item" href="incomemanager.jsp"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
                 </li>
@@ -128,81 +178,81 @@
                             </div>
                         </div>
                         <!-- Sales chart -->
-                    <!-- ============================================================== -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-md-flex align-items-center">
-                                        <div>
-                                            <h4 class="card-title">Báo cáo</h4>
-                                            <h5 class="card-subtitle">Tổng quan tháng trước</h5>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <!-- column -->
-                                        <div class="col-lg-9">
-                                            <div class="flot-chart">
-                                                <div
-                                                    class="flot-chart-content"
-                                                    id="flot-line-chart"
-                                                    ></div>
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-md-flex align-items-center">
+                                            <div>
+                                                <h4 class="card-title">Báo cáo</h4>
+                                                <h5 class="card-subtitle">Tổng quan tháng trước</h5>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="bg-dark p-10 text-white text-center">
-                                                        <i class="mdi mdi-account fs-3 mb-1 font-16"></i>
-                                                        <h5 class="mb-0 mt-1">2540</h5>
-                                                        <small class="font-light">Tổng người truy cập</small>
-                                                    </div>
+                                        <div class="row">
+                                            <!-- column -->
+                                            <div class="col-lg-9">
+                                                <div class="flot-chart">
+                                                    <div
+                                                        class="flot-chart-content"
+                                                        id="flot-line-chart"
+                                                        ></div>
                                                 </div>
-                                                <div class="col-6">
-                                                    <div class="bg-dark p-10 text-white text-center">
-                                                        <i class="mdi mdi-plus fs-3 font-16"></i>
-                                                        <h5 class="mb-0 mt-1">120</h5>
-                                                        <small class="font-light">Sản phẩm mới</small>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="bg-dark p-10 text-white text-center">
+                                                            <i class="mdi mdi-account fs-3 mb-1 font-16"></i>
+                                                            <h5 class="mb-0 mt-1">2540</h5>
+                                                            <small class="font-light">Tổng người truy cập</small>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-6 mt-3">
-                                                    <div class="bg-dark p-10 text-white text-center">
-                                                        <i class="mdi mdi-cart fs-3 mb-1 font-16"></i>
-                                                        <h5 class="mb-0 mt-1">656</h5>
-                                                        <small class="font-light">Đơn hàng mới</small>
+                                                    <div class="col-6">
+                                                        <div class="bg-dark p-10 text-white text-center">
+                                                            <i class="mdi mdi-plus fs-3 font-16"></i>
+                                                            <h5 class="mb-0 mt-1">120</h5>
+                                                            <small class="font-light">Sản phẩm mới</small>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-6 mt-3">
-                                                    <div class="bg-dark p-10 text-white text-center">
-                                                        <i class="mdi mdi-tag fs-3 mb-1 font-16"></i>
-                                                        <h5 class="mb-0 mt-1">9540</h5>
-                                                        <small class="font-light">Tổng đơn hàng</small>
+                                                    <div class="col-6 mt-3">
+                                                        <div class="bg-dark p-10 text-white text-center">
+                                                            <i class="mdi mdi-cart fs-3 mb-1 font-16"></i>
+                                                            <h5 class="mb-0 mt-1">656</h5>
+                                                            <small class="font-light">Đơn hàng mới</small>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-6 mt-3">
-                                                    <div class="bg-dark p-10 text-white text-center">
-                                                        <i class="mdi mdi-table fs-3 mb-1 font-16"></i>
-                                                        <h5 class="mb-0 mt-1">100</h5>
-                                                        <small class="font-light">Pending Orders</small>
+                                                    <div class="col-6 mt-3">
+                                                        <div class="bg-dark p-10 text-white text-center">
+                                                            <i class="mdi mdi-tag fs-3 mb-1 font-16"></i>
+                                                            <h5 class="mb-0 mt-1">9540</h5>
+                                                            <small class="font-light">Tổng đơn hàng</small>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-6 mt-3">
-                                                    <div class="bg-dark p-10 text-white text-center">
-                                                        <i class="mdi mdi-web fs-3 mb-1 font-16"></i>
-                                                        <h5 class="mb-0 mt-1">8540</h5>
-                                                        <small class="font-light">Online Orders</small>
+                                                    <div class="col-6 mt-3">
+                                                        <div class="bg-dark p-10 text-white text-center">
+                                                            <i class="mdi mdi-table fs-3 mb-1 font-16"></i>
+                                                            <h5 class="mb-0 mt-1">100</h5>
+                                                            <small class="font-light">Pending Orders</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 mt-3">
+                                                        <div class="bg-dark p-10 text-white text-center">
+                                                            <i class="mdi mdi-web fs-3 mb-1 font-16"></i>
+                                                            <h5 class="mb-0 mt-1">8540</h5>
+                                                            <small class="font-light">Online Orders</small>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- column -->
                                         </div>
-                                        <!-- column -->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- Sales chart -->
+                        <!-- ============================================================== -->
+                        <!-- Sales chart -->
                         <!-- col-12 -->
                         <div class="col-md-12">
                             <div class="tile">
@@ -322,35 +372,35 @@
         <script type="text/javascript" src="js/plugins/chart.js"></script>
         <!--===============================================================================================-->
         <script type="text/javascript">
-                    var data = {
-                        labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6"],
-                        datasets: [{
-                                label: "Dữ liệu đầu tiên",
-                                fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
-                                strokeColor: "rgb(255, 212, 59)",
-                                pointColor: "rgb(255, 212, 59)",
-                                pointStrokeColor: "rgb(255, 212, 59)",
-                                pointHighlightFill: "rgb(255, 212, 59)",
-                                pointHighlightStroke: "rgb(255, 212, 59)",
-                                data: [20, 59, 90, 51, 56, 100]
-                            },
-                            {
-                                label: "Dữ liệu kế tiếp",
-                                fillColor: "rgba(9, 109, 239, 0.651)  ",
-                                pointColor: "rgb(9, 109, 239)",
-                                strokeColor: "rgb(9, 109, 239)",
-                                pointStrokeColor: "rgb(9, 109, 239)",
-                                pointHighlightFill: "rgb(9, 109, 239)",
-                                pointHighlightStroke: "rgb(9, 109, 239)",
-                                data: [48, 48, 49, 39, 86, 10]
-                            }
-                        ]
-                    };
-                    var ctxl = $("#lineChartDemo").get(0).getContext("2d");
-                    var lineChart = new Chart(ctxl).Line(data);
+        var data = {
+            labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6"],
+            datasets: [{
+                    label: "Dữ liệu đầu tiên",
+                    fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
+                    strokeColor: "rgb(255, 212, 59)",
+                    pointColor: "rgb(255, 212, 59)",
+                    pointStrokeColor: "rgb(255, 212, 59)",
+                    pointHighlightFill: "rgb(255, 212, 59)",
+                    pointHighlightStroke: "rgb(255, 212, 59)",
+                    data: [20, 59, 90, 51, 56, 100]
+                },
+                {
+                    label: "Dữ liệu kế tiếp",
+                    fillColor: "rgba(9, 109, 239, 0.651)  ",
+                    pointColor: "rgb(9, 109, 239)",
+                    strokeColor: "rgb(9, 109, 239)",
+                    pointStrokeColor: "rgb(9, 109, 239)",
+                    pointHighlightFill: "rgb(9, 109, 239)",
+                    pointHighlightStroke: "rgb(9, 109, 239)",
+                    data: [48, 48, 49, 39, 86, 10]
+                }
+            ]
+        };
+        var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+        var lineChart = new Chart(ctxl).Line(data);
 
-                    var ctxb = $("#barChartDemo").get(0).getContext("2d");
-                    var barChart = new Chart(ctxb).Bar(data);
+        var ctxb = $("#barChartDemo").get(0).getContext("2d");
+        var barChart = new Chart(ctxb).Bar(data);
         </script>
         <script type="text/javascript">
             //Thời Gian
