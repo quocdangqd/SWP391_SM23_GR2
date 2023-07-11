@@ -42,6 +42,7 @@ public class ManagerAddProductController extends HttpServlet {
         String Price = req.getParameter("price");
         String Quantity = req.getParameter("quantity");
         String Status = req.getParameter("status");
+        dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Quantity, Status, Price);
 
         req.setAttribute("name", Name);
         req.setAttribute("price", Price);
@@ -52,8 +53,7 @@ public class ManagerAddProductController extends HttpServlet {
         req.setAttribute("mota", Desciption);
         req.setAttribute("quantity", Quantity);
         req.setAttribute("status", Status);
-
-        dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Quantity, Status, Price);
+        
         req.setAttribute("successText", "Add Successful!!!");
         req.getRequestDispatcher("addproduct.jsp").forward(req, resp);
     }

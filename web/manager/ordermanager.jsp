@@ -108,15 +108,15 @@
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item " href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item " href="ManagerHompageController"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
-                <li><a class="app-menu__item" href="ManagerProductController"><i
+                <li><a class="app-menu__item " href="ManagerProductController"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
                 </li>
                 <li><a class="app-menu__item active" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
-                <li><a class="app-menu__item" href="accountmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
+                <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
                 <li><a class="app-menu__item" href="incomemanager.jsp"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
@@ -166,10 +166,10 @@
                                         <th>ID đơn hàng</th>
                                         <th>Khách hàng</th>
                                         <th>Tư vấn viên</th>
-                                        <th>Đơn hàng</th>
-                                        <th>Ngày đặt</th>
                                         <th>Tổng tiền</th>
+                                        <th>Ngày đặt</th>
                                         <th>Tình trạng</th>
+                                        <th>Ghi chú</th>
                                         <th>Tính năng</th>
                                     </tr>
                                 </thead>
@@ -180,10 +180,10 @@
                                             <td><a href="ManagerOrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>
                                             <td>${listU.get(o.getOrder_userID()-1).getName()}</td>
                                             <td>${o.getOrder_salecodeID()}</td>
-                                            <td>${o.getNote()}</td>
-                                            <td>${o.getDate()}</td>
                                             <td>Tổng tiền</td>
+                                            <td>${o.getDate()}</td>
                                             <td>${o.getStatus()}</td>
+                                            <td>${o.getNote()}</td>
                                             <td>
                                                 <a href="ManagerDeleteOrderController?id=${o.getOrderID()}"><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                                                                                                     onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>

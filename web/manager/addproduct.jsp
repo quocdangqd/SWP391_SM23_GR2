@@ -164,7 +164,7 @@
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item " href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item " href="ManagerHompageController"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
                 <li><a class="app-menu__item active" href="ManagerProductController"><i
@@ -172,7 +172,7 @@
                 </li>
                 <li><a class="app-menu__item" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
-                <li><a class="app-menu__item" href="accountmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
+                <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
                 <li><a class="app-menu__item" href="incomemanager.jsp"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
@@ -212,22 +212,22 @@
                             <form class="row" action="ManagerAddProductController" method="post">
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Tên sản phẩm</label>
-                                    <input name="name" class="form-control" type="text" value="${name}">
+                                    <input name="name" class="form-control" type="text" value="${name}" required="Nhập tên sản phẩm">
                                 </div>
                                 <div class="form-group  col-md-4">
                                     <label class="control-label">Số lượng</label>
-                                    <input class="form-control" type="number" name="quantity" value="${quantity}">
+                                    <input class="form-control" type="number" name="quantity" value="${quantity}" required="Nhập số lượng">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Giá bán</label>
-                                    <input class="form-control" type="number" name='price' value="${price}">
+                                    <input class="form-control" type="number" name='price' value="${price}" required="Nhập giá">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
                                     <select name="category" class="form-control" id="exampleSelect1">
                                         <option>-- Chọn danh mục --</option>
                                         <c:forEach items="${categoriesList}" var="c">
-                                            <option value="${c.getCategoryID()}">${c.getName()}</option>
+                                            <option value="${c.getCategoryID()}" >${c.getName()}</option>
                                         </c:forEach>
                                     </select>   
                                 </div>
@@ -247,7 +247,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 1</label>
-                                    <input value="${image}" name="image" class="form-control" type="text">
+                                    <input value="${image}" name="image" class="form-control" type="text" required="Nhập link ảnh">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 2</label>
@@ -259,7 +259,7 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Mô tả sản phẩm</label>
-                                    <textarea class="form-control" name="mota" id="mota" value="${mota}"></textarea>
+                                    <textarea class="form-control" name="mota" id="mota" value="${mota}" readonly="Nhập mô tả"></textarea>
                                     <script>CKEDITOR.replace('mota');</script>
                                 </div>
 
