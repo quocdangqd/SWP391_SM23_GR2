@@ -5,6 +5,7 @@
 package Dal;
 
 import Model.DetailOrder;
+import Model.Feedback;
 import Model.Order;
 import Model.Orderdetail;
 import Model.Products;
@@ -24,6 +25,7 @@ public class ManagerDAO extends ConnectMySQL {
 
     private ArrayList<Products> product;
     private ArrayList<Order> order;
+    private ArrayList<Feedback> feedback;
 
     public ManagerDAO() {
     }
@@ -42,6 +44,14 @@ public class ManagerDAO extends ConnectMySQL {
 
     public void setOrder(ArrayList<Order> order) {
         this.order = order;
+    }
+
+    public ArrayList<Feedback> getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(ArrayList<Feedback> feedback) {
+        this.feedback = feedback;
     }
 
     //PRODUCT MANAGER
@@ -241,7 +251,6 @@ public class ManagerDAO extends ConnectMySQL {
 //
 //        }
 //    }
-
     public void addNewOrder(String date, String order_userID, String note, String order_salecodeID, String status) {
         try {
             String sql = "insert into swp.order ( date, order_userID, note, order_salecodeID, status)\n"
@@ -348,7 +357,36 @@ public class ManagerDAO extends ConnectMySQL {
                 String orderdeatil_orderID = String.valueOf(rs.getInt(4));
                 String orderdetail_productID = String.valueOf(rs.getInt(5));
                 String orderdetailID = String.valueOf(rs.getInt(6));
-                String price = String.valueOf(decimalFormat.format((int)(rs.getFloat(7))));
+                String price = String.valueOf(decimalFormat.format((int) (rs.getFloat(7))));
+                System.out.println("price: "+price);
+                String quantity = String.valueOf(rs.getInt(8));
+                String name_product = rs.getString(9);
+                String price_product = String.valueOf(decimalFormat.format((int) rs.getFloat(10)));
+                data.add(new DetailOrder(name_user, phone_number, address, orderdetailID, orderdeatil_orderID,
+                        quantity, price, orderdetail_productID, name_product, price_product));
+            }
+        } catch (Exception e) {
+            System.out.println("getAllOrderDetailByOrderID: " + e.getMessage());
+        }
+        return data;
+    }
+    
+    public ArrayList<DetailOrder> getOrderIDList() {
+        ArrayList<DetailOrder> data = new ArrayList<>();
+        try {
+            String sqlSelect = "";
+            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+            decimalFormat.applyPattern("#,###");
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                String name_user = rs.getString(1);
+                String phone_number = rs.getString(2);
+                String address = rs.getString(3);
+                String orderdeatil_orderID = String.valueOf(rs.getInt(4));
+                String orderdetail_productID = String.valueOf(rs.getInt(5));
+                String orderdetailID = String.valueOf(rs.getInt(6));
+                String price = String.valueOf(decimalFormat.format((int) (rs.getFloat(7))));
                 String quantity = String.valueOf(rs.getInt(8));
                 String name_product = rs.getString(9);
                 String price_product = String.valueOf(decimalFormat.format((int) rs.getFloat(10)));
@@ -361,6 +399,33 @@ public class ManagerDAO extends ConnectMySQL {
         return data;
     }
 
+    //FEEDBACK
+    public ArrayList<Feedback> getFeedbackList() {
+        feedback = new ArrayList<>();
+        try {
+            String sqlSelectString = "select FeedbackID,f.FeedbackID_ProductID, feedbackID_userID, information,\n"
+                    + "f.status, f.date, u.name,od.orderdetailID, p.name\n"
+                    + "from feedback f,user u  ,orderdetail od  ,swp.order o, swp.product p \n"
+                    + "where f.feedbackID_userID=u.userID  and u.userID=o.order_userID\n"
+                    + "and o.orderID=od.orderdetail_orderID and f.orderdetailID=od.orderdetailID";
+            pstm = connection.prepareStatement(sqlSelectString);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                String FeedbackID = String.valueOf(rs.getInt(1));
+                String FeedbackID_ProductID = String.valueOf(rs.getInt(2));
+                String feedbackID_userID = String.valueOf(rs.getInt(3));
+                String information = String.valueOf(rs.getString(4));
+                String status = String.valueOf(rs.getString(5));
+                String date = String.valueOf(rs.getTimestamp(6));
+                String orderdetailID = String.valueOf(rs.getInt(7));
+                feedback.add(new Feedback(FeedbackID, FeedbackID_ProductID, feedbackID_userID, information, status, date, orderdetailID));
+            }
+        } catch (Exception e) {
+            System.out.println("getFeedbackList: " + e);
+        }
+        return feedback;
+    }
+
     public static void main(String[] args) {
         ManagerDAO dao = new ManagerDAO();
         Products p = dao.getProductsByID("1");
@@ -368,6 +433,7 @@ public class ManagerDAO extends ConnectMySQL {
 //                 p.getPicture3(), "438", p.getStatus(), p.getPrice(), p.getProductID());
 //        System.out.println(dao.getOrderDetailByOrderID("66"));
         System.out.println(dao.getAllDetailOrderByOrderID("4"));
+        System.out.println(dao.getFeedbackList().get(0));
 
     }
 }

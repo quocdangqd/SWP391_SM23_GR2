@@ -96,6 +96,10 @@
         <servlet-name>ManagerOrderDetailController</servlet-name>
         <servlet-class>Controller.Manager.ManagerOrderDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManagerFeedbackController</servlet-name>
+        <servlet-class>Controller.Manager.ManagerFeedbackController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/auth/Register</url-pattern>
@@ -193,6 +197,10 @@
     <servlet-mapping>
         <servlet-name>ManagerOrderDetailController</servlet-name>
         <url-pattern>/manager/ManagerOrderDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerFeedbackController</servlet-name>
+        <url-pattern>/manager/ManagerFeedbackController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

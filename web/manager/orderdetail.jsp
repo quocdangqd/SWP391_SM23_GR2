@@ -195,7 +195,7 @@
                                                             <td>${o.getName_product()}</td>
                                                             <td class="text-end" name="quantity">${o.getQuantity()}</td>
                                                             <td class="text-end" name="price_product">${o.getPrice_product()}</td>
-                                                            <td class="text-end">${o.getQuantity() * o.getPrice_product()}</td>
+                                                            <td class="text-end">${o.getPrice()}</td>
                                                         </tr>
                                                     </c:forEach>
                                                     <tr>

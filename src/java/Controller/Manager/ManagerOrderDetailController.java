@@ -11,6 +11,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class ManagerOrderDetailController extends HttpServlet {
 
@@ -19,18 +22,24 @@ public class ManagerOrderDetailController extends HttpServlet {
             throws ServletException, IOException {
         ManagerDAO dao = new ManagerDAO();
         String id = req.getParameter("id");
-        
+
         dao.getListOrder();
         req.setAttribute("od", dao.getAllDetailOrderByOrderID(id));
-        double total = 0;
+        float total = 0;
+        System.out.println(dao.getAllDetailOrderByOrderID(id).size());
         for (DetailOrder orderDetail : dao.getAllDetailOrderByOrderID(id)) {
-            total += (Integer.parseInt(orderDetail.getQuantity()) * Float.parseFloat(orderDetail.getPrice_product()));
+            total += (Float.parseFloat(orderDetail.getQuantity()) * Float.parseFloat(orderDetail.getPrice_product().replace(",", "")));
         }
+        System.out.println("total: " + total);
         double tax = total * 0.1;
         double grandTotal = total + tax;
-        req.setAttribute("total", total);
-        req.setAttribute("tax", tax);
-        req.setAttribute("grandTotal", grandTotal);
+        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+        decimalFormat.applyPattern("#,###");
+        
+        System.out.println("grandTotal: " + grandTotal);
+        req.setAttribute("total", decimalFormat.format(total));
+        req.setAttribute("tax", decimalFormat.format(tax));
+        req.setAttribute("grandTotal", decimalFormat.format(grandTotal));
         req.getRequestDispatcher("orderdetail.jsp").forward(req, resp);
     }
 
