@@ -284,7 +284,6 @@ public class ManagerDAO extends ConnectMySQL {
         return null;
     }
 
-    
     //ORDER DETAIL
     public ArrayList<DetailOrder> getAllDetailOrderByOrderID(String id) {
         ArrayList<DetailOrder> data = new ArrayList<>();
@@ -347,7 +346,6 @@ public class ManagerDAO extends ConnectMySQL {
         return data;
     }
 
-    
     //FEEDBACK
     public ArrayList<Feedback> getFeedbackList() {
         feedback = new ArrayList<>();
@@ -378,7 +376,6 @@ public class ManagerDAO extends ConnectMySQL {
         return feedback;
     }
 
-    
     //HOMEPAGE
     public int countProductByProductID() {
         int count = 0;

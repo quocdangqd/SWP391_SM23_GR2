@@ -111,7 +111,7 @@ public class AccountDao extends ConnectMySQL {
         }
         return null;
     }
-    
+
     public User GetUserByID(String userID) {
         String sqlSelect = "select* from swp.user where userID= ?";
         try {
@@ -187,7 +187,7 @@ public class AccountDao extends ConnectMySQL {
 
     public static void main(String[] args) {
         AccountDao dao = new AccountDao();
-        User u =dao.GetUserByID("10");
+        User u = dao.GetUserByID("10");
         System.out.println(u.getEmail());
 //        User u=dao.getUserByUserName("sirducdz");
 //        System.out.println(u.getEmail());
@@ -227,5 +227,21 @@ public class AccountDao extends ConnectMySQL {
             System.out.println("getUserByUserName: " + e);
         }
         return null;
+    }
+
+    public int AccountBanned() {
+        int count = 0;
+        String sqlSelect = "SELECT COUNT(*) as 'count' FROM swp.user\n"
+                + "where status = 0";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return count;
     }
 }

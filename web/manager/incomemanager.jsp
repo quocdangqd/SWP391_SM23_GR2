@@ -101,12 +101,12 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="homepage.jsp"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="ManagerHomepageController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item " href="ManagerHompageController"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item " href="ManagerHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
                 <li><a class="app-menu__item " href="ManagerProductController"><i
@@ -116,7 +116,7 @@
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
                 <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
-                <li><a class="app-menu__item active" href="incomemanager.jsp"><i
+                <li><a class="app-menu__item active" href="ManagerIncomeController"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
                 </li>
             </ul>
@@ -137,7 +137,7 @@
                     <div class="widget-small info coloured-icon"><i class='icon bx bxs-purchase-tag-alt fa-3x' ></i>
                         <div class="info">
                             <h4>Tổng sản phẩm</h4>
-                            <p><b>8580 sản phẩm</b></p>
+                            <p><b>${requestScope.product} sản phẩm</b></p>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                     <div class="widget-small warning coloured-icon"><i class='icon fa-3x bx bxs-shopping-bag-alt'></i>
                         <div class="info">
                             <h4>Tổng đơn hàng</h4>
-                            <p><b>457 đơn hàng</b></p>
+                            <p><b>${requestScope.order} đơn hàng</b></p>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                     <div class="widget-small danger coloured-icon"><i class='icon fa-3x bx bxs-info-circle' ></i>
                         <div class="info">
                             <h4>Bị cấm</h4>
-                            <p><b>4 tài khoản</b></p>
+                            <p><b>${requestScope.chan} tài khoản</b></p>
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                     <div class="widget-small primary coloured-icon"><i class='icon fa-3x bx bxs-chart' ></i>
                         <div class="info">
                             <h4>Tổng thu nhập</h4>
-                            <p><b>104.890.000 đ</b></p>
+                            <p><b>${requestScope.tong} đ</b></p>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                     <div class="widget-small warning coloured-icon"><i class='icon fa-3x bx bxs-tag-x' ></i>
                         <div class="info">
                             <h4>Hết hàng</h4>
-                            <p><b>1 sản phẩm</b></p>
+                            <p><b>${requestScope.het} sản phẩm</b></p>
                         </div>
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                     <div class="widget-small danger coloured-icon"><i class='icon fa-3x bx bxs-receipt' ></i>
                         <div class="info">
                             <h4>Đơn hàng hủy</h4>
-                            <p><b>2 đơn hàng</b></p>
+                            <p><b>${requestScope.huy} đơn hàng</b></p>
                         </div>
                     </div>
                 </div>
@@ -201,30 +201,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
+                                <c:forEach items="${listpro}" var="p">
+                                    <tr><td>${p.getProductID()}</td>
+                                        <td>${p.getName()}</td>
+                                        <td>${p.getPrice()}</td>
+                                        <td>${p.categories.getName()}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
-                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -249,27 +232,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                    </tr>
                                     <tr>
                                         <td>ID đơn hàng</td>
                                         <td>Khách hàng</td>
@@ -303,15 +265,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <c:forEach items="${listP}" var="o">
                                     <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Ảnh</td>
-                                        <td>Số lượng</td>
-                                        <td>Tình trạng</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
+                                        <td>${o.getProductID()}</td>
+                                        <td>${o.getName()}</td>
+                                        <td>${o.getPicture()}</td>
+                                        <td>${o.getQuantity()}</td>
+                                        <td>${o.getStatus()}</td>
+                                        <td>${o.getPrice()}</td>
+                                        <td>${listC.get(o.getProduct_categoryID()-1).getName()}</td>
                                     </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>

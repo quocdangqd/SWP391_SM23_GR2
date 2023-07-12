@@ -210,21 +210,6 @@ public class ProductDAO extends ConnectMySQL {
         return data;
     }
 
-//    public int getProductAmount(String ProductID) {
-//        try {
-//            String sqlSelect = "select quantity from product where ProductID=? ;";
-//            pstm = connection.prepareStatement(sqlSelect);
-//            pstm.setInt(1, Integer.parseInt(ProductID));
-//            rs = pstm.executeQuery();
-//            while (rs.next()) {
-//                return rs.getInt(1);
-//            }
-//        } catch (Exception e) {
-//            System.out.println("getProductAmount: " + e);
-//        }
-//        return 0;
-//    }
-
     public Products getProductByID(String productID) {
         try {
             String sqlSelect = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
@@ -261,12 +246,13 @@ public class ProductDAO extends ConnectMySQL {
         }
         return null;
     }
+
     public boolean decreaseProductAmount(String productID, String quantity) {
-        try {   
+        try {
             Products p = getProductByID(productID);
             String sqlSelect = "update product set quantity =?  where productid =?;";
             pstm = connection.prepareStatement(sqlSelect);
-            pstm.setInt(1, Integer.parseInt(p.getQuantity())- Integer.parseInt(quantity));
+            pstm.setInt(1, Integer.parseInt(p.getQuantity()) - Integer.parseInt(quantity));
             pstm.setInt(2, Integer.parseInt(productID));
             pstm.execute();
             return true;
@@ -276,9 +262,60 @@ public class ProductDAO extends ConnectMySQL {
         return false;
     }
 
+    public int CountProduct() {
+        int count = 0;
+        String sqlSelect = "SELECT COUNT(*) as 'count' FROM product";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return count;
+    }
+
+    public int CountProductOut() {
+        int count = 0;
+        String sqlSelect = "SELECT COUNT(*) as 'count' FROM product\n"
+                + "where quantity = 20;";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return count;
+    }
+
+    public int totalIncome() {
+        int total = 0;
+        String sqlSelect = "SELECT SUM(od.quantity*p.price) as 'total' FROM \n"
+                + "swp.orderdetail od\n"
+                + "join product p\n"
+                + "on od.orderdetail_productID = p.ProductID";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return total;
+    }
+    
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
-        System.out.println(productDAO.decreaseProductAmount("1", "5"));
+        System.out.println(productDAO.BestSellerProducts());
+
+//        System.out.println(productDAO.decreaseProductAmount("1", "5"));
 //        Products p = productDAO.getProductByID("1");
 //        System.out.println("productid: " + p.getProductID() + " ");
 //        System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
@@ -318,7 +355,6 @@ public class ProductDAO extends ConnectMySQL {
 //            System.out.println("saleprice: " + p.getSalePrice() + " ");
 //            System.out.println("");
 //        }
-
 //        for (Products p : productDAO.BestSellerProducts()) {
 //            if (p.getProductID().equals("1")) {
 //
