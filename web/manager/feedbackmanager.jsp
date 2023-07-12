@@ -134,12 +134,12 @@
                 <div class="col-md-12">
                     <div class="tile">
                         <div class="tile-body">
-                            <div class="row element-button">
+<!--                            <div class="row element-button">
                                 <div class="col-sm-2">
                                     <a class="btn btn-add btn-sm" href="" title="Thêm"><i class="fas fa-plus"></i>
                                         Tạo mới đánh giá</a>
                                 </div>
-                            </div>
+                            </div>-->
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                     <tr>
