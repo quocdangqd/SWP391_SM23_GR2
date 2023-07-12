@@ -10,7 +10,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Danh sách sản phẩm</title>
+        <title>Danh sách đánh giá</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -110,13 +110,13 @@
                 <li><a class="app-menu__item " href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
-                <li><a class="app-menu__item active" href="productmanager.jsp"><i
+                <li><a class="app-menu__item" href="productmanager.jsp"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
                 </li>
                 <li><a class="app-menu__item " href="ordermanager.jsp"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
-                <li><a class="app-menu__item" href="feedbackmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
-                            class="app-menu__label ">Đánh giá </span></a></li>
+                <li><a class="app-menu__item active" href="feedbackmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
+                            class="app-menu__label">Đánh giá </span></a></li>
                 <li><a class="app-menu__item" href="incomemanager.jsp"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
                 </li>
@@ -125,7 +125,7 @@
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb side">
-                    <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
+                    <li class="breadcrumb-item active"><a href="#"><b>Danh sách đánh giá</b></a></li>
                 </ul>
                 <div id="clock"></div>
             </div>
@@ -136,29 +136,8 @@
                             <div class="row element-button">
                                 <div class="col-sm-2">
 
-                                    <a class="btn btn-add btn-sm" href="addproduct.jsp" title="Thêm"><i class="fas fa-plus"></i>
-                                        Tạo mới sản phẩm</a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
-                                            class="fas fa-file-upload"></i> Tải từ file</a>
-                                </div>
-
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
-                                            class="fas fa-print"></i> In dữ liệu</a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép"><i
-                                            class="fas fa-copy"></i> Sao chép</a>
-                                </div>
-
-                                <div class="col-sm-2">
-                                    <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick="myFunction(this)"><i
-                                            class="fas fa-file-pdf"></i> Xuất PDF</a>
+                                    <a class="btn btn-add btn-sm" href="addfeedback.jsp" title="Thêm"><i class="fas fa-plus"></i>
+                                        Tạo mới đánh giá</a>
                                 </div>
                                 <div class="col-sm-2">
                                     <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
@@ -169,15 +148,12 @@
                                 <thead>
                                     <tr>
                                         <th width="10"><input type="checkbox" id="all"></th>
-                                        <th>Mã sản phẩm</th>
-                                        <th>Danh mục</th>
+                                        <th>ID đánh giá</th>                                  
                                         <th>Tên sản phẩm</th>
-                                        <th>Mô tả</th>
-                                        <th>Ảnh</th>
-                                        <th>Số lượng</th>
-                                        <th>Tình trạng</th>
-                                        <th>Giá tiền</th>
-                                        <th>Tính năng</th>
+                                        <th>Tên khách hàng</th>
+                                        <th style="width: 500px;">Đánh giá</th>
+                                        <th>Ngày đánh giá</th>
+                                        <th style="width: 80px;">Trạng thái</th>                                      
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -187,70 +163,13 @@
                                         <td>Loại sản phẩm</td>
                                         <td>Tên sản phẩm</td>
                                         <td>Mô tả</td>
-                                        <td>Ảnh</td>
                                         <td>Số lượng</td>
-                                        <td>Tình trạng</td>
-                                        <td>Giá tiền</td>
                                         <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> 
+                                                     onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> 
                                             </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
+<!--                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>-->
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Loại sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Mô tả</td>
-                                        <td>Ảnh</td>
-                                        <td>Số lượng</td>
-                                        <td>Tình trạng</td>
-                                        <td>Giá tiền</td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Loại sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Mô tả</td>
-                                        <td>Ảnh</td>
-                                        <td>Số lượng</td>
-                                        <td>Tình trạng</td>
-                                        <td>Giá tiền</td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Loại sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Mô tả</td>
-                                        <td>Ảnh</td>
-                                        <td>Số lượng</td>
-                                        <td>Tình trạng</td>
-                                        <td>Giá tiền</td>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                    data-target="#ModalUP"><i class="fas fa-edit"></i></button> 
                                         </td>
                                     </tr>
                                 </tbody>

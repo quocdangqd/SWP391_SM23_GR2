@@ -96,23 +96,23 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="kh_ten">Họ tên</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" style="font-size: 1.8rem;" class="form-control">
                                 </div>
                                 <div class="col-md-12">
                                     <label for="kh_gioitinh">Giới tính</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" style="font-size: 1.8rem;" class="form-control">
                                 </div>
                                 <div class="col-md-12">
                                     <label for="kh_diachi">Địa chỉ</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" style="font-size: 1.8rem;" class="form-control">
                                 </div>
                                 <div class="col-md-12">
                                     <label for="kh_dienthoai">Điện thoại</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" style="font-size: 1.8rem;" class="form-control">
                                 </div>
                                 <div class="col-md-12">
                                     <label for="kh_email">Email</label>
-                                    <input type="email" class="form-control">
+                                    <input type="email" style="font-size: 1.8rem;" class="form-control">
                                 </div>
                             </div>
 

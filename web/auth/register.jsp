@@ -19,6 +19,7 @@
 
         <!-- Main css -->
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/popup.css">
     </head>
     <body>
         <div class="main">
@@ -67,7 +68,7 @@
                                 ${msg7}
                                 <div class="form-group">
                                     <input type="checkbox" name="agree_term" id="agree-term" class="agree-term" />
-                                    <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với điều khoản...  <a href="#" class="term-service"></a></label>
+                                    <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với <a href="#" id="terms-link">điều khoản</a></label>
                                 </div>
                                 ${msg8}
                                 <div class="form-group form-button">
@@ -82,12 +83,35 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section>  
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close-button">&times;</span>
+                    <p>1. Chấp nhận điều khoản
+                          Bằng cách truy cập và sử dụng trang web này, bạn đồng ý tuân thủ các điều khoản và điều kiện sau đây. Nếu bạn không đồng ý với các điều khoản này, vui lòng không sử dụng trang web.</p>
+                    <p>2. Thông tin cá nhân
+                          Khi bạn tạo tài khoản hoặc đặt hàng trên trang web, bạn phải cung cấp thông tin cá nhân chính xác và hoàn chỉnh. Bạn đồng ý rằng thông tin cá nhân của bạn sẽ được xử lý theo Chính sách Riêng tư của chúng tôi.</p>
+                </div>
+            </div>
 
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var termsLink = document.getElementById('terms-link');
+                    var popup = document.getElementById('popup');
+                    var closeButton = popup.querySelector('.close-button');
 
+                    termsLink.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        popup.classList.add('active');
+                    });
 
+                    closeButton.addEventListener('click', function () {
+                        popup.classList.remove('active');
+                    });
+                });
+            </script>
             <!-- JS -->
             <script src="vendor/jquery/jquery.min.js"></script>
             <script src="js/main.js"></script>
-    </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+    </body>
 </html>
