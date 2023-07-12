@@ -47,7 +47,7 @@
         <%--<c:if test="${allowRegister !=null}">--%>
         <style>
             body {
-                font-family: "Roboto", sans-serif;
+                font-family: "Varela Round", sans-serif;
             }
 
             .modal-confirm {
