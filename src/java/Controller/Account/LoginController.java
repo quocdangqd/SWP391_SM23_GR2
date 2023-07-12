@@ -1,10 +1,7 @@
 package Controller.Account;
 
 import Dal.AccountDao;
-<<<<<<< HEAD
-=======
 import Dal.CartDAO;
->>>>>>> main
 import Impl.LoginWithGoogle;
 import Model.User;
 import jakarta.servlet.ServletException;
@@ -21,53 +18,47 @@ import java.io.PrintWriter;
  */
 // file name not match??
 public class LoginController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String urlString= request.getRequestURI();
-            if(urlString.equals(request.getContextPath()+"/view/homepage"))
-            {
-                HttpSession session =request.getSession();
-                if(session.getAttribute("user")!=null)
-                {
-                    User u =(User)session.getAttribute("user");
-                    if(u.getUser_roleID()!=null)
-                        session.setAttribute("role",u.getUser_roleID()); 
-                }   
+            String urlString = request.getRequestURI();
+            if (urlString.equals(request.getContextPath() + "/view/homepage")) {
+                HttpSession session = request.getSession();
+                if (session.getAttribute("user") != null) {
+                    User u = (User) session.getAttribute("user");
+                    if (u.getUser_roleID() != null) {
+                        session.setAttribute("role", u.getUser_roleID());
+                    }
+                }
                 request.getRequestDispatcher("/view/HomePageController").forward(request, response);
-            }
-            else if(urlString.equals(request.getContextPath()+"/auth/LoginWithGoogle"))
-            {
-                String code =request.getParameter("code"); 
+            } else if (urlString.equals(request.getContextPath() + "/auth/LoginWithGoogle")) {
+                String code = request.getParameter("code");
                 LoginWithGoogle loginWithGoogle = new LoginWithGoogle();
-                String email=loginWithGoogle.LoginWithGoogle(code, request, response);
-                AccountDao accountDao=new AccountDao();
-                if(accountDao.checkExistAccountByEmail(email))
-                {
+                String email = loginWithGoogle.LoginWithGoogle(code, request, response);
+                AccountDao accountDao = new AccountDao();
+                if (accountDao.checkExistAccountByEmail(email)) {
                     User user = new User();
                     user.setEmail(email);
                     HttpSession mySession = request.getSession();
-                    user=accountDao.GetUserByEmail(email);
-<<<<<<< HEAD
-=======
-                    CartDAO cartDAO=new CartDAO();
+                    user = accountDao.GetUserByEmail(email);
+                     << << << < HEAD
+                            == == ==
+                            = CartDAO cartDAO = new CartDAO();
                     mySession.setAttribute("AmountOfProductType", cartDAO.AmountOfProductTypeByUserID(user.getUserID()));
-//                    System.out.println("cartDAO.AmountOfProductTypeByUserID(user.getUserID()): "+cartDAO.AmountOfProductTypeByUserID(user.getUserID()));
->>>>>>> main
-                    mySession.setAttribute("user", user); 
-                    response.sendRedirect(request.getContextPath()+"/view/homepage");
-                }
-                else// neu khong dang nhap thanh cong quay lai trang login
+                    //                    System.out.println("cartDAO.AmountOfProductTypeByUserID(user.getUserID()): "+cartDAO.AmountOfProductTypeByUserID(user.getUserID()));
+                     >>> >>> > main
+                    mySession.setAttribute("user", user);
+                    response.sendRedirect(request.getContextPath() + "/view/homepage");
+                } else// neu khong dang nhap thanh cong quay lai trang login
                 {
-                    response.sendRedirect(request.getContextPath()+"/auth/login.jsp");
+                    response.sendRedirect(request.getContextPath() + "/auth/login.jsp");
                 }
+            } else {
+                request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
             }
-            else
-            {
-                request.getRequestDispatcher("/auth/login.jsp").forward(request, response); 
-            }
-                
+
         }
     }
 
@@ -83,10 +74,10 @@ public class LoginController extends HttpServlet {
                 User user = new User(username, password);
                 AccountDao accountDao = new AccountDao();
                 if (accountDao.checkLogin(user)) {
-                    user=accountDao.getUserByUserName(username);
+                    user = accountDao.getUserByUserName(username);
                     HttpSession mySession = request.getSession();
-                    mySession.setAttribute("user", user); 
-                    response.sendRedirect(request.getContextPath()+"/view/homepage");
+                    mySession.setAttribute("user", user);
+                    response.sendRedirect(request.getContextPath() + "/view/homepage");
                 } else {
                     request.setAttribute("message", "Login Fails!");
                     request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
@@ -95,7 +86,7 @@ public class LoginController extends HttpServlet {
         }
 
     }
-<<<<<<< HEAD
+    <<<<<<< HEAD
 =======
     
 

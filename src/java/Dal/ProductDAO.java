@@ -6,7 +6,6 @@ import Model.Categories;
 import Model.Products;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
 
 /**
  *
