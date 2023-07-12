@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/CartDAO.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/customer/ordercustomer.jsp</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/ConnectMySQL.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/productmanager.jsp</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/ProductDAO.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/customer/userProfile.jsp</file>
@@ -15,6 +16,7 @@
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/ProductDetailController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Model/Products.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/CartController.java</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/js/plugins/jquery.dataTables.min.js</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Account/ForgetPasswordController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/TrackingController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/CompareProductController.java</file>
