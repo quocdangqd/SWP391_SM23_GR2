@@ -37,13 +37,8 @@
                 padding: 16px 16px;
                 text-decoration: none;
                 display: block;
-<<<<<<< HEAD
-            }
-
-=======
                 font-size: 1.3rem;
             }
->>>>>>> main
             .dropdown-content a:hover {
                 background-color: #ef2317;
                 color: white;

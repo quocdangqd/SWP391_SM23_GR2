@@ -60,9 +60,4 @@ public class SaleCode {
     public void setExpiration_date(String expiration_date) {
         this.expiration_date = expiration_date;
     }
-    
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> main

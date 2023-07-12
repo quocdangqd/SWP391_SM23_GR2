@@ -1,23 +1,14 @@
 package Model;
 
-/**
- *
- * @author DucPhaoLo
- */
 public class Cart {
-<<<<<<< HEAD
-    private String cartID,  title, price, quantity, totalcost, productID, userID, status;
-=======
 
     private String cartID, title, price, quantity, totalcost, productID, userID, status;
+
     private String picture, productName, product_Quantity;
->>>>>>> main
 
     public Cart() {
     }
 
-<<<<<<< HEAD
-=======
     public Cart(String cartID, String quantity, String userID) {
         this.cartID = cartID;
         this.quantity = quantity;
@@ -54,7 +45,6 @@ public class Cart {
         this.product_Quantity = product_Quantity;
     }
 
->>>>>>> main
     public Cart(String cartID, String title, String price, String quantity, String totalcost, String productID, String userID, String status) {
         this.cartID = cartID;
         this.title = title;
@@ -66,8 +56,6 @@ public class Cart {
         this.status = status;
     }
 
-<<<<<<< HEAD
-=======
     public String getProduct_Quantity() {
         return product_Quantity;
     }
@@ -76,13 +64,10 @@ public class Cart {
         this.product_Quantity = product_Quantity;
     }
 
->>>>>>> main
     public String getCartID() {
         return cartID;
     }
 
-<<<<<<< HEAD
-=======
     public String getPicture() {
         return picture;
     }
@@ -91,7 +76,6 @@ public class Cart {
         this.picture = picture;
     }
 
->>>>>>> main
     public void setCartID(String cartID) {
         this.cartID = cartID;
     }
@@ -151,9 +135,5 @@ public class Cart {
     public void setStatus(String status) {
         this.status = status;
     }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> main
 }

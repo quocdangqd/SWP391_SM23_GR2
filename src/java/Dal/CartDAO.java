@@ -1,14 +1,10 @@
 package Dal;
 
 import Model.Cart;
-<<<<<<< HEAD
-import java.util.ArrayList;
-=======
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
->>>>>>> main
 
 /**
  *
@@ -29,11 +25,6 @@ public class CartDAO extends ConnectMySQL {
         return false;
     }
 
-<<<<<<< HEAD
-    public boolean AddCart(Cart cart) {
-        try {
-            String sqlSelect = "INSERT INTO `swp`.`cart` (`price`, `quantity`, `productID`, `userID`) VALUES (?, ?, ?, ?);";
-=======
     public boolean CheckProductCartByProductIDandUserID(String productID, String userID) {
         try {
             String sqlSelect = "select cartID,  c.title, c.price, c.quantity, totalcost,\n"
@@ -109,34 +100,20 @@ public class CartDAO extends ConnectMySQL {
                 return true;
             }
             String sqlSelect = "INSERT INTO `swp`.`cart` (`price`, `quantity`, `productID`, `userID`, `status`) VALUES (?, ?, ?, ?,?);";
->>>>>>> main
             pstm = connection.prepareStatement(sqlSelect);
             pstm.setFloat(1, Float.parseFloat(cart.getPrice()));
             pstm.setInt(2, Integer.parseInt(cart.getQuantity()));
             pstm.setInt(3, Integer.parseInt(cart.getProductID()));// 
             pstm.setInt(4, Integer.parseInt(cart.getUserID()));
-<<<<<<< HEAD
-            pstm.execute();
-            return true;
-        } catch (Exception e) {
-            System.out.println("AddCart: " + e);
-=======
             pstm.setInt(5, Integer.parseInt(cart.getStatus()));
             pstm.execute();
             return true;
         } catch (Exception e) {
             System.out.println("AddOrUpdateCart: " + e);
->>>>>>> main
         }
         return false;
     }
 
-<<<<<<< HEAD
-    public ArrayList<Cart> GetCartListByUserId(String userId) {
-        ArrayList<Cart> data = new ArrayList<>();
-        String sqlSelect = "SELECT * FROM swp.cart where userID=?;";
-        try {
-=======
     public void updateCart(Cart cart) {
         try {
             String sqlString = "update cart set quantity =? where productid=? and userid=?";
@@ -239,7 +216,6 @@ public class CartDAO extends ConnectMySQL {
         try {
             DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
             decimalFormat.applyPattern("#,###");
->>>>>>> main
             pstm = connection.prepareStatement(sqlSelect);
             pstm.setInt(1, Integer.parseInt(userId));
             rs = pstm.executeQuery();
@@ -248,13 +224,6 @@ public class CartDAO extends ConnectMySQL {
                 String title = String.valueOf(rs.getString(2));
                 String price = String.valueOf(rs.getFloat(3));
                 String quantity = String.valueOf(rs.getInt(4));
-<<<<<<< HEAD
-                String totalcost = String.valueOf(rs.getFloat(5));
-                String productID = String.valueOf(rs.getInt(6));
-                String userID = String.valueOf(rs.getInt(7));
-                String status = String.valueOf(rs.getInt(8));
-                data.add(new Cart(cartID, title, price, quantity, totalcost, productID, userID, status));
-=======
                 String totalcost = String.valueOf(decimalFormat.format(rs.getFloat(5)));
                 String productID = String.valueOf(rs.getInt(6));
                 String userID = String.valueOf(rs.getInt(7));
@@ -263,7 +232,6 @@ public class CartDAO extends ConnectMySQL {
                 String picture = rs.getString(10);
                 String product_Quantity = String.valueOf(rs.getString(11));
                 data.add(new Cart(cartID, title, price, quantity, totalcost, productID, userID, status, productName, picture, product_Quantity));
->>>>>>> main
             }
         } catch (Exception e) {
             System.out.println("GetCartListByUserId: " + e);
@@ -273,9 +241,6 @@ public class CartDAO extends ConnectMySQL {
 
     public static void main(String[] args) {
         CartDAO cartDAO = new CartDAO();
-<<<<<<< HEAD
-        ArrayList<Cart> data = cartDAO.GetCartListByUserId("1");
-=======
         Cart cart = cartDAO.getCartbyCartID("24");
         System.out.println(cart.getCartID());
         System.out.println(cart.getTitle());
@@ -303,7 +268,6 @@ public class CartDAO extends ConnectMySQL {
 //        cartDAO.updateCart(cart);
 //        System.out.println(cartDAO.getQuantityExist("1", "10"));
 //        System.out.println(data.size());
->>>>>>> main
 //        for (Cart cart : data) {
 //            System.out.println(cart.getCartID());
 //            System.out.println(cart.getPrice());
@@ -313,11 +277,8 @@ public class CartDAO extends ConnectMySQL {
 //            System.out.println(cart.getTitle());
 //            System.out.println(cart.getTotalcost());
 //            System.out.println(cart.getUserID());
-<<<<<<< HEAD
-=======
 //            System.out.println(cart.getProductName());
 //            System.out.println(cart.getPicture());
->>>>>>> main
 //            System.out.println("");
 //        }
     }

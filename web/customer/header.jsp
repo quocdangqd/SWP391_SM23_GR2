@@ -35,10 +35,7 @@
             padding: 16px 16px;
             text-decoration: none;
             display: block;
-<<<<<<< HEAD
-=======
             font-size: 1.3rem;
->>>>>>> main
         }
 
         .dropdown-content a:hover {
@@ -77,12 +74,9 @@
                         <li class="header__top-item">
                             <div class="dropdown fas fa-user header__nav-cart-icon">
                                 <div class="dropdown-content">
-<<<<<<< HEAD
                                     <a href="#">Profile</a>
-=======
                                     <a href="#">Thông tin cá nhân</a>
                                     <a href="#">Đơn hàng của tôi</a>
->>>>>>> main
                                     <a href="#">Đăng xuất</a>
                                 </div>
                             </div>
@@ -107,16 +101,12 @@
                 </div>
 
                 <div class="col-lg-6 col-md-7 col-sm-0 header__search">
-<<<<<<< HEAD
                     <select name="" id="" class="header__search-select">
                         <option value="0">All</option>
                         <option value="1">Tai nghe</option>
                         <option value="2">Chuột</option>
                         <option value="3">Bàn phím</option>
-
                     </select>
-=======
->>>>>>> main
                     <input type="text" class="header__search-input" placeholder="Tìm kiếm tại đây...">
                     <button class="header__search-btn">
                         <div class="header__search-icon-wrap">

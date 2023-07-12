@@ -1,7 +1,5 @@
 package Impl;
 
-<<<<<<< HEAD
-=======
 import Dal.AccountDao;
 import Model.Cart;
 import Model.Order;
@@ -13,7 +11,6 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
->>>>>>> main
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -149,11 +146,7 @@ public class SendMail {
                 + "                    <div style=\"color: rgb(0, 0, 0); text-align: left;\">\n"
                 + "                      <h1 style=\"margin: 1rem 0\">Đăng nhập không thành công</h1>\n"
                 + "                      <p style=\"padding-bottom: 16px\">Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản người dùng này.</p>\n"
-<<<<<<< HEAD
-                + "                      <p style=\"padding-bottom: 16px\"><a href='http://localhost:9999/TechZone/auth/forgetPassword?email="+email+"' target=\"_blank\"\n"
-=======
                 + "                      <p style=\"padding-bottom: 16px\"><a href='http://localhost:9999/TechZone/auth/forgetPassword?email=" + email + "' target=\"_blank\"\n"
->>>>>>> main
                 + "                          style=\"padding: 12px 24px; border-radius: 4px; color: #FFF; background: #2B52F5;display: inline-block;margin: 0.5rem 0;text-decoration: none;\">Đặt lại mật khẩu</a></p>\n"
                 + "                      <p style=\"padding-bottom: 16px\">Nếu không yêu cầu đặt lại mật khẩu, bạn có thể bỏ qua email này.</p>\n"
                 + "                    </div>\n"
@@ -194,11 +187,7 @@ public class SendMail {
                 MimeMessage message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(email));// change accordingly
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-<<<<<<< HEAD
-                message.setSubject("Hello");
-=======
                 message.setSubject("Yêu cầu cấp lại mật khẩu","UTF-8");
->>>>>>> main
 //				message.setText("your OTP is: " + otpvalue+"<a href='http://localhost:9999/LoginAndRegisterForm/forgotPasswordX.jsp?name="+email+"'> click me</a>");
 //                                message.setText("your OTP is: " + otpvalue);
                 message.setContent(emailContent, "text/html;charset=UTF-8");
@@ -210,8 +199,6 @@ public class SendMail {
             }
         }
     }
-<<<<<<< HEAD
-=======
 //String email, 
 
     public void SendMailCheckOut(Order order, HttpServletRequest request, HttpServletResponse response) {//
@@ -387,5 +374,4 @@ public class SendMail {
         SendMail sendMail = new SendMail();
 //        sendMail.SendMailCheckOut("ducnvhe160331@fpt.edu.vn", sendMail.checkoutContent);
     }
->>>>>>> main
 }

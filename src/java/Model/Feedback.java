@@ -10,7 +10,7 @@ package Model;
  */
 public class Feedback {
 
-    private String FeedbackID, FeedbackID_ProductID, feedbackID_userID, information, status, date,username,product_rate,orderdetailID;
+    private String FeedbackID, FeedbackID_ProductID, feedbackID_userID, information, status, date, username, product_rate, orderdetailID;
 
     public String getOrderdetailID() {
         return orderdetailID;
@@ -36,24 +36,25 @@ public class Feedback {
         this.orderdetailID = orderdetailID;
     }
 
-    public Feedback(String FeedbackID, String FeedbackID_ProductID, String feedbackID_userID, String information, String status, String date,String username,String product_rate) {
+    public Feedback(String FeedbackID, String FeedbackID_ProductID, String feedbackID_userID, String information, String status, String date, String username, String product_rate) {
         this.FeedbackID = FeedbackID;
         this.FeedbackID_ProductID = FeedbackID_ProductID;
         this.feedbackID_userID = feedbackID_userID;
         this.information = information;
         this.status = status;
         this.date = date;
-        this.username=username;
-        this.product_rate=product_rate;
+        this.username = username;
+        this.product_rate = product_rate;
     }
-    public Feedback(String FeedbackID, String FeedbackID_ProductID, String feedbackID_userID, String information, String status, String date,String username) {
+
+    public Feedback(String FeedbackID, String FeedbackID_ProductID, String feedbackID_userID, String information, String status, String date, String username) {
         this.FeedbackID = FeedbackID;
         this.FeedbackID_ProductID = FeedbackID_ProductID;
         this.feedbackID_userID = feedbackID_userID;
         this.information = information;
         this.status = status;
         this.date = date;
-        this.username=username;
+        this.username = username;
     }
 
     public String getProduct_rate() {
@@ -115,8 +116,4 @@ public class Feedback {
         this.date = date;
     }
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> main

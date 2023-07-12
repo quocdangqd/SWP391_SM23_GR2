@@ -111,8 +111,6 @@ public class AccountDao extends ConnectMySQL {
         }
         return null;
     }
-<<<<<<< HEAD
-=======
     
     public User GetUserByID(String userID) {
         String sqlSelect = "select* from swp.user where userID= ?";
@@ -142,7 +140,6 @@ public class AccountDao extends ConnectMySQL {
         }
         return null;
     }
->>>>>>> main
 
     public boolean resetPassword(String email, String newPassword) {
         try {
@@ -190,11 +187,8 @@ public class AccountDao extends ConnectMySQL {
 
     public static void main(String[] args) {
         AccountDao dao = new AccountDao();
-<<<<<<< HEAD
-=======
         User u =dao.GetUserByID("10");
         System.out.println(u.getEmail());
->>>>>>> main
 //        User u=dao.getUserByUserName("sirducdz");
 //        System.out.println(u.getEmail());
 //        System.out.println(dao.checkExistAccount("admin1"));

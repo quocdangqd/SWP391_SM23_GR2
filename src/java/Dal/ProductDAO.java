@@ -6,10 +6,7 @@ import Model.Categories;
 import Model.Products;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-<<<<<<< HEAD
-=======
 import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
->>>>>>> main
 
 /**
  *
@@ -77,26 +74,15 @@ public class ProductDAO extends ConnectMySQL {
                 String name = String.valueOf(rs.getString(3));
                 String desciption = String.valueOf(rs.getString(4));
                 String picture = String.valueOf(rs.getString(5));
-<<<<<<< HEAD
-                String price = String.valueOf(decimalFormat.format((int) rs.getFloat(6)));
-                String quantity = String.valueOf(rs.getInt(7));
-                String status = String.valueOf(rs.getInt(8));
-                String sale = String.valueOf(decimalFormat.format((int) rs.getFloat(9)));
-=======
                 String price = String.valueOf(decimalFormat.format(rs.getFloat(6)));
                 String quantity = String.valueOf(rs.getInt(7));
                 String status = String.valueOf(rs.getInt(8));
                 String sale = String.valueOf(decimalFormat.format(rs.getFloat(9)));
->>>>>>> main
                 String rateStar = String.valueOf(new DecimalFormat("#.0").format(rs.getFloat(10)));
                 if (rs.getFloat(10) - (int) rs.getFloat(10) == 0) {
                     rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                 }
-<<<<<<< HEAD
-                String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
-=======
                 String salePrice = String.valueOf(decimalFormat.format(rs.getDouble(11)));
->>>>>>> main
                 salePrice = salePrice.replaceAll(",", ".");
                 String picture2 = String.valueOf(rs.getString(12));
                 String picture3 = String.valueOf(rs.getString(13));
@@ -107,6 +93,7 @@ public class ProductDAO extends ConnectMySQL {
         }
         return data;
     }
+
 
     public ArrayList<Products> BestSellerProducts() {
         ArrayList<Products> data = new ArrayList<>();
@@ -149,26 +136,15 @@ public class ProductDAO extends ConnectMySQL {
                         String name = String.valueOf(rs.getString(3));
                         String desciption = String.valueOf(rs.getString(4));
                         String picture = String.valueOf(rs.getString(5));
-<<<<<<< HEAD
-                        String price = String.valueOf(decimalFormat.format((int) rs.getFloat(6)));
-                        String quantity = String.valueOf(rs.getInt(7));
-                        String status = String.valueOf(rs.getInt(8));
-                        String sale = String.valueOf(decimalFormat.format((int) rs.getFloat(9)));
-=======
                         String price = String.valueOf(decimalFormat.format(rs.getFloat(6)));
                         String quantity = String.valueOf(rs.getInt(7));
                         String status = String.valueOf(rs.getInt(8));
                         String sale = String.valueOf(decimalFormat.format(rs.getFloat(9)));
->>>>>>> main
                         String rateStar = String.valueOf(new DecimalFormat("#.0").format(rs.getFloat(10)));
                         if (rs.getFloat(10) - (int) rs.getFloat(10) == 0) {
                             rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                         }
-<<<<<<< HEAD
-                        String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
-=======
                         String salePrice = String.valueOf(decimalFormat.format(rs.getDouble(11)));
->>>>>>> main
                         salePrice = salePrice.replaceAll(",", ".");
                         String picture2 = String.valueOf(rs.getString(12));
                         String picture3 = String.valueOf(rs.getString(13));
@@ -215,26 +191,15 @@ public class ProductDAO extends ConnectMySQL {
                 String name = String.valueOf(rs.getString(3));
                 String desciption = String.valueOf(rs.getString(4));
                 String picture = String.valueOf(rs.getString(5));
-<<<<<<< HEAD
-                String price = String.valueOf(decimalFormat.format((int) rs.getFloat(6)));
-                String quantity = String.valueOf(rs.getInt(7));
-                String status = String.valueOf(rs.getInt(8));
-                String sale = String.valueOf(decimalFormat.format((int) rs.getFloat(9)));
-=======
                 String price = String.valueOf(decimalFormat.format(rs.getFloat(6)));
                 String quantity = String.valueOf(rs.getInt(7));
                 String status = String.valueOf(rs.getInt(8));
                 String sale = String.valueOf(decimalFormat.format(rs.getFloat(9)));
->>>>>>> main
                 String rateStar = String.valueOf(new DecimalFormat("#.0").format(rs.getFloat(10)));
                 if (rs.getFloat(10) - (int) rs.getFloat(10) == 0) {
                     rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
                 }
-<<<<<<< HEAD
-                String salePrice = String.valueOf(decimalFormat.format((int) rs.getDouble(11)));
-=======
                 String salePrice = String.valueOf(decimalFormat.format(rs.getDouble(11)));
->>>>>>> main
                 salePrice = salePrice.replaceAll(",", ".");
                 String picture2 = String.valueOf(rs.getString(12));
                 String picture3 = String.valueOf(rs.getString(13));
@@ -246,7 +211,6 @@ public class ProductDAO extends ConnectMySQL {
         return data;
     }
 
-<<<<<<< HEAD
     // Duc Anh
     public int CountProduct() {
         int count = 0;
@@ -374,61 +338,37 @@ public class ProductDAO extends ConnectMySQL {
         }
         return data;
     }
-    
+
     public Products getProductsByID(String id) {
-       
+
         try {
-            String sqlSelect = "Select * from product where ProductID="+ id;
+            String sqlSelect = "Select * from product where ProductID=" + id;
             pstm = connection.prepareStatement(sqlSelect);
-             rs = pstm.executeQuery();
+            rs = pstm.executeQuery();
             if (rs.next()) {
-                       Products p = new Products();
-                       p.setProductID(String.valueOf(rs.getInt(1)));
-                       String categories = String.valueOf(rs.getInt(2));
-                       p.setProduct_categoryID(categories);
-                       p.setName(String.valueOf(rs.getString(3)));
-                       p.setDesciption(String.valueOf(rs.getString(4)));
-                       p.setPicture( rs.getString(5));
-                       p.setPicture2( rs.getString(6));
-                       p.setPicture3( rs.getString(7));
-                       p.setPrice(String.valueOf(rs.getFloat(8)));
-                       p.setQuantity(String.valueOf(rs.getInt(9)));
-                       p.setStatus(String.valueOf(rs.getInt(10)));
-                       p.setCategories(new CategoriesDAO().getCategoryById(categories));
-                       return p;
-                    }          
+                Products p = new Products();
+                p.setProductID(String.valueOf(rs.getInt(1)));
+                String categories = String.valueOf(rs.getInt(2));
+                p.setProduct_categoryID(categories);
+                p.setName(String.valueOf(rs.getString(3)));
+                p.setDesciption(String.valueOf(rs.getString(4)));
+                p.setPicture(rs.getString(5));
+                p.setPicture2(rs.getString(6));
+                p.setPicture3(rs.getString(7));
+                p.setPrice(String.valueOf(rs.getFloat(8)));
+                p.setQuantity(String.valueOf(rs.getInt(9)));
+                p.setStatus(String.valueOf(rs.getInt(10)));
+                p.setCategories(new CategoriesDAO().getCategoryById(categories));
+                return p;
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
-        
+
         return null;
-   }
+    }
 
     // Duc Anh 
-    
-    
-    public static void main(String[] args) {
-        ProductDAO productDAO = new ProductDAO();
-        System.out.println(productDAO.getProductListByType("HighPrice").size());
-        ArrayList list = new ArrayList();
-        list = productDAO.limitProducts();
-        System.out.println(list);
-=======
-//    public int getProductAmount(String ProductID) {
-//        try {
-//            String sqlSelect = "select quantity from product where ProductID=? ;";
-//            pstm = connection.prepareStatement(sqlSelect);
-//            pstm.setInt(1, Integer.parseInt(ProductID));
-//            rs = pstm.executeQuery();
-//            while (rs.next()) {
-//                return rs.getInt(1);
-//            }
-//        } catch (Exception e) {
-//            System.out.println("getProductAmount: " + e);
-//        }
-//        return 0;
-//    }
-
     public Products getProductByID(String productID) {
         try {
             String sqlSelect = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
@@ -465,12 +405,13 @@ public class ProductDAO extends ConnectMySQL {
         }
         return null;
     }
+
     public boolean decreaseProductAmount(String productID, String quantity) {
-        try {   
+        try {
             Products p = getProductByID(productID);
             String sqlSelect = "update product set quantity =?  where productid =?;";
             pstm = connection.prepareStatement(sqlSelect);
-            pstm.setInt(1, Integer.parseInt(p.getQuantity())- Integer.parseInt(quantity));
+            pstm.setInt(1, Integer.parseInt(p.getQuantity()) - Integer.parseInt(quantity));
             pstm.setInt(2, Integer.parseInt(productID));
             pstm.execute();
             return true;
@@ -500,18 +441,15 @@ public class ProductDAO extends ConnectMySQL {
 //        System.out.println("");
 //        System.out.println(productDAO.getProductListByType("HighPrice").size());
 //        System.out.println("getProductAmount: " + productDAO.getProductAmount("2"));
->>>>>>> main
+
         // Định dạng số với dấu chấm
 //        int size = productDAO.getProductListByCategoryIDAndNameAndSort("1","a","ascendingSalePrice").size();
 //        size = productDAO.BestSellerProducts().size();
 //        size=productDAO.getProductListByCategoryIDAndSort("1", "rate").size();
 //        System.out.println(size);
 //        System.out.println(formattedNumber);
-<<<<<<< HEAD
 //        for (Products p : productDAO.getProductListByCategoryIDAndNameAndSort("1", "a", "rate")) {
-=======
 //        for (Products p : productDAO.getProductListByCategoryIDAndNameAndSort("1", "Corsair HS70", "rate")) {
->>>>>>> main
 //            System.out.println("productid: " + p.getProductID() + " ");
 //            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
 //            System.out.println("Name: " + p.getName() + " ");
@@ -527,9 +465,7 @@ public class ProductDAO extends ConnectMySQL {
 //            System.out.println("saleprice: " + p.getSalePrice() + " ");
 //            System.out.println("");
 //        }
-
 //        for (Products p : productDAO.BestSellerProducts()) {
-<<<<<<< HEAD
 //            System.out.print("productid: " + p.getProductID() + " ");
 //            System.out.print("productName: " + p.getName() + " ");
 //            System.out.print("price: " + p.getPrice() + " ");
@@ -540,7 +476,6 @@ public class ProductDAO extends ConnectMySQL {
 //        }
 //        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
 //        decimalFormat.applyPattern("#,###");
-=======
 //            if (p.getProductID().equals("1")) {
 //
 //                System.out.print("productid: " + p.getProductID() + " ");
@@ -561,7 +496,6 @@ public class ProductDAO extends ConnectMySQL {
 //        double y = 2.3;
 //        String s = decimalFormat.format(x + y);
 //        System.out.println("s: " + s);
->>>>>>> main
 //        double x = 3.44;
 //        System.out.println(new DecimalFormat("#.0").format(x));
 //        for (Products p : productDAO.getProductListByType("wired")) {
@@ -581,8 +515,4 @@ public class ProductDAO extends ConnectMySQL {
 //            System.out.println("");
 //        }
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 }

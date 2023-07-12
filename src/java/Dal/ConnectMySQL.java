@@ -1,8 +1,10 @@
 package Dal;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 public class ConnectMySQL {
 
 //    private static String DB_URL = "jdbc:mysql://projectswpgroup2server.mysql.database.azure.com:3306/swp";
@@ -12,12 +14,11 @@ public class ConnectMySQL {
     ResultSet rs;// luu tru va xu li du lieu
     private static String DB_URL = "jdbc:mysql://localhost:3306/swp";
     private static String USER_NAME = "root";
-<<<<<<< HEAD
+
     private static String PASSWORD = "123456";
-=======
-    private static String PASSWORD = "Sirducdz7a@";
->>>>>>> main
+
     protected Connection connection = null;
+
     public ConnectMySQL() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,15 +29,13 @@ public class ConnectMySQL {
             ex.printStackTrace();
         }
     }
-<<<<<<< HEAD
+
 //    public static void main(String[] args) {
 //        ConnectMySQL obj = new ConnectMySQL();
 //        
 //    }
-=======
     public static void main(String[] args) {
         ConnectMySQL obj = new ConnectMySQL();
     }
->>>>>>> main
-    
+
 }

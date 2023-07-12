@@ -11,37 +11,8 @@ package Model;
 public class Order {
 
     private String orderID, order_userID, order_salecodeID, note, date, status;
-<<<<<<< HEAD
-    private User user;
-    private OrderDetail orderDetail;
-    private Products products;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public OrderDetail getOrderDetail() {
-        return orderDetail;
-    }
-
-    public void setOrderDetail(OrderDetail orderDetail) {
-        this.orderDetail = orderDetail;
-    }
-
-    public Products getProducts() {
-        return products;
-    }
-
-    public void setProducts(Products products) {
-        this.products = products;
-    }
-=======
     private String address, phone_number, orderdetail_productID;
->>>>>>> main
+    private String name_user, price_order;
 
     public Order() {
     }
@@ -55,8 +26,6 @@ public class Order {
         this.status = status;
     }
 
-<<<<<<< HEAD
-=======
     public Order(String order_userID, String order_salecodeID, String date, String status) {
         this.order_userID = order_userID;
         this.order_salecodeID = order_salecodeID;
@@ -100,7 +69,6 @@ public class Order {
         this.orderdetail_productID = orderdetail_productID;
     }
 
->>>>>>> main
     public String getOrderID() {
         return orderID;
     }
@@ -129,16 +97,12 @@ public class Order {
         return note;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getDate() {
         return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getStatus() {
@@ -147,6 +111,33 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Order(String orderID, String order_userID, String order_salecodeID, String note, String date, String status, String name_user, String price_order) {
+        this.orderID = orderID;
+        this.order_userID = order_userID;
+        this.order_salecodeID = order_salecodeID;
+        this.note = note;
+        this.date = date;
+        this.status = status;
+        this.name_user = name_user;
+        this.price_order = price_order;
+    }
+
+    public String getName_user() {
+        return name_user;
+    }
+
+    public void setName_user(String name_user) {
+        this.name_user = name_user;
+    }
+
+    public String getPrice_order() {
+        return price_order;
+    }
+
+    public void setPrice_order(String price_order) {
+        this.price_order = price_order;
     }
 
 }
