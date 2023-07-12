@@ -257,7 +257,7 @@
                         <!-- col-12 -->
                         <div class="col-md-12">
                             <div class="tile">
-                                <h3 class="tile-title">Tình trạng đơn hàng</h3>
+                                <h3 class="tile-title"><a href="ManagerOrderController">Tình trạng đơn hàng</a></h3>
                                 <div>
                                     <table class="table table-bordered">
                                         <thead>
