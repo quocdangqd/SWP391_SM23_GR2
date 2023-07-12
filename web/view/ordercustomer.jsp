@@ -22,6 +22,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/orderlist.css">
         <style>
             .container-xl{
                 color: #566787;
@@ -344,15 +345,11 @@
                                     <td>$254</td>                                  
                                     <td>
                                         <div class="row">
-                                            <button class="btn btn-primary cols-1" type="button" title="Xóa" onclick="myFunction()" style="width: 31px;
-                                                    height: 52px;"
-                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt" style="width: 16px;
-                                                                          height: 19px;"></i>
+                                            <button class="btn btn-primary cols-1" type="button" title="Xóa" onclick="openPopup()" style="width: 31px; height: 52px;"><i class="fas fa-trash-alt" style="width: 16px;
+                                                                                                                                                                         height: 19px;"></i>
                                             </button>
-                                            <button class="btn btn-primary cols-1" type="button" title="Xóa" style="width: 31px;
-                                                    height: 52px;"
-                                                    onclick="myFunction(this)"><i class="fas fa-edit" style="width: 16px;
-                                                                          height: 19px;"></i>
+                                            <button class="btn btn-primary cols-1" type="button" title="Xem" style="width: 31px; height: 52px;"><i class="fas fa-list" style="width: 16px;
+                                                                                                                                                   height: 19px;"></i>
                                             </button>
 
                                         </div>
@@ -364,122 +361,31 @@
 
                     </div>
                 </div> 
-            </div>     
+            </div>  
+
+            <div class="popup" id="popup">
+                <h2 style="font-size: 1.5rem ;">Bạn có muốn xóa đơn hàng này không?</h2>          
+                <div class="row">
+                    <div class="col-lg-6"> 
+                        <button type="button" onclick="closePopup()">Có</button>
+                    </div>
+                    <div class="col-lg-6"> 
+                        <button type="button" onclick="closePopup()">Không</button>
+                    </div>
+
+                </div>
+            </div>
+            <script>
+                let popup = document.getElementById("popup");
+                function openPopup() {
+                    popup.classList.add("open-popup");
+                }
+                function closePopup() {
+                    popup.classList.remove("open-popup");
+                }
+            </script>
             <!-- footer -->
         <jsp:include page="footer.jsp"></jsp:include>
         <!-- end footer -->
-        <script>
-            function deleteRow(r) {
-                var i = r.parentNode.parentNode.rowIndex;
-                document.getElementById("myTable").deleteRow(i);
-            }
-            jQuery(function () {
-                jQuery(".trash").click(function () {
-                    swal({
-                        title: "Cảnh báo",
-
-                        text: "Bạn có chắc chắn là muốn xóa người dùng này?",
-                        buttons: ["Hủy bỏ", "Đồng ý"],
-                    })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    swal("Đã xóa thành công.!", {
-
-                                    });
-                                }
-                            });
-                });
-            });
-            oTable = $('#sampleTable').dataTable();
-            $('#all').click(function (e) {
-                $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
-                e.stopImmediatePropagation();
-            });
-
-            //EXCEL
-            // $(document).ready(function () {
-            //   $('#').DataTable({
-
-            //     dom: 'Bfrtip',
-            //     "buttons": [
-            //       'excel'
-            //     ]
-            //   });
-            // });
-
-
-            //Thời Gian
-            function time() {
-                var today = new Date();
-                var weekday = new Array(7);
-                weekday[0] = "Chủ Nhật";
-                weekday[1] = "Thứ Hai";
-                weekday[2] = "Thứ Ba";
-                weekday[3] = "Thứ Tư";
-                weekday[4] = "Thứ Năm";
-                weekday[5] = "Thứ Sáu";
-                weekday[6] = "Thứ Bảy";
-                var day = weekday[today.getDay()];
-                var dd = today.getDate();
-                var mm = today.getMonth() + 1;
-                var yyyy = today.getFullYear();
-                var h = today.getHours();
-                var m = today.getMinutes();
-                var s = today.getSeconds();
-                m = checkTime(m);
-                s = checkTime(s);
-                nowTime = h + " giờ " + m + " phút " + s + " giây";
-                if (dd < 10) {
-                    dd = '0' + dd
-                }
-                if (mm < 10) {
-                    mm = '0' + mm
-                }
-                today = day + ', ' + dd + '/' + mm + '/' + yyyy;
-                tmp = '<span class="date"> ' + today + ' - ' + nowTime +
-                        '</span>';
-                document.getElementById("clock").innerHTML = tmp;
-                clocktime = setTimeout("time()", "1000", "Javascript");
-
-                function checkTime(i) {
-                    if (i < 10) {
-                        i = "0" + i;
-                    }
-                    return i;
-                }
-            }
-            //In dữ liệu
-            var myApp = new function () {
-                this.printTable = function () {
-                    var tab = document.getElementById('sampleTable');
-                    var win = window.open('', '', 'height=700,width=700');
-                    win.document.write(tab.outerHTML);
-                    win.document.close();
-                    win.print();
-                }
-            }
-            //     //Sao chép dữ liệu
-            //     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
-
-            // copyTextareaBtn.addEventListener('click', function(event) {
-            //   var copyTextarea = document.querySelector('.js-copytextarea');
-            //   copyTextarea.focus();
-            //   copyTextarea.select();
-
-            //   try {
-            //     var successful = document.execCommand('copy');
-            //     var msg = successful ? 'successful' : 'unsuccessful';
-            //     console.log('Copying text command was ' + msg);
-            //   } catch (err) {
-            //     console.log('Oops, unable to copy');
-            //   }
-            // });
-
-
-            //Modal
-            $("#show-emp").on("click", function () {
-                $("#ModalUP").modal({backdrop: false, keyboard: false})
-            });
-        </script>
     </body>
 </html>

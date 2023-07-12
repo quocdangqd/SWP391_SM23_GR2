@@ -47,7 +47,7 @@
         <%--<c:if test="${allowRegister !=null}">--%>
         <style>
             body {
-                font-family: "Varela Round", sans-serif;
+                font-family: "Roboto", sans-serif;
             }
 
             .modal-confirm {
@@ -231,5 +231,5 @@
                 });
             </script>
         </c:if>
-    </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+    </body>
 </html>
