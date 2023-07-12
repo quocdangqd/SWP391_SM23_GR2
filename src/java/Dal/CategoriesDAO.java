@@ -26,6 +26,7 @@ public class CategoriesDAO extends ConnectMySQL {
         }
         return data;
     }
+<<<<<<< HEAD
     
     public Categories getCategoryById(String ID) {
         try {
@@ -45,6 +46,8 @@ public class CategoriesDAO extends ConnectMySQL {
         }
         return null;
     }
+=======
+>>>>>>> main
 
     public static void main(String[] args) {
         CategoriesDAO categoriesDAO = new CategoriesDAO();

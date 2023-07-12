@@ -311,7 +311,12 @@
         <!-- category 1: tai nghe -->
         <form method="post" action="ProductListController?tab=${tab}" id="formm1">  
             <c:if test="${tab=='allProduct'||tab=='headphone'}">
+<<<<<<< HEAD
                 <section id ='category1' class="product__love">
+=======
+                <c:set var="category1" value="category1"></c:set>
+                <section id ='${category1}' class="product__love">
+>>>>>>> main
                     <div class="container">
                         <div class="row bg-white">
                             <div class="col-lg-10 col-md-10 col-sm-10 product__love-title">
@@ -404,10 +409,17 @@
                                         <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
                                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                                                 <div class="product__panel-img-wrap">
+<<<<<<< HEAD
                                                     <a href="product.jsp"> <img src="${headPhoneData.get(i).getPicture()}" class="product__panel-img"></a>
                                                 </div>
                                                 <h3 class="product__panel-heading">
                                                     <a href="product.jsp"  class="product__panel-link">${headPhoneData.get(i).getName()}</a>
+=======
+                                                    <a href="ProductDetailController?ProductID=${headPhoneData.get(i).getProductID()}"> <img src="${headPhoneData.get(i).getPicture()}" class="product__panel-img"></a>
+                                            </div>
+                                            <h3 class="product__panel-heading">
+                                                <a href="ProductDetailController?ProductID=${headPhoneData.get(i).getProductID()}"  class="product__panel-link">${headPhoneData.get(i).getName()}</a>
+>>>>>>> main
                                             </h3>                       
                                             <div class="product__panel-rate-wrap">
                                                 <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${headPhoneData.get(i).getRateStar()}</i>
@@ -420,7 +432,12 @@
                                             <div class="product__panel-price">
                                                 <span class="product__panel-price-old-1 product__panel-price-old-1-hide">
                                                     <div>    
+<<<<<<< HEAD
                                                         <button class="bestselling__product-btn">So sánh</button>
+=======
+                                                        <!--<button class="bestselling__product-btn">So sánh</button>-->
+                                                        <a href="CompareProductController?productID=${headPhoneData.get(i).getProductID()}" class="bestselling__product-btn">So sánh</a>
+>>>>>>> main
                                                     </div>
                                                 </span>
                                                 <span class="product__panel-price-current">
@@ -446,6 +463,7 @@
                                     <%--<c:set var="active" value="active"> </c:set>--%>
                                     <c:set var="count" value="1"></c:set>
                                     <c:if test="${headPhonepageIndex!=1}">
+<<<<<<< HEAD
                                         <li class="page-item disabled"><a href="ProductListController?tab=${tab}&headPhonepageIndex=${headPhonepageIndex-1}">Previous</a></li>
                                         </c:if>
                                         <c:forEach begin="${count}" end="${headPhonepageAmount}">
@@ -454,11 +472,25 @@
                                             </c:if>
                                             <c:if test="${headPhonepageIndex!=count}">
                                             <li class="page-item"><a href="ProductListController?tab=${tab}&headPhonepageIndex=${count}" class="page-link">${count}</a></li>
+=======
+                                        <li class="page-item disabled"><a onclick="Paging('${headPhonepageIndex-1}', '${category1}')" id="${headPhonepageIndex-1}" href="ProductListController?tab=${tab}&headPhonepageIndex=${headPhonepageIndex-1}" >Previous</a></li>
+                                        </c:if>
+                                        <c:forEach begin="${count}" end="${headPhonepageAmount}">
+                                            <c:if test="${headPhonepageIndex==count}">
+                                            <li class="page-item active"><a onclick="Paging('${count}', '${category1}')"  id="${count}" href="ProductListController?tab=${tab}&headPhonepageIndex=${count}" class="page-link" >${count}</a></li>
+                                            </c:if>
+                                            <c:if test="${headPhonepageIndex!=count}">
+                                            <li class="page-item"><a onclick="Paging('${count}', '${category1}')"  id="${count}" href="ProductListController?tab=${tab}&headPhonepageIndex=${count}" class="page-link" >${count}</a></li>
+>>>>>>> main
                                             </c:if>
                                             <c:set var="count" value="${count+1}"></c:set>
                                         </c:forEach>
                                         <c:if test="${headPhonepageIndex!=headPhonepageAmount}">
+<<<<<<< HEAD
                                         <li class="page-item disabled"><a href="ProductListController?tab=${tab}&headPhonepageIndex=${headPhonepageIndex+1}">Next</a></li>
+=======
+                                        <li class="page-item disabled"><a onclick="Paging('${headPhonepageIndex+1}', '${category1}')"  id="${headPhonepageIndex+1}" href="ProductListController?tab=${tab}&headPhonepageIndex=${headPhonepageIndex+1}" >Next</a></li>
+>>>>>>> main
                                         </c:if>
                                     <!--<li class="page-item active"><a href="#" class="page-link">Next</a></li>-->
                                 </ul>
@@ -471,7 +503,12 @@
         <!-- category 2: chuột-->
         <form method="post" action="ProductListController?tab=${tab}" id="formm2">
             <c:if test="${tab=='allProduct'||tab=='mouse'}">
+<<<<<<< HEAD
                 <section id ='category2' class="product__love">
+=======
+                <c:set var="category2" value="category2"></c:set>
+                <section id ="${category2}" class="product__love">
+>>>>>>> main
                     <div class="container">
                         <div class="row bg-white">
                             <div class="col-lg-10 col-md-10 col-sm-10 product__love-title">
@@ -564,10 +601,17 @@
                                         <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
                                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                                                 <div class="product__panel-img-wrap">
+<<<<<<< HEAD
                                                     <a href="product.jsp"> <img src="${mouseData.get(i).getPicture()}" class="product__panel-img"></a>
                                                 </div>
                                                 <h3 class="product__panel-heading">
                                                     <a href="product.jsp"  class="product__panel-link">${mouseData.get(i).getName()}</a>
+=======
+                                                    <a href="ProductDetailController?ProductID=${mouseData.get(i).getProductID()}"> <img src="${mouseData.get(i).getPicture()}" class="product__panel-img"></a>
+                                            </div>
+                                            <h3 class="product__panel-heading">
+                                                <a href="ProductDetailController?ProductID=${mouseData.get(i).getProductID()}"  class="product__panel-link">${mouseData.get(i).getName()}</a>
+>>>>>>> main
                                             </h3>                       
                                             <div class="product__panel-rate-wrap">
                                                 <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${mouseData.get(i).getRateStar()}</i>
@@ -606,6 +650,7 @@
                                     <%--<c:set var="active" value="active"> </c:set>--%>
                                     <c:set var="count" value="1"></c:set>
                                     <c:if test="${mousepageIndex!=1}">
+<<<<<<< HEAD
                                         <li class="page-item disabled"><a href="ProductListController?tab=${tab}&mousepageIndex=${mousepageIndex-1}">Previous</a></li>
                                         </c:if>
                                         <c:forEach begin="${count}" end="${mousepageAmount}">
@@ -614,11 +659,25 @@
                                             </c:if>
                                             <c:if test="${mousepageIndex!=count}">
                                             <li class="page-item"><a href="ProductListController?tab=${tab}&mousepageIndex=${count}" class="page-link">${count}</a></li>
+=======
+                                        <li class="page-item disabled"><a onclick="Paging('m${mousepageIndex-1}', '${category2}')" id="m${mousepageIndex-1}" href="ProductListController?tab=${tab}&mousepageIndex=${mousepageIndex-1}">Previous</a></li>
+                                        </c:if>
+                                        <c:forEach begin="${count}" end="${mousepageAmount}">
+                                            <c:if test="${mousepageIndex==count}">
+                                            <li class="page-item active"><a onclick="Paging('m${count}', '${category2}')" id="m${count}" href="ProductListController?tab=${tab}&mousepageIndex=${count}" class="page-link">${count}</a></li>
+                                            </c:if>
+                                            <c:if test="${mousepageIndex!=count}">
+                                            <li class="page-item"><a onclick="Paging('m${count}', '${category2}')" id="m${count}" href="ProductListController?tab=${tab}&mousepageIndex=${count}" class="page-link">${count}</a></li>
+>>>>>>> main
                                             </c:if>
                                             <c:set var="count" value="${count+1}"></c:set>
                                         </c:forEach>
                                         <c:if test="${mousepageIndex!=mousepageAmount}">
+<<<<<<< HEAD
                                         <li class="page-item disabled"><a href="ProductListController?tab=${tab}&mousepageIndex=${mousepageIndex+1}">Next</a></li>
+=======
+                                        <li class="page-item disabled"><a onclick="Paging('m${mousepageIndex+1}', '${category2}')" id="m${mousepageIndex-1}" href="ProductListController?tab=${tab}&mousepageIndex=${mousepageIndex+1}">Next</a></li>
+>>>>>>> main
                                         </c:if>
                                     <!--<li class="page-item active"><a href="#" class="page-link">Next</a></li>-->
                                 </ul>
@@ -630,9 +689,15 @@
         </form> 
         <!-- category 3: bàn phím -->
         <form method="post" action="ProductListController?tab=${tab}" id="formm3">
+<<<<<<< HEAD
         <c:if test="${tab=='allProduct'||tab=='keyboard'}">
             
                 <section id ='category3' class="product__love">
+=======
+            <c:if test="${tab=='allProduct'||tab=='keyboard'}">
+                <c:set var="category3" value="category3"></c:set>
+                <section id ='${category3}' class="product__love">
+>>>>>>> main
                     <div class="container">
                         <div class="row bg-white">
                             <div class="col-lg-10 col-md-10 col-sm-10 product__love-title">
@@ -725,10 +790,17 @@
                                         <c:set var="countDisplayElement" value="${countDisplayElement+1}"></c:set>
                                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
                                                 <div class="product__panel-img-wrap">
+<<<<<<< HEAD
                                                     <a href="product.jsp"> <img src="${keyboardData.get(i).getPicture()}" class="product__panel-img"></a>
                                                 </div>
                                                 <h3 class="product__panel-heading">
                                                     <a href="product.jsp"  class="product__panel-link">${keyboardData.get(i).getName()}</a>
+=======
+                                                    <a href="ProductDetailController?ProductID=${keyboardData.get(i).getProductID()}"> <img src="${keyboardData.get(i).getPicture()}" class="product__panel-img"></a>
+                                            </div>
+                                            <h3 class="product__panel-heading">
+                                                <a href="ProductDetailController?ProductID=${keyboardData.get(i).getProductID()}"  class="product__panel-link">${keyboardData.get(i).getName()}</a>
+>>>>>>> main
                                             </h3>                       
                                             <div class="product__panel-rate-wrap">
                                                 <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${keyboardData.get(i).getRateStar()}</i>
@@ -767,6 +839,7 @@
                                     <%--<c:set var="active" value="active"> </c:set>--%>
                                     <c:set var="count" value="1"></c:set>
                                     <c:if test="${keyboardpageIndex!=1}">
+<<<<<<< HEAD
                                         <li class="page-item disabled"><a href="ProductListController?tab=${tab}&keyboardpageIndex=${keyboardpageIndex-1}">Previous</a></li>
                                         </c:if>
                                         <c:forEach begin="${count}" end="${keyboardpageAmount}">
@@ -775,11 +848,25 @@
                                             </c:if>
                                             <c:if test="${keyboardpageIndex!=count}">
                                             <li class="page-item"><a href="ProductListController?tab=${tab}&keyboardpageIndex=${count}" class="page-link">${count}</a></li>
+=======
+                                        <li class="page-item disabled"><a onclick="Paging('k${keyboardpageIndex-1}', '${category3}')" id="k${keyboardpageIndex-1}" href="ProductListController?tab=${tab}&keyboardpageIndex=${keyboardpageIndex-1}">Previous</a></li>
+                                        </c:if>
+                                        <c:forEach begin="${count}" end="${keyboardpageAmount}">
+                                            <c:if test="${keyboardpageIndex==count}">
+                                            <li class="page-item active"><a onclick="Paging('k${count}', '${category3}')" id="k${count}" href="ProductListController?tab=${tab}&keyboardpageIndex=${count}" class="page-link">${count}</a></li>
+                                            </c:if>
+                                            <c:if test="${keyboardpageIndex!=count}">
+                                            <li class="page-item"><a onclick="Paging('k${count}', '${category3}')" id="k${count}" href="ProductListController?tab=${tab}&keyboardpageIndex=${count}" class="page-link">${count}</a></li>
+>>>>>>> main
                                             </c:if>
                                             <c:set var="count" value="${count+1}"></c:set>
                                         </c:forEach>
                                         <c:if test="${keyboardpageIndex!=keyboardpageAmount}">
+<<<<<<< HEAD
                                         <li class="page-item disabled"><a href="ProductListController?tab=${tab}&keyboardpageIndex=${keyboardpageIndex+1}">Next</a></li>
+=======
+                                        <li class="page-item disabled"><a onclick="Paging('k${keyboardpageIndex+1}', '${category3}')" id="k${keyboardpageIndex+1}" href="ProductListController?tab=${tab}&keyboardpageIndex=${keyboardpageIndex+1}">Next</a></li>
+>>>>>>> main
                                         </c:if>
                                     <!--<li class="page-item active"><a href="#" class="page-link">Next</a></li>-->
                                 </ul>
@@ -819,5 +906,55 @@
         }
 
     </script>
+<<<<<<< HEAD
+=======
+    <script>
+        function Paging(input, category) {
+            event.preventDefault();
+            var linkHref = document.getElementById(input).href;
+            $.ajax({
+                url: linkHref,
+                type: "post", //send it through get method
+                data: {
+                    paging: true
+                },
+                success: function (data) {
+                    var row = document.getElementById(category);
+                    row.innerHTML = data;
+//                    row.innerHTML += data;
+                },
+                error: function (xhr) {
+                    //Do Something to handle error
+                }
+            });
+        }
+    </script>
+
+    <!--    <script>
+            $(document).ready(function () {
+                $("#myLink1").click(function (event) {
+                    event.preventDefault(); // Ngăn chặn hành vi mặc định khi người dùng nhấp vào liên kết
+                    var linkHref = $(this).attr("href"); // Lấy giá trị href của thẻ a
+                    // Thực hiện AJAX tại đây
+                    $.ajax({
+                        url: linkHref,
+                        type: "post",
+                        data: {checkResponse: "true", param2: "2"},
+                        success: function (data) {
+    //                        window.location.reload();
+                            var row = document.getElementById("category1");
+                            row.innerHTML = data;
+                            // Xử lý kết quả AJAX ở đây
+                            console.log(response);
+                        },
+                        error: function (xhr, status, error) {
+                            // Xử lý lỗi nếu có
+                            console.log(error);
+                        }
+                    });
+                });
+            });
+        </script>-->
+>>>>>>> main
 </body>
 </html>

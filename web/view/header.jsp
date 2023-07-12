@@ -37,8 +37,13 @@
                 padding: 16px 16px;
                 text-decoration: none;
                 display: block;
+<<<<<<< HEAD
             }
 
+=======
+                font-size: 1.3rem;
+            }
+>>>>>>> main
             .dropdown-content a:hover {
                 background-color: #ef2317;
                 color: white;
@@ -64,7 +69,11 @@
                         <c:if test="${role==null}" >
                             <ul class="header__top-list">
                                 <li class="header__top-item">
+<<<<<<< HEAD
                                     <a href="../auth/login" class="header__top-link">Giỏ hàng</a>
+=======
+                                    <a href="${user!=null?'CartController?tab=cartList':'../auth/login'}" class="header__top-link">Giỏ hàng</a>
+>>>>>>> main
                                 </li>
                                 <li class="header__top-item">
                                     <a href="../auth/login" class="header__top-link">Thanh toán</a>
@@ -77,7 +86,11 @@
                         <c:if test="${role!=null}" >
                             <ul class="header__top-list">
                                 <li class="header__top-item">
+<<<<<<< HEAD
                                     <a href="#" class="header__top-link">Giỏ hàng</a>
+=======
+                                    <a href="CartController?tab=cartList" class="header__top-link">Giỏ hàng</a>
+>>>>>>> main
                                 </li>
                                 <li class="header__top-item">
                                     <a href="#" class="header__top-link">Thanh toán</a>
@@ -116,6 +129,7 @@
 
                     <!--<form action="ProductListController?tab=allproduct" method="get" >-->
                     <div class="col-lg-6 col-md-7 col-sm-0 header__search">
+<<<<<<< HEAD
                         <select name="typeSelect" id="" class="header__search-select">
                             <option value="0">All</option>
                             <option value="1">Tai nghe</option>
@@ -123,6 +137,9 @@
                             <option value="3">Bàn phím</option>
 
                         </select>
+=======
+
+>>>>>>> main
                         <input type="text" name="searchInput" class="header__search-input" placeholder="Tìm kiếm tại đây...">
 
                         <button class="header__search-btn" name="searchSubmit" value="submit">
@@ -150,9 +167,15 @@
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <a href="listCart.jsp" class="col-lg-1 col-md-1 col-sm-0 header__cart">
                         <div class="header__cart-icon-wrap">
                             <span class="header__notice">4</span>
+=======
+                    <a href="${user!=null?'CartController?tab=cartList':'../auth/login'}" class="col-lg-1 col-md-1 col-sm-0 header__cart">
+                        <div class="header__cart-icon-wrap">
+                            <span class="header__notice">${((user!=null)&&(AmountOfProductType!=null))?AmountOfProductType:'0'}</span>
+>>>>>>> main
                             <i class="fas fa-shopping-cart header__nav-cart-icon"></i>
                         </div>
                     </a>

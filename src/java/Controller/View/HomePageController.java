@@ -31,11 +31,19 @@ public class HomePageController extends HttpServlet {
                 session.setAttribute("bestProductList", bestProductList);
 //                out.print(bestProductList.size()+"<br>"); 
                 String type = request.getParameter("type");
+<<<<<<< HEAD
                 ArrayList<Products> typeProductList =null;
+=======
+                ArrayList<Products> typeProductList = null;
+>>>>>>> main
                 if (type != null) {
                     typeProductList = productDAO.getProductListByType(type);
                 } else if (session.getAttribute("type") != null) {
                     type = (String) session.getAttribute("type");
+<<<<<<< HEAD
+=======
+                    typeProductList = productDAO.getProductListByType(type);
+>>>>>>> main
                 } else {
                     type = "Wired";
                     typeProductList = productDAO.getProductListByType(type);
@@ -46,7 +54,13 @@ public class HomePageController extends HttpServlet {
             } else if (tab.equals("logOut")) {
                 session.removeAttribute("role");
             }
+<<<<<<< HEAD
             session.setAttribute("tab", "allProduct");
+=======
+            
+            session.setAttribute("tab", "allProduct");
+            
+>>>>>>> main
             request.getRequestDispatcher("/view/homepage.jsp").forward(request, response);
         }
     }

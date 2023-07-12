@@ -67,7 +67,11 @@
                                 ${msg7}
                                 <div class="form-group">
                                     <input type="checkbox" name="agree_term" id="agree-term" class="agree-term" />
+<<<<<<< HEAD
                                     <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với điều khoản...</label>
+=======
+                                    <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với điều khoản...  <a href="#" class="term-service"></a></label>
+>>>>>>> main
                                 </div>
                                 ${msg8}
                                 <div class="form-group form-button">

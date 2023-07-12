@@ -1916,7 +1916,11 @@ textarea.form-control{
     font-size:1rem;
     line-height:1.5;
     border-radius:.25rem;
+<<<<<<< HEAD
     transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out
+=======
+    transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+>>>>>>> main
 }
 @media screen and (prefers-reduced-motion:reduce){
     .btn{
@@ -2043,7 +2047,13 @@ a.btn.disabled,fieldset:disabled a.btn{
 .btn-warning{
     color:#212529;
     background-color:#ffc107;
+<<<<<<< HEAD
     border-color:#ffc107
+=======
+    border-color:#ffc107;
+    font-size: 4rem;
+
+>>>>>>> main
 }
 .btn-warning:hover{
     color:#212529;
@@ -3561,7 +3571,12 @@ input[type=button].btn-block,input[type=reset].btn-block,input[type=submit].btn-
 .card-body{
     -ms-flex:1 1 auto;
     flex:1 1 auto;
+<<<<<<< HEAD
     padding:1.25rem
+=======
+    padding:1.25rem;
+    font-size: 20px;
+>>>>>>> main
 }
 .card-title{
     margin-bottom:.75rem
@@ -6171,9 +6186,12 @@ a.bg-dark:focus,a.bg-dark:hover,button.bg-dark:focus,button.bg-dark:hover{
 .mb-2,.my-2{
     margin-bottom:.5rem!important
 }
+<<<<<<< HEAD
 .ml-2,.mx-2{
     margin-left:.5rem!important
 }
+=======
+>>>>>>> main
 .m-3{
     margin:1rem!important
 }

@@ -72,4 +72,8 @@ public class SaleCodeDAO extends ConnectMySQL {
         System.out.println(saleCode.getExpiration_date());
         System.out.println(saleCodeDAO.decreaseSaleCodeAmount(saleCode.getSalecodeID(), saleCode.getAmount()));
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

@@ -5,11 +5,56 @@ package Model;
  * @author DucPhaoLo
  */
 public class Cart {
+<<<<<<< HEAD
     private String cartID,  title, price, quantity, totalcost, productID, userID, status;
+=======
+
+    private String cartID, title, price, quantity, totalcost, productID, userID, status;
+    private String picture, productName, product_Quantity;
+>>>>>>> main
 
     public Cart() {
     }
 
+<<<<<<< HEAD
+=======
+    public Cart(String cartID, String quantity, String userID) {
+        this.cartID = cartID;
+        this.quantity = quantity;
+        this.userID = userID;
+    }
+
+    public Cart(String price, String quantity, String productID, String userID, String status) {
+        this.price = price;
+        this.quantity = quantity;
+        this.productID = productID;
+        this.userID = userID;
+        this.status = status;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public Cart(String cartID, String title, String price, String quantity, String totalcost, String productID, String userID, String status, String productName, String picture, String product_Quantity) {
+        this.cartID = cartID;
+        this.title = title;
+        this.price = price;
+        this.quantity = quantity;
+        this.totalcost = totalcost;
+        this.productID = productID;
+        this.userID = userID;
+        this.status = status;
+        this.productName = productName;
+        this.picture = picture;
+        this.product_Quantity = product_Quantity;
+    }
+
+>>>>>>> main
     public Cart(String cartID, String title, String price, String quantity, String totalcost, String productID, String userID, String status) {
         this.cartID = cartID;
         this.title = title;
@@ -21,10 +66,32 @@ public class Cart {
         this.status = status;
     }
 
+<<<<<<< HEAD
+=======
+    public String getProduct_Quantity() {
+        return product_Quantity;
+    }
+
+    public void setProduct_Quantity(String product_Quantity) {
+        this.product_Quantity = product_Quantity;
+    }
+
+>>>>>>> main
     public String getCartID() {
         return cartID;
     }
 
+<<<<<<< HEAD
+=======
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+>>>>>>> main
     public void setCartID(String cartID) {
         this.cartID = cartID;
     }
@@ -84,5 +151,9 @@ public class Cart {
     public void setStatus(String status) {
         this.status = status;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> main
 }

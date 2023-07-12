@@ -61,4 +61,8 @@ public class SaleCode {
         this.expiration_date = expiration_date;
     }
     
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main
