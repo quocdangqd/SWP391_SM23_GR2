@@ -104,6 +104,10 @@
         <servlet-name>ManagerUpdateOrderController</servlet-name>
         <servlet-class>Controller.Manager.ManagerUpdateOrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderListController</servlet-name>
+        <servlet-class>Controller.View.OrderListController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/auth/Register</url-pattern>
@@ -209,6 +213,10 @@
     <servlet-mapping>
         <servlet-name>ManagerUpdateOrderController</servlet-name>
         <url-pattern>/manager/ManagerUpdateOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderListController</servlet-name>
+        <url-pattern>/view/OrderListController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
