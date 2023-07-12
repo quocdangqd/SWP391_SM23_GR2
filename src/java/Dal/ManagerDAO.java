@@ -74,8 +74,8 @@ public class ManagerDAO extends ConnectMySQL {
                 String price = String.valueOf(decimalFormat.format((int) rs.getFloat(8)));
                 String quantity = String.valueOf(rs.getInt(9));
                 String status = String.valueOf(rs.getInt(10));
-                String date = String.valueOf(rs.getString(10));
-                product.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, picture2, picture3, date));
+//                String date = String.valueOf(rs.getDate(11));
+                product.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, picture2, picture3, ""));
             }
 
         } catch (Exception e) {
@@ -284,13 +284,12 @@ public class ManagerDAO extends ConnectMySQL {
         return null;
     }
 
-    
     //ORDER DETAIL
     public ArrayList<DetailOrder> getAllDetailOrderByOrderID(String id) {
         ArrayList<DetailOrder> data = new ArrayList<>();
         try {
             String sqlSelect = "SELECT  u.name, u.phone_number, u.address, od.orderdetail_orderID,\n"
-                    + "od.orderdetail_productID, od.orderdetailID, od.price, od.quantity, p.name, p.price\n"
+                    + "od.orderdetail_productID, od.orderdetailID, od.price, od.quantity, p.name, p.price, o.date\n"
                     + "FROM swp.user u, swp.orderdetail od, swp.product p ,swp.order o \n"
                     + "WHERE u.userID = o.order_userID and od.orderdetail_orderID = o.orderID \n"
                     + "and p.ProductID = od.orderdetail_productID  and orderid =" + id;
@@ -310,8 +309,9 @@ public class ManagerDAO extends ConnectMySQL {
                 String quantity = String.valueOf(rs.getInt(8));
                 String name_product = rs.getString(9);
                 String price_product = String.valueOf(decimalFormat.format((int) rs.getFloat(10)));
+                String date = String.valueOf(rs.getTimestamp(11));
                 data.add(new DetailOrder(name_user, phone_number, address, orderdetailID, orderdeatil_orderID,
-                        quantity, price, orderdetail_productID, name_product, price_product));
+                        quantity, price, orderdetail_productID, name_product, price_product, date));
             }
         } catch (Exception e) {
             System.out.println("getAllOrderDetailByOrderID: " + e.getMessage());
@@ -319,35 +319,36 @@ public class ManagerDAO extends ConnectMySQL {
         return data;
     }
 
-    public ArrayList<DetailOrder> getOrderIDList() {
-        ArrayList<DetailOrder> data = new ArrayList<>();
-        try {
-            String sqlSelect = "";
-            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
-            decimalFormat.applyPattern("#,###");
-            pstm = connection.prepareStatement(sqlSelect);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                String name_user = rs.getString(1);
-                String phone_number = rs.getString(2);
-                String address = rs.getString(3);
-                String orderdeatil_orderID = String.valueOf(rs.getInt(4));
-                String orderdetail_productID = String.valueOf(rs.getInt(5));
-                String orderdetailID = String.valueOf(rs.getInt(6));
-                String price = String.valueOf(decimalFormat.format((int) (rs.getFloat(7))));
-                String quantity = String.valueOf(rs.getInt(8));
-                String name_product = rs.getString(9);
-                String price_product = String.valueOf(decimalFormat.format((int) rs.getFloat(10)));
-                data.add(new DetailOrder(name_user, phone_number, address, orderdetailID, orderdeatil_orderID,
-                        quantity, price, orderdetail_productID, name_product, price_product));
-            }
-        } catch (Exception e) {
-            System.out.println("getAllOrderDetailByOrderID: " + e.getMessage());
-        }
-        return data;
-    }
+//    public ArrayList<DetailOrder> getOrderIDList() {
+//        ArrayList<DetailOrder> data = new ArrayList<>();
+//        try {
+//            String sqlSelect = "";
+//            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+//            decimalFormat.applyPattern("#,###");
+//            pstm = connection.prepareStatement(sqlSelect);
+//            rs = pstm.executeQuery();
+//            while (rs.next()) {
+//                String name_user = rs.getString(1);
+//                String phone_number = rs.getString(2);
+//                String address = rs.getString(3);
+//                String orderdeatil_orderID = String.valueOf(rs.getInt(4));
+//                String orderdetail_productID = String.valueOf(rs.getInt(5));
+//                String orderdetailID = String.valueOf(rs.getInt(6));
+//                String price = String.valueOf(decimalFormat.format((int) (rs.getFloat(7))));
+//                String quantity = String.valueOf(rs.getInt(8));
+//                String name_product = rs.getString(9);
+//                String price_product = String.valueOf(decimalFormat.format((int) rs.getFloat(10)));
+//                String date = String.valueOf(rs.getTimestamp(11));
+//
+//                data.add(new DetailOrder(name_user, phone_number, address, orderdetailID, orderdeatil_orderID,
+//                        quantity, price, orderdetail_productID, name_product, price_product, date));
+//            }
+//        } catch (Exception e) {
+//            System.out.println("getAllOrderDetailByOrderID: " + e.getMessage());
+//        }
+//        return data;
+//    }
 
-    
     //FEEDBACK
     public ArrayList<Feedback> getFeedbackList() {
         feedback = new ArrayList<>();
@@ -378,7 +379,6 @@ public class ManagerDAO extends ConnectMySQL {
         return feedback;
     }
 
-    
     //HOMEPAGE
     public int countProductByProductID() {
         int count = 0;
