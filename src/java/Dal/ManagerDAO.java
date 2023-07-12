@@ -179,7 +179,7 @@ public class ManagerDAO extends ConnectMySQL {
     public ArrayList<Order> getListOrder() {
         order = new ArrayList<>();
         String sql = "select o.*,u.name,od.price from swp.order o, swp.orderdetail od, swp.user u\n"
-                + "where od.orderdetail_orderID=o.orderID and u.userID=o.order_userID;";
+                + "where od.orderdetail_orderID=o.orderID and u.userID=o.order_userID ORDER BY date DESC;";
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
         decimalFormat.applyPattern("#,###");
         try {
@@ -226,37 +226,6 @@ public class ManagerDAO extends ConnectMySQL {
         return null;
     }
 
-    public void deleteOrder(String orderID) {
-        try {
-            String sql = "delete FROM swp.order where orderID=?;";
-            pstm = connection.prepareStatement(sql);
-            pstm.setString(1, orderID);
-            pstm.executeUpdate();
-
-        } catch (Exception e) {
-            System.out.println("deleteOrder: " + e.getMessage());
-
-        }
-    }
-
-//    public void updateOrder(String orderID, String date, String order_userID, String note, String order_salecodeID, String status) {
-//        try {
-//            String sql = "update swp.order set date=?, order_userID=?, note=?, order_salecodeID=?, status=?\n"
-//                    + "	where orderID = ?;";
-//            pstm = connection.prepareStatement(sql);
-//            pstm.setTimestamp(1, Timestamp.valueOf(date));
-//            pstm.setString(2, order_userID);
-//            pstm.setString(3, note);
-//            pstm.setString(4, order_salecodeID);
-//            pstm.setString(5, status);
-//            pstm.setString(6, orderID);
-//
-//            pstm.executeUpdate();
-//        } catch (Exception e) {
-//            System.out.println("updateOrder: " + e.getMessage());
-//
-//        }
-//    }
     public void addNewOrder(String date, String order_userID, String note, String order_salecodeID, String status) {
         try {
             String sql = "insert into swp.order ( date, order_userID, note, order_salecodeID, status)\n"
@@ -273,34 +242,6 @@ public class ManagerDAO extends ConnectMySQL {
             System.out.println("addNewOrder: " + e.getMessage());
 
         }
-    }
-
-    //ORDER DETAIL
-    public Orderdetail getOrderDetailByOrderID(String id) {
-        try {
-            String sqlSelect = "SELECT * FROM swp.orderdetail where orderdetail_orderID=" + id;
-            pstm = connection.prepareStatement(sqlSelect);
-            rs = pstm.executeQuery();
-            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
-            decimalFormat.applyPattern("#,###");
-            while (rs.next()) {
-                Orderdetail od = new Orderdetail();
-                od.setOrderdetailID(String.valueOf(rs.getInt(1)));
-                od.setOrderdetail_orderID(String.valueOf(rs.getInt(2)));
-                od.setQuantity(String.valueOf(rs.getInt(3)));
-                od.setPrice(String.valueOf(decimalFormat.format((int) (rs.getFloat(4)))));
-                od.setOrderdetail_productID(String.valueOf(rs.getInt(5)));
-
-//                String user = String.valueOf(rs.getString(3));
-//                od.setOrderdetail_orderID(user);
-//                od.setUser(new ManagerDAO().getUserById(user));
-                return od;
-            }
-        } catch (Exception e) {
-            System.out.println("getOrderDetailByOrderID: " + e.getMessage());
-        }
-
-        return null;
     }
 
     public ArrayList<User> getUserList() {
@@ -323,7 +264,6 @@ public class ManagerDAO extends ConnectMySQL {
         return data;
     }
 
-    //
     public User getUserById(String id) {
         try {
             String sqlSelectString = "SELECT * FROM swp.user where userID=?;";
@@ -344,6 +284,8 @@ public class ManagerDAO extends ConnectMySQL {
         return null;
     }
 
+    
+    //ORDER DETAIL
     public ArrayList<DetailOrder> getAllDetailOrderByOrderID(String id) {
         ArrayList<DetailOrder> data = new ArrayList<>();
         try {
@@ -405,6 +347,7 @@ public class ManagerDAO extends ConnectMySQL {
         return data;
     }
 
+    
     //FEEDBACK
     public ArrayList<Feedback> getFeedbackList() {
         feedback = new ArrayList<>();
@@ -435,6 +378,7 @@ public class ManagerDAO extends ConnectMySQL {
         return feedback;
     }
 
+    
     //HOMEPAGE
     public int countProductByProductID() {
         int count = 0;

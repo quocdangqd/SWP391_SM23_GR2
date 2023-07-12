@@ -5,22 +5,18 @@
 
 package Controller.Manager;
 
-import Dal.ManagerDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class ManagerDeleteOrderController extends HttpServlet {
+public class ManagerUpdateOrderController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
-        ManagerDAO dao = new ManagerDAO();
-        String id = req.getParameter("id");
-        dao.deleteOrder(id);
-        req.getRequestDispatcher("ManagerOrderController").forward(req, resp);
+        
     } 
 
     

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : editproduct
+    Document   : editorder
     Created on : Jun 26, 2023, 11:17:11 AM
     Author     : laptop
 --%>
@@ -11,7 +11,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Chỉnh sửa thông tin sản phẩm</title>
+        <title>Chỉnh sửa thông tin đơn hàng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -167,10 +167,10 @@
                 <li><a class="app-menu__item " href="ManagerHompageController"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
-                <li><a class="app-menu__item active" href="ManagerProductController"><i
+                <li><a class="app-menu__item " href="ManagerProductController"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
                 </li>
-                <li><a class="app-menu__item" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
+                <li><a class="app-menu__item active" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
                 <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
@@ -182,35 +182,35 @@
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb">
-                    <li class="breadcrumb-item">Danh sách sản phẩm</li>
-                    <li class="breadcrumb-item"><a href="#">Chỉnh sửa thông tin sản phẩm</a></li>
+                    <li class="breadcrumb-item">Danh sách đơn hàng</li>
+                    <li class="breadcrumb-item"><a href="#">Chỉnh sửa thông tin đơn hàng</a></li>
                 </ul>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="tile">
-                        <h3 class="tile-title">Chỉnh sửa thông tin sản phẩm</h3>
+                        <h3 class="tile-title">Chỉnh sửa thông tin đơn hàng</h3>
                         <div class="tile-body">
-                            <form action="ManagerUpdateProductController" method="post">
+                            <form action="ManagerUpdateOrderController" method="post">
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label class="control-label">Mã sản phẩm </label>
+                                        <label class="control-label">Mã đơn hàng</label>
                                         <input class="form-control" type="text" value="${o.getProductID()}" name="pid" readonly="">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="control-label">Tên sản phẩm</label>
+                                        <label class="control-label">Tên khách hàng</label>
                                         <input class="form-control" type="text" name="name" value="${o.getName()}" 
                                                >
                                     </div>
                                     <div class="form-group  col-md-6">
-                                        <label class="control-label">Số lượng</label>
+                                        <label class="control-label">Địa chỉ</label>
                                         <input class="form-control" type="number" name="quantity" value="${o.getQuantity()}"
                                                >
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label class="control-label">Giá bán</label>
+                                        <label class="control-label">Số điện thoại</label>
                                         <input class="form-control" type="text" name="price" value="${o.getPrice()}" 
-                                              >
+                                               pattern="[0-9&&[^,]">
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="exampleSelect1" class="control-label">Tình trạng sản phẩm</label>
@@ -248,12 +248,15 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label class="control-label">Mô tả</label>
-                                        <textarea class="form-control"  name="description">${o.getDesciption()}</textarea>
+                                        <textarea class="form-control"  name="description"  
+
+                                                  >${o.getDesciption()}
+                                        </textarea>
                                     </div>
                                 </div>  
                                 <BR>
                                 <button class="btn btn-save" type="submit">Lưu lại</button>
-                                <a class="btn btn-cancel" data-dismiss="modal" href="ManagerProductController">Quay lại</a>
+                                <a class="btn btn-cancel" data-dismiss="modal" href="ManagerProductController">Hủy bỏ</a>
                                 <BR>
 
                                 <p class="text-success">${successText}</p>                                
@@ -292,5 +295,4 @@
 
         </script>
     </body>
-
 </html>

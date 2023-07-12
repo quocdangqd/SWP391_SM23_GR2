@@ -135,20 +135,16 @@
                     <div class="tile">
                         <div class="tile-body">
                             <div class="row element-button">
-<!--                                <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" href="addorder.jsp" title="Thêm"><i class="fas fa-plus"></i>
-                                        Tạo mới đơn hàng</a>
-                                </div>-->
+                                <!--                                <div class="col-sm-2">
+                                                                    <a class="btn btn-add btn-sm" href="addorder.jsp" title="Thêm"><i class="fas fa-plus"></i>
+                                                                        Tạo mới đơn hàng</a>
+                                                                </div>-->
                                 <div class="col-sm-2">
                                     <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
                                             class="fas fa-print"></i> In dữ liệu</a>
                                 </div>
                                 <div class="col-sm-2">
                                     <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất file</a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                            class="fas fa-trash-alt"></i> Xóa tất cả </a>
                                 </div>
                             </div>
                             <table class="table table-hover table-bordered" id="sampleTable">
@@ -161,7 +157,7 @@
                                         <th>Ngày tạo đơn</th>
                                         <th>Trạng thái đơn hàng</th>
                                         <th>Tổng tiền</th>
-                                        <th>Ghi chú</th>
+<!--                                        <th>Ghi chú</th>-->
                                         <th>Tính năng</th>
                                     </tr>
                                 </thead>
@@ -175,16 +171,16 @@
                                             <td>${o.getDate()}</td>
                                             <td>${o.getStatus()}</td>
                                             <td>${o.getPrice_order()}</td>
-                                            <td>${o.getNote()}</td>
+                                            <!--<td>${o.getNote()}</td>-->
                                             <td>
-                                                <a href="ManagerDeleteOrderController?id=${o.getOrderID()}"><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                                                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                                    </button>
+                                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
+                                                </button>
                                                 </a>
-<!--                                                <a href="ManagerUpdateOrderController?id=${o.getOrderID()}"><button class="btn btn-primary btn-sm edit" type="button" title="Sửa">
+                                                <a href="ManagerUpdateOrderController?id=${o.getOrderID()}"><button class="btn btn-primary btn-sm edit" type="button" title="Sửa">
                                                     <i class="fas fa-edit"></i>
                                                     </button>
-                                                </a>-->
+                                                </a>
 
                                             </td>
                                         </tr>
@@ -222,7 +218,7 @@
                     swal({
                         title: "Cảnh báo",
 
-                        text: "Bạn có chắc chắn là muốn xóa nhân viên này?",
+                        text: "Bạn có chắc chắn là muốn xóa đơn hàng này?",
                         buttons: ["Hủy bỏ", "Đồng ý"],
                     })
                             .then((willDelete) => {
