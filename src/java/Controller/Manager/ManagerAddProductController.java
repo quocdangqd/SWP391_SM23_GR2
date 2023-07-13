@@ -21,10 +21,6 @@ public class ManagerAddProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-//        HttpSession session = req.getSession();
-//        if (session.getAttribute("user") == null) {
-//            req.getRequestDispatcher("/view/homepage.jsp").forward(req, resp);
-//        }
         CategoriesDAO ca = new CategoriesDAO();
         req.setAttribute("categoriesList", ca.GetCategoriesList());
         req.getRequestDispatcher("addproduct.jsp").forward(req, resp);
@@ -33,6 +29,8 @@ public class ManagerAddProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        CategoriesDAO ca = new CategoriesDAO();
+        req.setAttribute("categoriesList", ca.GetCategoriesList());
         String Cid = req.getParameter("category");
         String Name = req.getParameter("name");
         String Desciption = req.getParameter("mota");

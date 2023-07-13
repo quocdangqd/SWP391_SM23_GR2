@@ -13,7 +13,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 public class ManagerUpdateProductController extends HttpServlet {
 
@@ -21,16 +20,12 @@ public class ManagerUpdateProductController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ManagerDAO dao = new ManagerDAO();
-//        HttpSession session = req.getSession();
-//        User user = (User) session.getAttribute("user");
-//        if (user != null) {
         String id = req.getParameter("id");
         Products p = dao.getProductsByID(id);
         CategoriesDAO ca = new CategoriesDAO();
         req.setAttribute("categoriesList", ca.GetCategoriesList());
         req.setAttribute("o", p);
         req.getRequestDispatcher("editproduct.jsp").forward(req, resp);
-//        }
     }
 
     @Override

@@ -224,10 +224,18 @@
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
                                     <select name="category" class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn danh mục --</option>
-                                        <c:forEach items="${categoriesList}" var="c">
-                                            <option value="${c.getCategoryID()}" >${c.getName()}</option>
-                                        </c:forEach>
+                                        <c:if test="${category == null }">
+                                            <option>-- Chọn danh mục --</option>
+                                            <c:forEach items="${categoriesList}" var="c">
+                                                <option value="${c.getCategoryID()}">${c.getName()}</option>
+                                            </c:forEach>
+                                        </c:if>
+                                        <c:if test="${category != null }">
+                                            <c:forEach items="${categoriesList}" var="c">
+                                                <option value="${c.getCategoryID()}" selected="${c.getCategoryID()}">${c.getName()}</option>
+                                            </c:forEach>                                        
+                                        </c:if>
+
                                     </select>   
                                 </div>
                                 <!--                                <div class="form-group col-md-4 ">
@@ -246,7 +254,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Ngày nhập</label>
-                                    <input name="date" value="${date}" class="form-control" type="date" readonly="">  
+                                    <input name="date" value="${date}" class="form-control" type="date">  
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 1</label>
