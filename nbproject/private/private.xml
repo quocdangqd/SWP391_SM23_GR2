@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Dal/ProductDAO.java</file>
             <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Controller/View/EditProductController.java</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Dal/ProductDAO.java</file>
             <file>file:/E:/fpt/swp/SWP391_SM23_GR2/web/admin/addproduct.jsp</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/web/admin/productmanager.jsp</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Controller/View/ProductListController.java</file>
             <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Model/Earphone.java</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Controller/View/AdminController.java</file>
         </group>
     </open-files>
 </project-private>

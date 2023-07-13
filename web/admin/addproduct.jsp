@@ -100,10 +100,11 @@
             .removeimg {
                 display: none;
             }
+            <c:if test="${p==null}">
             .earphone {
                 display: none;
             }           
-
+        </c:if>
             #thumbbox {
                 position: relative;
                 width: 100%;
@@ -248,7 +249,10 @@
                                     <label class="control-label">Trạng thái</label>
                                     <input name="status" value="${p.status}" class="form-control" type="text">
                                 </div>
-                                
+                                 <div class="form-group col-md-3">
+                                    <label class="control-label">Ngày</label>
+                                    <input name="date" class="form-control" type="date">
+                                </div>
                               
                                     <div class="form-group col-md-3 earphone" >
                                     <label class="control-label">Loại</label>
@@ -324,7 +328,7 @@
                                 </div>
                                   <div class="form-group col-md-3">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                    <select name="category" class="form-control" id="exampleSelect1">
+                                    <select name="category" class="form-control" id="exampleSelect1" onchange="showDiv('earphone',this)">
                                         <option>-- Chọn danh mục --</option>
                                         <c:forEach items="${categoriesList}" var="c">
                                             <option ${(p.categories.categoryID == c.categoryID)?"selected":""} value="${c.categoryID}">${c.name}</option>
@@ -368,6 +372,54 @@
                                     <label class="control-label">Trạng thái</label>
                                     <input value="${p.status}" name="status" class="form-control" type="text">
                                 </div>
+                                   
+                                <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <label class="control-label">Loại</label>
+                                    <input value="${earphone.type}" name="type" class="form-control" type="text">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'} >
+                                    <label class="control-label">Tần số</label>
+                                    <input value= "${earphone.frequency}" name="frequency" class="form-control" type="text">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'} >
+                                    <label class="control-label">Độ nhạy </label>
+                                    <input value="${earphone.sensitive}" name="sensitive" class="form-control" type="text">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'} >
+                                    <label class="control-label">Trở kháng</label>
+                                    <input value="${earphone.impedance}" name="impedance" class="form-control" type="text">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <label class="control-label">Chất liệu</label>
+                                    <input value="${earphone.meterial}" name="meterial" class="form-control" type="text">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <label class="control-label">Kích cỡ</label>
+                                    <input value="${earphone.size}" name="size" class="form-control" type="text">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <label class="control-label">Pin</label>
+                                    <input value="${earphone.battery}" name="battery" class="form-control" type="text">
+                                    </div><!-- comment -->
+                                    
+                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <label class="control-label">Khoảng cách kết nối </label>
+                                    <input value="${earphone.connection_distance}" name="connection distance" class="form-control" type="text">
+                                    </div> 
+                                    
+                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <label class="control-label">Độ dài dây</label>
+                                    <input value="${earphone.wire_length}" name="wire length" class="form-control" type="text">
+                                    
+                                    </div>
+                              
+                                
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Miêu tả</label>
                                     <textarea name="description" class="form-control" required>${p.desciption}</textarea>

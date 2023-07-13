@@ -117,13 +117,23 @@
                                 
                                 
                             </div>
+                            <form action="AdminController" method="get">
                             <label >Tim kiem</label>
-                                   <div >
-                                       <form action="AdminController" method="get">
+                                   <div>
+                                       
                                     <input value="${search}" name="search" type="text" class="left-box"/>
                                      <input type="submit" hidden/>
-                                       </form>
-                                </div>
+                                      
+                                   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               <label> Sắp xếp </label>      
+                              <select name="sort"  id="exampleSelect1" onchange="this.form.submit()" >
+                                 
+                                        <option value="0" ${sort=='0'?'selected':''}>không</option>
+                                        <option value="1" ${sort=='1'?'selected':''}>Tăng dần theo ngày</option>
+                                        <option value="2" ${sort=='2'?'selected':''}>Giảm dần theo ngày</option>
+                                       
+                                    </select>
+                            </form>
                             
                             <table class="table table-hover table-bordered" id="Table">
                                 <thead>
@@ -160,7 +170,7 @@
                                          <td style="width: 100px;">${p.date}</td> 
                                         
                                         <td><a href="editproduct?id=${p.productID}&action=edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                        <a href="editproduct" class="delete" data-toggle="modal" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        
                                         </td>
                                     </tr>
                                     </c:forEach>

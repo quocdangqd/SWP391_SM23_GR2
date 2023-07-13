@@ -59,15 +59,17 @@ public class AdminController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String search = request.getParameter("search");
+        String sort = request.getParameter("sort");
         ProductDAO productDAO = new ProductDAO();
         List product ;      
         if(search==null)
-           product = productDAO.searchProducts(""); 
+           product = productDAO.searchProducts("",sort); 
         else
-           product = productDAO.searchProducts(search);
+           product = productDAO.searchProducts(search,sort);
         
+        request.setAttribute("sort", sort);
         request.setAttribute("search", search);
-         request.setAttribute("product", product);
+        request.setAttribute("product", product);
          request.getRequestDispatcher("productmanager.jsp").forward(request,response);
        
             

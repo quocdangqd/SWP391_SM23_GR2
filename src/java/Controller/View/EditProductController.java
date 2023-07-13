@@ -7,6 +7,7 @@ package Controller.View;
 import Dal.CategoriesDAO;
 import Dal.ProductDAO;
 import Model.Categories;
+import Model.Earphone;
 import Model.Products;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -66,7 +67,9 @@ public class EditProductController extends HttpServlet {
         String id = request.getParameter("id");
         Products p = productDAO.getProductsByID(id);
         if (p != null) {
-            
+            if("1".equals(p.getCategories().getCategoryID()))
+                request.setAttribute("earphone", 
+                        productDAO.getEarphoneByProductID(p.getProductID()));
             CategoriesDAO ca = new CategoriesDAO();
             request.setAttribute("categoriesList", ca.GetCategoriesList());
             request.setAttribute("p", p);
@@ -91,7 +94,7 @@ public class EditProductController extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("id");
         Products p = productDAO.getProductsByID(id);
-        Earphone e = productDAO.
+//        Earphone e = productDAO.
         if (p != null) {
             String category = request.getParameter("category");
             String name = request.getParameter("name");
@@ -114,6 +117,30 @@ public class EditProductController extends HttpServlet {
             p.setPrice(price);
             p.setStatus(status);
             productDAO.updateProduct(p);
+            if("1".equals(category)){
+            Earphone e = new Earphone();
+            String type = request.getParameter("type");
+            String frequency = request.getParameter("frequency");
+            String sensitive = request.getParameter("sensitive");
+            String impedance = request.getParameter("impedance");
+            String meterial = request.getParameter("meterial");
+            String size = request.getParameter("size");
+            String battery = request.getParameter("battery");
+            String connection_distance= request.getParameter("connection_distance");
+            String wire_length = request.getParameter("wire_length");
+            
+            e.setType(type);
+            e.setFrequency(frequency);
+            e.setSensitive(sensitive);
+            e.setImpedance(impedance);
+            e.setMeterial(meterial);
+            e.setSize(size);
+            e.setBattery(battery);
+            e.setConnection_distance(connection_distance);
+            e.setWire_length(wire_length);
+            e.setEarphone_ProductID(id);
+            productDAO.updateEarphone(e);
+            }
             
         } 
         else {
@@ -127,6 +154,7 @@ public class EditProductController extends HttpServlet {
             String quantity = request.getParameter("quantity");
             String price = request.getParameter("price");
             String status = request.getParameter("status");
+            String date = request.getParameter("date");
             
             p.setProduct_categoryID(category);
             p.setName(name);
@@ -137,9 +165,10 @@ public class EditProductController extends HttpServlet {
             p.setQuantity(quantity);
             p.setPrice(price);
             p.setStatus(status);
+            p.setDate(date);
             productDAO.addNewProduct(p);
             if(category == "1"){
-            e = new Earphone
+            Earphone e = new Earphone();
             String type = request.getParameter("type");
             String frequency = request.getParameter("frequency");
             String sensitive = request.getParameter("sensitive");
@@ -150,8 +179,17 @@ public class EditProductController extends HttpServlet {
             String connection_distance= request.getParameter("connection_distance");
             String wire_length = request.getParameter("wire_length");
             
-            p.set
-            
+            e.setType(type);
+            e.setFrequency(frequency);
+            e.setSensitive(sensitive);
+            e.setImpedance(impedance);
+            e.setMeterial(meterial);
+            e.setSize(size);
+            e.setBattery(battery);
+            e.setConnection_distance(connection_distance);
+            e.setWire_length(wire_length);
+            e.setEarphone_ProductID(productDAO.getLastId()+"");
+            productDAO.addNewEarphone(e);
             }
         }
         response.sendRedirect("AdminController");
