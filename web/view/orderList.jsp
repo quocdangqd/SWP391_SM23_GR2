@@ -335,6 +335,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <tr class="font-1">
                                     <td>001</td>
                                     <td><img src="" style="width: 100px; height: 100px;"></td>
@@ -345,8 +346,8 @@
                                     <td>$254</td>                                  
                                     <td>
                                         <div class="row">
-                                            <button class="btn btn-primary cols-1" type="button" title="Xóa" onclick="openPopup()" style="width: 31px; height: 52px;"><i class="fas fa-trash-alt" style="width: 16px;
-                                                                                                                                                                         height: 19px;"></i>
+                                            <button class="btn btn-primary cols-1" type="button" title="Xóa" onclick="openPopup()" style="width: 31px; height: 52px;">
+                                                <i class="fas fa-trash-alt" style="width: 16px;height: 19px;"></i>
                                             </button>
                                             <button class="btn btn-primary cols-1" type="button" title="Xem" style="width: 31px; height: 52px;"><i class="fas fa-list" style="width: 16px;
                                                                                                                                                    height: 19px;"></i>
@@ -362,19 +363,20 @@
                     </div>
                 </div> 
             </div>  
+            <form action="OrderListController" method="post">
+                <div class="popup" id="popup">  
+                    <h2 style="font-size: 1.5rem ;">Bạn có muốn xóa đơn hàng này không?</h2>          
+                    <div class="row">
+                        <div class="col-lg-6"> 
+                            <button type="submit" onclick="closePopup()">Có</button>
+                        </div>
+                        <div class="col-lg-6"> 
+                            <button type="button" onclick="closePopup()">Không</button>
+                        </div>
 
-            <div class="popup" id="popup">
-                <h2 style="font-size: 1.5rem ;">Bạn có muốn xóa đơn hàng này không?</h2>          
-                <div class="row">
-                    <div class="col-lg-6"> 
-                        <button type="button" onclick="closePopup()">Có</button>
                     </div>
-                    <div class="col-lg-6"> 
-                        <button type="button" onclick="closePopup()">Không</button>
-                    </div>
-
                 </div>
-            </div>
+            </form>
             <script>
                 let popup = document.getElementById("popup");
                 function openPopup() {
