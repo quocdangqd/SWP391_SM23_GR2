@@ -28,7 +28,6 @@ public class CategoriesDAO extends ConnectMySQL {
     }
     
      public Categories getCategoryById(String ID) {
-        
         try {
             String sqlSelectString = "select * from category where categoryID=?";
             pstm = connection.prepareStatement(sqlSelectString);

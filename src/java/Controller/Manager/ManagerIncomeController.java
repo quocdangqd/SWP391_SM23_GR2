@@ -6,7 +6,6 @@ package Controller.Manager;
 
 import Dal.AccountDao;
 import Dal.CategoriesDAO;
-import Dal.ManagerDAO;
 import Dal.OrderDAO;
 import Dal.ProductDAO;
 import jakarta.servlet.ServletException;
@@ -36,26 +35,7 @@ public class ManagerIncomeController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-
-            ProductDAO dao = new ProductDAO();
-            OrderDAO od = new OrderDAO();
-            AccountDao ad = new AccountDao();
-
-            int count = dao.CountProduct();
-            int count1 = od.CountOrder();
-            int count2 = dao.CountProductOut();
-            int count3 = od.CountOrderCancelled();
-            int count4 = ad.AccountBanned();
-            int total = dao.totalIncome();
-
-            request.setAttribute("product", count);
-            request.setAttribute("order", count1);
-            request.setAttribute("het", count2);
-            request.setAttribute("huy", count3);
-            request.setAttribute("chan", count4);
-            request.setAttribute("tong", total);
-
-            request.getRequestDispatcher("/manager/incomemanager.jsp").forward(request, response);
+            /* TODO output your page here. You may use following sample code. */
 
         }
     }
@@ -72,7 +52,32 @@ public class ManagerIncomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        ProductDAO dao = new ProductDAO();
+        OrderDAO od = new OrderDAO();
+        AccountDao ad = new AccountDao();
+        CategoriesDAO cd = new CategoriesDAO();
+
+        int count = dao.CountProduct();
+        int count1 = od.CountOrder();
+        int count2 = dao.CountProductOut();
+        int count3 = od.CountOrderCancelled();
+        int count4 = ad.AccountBanned();
+        int total = dao.totalIncome();
+        List listpro = dao.bestSale();
+        List listun = dao.limitProducts();
+        List lorder = od.getAllOrder();
+
+        request.setAttribute("product", count);
+        request.setAttribute("order", count1);
+        request.setAttribute("het", count2);
+        request.setAttribute("huy", count3);
+        request.setAttribute("chan", count4);
+        request.setAttribute("tong", total);
+        request.setAttribute("listP", listpro);
+        request.setAttribute("listun", listun);
+        request.setAttribute("lorder", lorder);
+
+        request.getRequestDispatcher("/manager/incomemanager.jsp").forward(request, response);
     }
 
     /**
@@ -86,7 +91,7 @@ public class ManagerIncomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     /**

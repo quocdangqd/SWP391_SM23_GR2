@@ -10,7 +10,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Hệ thống quản lý</title>
+        <title>Báo cáo doanh thu</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -201,11 +201,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${listpro}" var="p">
-                                    <tr><td>${p.getProductID()}</td>
-                                        <td>${p.getName()}</td>
-                                        <td>${p.getPrice()}</td>
-                                        <td>${p.categories.getName()}</td>
+                                <c:forEach items="${listP}" var="p">
+                                    <td>${p.getProductID()}</td>
+                                    <td>${p.getName()}</td>
+                                    <td>${p.getPrice()}</td>
+                                    <td>${p.categories.getName()}</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -233,11 +233,11 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -258,22 +258,18 @@
                                         <th>Mã sản phẩm</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Ảnh</th>
-                                        <th>Số lượng</th>
-                                        <th>Tình trạng</th>
                                         <th>Giá tiền</th>
                                         <th>Danh mục</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${listP}" var="o">
+                                <c:forEach items="${listun}" var="l">
                                     <tr>
-                                        <td>${o.getProductID()}</td>
-                                        <td>${o.getName()}</td>
-                                        <td>${o.getPicture()}</td>
-                                        <td>${o.getQuantity()}</td>
-                                        <td>${o.getStatus()}</td>
-                                        <td>${o.getPrice()}</td>
-                                        <td>${listC.get(o.getProduct_categoryID()-1).getName()}</td>
+                                        <td>${l.getProductID()}</td>
+                                        <td>${l.getName()}</td>
+                                        <td><img src="${l.getPicture()}"/></td>
+                                        <td>${l.getPrice()}</td>
+                                        <td>${l.categories.getName()}</td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
