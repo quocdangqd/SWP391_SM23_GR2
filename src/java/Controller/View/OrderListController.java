@@ -4,12 +4,17 @@
  */
 package Controller.View;
 
+import Dal.OrderDAO;
+import Model.Order;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+
 /**
  *
  * @author PC
@@ -29,7 +34,23 @@ public class OrderListController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.print("HIHI"); 
+            HttpSession session = request.getSession();
+//            if(session.getAttribute("user")!=null)
+//            {
+            if (request.getParameter("submit") != null) {
+//                out.println("submitted");
+            }
+            else 
+            {
+//                GetOrderListByUserID
+                OrderDAO orderDAO = new OrderDAO();
+                ArrayList<Order> orderList = orderDAO.GetOrderListByUserID("6");// **
+                session.setAttribute("data", orderList);
+                request.getRequestDispatcher("orderList.jsp").forward(request, response); 
+                
+            }
+//                
+//            }
 
         }
     }

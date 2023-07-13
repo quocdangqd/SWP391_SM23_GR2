@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -325,8 +326,8 @@
                                 <tr class="font-0">
                                     <th style="width: 200px;">Tên sản phẩm</th>
                                     <th>Ảnh sản phẩm</th>
-                                    <th style="width: 130px;">Nhân viên sale</th>
-                                    <th>Địa chỉ</th>
+                                    <th>Số lượng sản phẩm</th>
+                                    <th style="width: 130px;">Địa chỉ</th>
                                     <th>Ngày đặt</th>						
                                     <th>Trạng thái</th>						
                                     <th>Giá tiền</th>
@@ -335,15 +336,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                            <c:forEach items="${data}" var="item">
                                 <tr class="font-1">
-                                    <td>001</td>
-                                    <td><img src="" style="width: 100px; height: 100px;"></td>
-                                    <td>Nguyễn Thị H</td>
-                                    <td>Việt Nam</td>
-                                    <td> 15/7/2023</td>                        
-                                    <td><span class="status text-success"></span>Đang chờ</td>
-                                    <td>$254</td>                                  
+                                    <td>${item.getProductName()}</td>
+                                    <td><img src="${item.getPicture()}" style="width: 100px; height: 100px;"></td>
+                                    <td>${item.getQuantity()}</td>
+                                    <td>${item.getAddress()}</td>
+                                    <td>${item.getDate()}</td>                        
+                                    <td><span class="status text-success"></span>${item.getStatus()}</td>
+                                    <td>${item.getSalePrice()}đ</td>                                  
                                     <td>
                                         <div class="row">
                                             <button class="btn btn-primary cols-1" type="button" title="Xóa" onclick="openPopup()" style="width: 31px; height: 52px;">
@@ -356,37 +357,37 @@
                                         </div>
                                     </td>
                                 </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
 
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div> 
-            </div>  
-            <form action="OrderListController" method="post">
-                <div class="popup" id="popup">  
-                    <h2 style="font-size: 1.5rem ;">Bạn có muốn xóa đơn hàng này không?</h2>          
-                    <div class="row">
-                        <div class="col-lg-6"> 
-                            <button type="submit" onclick="closePopup()">Có</button>
-                        </div>
-                        <div class="col-lg-6"> 
-                            <button type="button" onclick="closePopup()">Không</button>
-                        </div>
-
-                    </div>
                 </div>
-            </form>
-            <script>
-                let popup = document.getElementById("popup");
-                function openPopup() {
-                    popup.classList.add("open-popup");
-                }
-                function closePopup() {
-                    popup.classList.remove("open-popup");
-                }
-            </script>
-            <!-- footer -->
+            </div> 
+        </div>  
+        <form action="OrderListController" method="post">
+            <div class="popup" id="popup">  
+                <h2 style="font-size: 1.5rem ;">Bạn có muốn xóa đơn hàng này không?</h2>          
+                <div class="row">
+                    <div class="col-lg-6"> 
+                        <button type="submit" name="submit" onclick="closePopup()">Có</button>
+                    </div>
+                    <div class="col-lg-6"> 
+                        <button type="button" onclick="closePopup()">Không</button>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+        <script>
+            let popup = document.getElementById("popup");
+            function openPopup() {
+                popup.classList.add("open-popup");
+            }
+            function closePopup() {
+                popup.classList.remove("open-popup");
+            }
+        </script>
+        <!-- footer -->
         <jsp:include page="footer.jsp"></jsp:include>
         <!-- end footer -->
     </body>
