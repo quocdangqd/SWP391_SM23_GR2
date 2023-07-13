@@ -7,7 +7,7 @@ package Model;
 public class Products {
 
     private String ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale;
-    private String rateStar, salePrice, picture2, picture3,date;
+    private String rateStar, salePrice, picture2, picture3, date;
     private Categories categories;
 
     public String getDate() {

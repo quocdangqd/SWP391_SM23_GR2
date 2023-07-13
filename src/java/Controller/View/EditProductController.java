@@ -91,6 +91,7 @@ public class EditProductController extends HttpServlet {
             throws ServletException, IOException {
         String id = request.getParameter("id");
         Products p = productDAO.getProductsByID(id);
+        Earphone e = productDAO.
         if (p != null) {
             String category = request.getParameter("category");
             String name = request.getParameter("name");
@@ -127,7 +128,7 @@ public class EditProductController extends HttpServlet {
             String price = request.getParameter("price");
             String status = request.getParameter("status");
             
-           p.setProduct_categoryID(category);
+            p.setProduct_categoryID(category);
             p.setName(name);
             p.setDesciption(description);
             p.setPicture(image);
@@ -137,6 +138,21 @@ public class EditProductController extends HttpServlet {
             p.setPrice(price);
             p.setStatus(status);
             productDAO.addNewProduct(p);
+            if(category == "1"){
+            e = new Earphone
+            String type = request.getParameter("type");
+            String frequency = request.getParameter("frequency");
+            String sensitive = request.getParameter("sensitive");
+            String impedance = request.getParameter("impedance");
+            String meterial = request.getParameter("meterial");
+            String size = request.getParameter("size");
+            String battery = request.getParameter("battery");
+            String connection_distance= request.getParameter("connection_distance");
+            String wire_length = request.getParameter("wire_length");
+            
+            p.set
+            
+            }
         }
         response.sendRedirect("AdminController");
     }
