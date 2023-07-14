@@ -177,7 +177,7 @@
                 <div class="container">
                     <div class="signin-content">
                         <div class="signin-image">
-                            <figure><img src="images/logo1.png" alt="sing up image"></figure>                      
+                            <figure><a href="../view/homepage.jsp"><img src="images/logo1.png" alt="sing up image"></a></figure>                      
                         </div>
 
                         <div class="signin-form">
