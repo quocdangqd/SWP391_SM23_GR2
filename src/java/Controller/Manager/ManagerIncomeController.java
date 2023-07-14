@@ -6,6 +6,7 @@ package Controller.Manager;
 
 import Dal.AccountDao;
 import Dal.CategoriesDAO;
+import Dal.ManagerDAO;
 import Dal.OrderDAO;
 import Dal.ProductDAO;
 import jakarta.servlet.ServletException;
@@ -55,7 +56,6 @@ public class ManagerIncomeController extends HttpServlet {
         ProductDAO dao = new ProductDAO();
         OrderDAO od = new OrderDAO();
         AccountDao ad = new AccountDao();
-        CategoriesDAO cd = new CategoriesDAO();
 
         int count = dao.CountProduct();
         int count1 = od.CountOrder();
@@ -65,7 +65,7 @@ public class ManagerIncomeController extends HttpServlet {
         int total = dao.totalIncome();
         List listpro = dao.bestSale();
         List listun = dao.limitProducts();
-        List lorder = od.getAllOrder();
+        
 
         request.setAttribute("product", count);
         request.setAttribute("order", count1);
@@ -75,7 +75,6 @@ public class ManagerIncomeController extends HttpServlet {
         request.setAttribute("tong", total);
         request.setAttribute("listP", listpro);
         request.setAttribute("listun", listun);
-        request.setAttribute("lorder", lorder);
 
         request.getRequestDispatcher("/manager/incomemanager.jsp").forward(request, response);
     }
