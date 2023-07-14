@@ -124,7 +124,7 @@
                                     <input value="${search}" name="search" type="text" class="left-box"/>
                                      <input type="submit" hidden/>
                                       
-                                   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                   </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                                <label> Sắp xếp </label>      
                               <select name="sort"  id="exampleSelect1" onchange="this.form.submit()" >
                                  
