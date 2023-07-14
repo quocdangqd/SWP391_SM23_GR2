@@ -63,7 +63,7 @@ public class ManagerIncomeController extends HttpServlet {
         int count3 = od.CountOrderCancelled();
         int count4 = ad.AccountBanned();
         int total = dao.totalIncome();
-        List listpro = dao.bestSale();
+        List listpro = dao.BestSellerProducts();
         List listun = dao.limitProducts();
         
 
