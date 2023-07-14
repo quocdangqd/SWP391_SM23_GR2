@@ -6,6 +6,7 @@ import Model.Categories;
 import Model.Products;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
 
 /**
@@ -311,8 +312,8 @@ public class ProductDAO extends ConnectMySQL {
         return total;
     }
 
-    public ArrayList<Products> bestSale() {
-        ArrayList<Products> data = new ArrayList<>();
+    public List<Products> bestSale() {
+        List<Products> data = new ArrayList<>();
         try {
             String sqlSelect = "SELECT * FROM swp.product p\n"
                     + "join orderdetail od \n"
