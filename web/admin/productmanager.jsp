@@ -161,7 +161,7 @@
                                         <td></td>
                                         <td>${p.productID}</td>
                                         <td>${p.categories.name}</td>
-                                        <td>${p.name}</td>
+                                        <td>${p.getName()}</td>
                                         <td>${p.desciption}</td>
                                         <td > <img class="col-4" src="${p.picture}"> <img class="col-4" src="${p.picture2}">  <img class="col-4" src="${p.picture3}"></td>
                                         <td>${p.quantity}</td>

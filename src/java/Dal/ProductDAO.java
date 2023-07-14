@@ -199,6 +199,9 @@ public class ProductDAO extends ConnectMySQL {
             }
         } catch (Exception e) {
             System.out.println(e);
+        }
+        return data;
+    }
     public ArrayList<Products> GetProductListByNameAndCategoryID(String pName, String product_categoryId) {
         ArrayList<Products> data = new ArrayList<>();
         try {
@@ -278,33 +281,33 @@ public class ProductDAO extends ConnectMySQL {
     }
 
     public static void main(String[] args) {
-        ProductDAO productDAO = new ProductDAO();
-        // Định dạng số với dấu chấm
-//        int size = productDAO.getProductListByCategoryIDAndNameAndSort("1","a","ascendingSalePrice").size();
-//        size = productDAO.BestSellerProducts().size();
-//        size=productDAO.getProductListByCategoryIDAndSort("1", "rate").size();
-//        System.out.println(size);
-//        System.out.println(formattedNumber);
-        for (Products p : productDAO.getProductListByCategoryIDAndNameAndSort("1", "a", "rate")) {
-            System.out.println("productid: " + p.getProductID() + " ");
-            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
-            System.out.println("Name: " + p.getName() + " ");
-            System.out.println("Description: " + p.getDesciption() + " ");
-            System.out.println("picture: " + p.getPicture() + " ");
-            System.out.println("picture2: " + p.getPicture2() + " ");
-            System.out.println("picture3: " + p.getPicture3() + " ");
-            System.out.println("price: " + p.getPrice() + " ");
-            System.out.println("quantity: " + p.getQuantity() + " ");
-            System.out.println("status: " + p.getStatus() + " ");
-            System.out.println("sale: " + p.getSale() + " ");
-            System.out.println("rateStar: " + p.getRateStar() + " ");
-            System.out.println("saleprice: " + p.getSalePrice() + " ");
-            System.out.println("");
-        }
-
-        return data;
+//        ProductDAO productDAO = new ProductDAO();
+//        // Định dạng số với dấu chấm
+////        int size = productDAO.getProductListByCategoryIDAndNameAndSort("1","a","ascendingSalePrice").size();
+////        size = productDAO.BestSellerProducts().size();
+////        size=productDAO.getProductListByCategoryIDAndSort("1", "rate").size();
+////        System.out.println(size);
+////        System.out.println(formattedNumber);
+//        for (Products p : productDAO.getProductListByCategoryIDAndNameAndSort("1", "a", "rate")) {
+//            System.out.println("productid: " + p.getProductID() + " ");
+//            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
+//            System.out.println("Name: " + p.getName() + " ");
+//            System.out.println("Description: " + p.getDesciption() + " ");
+//            System.out.println("picture: " + p.getPicture() + " ");
+//            System.out.println("picture2: " + p.getPicture2() + " ");
+//            System.out.println("picture3: " + p.getPicture3() + " ");
+//            System.out.println("price: " + p.getPrice() + " ");
+//            System.out.println("quantity: " + p.getQuantity() + " ");
+//            System.out.println("status: " + p.getStatus() + " ");
+//            System.out.println("sale: " + p.getSale() + " ");
+//            System.out.println("rateStar: " + p.getRateStar() + " ");
+//            System.out.println("saleprice: " + p.getSalePrice() + " ");
+//            System.out.println("");
+//        }
+//
+//        return data;
+//    }
     }
-
     public Products getProductsByID(String id) {
 
         try {
@@ -484,25 +487,25 @@ public class ProductDAO extends ConnectMySQL {
        
             return 0;
         }
-    public static void main(String[] args) {
-        ProductDAO productDAO = new ProductDAO();
-        
-        
-        Products p = new Products();
-        p.setProduct_categoryID("1");
-        p.setProductID("73");
-        p.setName("as");
-        p.setQuantity("2");
-        p.setPrice("1");
-        p.setStatus("1");
-        p.setDate("2023-07-11");
-        Earphone e = productDAO.getEarphoneByProductID(1+"");
-        System.out.println(e.getMeterial());
-           e.setFrequency("22");
-           e.setSensitive("4");
-           e.setImpedance("8");
-           e.setEarphone_ProductID(productDAO.getLastId()+"");
-           productDAO.updateProduct(p);
+//    public static void main(String[] args) {
+//        ProductDAO productDAO = new ProductDAO();
+//        
+//        
+//        Products p = new Products();
+//        p.setProduct_categoryID("1");
+//        p.setProductID("73");
+//        p.setName("as");
+//        p.setQuantity("2");
+//        p.setPrice("1");
+//        p.setStatus("1");
+//        p.setDate("2023-07-11");
+//        Earphone e = productDAO.getEarphoneByProductID(1+"");
+//        System.out.println(e.getMeterial());
+//           e.setFrequency("22");
+//           e.setSensitive("4");
+//           e.setImpedance("8");
+//           e.setEarphone_ProductID(productDAO.getLastId()+"");
+//           productDAO.updateProduct(p);
 //        p.setProductID("46");
 //        Categories c = new Categories();
 //        c.setCategoryID("1");
@@ -562,4 +565,4 @@ public class ProductDAO extends ConnectMySQL {
 //            System.out.println("");
 //        }
     }
-}
+
