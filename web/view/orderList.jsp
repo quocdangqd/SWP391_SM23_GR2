@@ -301,19 +301,19 @@
                         <div class="table-filter">
                             <div class="container">
                                 <section class="row">
-                                    <a href="" class="show-entries hover-order col-lg-2">
+                                    <a href="OrderListController?status=All" class="show-entries hover-order col-lg-2">
                                         <div>Tất cả</div>
                                     </a>
-                                    <a href="" class="show-entries hover-order col-lg-3">
+                                    <a href="OrderListController?status=Pending" class="show-entries hover-order col-lg-3">
                                         <div>Chờ xác nhận</div>
                                     </a>
-                                    <a href="" class="show-entries hover-order col-lg-3">
+                                    <a href="OrderListController?status=Shipping" class="show-entries hover-order col-lg-3">
                                         <div>Đang giao</div>
                                     </a>
-                                    <a href="" class="show-entries hover-order col-lg-2">
+                                    <a href="OrderListController?status=Completed" class="show-entries hover-order col-lg-2">
                                         <div>Hoàn thành</div>
                                     </a>
-                                    <a href="" class="show-entries hover-order col-lg-2">
+                                    <a href="OrderListController?status=Cancelled" class="show-entries hover-order col-lg-2">
                                         <div>Đã hủy</div>
                                     </a>                          
 
@@ -347,43 +347,54 @@
                                     <td>${item.getSalePrice()}đ</td>                                  
                                     <td>
                                         <div class="row">
-                                            <button class="btn btn-primary cols-1" type="button" title="Xóa" onclick="openPopup()" style="width: 31px; height: 52px;">
-                                                <i class="fas fa-trash-alt" style="width: 16px;height: 19px;"></i>
-                                            </button>
-                                            <button class="btn btn-primary cols-1" type="button" title="Xem" style="width: 31px; height: 52px;"><i class="fas fa-list" style="width: 16px;
-                                                                                                                                                   height: 19px;"></i>
-                                            </button>
-
+                                            <c:if test="${item.getStatus()=='Pending'}">
+                                                <button class="btn btn-primary cols-1" type="button" title="Xóa" onclick="openPopup('${item.getOrderID()}')" style="width: 31px; height: 52px;">
+                                                    <i class="fas fa-trash-alt" style="width: 16px;height: 19px;"></i>
+                                                </button>
+                                            </c:if>
+                                            <a href="TrackingController?orderID=${item.getOrderID()}&orderdetail_productID=${item.getOrderdetail_productID()}">
+                                                <button class="btn btn-primary cols-1" type="button" title="Xem" style="width: 31px; height: 52px;"><i class="fas fa-list" style="width: 16px;
+                                                                                                                                                       height: 19px;"></i>
+                                                </button>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
-                            </c:forEach>
+                                <c:if test="${item.getStatus()=='Pending'}">
+                                <div class="popup" id="${item.getOrderID()}">  
+                                    <h2 style="font-size: 1.5rem ;">Bạn có muốn xóa đơn hàng này không?</h2>          
+                                    <div class="row">
+                                        <div class="col-lg-6"> 
+                                            <a href="OrderListController?submit&orderID=${item.getOrderID()}">
+                                                <button type="submit" name="submit">Có</button>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-6"> 
+                                            <button type="button" onclick="closePopup('${item.getOrderID()}')">Không</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
                         </tbody>
                     </table>
 
                 </div>
             </div> 
         </div>  
-        <form action="OrderListController" method="post">
-            <div class="popup" id="popup">  
-                <h2 style="font-size: 1.5rem ;">Bạn có muốn xóa đơn hàng này không?</h2>          
-                <div class="row">
-                    <div class="col-lg-6"> 
-                        <button type="submit" name="submit" onclick="closePopup()">Có</button>
-                    </div>
-                    <div class="col-lg-6"> 
-                        <button type="button" onclick="closePopup()">Không</button>
-                    </div>
+        <!--<form action="OrderListController" method="post">-->
 
-                </div>
-            </div>
-        </form>
+        <!--</form>-->
+
         <script>
-            let popup = document.getElementById("popup");
-            function openPopup() {
+
+            function openPopup(inputted) {
+                let popup = document.getElementById(inputted);
                 popup.classList.add("open-popup");
             }
-            function closePopup() {
+            function closePopup(inputted) {
+                let popup = document.getElementById(inputted);
                 popup.classList.remove("open-popup");
             }
         </script>

@@ -326,11 +326,15 @@
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <h3 >Bình luận sản phẩm</h3>
                             <c:if test="${checkBuyProduct==true}">
-                                <input type="radio" name="star" value="1" checked=""> 1 <i class="fas fa-star product__panel-rate"></i> <br>
-                                <input type="radio" name="star" value="2"> 2 <i class="fas fa-star product__panel-rate"></i> <br>
-                                <input type="radio" name="star" value="3"> 3 <i class="fas fa-star product__panel-rate"></i> <br>
-                                <input type="radio" name="star" value="4"> 4 <i class="fas fa-star product__panel-rate"></i> <br>
-                                <input type="radio" name="star" value="5"> 5 <i class="fas fa-star product__panel-rate"></i> <br>
+                                <!--<div style="margin:  ">-->
+                                <!--style="margin-left: 450px"-->
+                                <section style="font-size: 17px; margin-left: 350px">
+                                    <input type="radio"  name="star"  value="1" checked=""> 1 <i class="fas fa-star product__panel-rate"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="star" value="2"> 2 <i class="fas fa-star product__panel-rate"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="star" value="3"> 3 <i class="fas fa-star product__panel-rate"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="star" value="4"> 4 <i class="fas fa-star product__panel-rate"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="star" value="5"> 5 <i class="fas fa-star product__panel-rate"></i> 
+                                </section>
                                 <div class="form-group">
                                     <label>Nội dung:</label>
                                     <textarea name="comm_details"  rows="8" id ='formcontent' class="form-control"></textarea>     

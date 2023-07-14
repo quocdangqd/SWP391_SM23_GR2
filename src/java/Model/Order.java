@@ -14,7 +14,8 @@ public class Order {
     private String address, phone_number, orderdetail_productID;
     private String name_user, price_order,picture,salePrice,quantity,productName;
 
-    public Order(String date, String status, String address, String picture, String salePrice, String quantity, String productName) {
+    public Order(String orderID, String date, String status, String address, String picture, String salePrice, String quantity, String productName,String orderdetail_productID,int temp) {
+        this.orderID=orderID;
         this.date = date;
         this.status = status;
         this.address = address;
@@ -22,6 +23,7 @@ public class Order {
         this.salePrice = salePrice;
         this.quantity = quantity;
         this.productName = productName;
+        this.orderdetail_productID = orderdetail_productID;
     }
 
     public Order() {

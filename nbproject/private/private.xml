@@ -14,13 +14,16 @@
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/customer/userProfile.jsp</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Account/LoginController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Manager/ManagerDeleteProduct.java</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/tracking.jsp</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/customer/tracking.jsp</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/ProductDetailController.java</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/customer/header.jsp</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Model/Products.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/CartController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/js/plugins/jquery.dataTables.min.js</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Account/ForgetPasswordController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/TrackingController.java</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/OrderdetailController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/CompareProductController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/CheckoutController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/WEB-INF/web.xml</file>
@@ -37,6 +40,7 @@
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Manager/ManagerFeedbackController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/compareProduct.jsp</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/homepage.jsp</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/productDetail.jsp</file>
         </group>
     </open-files>
 </project-private>

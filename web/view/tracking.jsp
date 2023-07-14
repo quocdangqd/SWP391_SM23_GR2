@@ -41,6 +41,11 @@
                         </div>
                     </article>
                     <div class="track">
+                        <c:if test="${order.getStatus()=='Cancelled'}">
+                            <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Xác nhận đơn hàng</span> </div>
+                            <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Hàng đang Giao</span> </div>
+                            <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">Hoàn Thành</span> </div>
+                        </c:if>
                         <c:if test="${order.getStatus()=='Pending'}">
                             <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Xác nhận đơn hàng</span> </div>
                             <div class="step "> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Hàng đang Giao</span> </div>

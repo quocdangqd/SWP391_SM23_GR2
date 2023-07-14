@@ -35,22 +35,20 @@ public class OrderListController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
-//            if(session.getAttribute("user")!=null)
-//            {
-            if (request.getParameter("submit") != null) {
-//                out.println("submitted");
-            }
-            else 
-            {
-//                GetOrderListByUserID
+            if (session.getAttribute("user") != null) {
                 OrderDAO orderDAO = new OrderDAO();
-                ArrayList<Order> orderList = orderDAO.GetOrderListByUserID("6");// **
+                if (request.getParameter("submit") != null) {
+                    orderDAO.UpdateOrderByID("Cancelled", request.getParameter("orderID"));
+                }
+                String status = request.getParameter("status");
+                if (status == null) {
+                    status = "All";
+                }
+                ArrayList<Order> orderList = orderDAO.GetOrderListByUserID("6", status);// **
                 session.setAttribute("data", orderList);
-                request.getRequestDispatcher("orderList.jsp").forward(request, response); 
-                
-            }
+                request.getRequestDispatcher("orderList.jsp").forward(request, response);
 //                
-//            }
+            }
 
         }
     }
