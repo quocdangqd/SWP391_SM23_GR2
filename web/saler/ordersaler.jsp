@@ -131,7 +131,7 @@
                         <div class="col-md-12">
                             <div class="tile">
                                 <h3 class="tile-title">Tình trạng đơn hàng</h3>
-                                <h4 class="tile-title">Nhân viên: Nguyễn Việt Dũng </h4>
+                                <h4 class="tile-title">Nhân viên: ABC </h4>
                                 <div>
                                     <table class="table table-bordered">
                                         <thead>

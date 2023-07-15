@@ -4,9 +4,7 @@
  */
 package Controller.Saler;
 
-import Dal.SalerDAO;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,9 +13,8 @@ import java.io.PrintWriter;
 
 /**
  *
- * @author trand
+ * @author HAI DANG
  */
-@WebServlet(name = "SalerCustomerController", urlPatterns = {"/saler/SalerCustomerController"})
 public class SalerCustomerController extends HttpServlet {
 
     /**
@@ -33,10 +30,16 @@ public class SalerCustomerController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            SalerDAO dao = new SalerDAO();
-            dao.getNewCustomer();
-            request.setAttribute("listC", dao.getUser());
-            request.getRequestDispatcher("customersaler.jsp").forward(request, response);
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet SalerCustomerController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet SalerCustomerController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
