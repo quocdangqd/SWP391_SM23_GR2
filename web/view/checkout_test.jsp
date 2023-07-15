@@ -340,7 +340,7 @@
                         <div class="container">
                             <h3>Địa chỉ nhận hàng</h3>
                             <section class="row">
-                                <h4 class="col-lg-3" style="font-weight: bold">(Họ và tên)(Số điện thoại)</h4>
+                                <h4 class="col-lg-3" style="font-weight: bold; color: black">(Họ và tên)&nbsp&nbsp&nbsp&nbsp&nbsp(Số điện thoại)</h4>
                                 <h4 class="col-lg-6">(Địa chỉ)</h4>
                                 <button type="button" class="bt" onclick="openPopupButton()"><h4>Thay đổi</h4></button>
                             </section>
