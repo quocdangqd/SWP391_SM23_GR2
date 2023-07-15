@@ -3,14 +3,14 @@
     Created on : 28-05-2023, 12:37:46
     Author     : laptop
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Hệ thống quản lý</title>
+        <title>Báo cáo doanh thu</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -196,49 +196,25 @@
                                     <tr>
                                         <th>Mã sản phẩm</th>
                                         <th>Tên sản phẩm</th>
+                                        <th width="500px">Ảnh</th>
                                         <th>Giá tiền</th>
                                         <th>Danh mục</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${listpro}" var="p">
-                                    <tr><td>${p.getProductID()}</td>
-                                        <td>${p.getName()}</td>
-                                        <td>${p.getPrice()}</td>
-                                        <td>${p.categories.getName()}</td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="tile">
-                        <div>
-                            <h3 class="tile-title">TỔNG ĐƠN HÀNG</h3>
-                        </div>
-                        <div class="tile-body">
-                            <table class="table table-hover table-bordered" id="sampleTable">
-                                <thead>
-                                    <tr>
-                                        <th>ID đơn hàng</th>
-                                        <th>Khách hàng</th>
-                                        <th>Đơn hàng</th>
-                                        <th>Số lượng</th>
-                                        <th>Tổng tiền</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                    </tr>
+                                    <c:forEach items="${listP}" var="p">
+                                        <tr>
+                                            <td>${p.getProductID()}</td>
+                                            <td>${p.getName()}</td>
+                                            <td>
+                                                <img src="${p.getPicture()}" alt="alt" class="col-lg-3"/>
+                                                <img src="${p.getPicture2()}" alt="alt" class="col-lg-3"/>
+                                                <img src="${p.getPicture3()}" alt="alt" class="col-lg-3"/>
+                                            </td>
+                                            <td>${p.getPrice()}</td>
+                                            <td>${p.categories.getName()}</td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -257,25 +233,24 @@
                                     <tr>
                                         <th>Mã sản phẩm</th>
                                         <th>Tên sản phẩm</th>
-                                        <th>Ảnh</th>
-                                        <th>Số lượng</th>
-                                        <th>Tình trạng</th>
+                                        <th width="500px">Ảnh</th>
                                         <th>Giá tiền</th>
                                         <th>Danh mục</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${listP}" var="o">
-                                    <tr>
-                                        <td>${o.getProductID()}</td>
-                                        <td>${o.getName()}</td>
-                                        <td>${o.getPicture()}</td>
-                                        <td>${o.getQuantity()}</td>
-                                        <td>${o.getStatus()}</td>
-                                        <td>${o.getPrice()}</td>
-                                        <td>${listC.get(o.getProduct_categoryID()-1).getName()}</td>
-                                    </tr>
-                                </c:forEach>
+                                    <c:forEach items="${listun}" var="l">
+                                        <tr>
+                                            <td>${l.getProductID()}</td>
+                                            <td>${l.getName()}</td>
+                                            <td><img src="${l.getPicture()}" alt="alt" width="100px" height="100px" class="col-lg-3"/>
+                                                <img src="${l.getPicture2()}" alt="alt" width="100px" height="100px" class="col-lg-3"/>
+                                                <img src="${l.getPicture3()}" alt="alt" width="100px" height="100px" class="col-lg-3"/>
+                                            </td>
+                                            <td>${l.getPrice()}</td>
+                                            <td>${l.categories.getName()}</td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -285,7 +260,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="tile">
-                        <h3 class="tile-title">DỮ LIỆU HÀNG THÁNG</h3>
+                        <h3 class="tile-title">LƯỢT TRUY CẬP HÀNG THÁNG</h3>
                         <div class="embed-responsive embed-responsive-16by9">
                             <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
                         </div>
@@ -312,53 +287,75 @@
         <script type="text/javascript" src="js/plugins/chart.js"></script>
         <script type="text/javascript">
         var data = {
-            labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+            labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6"],
             datasets: [{
                     label: "Dữ liệu đầu tiên",
-                    fillColor: "rgba(255, 255, 255, 0.158)",
-                    strokeColor: "black",
-                    pointColor: "rgb(220, 64, 59)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "green",
-                    data: [20, 59, 90, 51, 56, 100, 40, 60, 78, 53, 33, 81]
+                    fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
+                    strokeColor: "rgb(255, 212, 59)",
+                    pointColor: "rgb(255, 212, 59)",
+                    pointStrokeColor: "rgb(255, 212, 59)",
+                    pointHighlightFill: "rgb(255, 212, 59)",
+                    pointHighlightStroke: "rgb(255, 212, 59)",
+                    data: [20, 59, 90, 51, 56, 100]
                 },
                 {
                     label: "Dữ liệu kế tiếp",
-                    fillColor: "rgba(255, 255, 255, 0.158)",
-                    strokeColor: "rgb(220, 64, 59)",
-                    pointColor: "black",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "green",
-                    data: [48, 48, 49, 39, 86, 10, 50, 70, 60, 70, 75, 90]
+                    fillColor: "rgba(9, 109, 239, 0.651)  ",
+                    pointColor: "rgb(9, 109, 239)",
+                    strokeColor: "rgb(9, 109, 239)",
+                    pointStrokeColor: "rgb(9, 109, 239)",
+                    pointHighlightFill: "rgb(9, 109, 239)",
+                    pointHighlightStroke: "rgb(9, 109, 239)",
+                    data: [48, 48, 49, 39, 86, 10]
                 }
             ]
         };
-
-
         var ctxl = $("#lineChartDemo").get(0).getContext("2d");
         var lineChart = new Chart(ctxl).Line(data);
 
         var ctxb = $("#barChartDemo").get(0).getContext("2d");
         var barChart = new Chart(ctxb).Bar(data);
         </script>
-        <!-- Google analytics script-->
         <script type="text/javascript">
-            if (document.location.hostname == 'pratikborsadiya.in') {
-                (function (i, s, o, g, r, a, m) {
-                    i['GoogleAnalyticsObject'] = r;
-                    i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                    a = s.createElement(o),
-                            m = s.getElementsByTagName(o)[0];
-                    a.async = 1;
-                    a.src = g;
-                    m.parentNode.insertBefore(a, m)
-                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-                ga('create', 'UA-72504830-1', 'auto');
-                ga('send', 'pageview');
+            //Thời Gian
+            function time() {
+                var today = new Date();
+                var weekday = new Array(7);
+                weekday[0] = "Chủ Nhật";
+                weekday[1] = "Thứ Hai";
+                weekday[2] = "Thứ Ba";
+                weekday[3] = "Thứ Tư";
+                weekday[4] = "Thứ Năm";
+                weekday[5] = "Thứ Sáu";
+                weekday[6] = "Thứ Bảy";
+                var day = weekday[today.getDay()];
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1;
+                var yyyy = today.getFullYear();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                nowTime = h + " giờ " + m + " phút " + s + " giây";
+                if (dd < 10) {
+                    dd = '0' + dd
+                }
+                if (mm < 10) {
+                    mm = '0' + mm
+                }
+                today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+                tmp = '<span class="date"> ' + today + ' - ' + nowTime +
+                        '</span>';
+                document.getElementById("clock").innerHTML = tmp;
+                clocktime = setTimeout("time()", "1000", "Javascript");
+
+                function checkTime(i) {
+                    if (i < 10) {
+                        i = "0" + i;
+                    }
+                    return i;
+                }
             }
         </script>
     </body>

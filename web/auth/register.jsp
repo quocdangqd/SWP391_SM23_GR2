@@ -79,7 +79,7 @@
                             </form>
                         </div>
                         <div class="signup-image">
-                            <figure><a href="../view/homepage.jsp"><img src="images/logo1.png" alt="sing up image"></a></figure>
+                            <figure><img src="images/logo1.png" alt="sing up image"></figure>
                         </div>
                     </div>
                 </div>
