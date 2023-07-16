@@ -257,23 +257,16 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row"  >
+                <div  class="col-md-10" >
                     <div class="tile">
-                        <h3 class="tile-title">LƯỢT TRUY CẬP HÀNG THÁNG</h3>
+                        <h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
                         <div class="embed-responsive embed-responsive-16by9">
                             <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="tile">
-                        <h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </main>
         <!-- Essential javascripts for application to work-->
@@ -286,8 +279,21 @@
         <!-- Page specific javascripts-->
         <script type="text/javascript" src="js/plugins/chart.js"></script>
         <script type="text/javascript">
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        var today = new Date();
+        var mm = today.getMonth() + 1;
+        var one = "Tháng " + (mm - 5);
+        var two = "Tháng " + (mm - 4);
+        var three = "Tháng " + (mm - 3);
+        var four = "Tháng " + (mm - 2);
+        var five = "Tháng " + (mm - 1);
+        var six = "Tháng " + (mm);
+
         var data = {
-            labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6"],
+            labels: [one, two, three, four, five, six],
+
             datasets: [{
                     label: "Dữ liệu đầu tiên",
                     fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
@@ -296,18 +302,24 @@
                     pointStrokeColor: "rgb(255, 212, 59)",
                     pointHighlightFill: "rgb(255, 212, 59)",
                     pointHighlightStroke: "rgb(255, 212, 59)",
-                    data: [20, 59, 90, 51, 56, 100]
-                },
-                {
-                    label: "Dữ liệu kế tiếp",
-                    fillColor: "rgba(9, 109, 239, 0.651)  ",
-                    pointColor: "rgb(9, 109, 239)",
-                    strokeColor: "rgb(9, 109, 239)",
-                    pointStrokeColor: "rgb(9, 109, 239)",
-                    pointHighlightFill: "rgb(9, 109, 239)",
-                    pointHighlightStroke: "rgb(9, 109, 239)",
-                    data: [48, 48, 49, 39, 86, 10]
+                    data: [${firstMonth}, ${secondMonth}, ${thirdMonth}, ${fourthMonth}, ${fifthMonth}, ${currMonth}]
                 }
+            ]
+        };
+         var data2 = {
+            labels: [one, two, three, four, five, six],
+
+            datasets: [{
+                    label: "Dữ liệu đầu tiên",
+                    fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
+                    strokeColor: "rgb(255, 212, 59)",
+                    pointColor: "rgb(255, 212, 59)",
+                    pointStrokeColor: "rgb(255, 212, 59)",
+                    pointHighlightFill: "rgb(255, 212, 59)",
+                    pointHighlightStroke: "rgb(255, 212, 59)",
+                    data: [${firstMonth}, ${secondMonth}, ${thirdMonth}, ${fourthMonth}, ${fifthMonth}, ${currMonth}]
+                }
+                
             ]
         };
         var ctxl = $("#lineChartDemo").get(0).getContext("2d");

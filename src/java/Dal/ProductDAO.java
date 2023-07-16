@@ -5,7 +5,9 @@ import java.util.Locale;
 import Model.Categories;
 import Model.Products;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
 
@@ -341,10 +343,33 @@ public class ProductDAO extends ConnectMySQL {
         return data;
     }
 
+    public int totalIncomeByMonth(int month) {
+        int total = 0;
+        String sqlSelect = "SELECT SUM(od.quantity*p.price) as 'total' FROM \n"
+                + "swp.orderdetail od\n"
+                + "join product p \n"
+                + "on od.orderdetail_productID = p.ProductID \n"
+                + "join `order` o on od.orderdetail_orderID= o.orderID \n"
+                + "where Month(o.date) = ? and o.status='Completed'";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            pstm.setInt(1, month);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return total;
+    }
+
+    
+
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
-        System.out.println(productDAO.BestSellerProducts());
-
+        int months = Calendar.getInstance().get(Calendar.MONTH);
+        
 //        System.out.println(productDAO.decreaseProductAmount("1", "5"));
 //        Products p = productDAO.getProductByID("1");
 //        System.out.println("productid: " + p.getProductID() + " ");
