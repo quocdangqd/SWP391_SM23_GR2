@@ -258,7 +258,7 @@
                 </div>
             </div>
             <div class="row"  >
-                <div  class="col-md-10" >
+                <div  class="col-md-12" >
                     <div class="tile">
                         <h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
                         <div class="embed-responsive embed-responsive-16by9">
