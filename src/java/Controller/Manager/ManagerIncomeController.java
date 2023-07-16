@@ -5,8 +5,6 @@
 package Controller.Manager;
 
 import Dal.AccountDao;
-import Dal.CategoriesDAO;
-import Dal.ManagerDAO;
 import Dal.OrderDAO;
 import Dal.ProductDAO;
 import jakarta.servlet.ServletException;
@@ -15,11 +13,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 /**
  *

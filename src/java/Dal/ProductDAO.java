@@ -369,6 +369,8 @@ public class ProductDAO extends ConnectMySQL {
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
         int months = Calendar.getInstance().get(Calendar.MONTH);
+        ArrayList list = productDAO.BestSellerProducts();
+        System.out.println(list);
         
 //        System.out.println(productDAO.decreaseProductAmount("1", "5"));
 //        Products p = productDAO.getProductByID("1");

@@ -198,7 +198,6 @@
                                         <th>Tên sản phẩm</th>
                                         <th width="500px">Ảnh</th>
                                         <th>Giá tiền</th>
-                                        <th>Danh mục</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -207,12 +206,11 @@
                                             <td>${p.getProductID()}</td>
                                             <td>${p.getName()}</td>
                                             <td>
-                                                <img src="${p.getPicture()}" alt="alt" class="col-lg-3"/>
-                                                <img src="${p.getPicture2()}" alt="alt" class="col-lg-3"/>
-                                                <img src="${p.getPicture3()}" alt="alt" class="col-lg-3"/>
+                                                <img src="${p.getPicture()}" class="col-lg-3"/>
+                                                <img src="${p.getPicture2()}" class="col-lg-3"/>
+                                                <img src="${p.getPicture3()}" class="col-lg-3"/>
                                             </td>
                                             <td>${p.getPrice()}</td>
-                                            <td>${p.categories.getName()}</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -235,7 +233,6 @@
                                         <th>Tên sản phẩm</th>
                                         <th width="500px">Ảnh</th>
                                         <th>Giá tiền</th>
-                                        <th>Danh mục</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -243,12 +240,11 @@
                                         <tr>
                                             <td>${l.getProductID()}</td>
                                             <td>${l.getName()}</td>
-                                            <td><img src="${l.getPicture()}" alt="alt" width="100px" height="100px" class="col-lg-3"/>
-                                                <img src="${l.getPicture2()}" alt="alt" width="100px" height="100px" class="col-lg-3"/>
-                                                <img src="${l.getPicture3()}" alt="alt" width="100px" height="100px" class="col-lg-3"/>
+                                            <td><img src="${l.getPicture()}" class="col-lg-3"/>
+                                                <img src="${l.getPicture2()}" class="col-lg-3"/>
+                                                <img src="${l.getPicture3()}" class="col-lg-3"/>
                                             </td>
                                             <td>${l.getPrice()}</td>
-                                            <td>${l.categories.getName()}</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -257,16 +253,23 @@
                     </div>
                 </div>
             </div>
-            <div class="row"  >
-                <div  class="col-md-12" >
+            <div class="row">
+                <div class="col-md-6">
                     <div class="tile">
-                        <h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
+                        <h3 class="tile-title">DỮ LIỆU HÀNG THÁNG</h3>
                         <div class="embed-responsive embed-responsive-16by9">
                             <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
                         </div>
                     </div>
                 </div>
-                
+                <div class="col-md-6">
+                    <div class="tile">
+                        <h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         <!-- Essential javascripts for application to work-->
