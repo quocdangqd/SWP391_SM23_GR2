@@ -4,7 +4,6 @@
  */
 package Controller.Saler;
 
-import Dal.ManagerDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,9 +11,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+
 /**
  *
- * @author trand
+ * @author HAI DANG
  */
 public class SalerOrderController extends HttpServlet {
 
@@ -56,10 +56,7 @@ public class SalerOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ManagerDAO dao = new ManagerDAO();
-        dao.getNewOrder();
-        request.setAttribute("listO", dao.getOrder());
-        request.getRequestDispatcher("/saler/ordersaler.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

@@ -202,7 +202,7 @@
             }
             .btn:not(:disabled):not(.disabled) {
                 margin-top:0px;
-                font-size: 3rem;
+                font-size: 2rem;
 
             }
             .status {
@@ -274,17 +274,9 @@
             }
             .hover-order:hover{
                 background: white;
-                color: red;
+                background-color: #f24137;
+                color: white;
                 text-decoration: none;
-            }
-            .show-entries.active {
-                border-bottom: 2px solid red;
-                color: red;
-            }
-
-            .show-entries.active:hover {
-                border-bottom: 2px solid red;
-                color: red;
             }
             @media all and (max-width:375px){
 
@@ -308,107 +300,91 @@
                         <div class="table-filter">
                             <div class="container">
                                 <section class="row">
-                                <%-- Khi chưa click vào thì để nguyên, sau khi click vào thì thêm active vào --%>
-                                <a href="" class="show-entries hover-order col-lg-2">
-                                    <div>Tất cả</div>
-                                </a>
-                                <%--
-                                    </a><a href="" class="show-entries hover-order col-lg-2 active">
+                                    <a href="" class="show-entries hover-order col-lg-2 active">
                                         <div>Tất cả</div>
                                     </a>
-                                --%>
-                                <a href="" class="show-entries hover-order col-lg-3">
-                                    <div>Chờ xác nhận</div>
-                                </a>
-                                <a href="" class="show-entries hover-order col-lg-3">
-                                    <div>Đang giao</div>
-                                </a>
-                                <a href="" class="show-entries hover-order col-lg-2">
-                                    <div>Hoàn thành</div>
-                                </a>
-                                <a href="" class="show-entries hover-order col-lg-2">
-                                    <div>Đã hủy</div>
-                                </a>                          
-                            </section>
+                                    <a href="" class="show-entries hover-order col-lg-3">
+                                        <div>Chờ xác nhận</div>
+                                    </a>
+                                    <a href="" class="show-entries hover-order col-lg-3">
+                                        <div>Đang giao</div>
+                                    </a>
+                                    <a href="" class="show-entries hover-order col-lg-2">
+                                        <div>Hoàn thành</div>
+                                    </a>
+                                    <a href="" class="show-entries hover-order col-lg-2">
+                                        <div>Đã hủy</div>
+                                    </a>                          
 
+                                </section>
+
+                            </div>
                         </div>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr class="font-0">
+                                    <th style="width: 200px;">Tên sản phẩm</th>
+                                    <th>Ảnh sản phẩm</th>
+                                    <th style="width: 130px;">Nhân viên sale</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Ngày đặt</th>						
+                                    <th>Trạng thái</th>						
+                                    <th>Giá tiền</th>
+                                    <th style="width: 120px;">Tính năng</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="font-1">
+                                    <td>001</td>
+                                    <td><img src="" style="width: 100px; height: 100px;"></td>
+                                    <td>Nguyễn Thị H</td>
+                                    <td>Việt Nam</td>
+                                    <td> 15/7/2023</td>                        
+                                    <td><span class="status text-success"></span>Đang chờ</td>
+                                    <td>$254</td>                                  
+                                    <td>
+                                        <div class="row">
+                                            <button class="btn btn-primary cols-4" type="button" title="Xóa" onclick="openPopup()"><i class="fas fa-trash-alt" style="margin: auto"></i>
+                                            </button>
+                                            <button class="btn btn-primary cols-4" type="button" title="Xem"><i class="fas fa-list" style="margin: auto"></i>
+                                            </button>
+                                            <button class="btn btn-primary cols-4" type="button" title="Đã nhận đơn hàng"><i class="fas fa-check" style="margin: auto"></i>
+                                            </button>
+
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
                     </div>
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr class="font-0">
-                                <th style="width: 200px;">Tên sản phẩm</th>
-                                <th>Ảnh sản phẩm</th>
-                                <th style="width: 130px;">Nhân viên sale</th>
-                                <th>Địa chỉ</th>
-                                <th>Ngày đặt</th>						
-                                <th>Trạng thái</th>						
-                                <th>Giá tiền</th>
-                                <th style="width: 120px;">Tính năng</th>
+                </div> 
+            </div>  
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="font-1">
-                                <td>001</td>
-                                <td><img src="" style="width: 100px; height: 100px;"></td>
-                                <td>Nguyễn Thị H</td>
-                                <td>Việt Nam</td>
-                                <td> 15/7/2023</td>                        
-                                <td><span class="status text-success"></span>Đang chờ</td>
-                                <td>$254</td>                                  
-                                <td>
-                                    <div class="row">
-                                        <button class="btn btn-primary cols-1" type="button" title="Xóa" onclick="openPopup()" style="width: 31px; height: 52px;"><i class="fas fa-trash-alt" style="width: 16px;
-                                                                                                                                                                     height: 19px;"></i>
-                                        </button>
-                                        <button class="btn btn-primary cols-1" type="button" title="Xem" style="width: 31px; height: 52px;"><i class="fas fa-list" style="width: 16px;
-                                                                                                                                               height: 19px;"></i>
-                                        </button>
-
-                                    </div>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table>
+            <div class="popup" id="popup">
+                <h2 style="font-size: 1.5rem ;">Bạn có muốn xóa đơn hàng này không?</h2>          
+                <div class="row">
+                    <div class="col-lg-6"> 
+                        <button type="button" onclick="closePopup()">Có</button>
+                    </div>
+                    <div class="col-lg-6"> 
+                        <button type="button" onclick="closePopup()">Không</button>
+                    </div>
 
                 </div>
-            </div> 
-        </div>  
-
-        <div class="popup" id="popup">
-            <h2 style="font-size: 1.5rem ;">Bạn có muốn xóa đơn hàng này không?</h2>          
-            <div class="row">
-                <div class="col-lg-6"> 
-                    <button type="button" onclick="closePopup()">Có</button>
-                </div>
-                <div class="col-lg-6"> 
-                    <button type="button" onclick="closePopup()">Không</button>
-                </div>
-
             </div>
-        </div>
-        <script>
-            let popup = document.getElementById("popup");
-            function openPopup() {
-                popup.classList.add("open-popup");
-            }
-            function closePopup() {
-                popup.classList.remove("open-popup");
-            }
-            document.querySelectorAll('.show-entries').forEach(item => {
-
-                item.addEventListener('click', event => {
-
-                    document.querySelector('.active').classList.remove('active');
-
-                    event.target.classList.add('active');
-
-                });
-
-            });
-        </script>
-        <!-- footer -->
+            <script>
+                let popup = document.getElementById("popup");
+                function openPopup() {
+                    popup.classList.add("open-popup");
+                }
+                function closePopup() {
+                    popup.classList.remove("open-popup");
+                }
+            </script>
+            <!-- footer -->
         <jsp:include page="footer.jsp"></jsp:include>
         <!-- end footer -->
     </body>

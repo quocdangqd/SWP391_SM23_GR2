@@ -120,10 +120,6 @@
         <servlet-name>SalerCustomerController</servlet-name>
         <servlet-class>Controller.Saler.SalerCustomerController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>AdminIncomeController</servlet-name>
-        <servlet-class>Controller.Admin.AdminIncomeController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/auth/Register</url-pattern>
@@ -245,10 +241,6 @@
     <servlet-mapping>
         <servlet-name>SalerCustomerController</servlet-name>
         <url-pattern>/saler/SalerCustomerController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AdminIncomeController</servlet-name>
-        <url-pattern>/admin/AdminIncomeController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
