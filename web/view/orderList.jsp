@@ -278,12 +278,12 @@
                 text-decoration: none;
             }
             .show-entries.active {
-                border-bottom: 2px solid red;
+                border-bottom: 4px solid red;
                 color: red;
             }
 
             .show-entries.active:hover {
-                border-bottom: 2px solid red;
+                border-bottom: 4px solid red;
                 color: red;
             }
             @media all and (max-width:375px){
