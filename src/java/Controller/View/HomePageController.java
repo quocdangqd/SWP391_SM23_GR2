@@ -46,6 +46,7 @@ public class HomePageController extends HttpServlet {
 //                out.print(typeProductList.size()); 
             } else if (tab.equals("logOut")) {
                 session.removeAttribute("role");
+                session.removeAttribute("AmountOfProductType");
             }
             
             session.setAttribute("tab", "allProduct");
