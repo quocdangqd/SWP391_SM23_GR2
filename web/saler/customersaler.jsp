@@ -10,7 +10,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Danh sách nhân viên | Quản trị Admin</title>
+        <title>Danh sách khách hàng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -101,15 +101,15 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="homepage.jsp"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="SalerOrderController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item" href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
-                            class="app-menu__label">Quản lý đơn hàng</span></a></li>
-                <li><a class="app-menu__item active" href="customermanager.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
-                            class="app-menu__label">Quản lý khách hàng</span></a></li>
+                <li><a class="app-menu__item" href="SalerOrderController"><i class='app-menu__icon bx bx-tachometer'></i><span
+                            class="app-menu__label">Danh sách đơn hàng</span></a></li>
+                <li><a class="app-menu__item active" href="SalerCustomerController"><i class='app-menu__icon bx bx-id-card'></i> <span
+                            class="app-menu__label">Danh sách khách hàng</span></a></li>
             </ul>
         </aside>
         <main class="app-content">
@@ -117,7 +117,7 @@
                 <div class="col-md-12">
                     <div class="app-title">
                         <ul class="app-breadcrumb breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><b>Quản lí khách hàng</b></a></li>
+                            <li class="breadcrumb-item"><a href="#"><b>Danh sách khách hàng</b></a></li>
                         </ul>
                         <div id="clock"></div>
                     </div>
@@ -130,41 +130,30 @@
                         <div class="col-md-12">
                             <div class="tile">
                                 <h3 class="tile-title">Khách hàng mới</h3>
+                                <h4 class="tile-title">Nhân viên: ABC </h4>
                                 <div>
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
+                                                <th>Mã khách hàng</th>
                                                 <th>Tên khách hàng</th>
-                                                <th>Ngày sinh</th>
+                                                <th>Tuổi</th>
                                                 <th>Số điện thoại</th>
+                                                <th>Email</th>
+                                                <th>Địa chỉ</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <c:forEach items="${listC}" var="c">
                                             <tr>
-                                                <td>#183</td>
-                                                <td>Hột vịt muối</td>
-                                                <td>21/7/1992</td>
-                                                <td><span class="tag tag-success">0921387221</span></td>
+                                                <td>${c.getUserID()}</td>
+                                                <td>${c.getName()}</td>
+                                                <td>${c.getAge()}</td>
+                                                <td>${c.getPhone_number()}</td>
+                                                <td>${c.getEmail()}</td>
+                                                <td>${c.getAddress()}</td>
                                             </tr>
-                                            <tr>
-                                                <td>#219</td>
-                                                <td>Bánh tráng trộn</td>
-                                                <td>30/4/1975</td>
-                                                <td><span class="tag tag-warning">0912376352</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>#627</td>
-                                                <td>Cút rang bơ</td>
-                                                <td>12/3/1999</td>
-                                                <td><span class="tag tag-primary">01287326654</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>#175</td>
-                                                <td>Hủ tiếu nam vang</td>
-                                                <td>4/12/20000</td>
-                                                <td><span class="tag tag-danger">0912376763</span></td>
-                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
