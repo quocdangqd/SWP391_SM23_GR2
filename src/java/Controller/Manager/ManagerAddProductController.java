@@ -11,8 +11,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.io.PrintWriter;
 
 public class ManagerAddProductController extends HttpServlet {
 
@@ -40,8 +38,29 @@ public class ManagerAddProductController extends HttpServlet {
         String Price = req.getParameter("price");
         String Quantity = req.getParameter("quantity");
         String Status = req.getParameter("status");
-        dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Quantity, Status, Price);
 
+        if (Quantity != null && Price != null) {
+            if (Float.parseFloat(Price) < 200000) {
+                req.setAttribute("PriceErr", "Price must Enter at least 200,000");
+            }
+            if (Integer.parseInt(Quantity) < 1) {
+                req.setAttribute("QuantityErr", "Quantiy must enter at leat 1");
+            }
+        } else if (!(Image1.isEmpty() || Image2.isEmpty() || Image3.isEmpty())) {
+            if (!(Image1.endsWith(".png") || Image1.endsWith(".jpg"))) {
+                req.setAttribute("Image1Err", "Must enter file with .png or .jpg");
+            }
+            if (!(Image2.endsWith(".png") || Image2.endsWith(".jpg"))) {
+                req.setAttribute("Image2Err", "Must enter file with .png or .jpg");
+            }
+            if (!(Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
+                req.setAttribute("Image3Err", "Must enter file with .png or .jpg");
+            }
+        } else {
+            dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Quantity, Status, Price);
+
+            req.setAttribute("successText", "Add Successful!!!");
+        }
         req.setAttribute("name", Name);
         req.setAttribute("price", Price);
         req.setAttribute("image", Image1);
@@ -51,8 +70,7 @@ public class ManagerAddProductController extends HttpServlet {
         req.setAttribute("mota", Desciption);
         req.setAttribute("quantity", Quantity);
         req.setAttribute("status", Status);
-        
-        req.setAttribute("successText", "Add Successful!!!");
+
         req.getRequestDispatcher("addproduct.jsp").forward(req, resp);
     }
 

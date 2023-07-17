@@ -216,10 +216,12 @@
                                 <div class="form-group  col-md-4">
                                     <label class="control-label">Số lượng</label>
                                     <input class="form-control" type="number" name="quantity" value="${quantity}" required="" placeholder="Nhập số lượng">
+                                    <label class="control-label">${QuantityErr}</label>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Giá bán</label>
                                     <input class="form-control" type="number" name='price' value="${price}" required="" placeholder="Nhập giá">
+                                    <label class="control-label">${PriceErr}</label>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
@@ -259,14 +261,17 @@
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 1</label>
                                     <input value="${image}" name="image" class="form-control" type="text" required="" placeholder="Nhập link ảnh">
+                                    <label class="control-label">${Image1Err}</label>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 2</label>
                                     <input value="${image2}" name="image2" class="form-control" type="text">
+                                    <label class="control-label">${Image2Err}</label>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 3 </label>
                                     <input value="${image3}" name="image3" class="form-control" type="text">
+                                    <label class="control-label">${Image3Err}</label>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Mô tả sản phẩm</label>
