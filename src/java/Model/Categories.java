@@ -5,6 +5,7 @@ package Model;
  * @author DucPhaoLo
  */
 public class Categories {
+
     private String categoryID, name, status;
 
     public Categories() {

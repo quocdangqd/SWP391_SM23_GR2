@@ -147,6 +147,56 @@ public class OrderDAO extends ConnectMySQL {
         }
         return null;
     }
+    
+    public ArrayList<Order> getAllOrder() {
+        ArrayList<Order> data = new ArrayList<>();
+        String sqlSelect = "SELECT * FROM swp.order";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                Order o = new Order();
+                o.setOrderID(String.valueOf(rs.getInt(1)));
+                o.setOrder_userID(String.valueOf(rs.getInt(4)));
+                o.setNote(rs.getString(5));
+                data.add(o);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return data;
+    }
+
+    public int CountOrder() {
+        int count = 0;
+        String sqlSelect = "SELECT COUNT(*) as 'count' FROM swp.order";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return count;
+    }
+
+    public int CountOrderCancelled() {
+        int count = 0;
+        String sqlSelect = "SELECT COUNT(*) as 'count' FROM swp.order\n"
+                + "where status = 'Cancelled'";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return count;
+    }
 
     public static void main(String[] args) {
         OrderDAO orderDAO = new OrderDAO();

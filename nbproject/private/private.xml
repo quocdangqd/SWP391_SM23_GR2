@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/orderList.jsp</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/ConnectMySQL.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Model/Earphone.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/productmanager.jsp</file>
@@ -11,6 +12,7 @@
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/ProductDAO.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/customer/userProfile.jsp</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Account/LoginController.java</file>
+            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/OrderDAO.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Account/ChangePasswordController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/HomePageController.java</file>
             <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/header.jsp</file>
