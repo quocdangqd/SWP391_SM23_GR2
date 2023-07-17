@@ -5,8 +5,6 @@
 package Controller.Manager;
 
 import Dal.AccountDao;
-import Dal.CategoriesDAO;
-import Dal.ManagerDAO;
 import Dal.OrderDAO;
 import Dal.ProductDAO;
 import jakarta.servlet.ServletException;
@@ -15,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -50,6 +49,8 @@ public class ManagerIncomeController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -65,8 +66,14 @@ public class ManagerIncomeController extends HttpServlet {
         int total = dao.totalIncome();
         List listpro = dao.BestSellerProducts();
         List listun = dao.limitProducts();
-        
-
+        int months = Calendar.getInstance().get(Calendar.MONTH);
+       
+        request.setAttribute("firstMonth", dao.totalIncomeByMonth(months - 4));
+        request.setAttribute("secondMonth", dao.totalIncomeByMonth(months - 3));
+        request.setAttribute("thirdMonth", dao.totalIncomeByMonth(months - 2));
+        request.setAttribute("fourthMonth",dao.totalIncomeByMonth(months - 1));
+        request.setAttribute("fifthMonth", dao.totalIncomeByMonth(months - 0));
+        request.setAttribute("currMonth", dao.totalIncomeByMonth(months +1));
         request.setAttribute("product", count);
         request.setAttribute("order", count1);
         request.setAttribute("het", count2);

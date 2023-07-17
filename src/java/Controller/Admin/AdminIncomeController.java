@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -54,8 +55,14 @@ public class AdminIncomeController extends HttpServlet {
         int total = dao.totalIncome();
         List listpro = dao.BestSellerProducts();
         List listun = dao.limitProducts();
-        
-
+        int months = Calendar.getInstance().get(Calendar.MONTH);
+       
+        request.setAttribute("firstMonth", dao.totalIncomeByMonth(months - 4));
+        request.setAttribute("secondMonth", dao.totalIncomeByMonth(months - 3));
+        request.setAttribute("thirdMonth", dao.totalIncomeByMonth(months - 2));
+        request.setAttribute("fourthMonth",dao.totalIncomeByMonth(months - 1));
+        request.setAttribute("fifthMonth", dao.totalIncomeByMonth(months - 0));
+        request.setAttribute("currMonth", dao.totalIncomeByMonth(months +1));
         request.setAttribute("product", count);
         request.setAttribute("order", count1);
         request.setAttribute("het", count2);
