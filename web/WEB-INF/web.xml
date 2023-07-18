@@ -107,6 +107,8 @@
     <servlet>
         <servlet-name>OrderListController</servlet-name>
         <servlet-class>Controller.View.OrderListController</servlet-class>
+        <servlet-name>OrderDetailController</servlet-name>
+        <servlet-class>Controller.Admin.OrderDetailController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManagerIncomeController</servlet-name>
@@ -229,6 +231,8 @@
     <servlet-mapping>
         <servlet-name>OrderListController</servlet-name>
         <url-pattern>/view/OrderListController</url-pattern>
+        <servlet-name>OrderDetailController</servlet-name>
+        <url-pattern>/admin/OrderDetailController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManagerIncomeController</servlet-name>
