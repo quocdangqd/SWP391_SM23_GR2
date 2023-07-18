@@ -1,6 +1,6 @@
 <%-- 
-    Document   : adduser
-    Created on : 24-05-2023, 01:33:26
+    Document   : addproduct
+    Created on : 24-05-2023, 01:34:40
     Author     : trand
 --%>
 
@@ -10,22 +10,23 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>chỉnh sửa người dùng</title>
+        <title>Thêm đánh giá</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Main CSS-->
         <link rel="stylesheet" type="text/css" href="css/main.css">
+        <!-- Font-icon css-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <!-- or -->
         <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-        <!-- Font-icon css-->
-        <link rel="stylesheet" type="text/css"
-              href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+        <link rel="stylesheet" type="text/css"
+              href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+        <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
         <script>
 
             function readURL(input, thumbimage) {
@@ -162,16 +163,17 @@
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item" href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item " href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
-                <li><a class="app-menu__item active" href="usermanager.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
-                            class="app-menu__label">Quản lý người dùng</span></a></li>
-                <li><a class="app-menu__item" href="AdminController"><i
-                            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
+
+                <li><a class="app-menu__item" href="productmanager.jsp"><i
+                            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
                 </li>
-                <li><a class="app-menu__item" href="ordermanager.jsp"><i class='app-menu__icon bx bx-task'></i><span
-                            class="app-menu__label">Quản lý đơn hàng</span></a></li>
-                <li><a class="app-menu__item" href="AdminIncomeController"><i
+                <li><a class="app-menu__item " href="ordermanager.jsp"><i class='app-menu__icon bx bx-task'></i><span
+                            class="app-menu__label">Danh sách đơn hàng</span></a></li>
+                <li><a class="app-menu__item active" href="feedbackmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
+                            class="app-menu__label">Đánh giá </span></a></li>
+                <li><a class="app-menu__item" href="incomemanager.jsp"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
                 </li>
             </ul>
@@ -179,116 +181,69 @@
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb">
-                    <li class="breadcrumb-item">Danh sách người dùng</li>
-                    <li class="breadcrumb-item"><a href="#">Chỉnh sửa người dùng</a></li>
+                    <li class="breadcrumb-item">Danh sách đánh giá</li>
+                    <li class="breadcrumb-item"><a href="#">Thêm đánh giá</a></li>
                 </ul>
             </div>
             <div class="row">
                 <div class="col-md-12">
-
                     <div class="tile">
-
-                        <h3 class="tile-title">Chỉnh sửa người dùng</h3>
+                        <h3 class="tile-title">Tạo mới đánh giá</h3>
                         <div class="tile-body">
                             <form class="row">
                                 <div class="form-group col-md-4">
-                                    <label class="control-label">ID người dùng</label>
+                                    <label class="control-label">Tên sản phẩm</label>
                                     <input class="form-control" type="text">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label class="control-label">Tên đăng nhập</label>
-                                    <input class="form-control" type="text" required>
+                                    <label class="control-label">Tên khách hàng</label>
+                                    <input class="form-control" type="text">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label class="control-label">Mật khẩu</label>
-                                    <input class="form-control" type="text" required>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label class="control-label">Họ và tên</label>
-                                    <input class="form-control" type="text" required>
-                                </div>
-                                <div class="form-group  col-md-4">
-                                    <label class="control-label">Số điện thoại</label>
-                                    <input class="form-control" type="number" required>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label class="control-label">Ngày sinh</label>
+                                    <label class="control-label">Ngày đánh giá</label>
                                     <input class="form-control" type="date">
                                 </div>
-                                <div class="form-group  col-md-4">
-                                    <label class="control-label">Địa chỉ</label>
-                                    <input class="form-control" type="text" required>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label class="control-label">Giới tính</label>
-                                    <select class="form-control" id="exampleSelect2" required>
-                                        <option>-- Chọn giới tính --</option>
-                                        <option>Nam</option>
-                                        <option>Nữ</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group  col-md-4">
-                                    <label for="exampleSelect1" class="control-label">Vai trò</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn vai trò --</option>
-                                        <option>Khách hàng</option>
-                                        <option>Quản lý</option>
-                                        <option>Admin</option>
-                                        <option>Người bán hàng</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="exampleSelect1" class="control-label">Tình trạng</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn tình trạng --</option>
-                                        <option>Mở tài khoản</option>
-                                        <option>Khóa tài khoản</option>
-                                    </select>
-                                </div>
                                 <div class="form-group col-md-12">
-                                    <label class="control-label">Ảnh 3x4 </label>
-                                    <div id="myfileupload">
-                                        <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" />
-                                    </div>
-                                    <div id="thumbbox">
-                                        <img height="300" width="300" alt="Thumb image" id="thumbimage" style="display: none" />
-                                        <a class="removeimg" href="javascript:"></a>
-                                    </div>
-                                    <div id="boxchoice">
-                                        <a href="javascript:" class="Choicefile"><i class='bx bx-upload'></i></a>
-                                        <p style="clear:both"></p>
-                                    </div>
-
+                                    <label class="control-label">Đánh giá</label>
+                                    <textarea class="form-control" name="mota" id="mota"></textarea>
+                                    <script>CKEDITOR.replace('mota');</script>
                                 </div>
-
-
+                            </form>
 
                         </div>
                         <button class="btn btn-save" type="button">Lưu lại</button>
-                        <a class="btn btn-cancel" href="usermanager.jsp">Hủy bỏ</a>
+                        <a class="btn btn-cancel" href="feedbackmanager.jsp">Hủy bỏ</a>
                     </div>
-
                     </main>
-
-
                     <!--
-                    MODAL
+                  MODAL
                     -->
-                    
-                    <!--
-                    MODAL
-                    -->
-
-
-                    <!-- Essential javascripts for application to work-->
                     <script src="js/jquery-3.2.1.min.js"></script>
                     <script src="js/popper.min.js"></script>
                     <script src="js/bootstrap.min.js"></script>
                     <script src="js/main.js"></script>
-                    <!-- The javascript plugin to display page loading on top-->
                     <script src="js/plugins/pace.min.js"></script>
+                    <script>
+                                        const inpFile = document.getElementById("inpFile");
+                                        const loadFile = document.getElementById("loadFile");
+                                        const previewContainer = document.getElementById("imagePreview");
+                                        const previewContainer = document.getElementById("imagePreview");
+                                        const previewImage = previewContainer.querySelector(".image-preview__image");
+                                        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+                                        inpFile.addEventListener("change", function () {
+                                            const file = this.files[0];
+                                            if (file) {
+                                                const reader = new FileReader();
+                                                previewDefaultText.style.display = "none";
+                                                previewImage.style.display = "block";
+                                                reader.addEventListener("load", function () {
+                                                    previewImage.setAttribute("src", this.result);
+                                                });
+                                                reader.readAsDataURL(file);
+                                            }
+                                        });
 
+                    </script>
                     </body>
 
                     </html>

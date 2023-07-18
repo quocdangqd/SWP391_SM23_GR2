@@ -12,12 +12,12 @@ public class DetailOrder {
 
     private String name_user, phone_number, address, orderdetailID, orderdeatil_orderID,
             quantity, price, orderdetail_produstID, name_product;
-    private String price_product, date;
+    private String price_product;
 
     public DetailOrder() {
     }
 
-    public DetailOrder(String name_user, String phone_number, String address, String orderdetailID, String orderdeatil_orderID, String quantity, String price, String orderdetail_produstID, String name_product, String price_product, String date) {
+    public DetailOrder(String name_user, String phone_number, String address, String orderdetailID, String orderdeatil_orderID, String quantity, String price, String orderdetail_produstID, String name_product, String price_product) {
         this.name_user = name_user;
         this.phone_number = phone_number;
         this.address = address;
@@ -28,15 +28,6 @@ public class DetailOrder {
         this.orderdetail_produstID = orderdetail_produstID;
         this.name_product = name_product;
         this.price_product = price_product;
-        this.date = date;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getPrice_product() {

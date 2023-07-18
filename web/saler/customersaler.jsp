@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,7 +130,7 @@
                         <div class="col-md-12">
                             <div class="tile">
                                 <h3 class="tile-title">Khách hàng mới</h3>
-                                <h4 class="tile-title">Nhân viên: ${sessionScope.user. getName()} </h4>
+                                <h4 class="tile-title">Nhân viên: ABC </h4>
                                 <div>
                                     <table class="table table-hover">
                                         <thead>
@@ -145,16 +144,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="${listC}" var="a">
-                                                <tr>
-                                                    <td>${a.getUserID()}</td>
-                                                    <td>${a.getName()}</td>
-                                                    <td>${a.getAge()}</td>
-                                                    <td>${a.getPhone_number()}</td>
-                                                    <td>${a.getEmail()}</td>
-                                                    <td>${a.getAddress()}</td>
-                                                </tr>
-                                            </c:forEach>
+                                            <c:forEach items="${listC}" var="c">
+                                            <tr>
+                                                <td>${c.getUserID()}</td>
+                                                <td>${c.getName()}</td>
+                                                <td>${c.getAge()}</td>
+                                                <td>${c.getPhone_number()}</td>
+                                                <td>${c.getEmail()}</td>
+                                                <td>${c.getAddress()}</td>
+                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>

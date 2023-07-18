@@ -35,8 +35,8 @@ public class TrackingController extends HttpServlet {
 //            out.println("</html>");
             String orderID = request.getParameter("orderID");
             String orderdetail_productID= request.getParameter("orderdetail_productID"); 
-            orderID="77";
-            orderdetail_productID="2";
+//            orderID="1";
+//            orderdetail_productID="1";
             if (orderID!=null && orderdetail_productID!=null) {
                 OrderDAO orderDAO = new OrderDAO();
                 Order o = orderDAO.getOrderInTracking(orderID, orderdetail_productID);

@@ -12,25 +12,23 @@ public class Order {
 
     private String orderID, order_userID, order_salecodeID, note, date, status;
     private String address, phone_number, orderdetail_productID;
-    private String name_user, price_order;
-    
-    
-    
+    private String name_user, price_order,picture,salePrice,quantity,productName;
 
-    
-    
+    public Order(String orderID, String date, String status, String address, String picture, String salePrice, String quantity, String productName,String orderdetail_productID,int temp) {
+        this.orderID=orderID;
+        this.date = date;
+        this.status = status;
+        this.address = address;
+        this.picture = picture;
+        this.salePrice = salePrice;
+        this.quantity = quantity;
+        this.productName = productName;
+        this.orderdetail_productID = orderdetail_productID;
+    }
+
     public Order() {
     }
 
-    /**
-     *
-     * @param orderID
-     * @param order_userID
-     * @param order_salecodeID
-     * @param note
-     * @param date
-     * @param status
-     */
     public Order(String orderID, String order_userID, String order_salecodeID, String note, String date, String status) {
         this.orderID = orderID;
         this.order_userID = order_userID;
@@ -39,19 +37,7 @@ public class Order {
         this.date = date;
         this.status = status;
     }
-    
-    
-    public Order(String orderID, String cName, String phone, String address, String price, String date, String status){
-        this.orderID = orderID;
-        this.name_user = cName;
-        this.phone_number = phone;
-        this.address = address;
-        this.price_order = price;
-        this.date = date;
-        this.status = status;
-    }
 
-    
     public Order(String order_userID, String order_salecodeID, String date, String status) {
         this.order_userID = order_userID;
         this.order_salecodeID = order_salecodeID;
@@ -69,6 +55,14 @@ public class Order {
 
     public String getPhone_number() {
         return phone_number;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public void setPhone_number(String phone_number) {
@@ -93,6 +87,30 @@ public class Order {
         this.address = address;
         this.phone_number = phone_number;
         this.orderdetail_productID = orderdetail_productID;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(String salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
     public String getOrderID() {
@@ -170,13 +188,6 @@ public class Order {
     public void setNote(String note) {
         this.note = note;
     }
-
-    @Override
-    public String toString() {
-        return "Order{" + "orderID=" + orderID + ", date=" + date + ", status=" + status + ", address=" + address + ", phone_number=" + phone_number + ", name_user=" + name_user + ", price_order=" + price_order + '}';
-    }
-    
-    
     
     
 
