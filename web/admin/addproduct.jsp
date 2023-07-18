@@ -230,7 +230,7 @@
                                
                                 <div class="form-group col-md-3">
                                     <label class="control-label">Giá</label>
-                                    <input name="price" class="form-control" type="text">
+                                    <input name="price" class="form-control" type="number">
                                 </div>
                                
                                 <div class="form-group col-md-3">
@@ -261,17 +261,17 @@
                                     
                                     <div class="form-group col-md-3 earphone" >
                                     <label class="control-label">Tần số</label>
-                                    <input name="frequency" class="form-control" type="text">
+                                    <input name="frequency" class="form-control" type="number">
                                     </div>
                                     
                                     <div class="form-group col-md-3 earphone">
                                     <label class="control-label">Độ nhạy </label>
-                                    <input name="sensitive" class="form-control" type="text">
+                                    <input name="sensitive" class="form-control" type="number">
                                     </div>
                                     
                                     <div class="form-group col-md-3 earphone">
                                     <label class="control-label">Trở kháng</label>
-                                    <input name="impedance" class="form-control" type="text">
+                                    <input name="impedance" class="form-control" type="number">
                                     </div>
                                     
                                     <div class="form-group col-md-3 earphone">
@@ -346,14 +346,14 @@
 
                                 <div class="form-group  col-md-3">
                                     <label class="control-label">Số lượng</label>
-                                    <input value="${p.quantity}" name="quantity" class="form-control" type="text">
+                                    <input value="${p.quantity}" name="quantity" class="form-control" type="number">
                                 </div>
                                 
                               
                                
                                 <div class="form-group col-md-3">
                                     <label class="control-label">Giá</label>
-                                    <input value="${p.price}" name="price" class="form-control" type="text">
+                                    <input value="${p.price}" name="price" class="form-control" type="number">
                                 </div>
                                
                                 <div class="form-group col-md-3">
@@ -380,17 +380,17 @@
                                     
                                     <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'} >
                                     <label class="control-label">Tần số</label>
-                                    <input value= "${earphone.frequency}" name="frequency" class="form-control" type="text">
+                                    <input value= "${earphone.frequency}" name="frequency" class="form-control" type="number">
                                     </div>
                                     
                                     <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'} >
                                     <label class="control-label">Độ nhạy </label>
-                                    <input value="${earphone.sensitive}" name="sensitive" class="form-control" type="text">
+                                    <input value="${earphone.sensitive}" name="sensitive" class="form-control" type="number">
                                     </div>
                                     
                                     <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'} >
                                     <label class="control-label">Trở kháng</label>
-                                    <input value="${earphone.impedance}" name="impedance" class="form-control" type="text">
+                                    <input value="${earphone.impedance}" name="impedance" class="form-control" type="number">
                                     </div>
                                     
                                     <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
