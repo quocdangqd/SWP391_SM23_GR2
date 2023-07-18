@@ -107,6 +107,8 @@
     <servlet>
         <servlet-name>OrderListController</servlet-name>
         <servlet-class>Controller.View.OrderListController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>OrderDetailController</servlet-name>
         <servlet-class>Controller.Admin.OrderDetailController</servlet-class>
     </servlet>
@@ -121,6 +123,8 @@
     <servlet>
         <servlet-name>SalerCustomerController</servlet-name>
         <servlet-class>Controller.Saler.SalerCustomerController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AdminController</servlet-name>
         <servlet-class>Controller.Admin.AdminController</servlet-class>
     </servlet>
@@ -237,6 +241,8 @@
     <servlet-mapping>
         <servlet-name>OrderListController</servlet-name>
         <url-pattern>/view/OrderListController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>OrderDetailController</servlet-name>
         <url-pattern>/admin/OrderDetailController</url-pattern>
     </servlet-mapping>

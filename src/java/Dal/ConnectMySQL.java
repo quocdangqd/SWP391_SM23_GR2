@@ -14,7 +14,7 @@ public class ConnectMySQL {
     public ResultSet rs;// luu tru va xu li du lieu
     private static String DB_URL = "jdbc:mysql://localhost:3306/swp";
     private static String USER_NAME = "root";
-    private static String PASSWORD = "quocdangqd";
+    private static String PASSWORD = "Trang@1808";
     protected Connection connection = null;
 
     public ConnectMySQL() {
