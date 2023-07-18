@@ -172,16 +172,15 @@ public class ProductDAO extends ConnectMySQL {
         return data;
     }
 
-    public List<Products> searchProducts(String keyword,String sort) {
+    public List<Products> searchProducts(String keyword, String sort) {
 
         List<Products> data = new ArrayList<>();
         try {
             String sqlSelect = "Select * from product where name like ? ";
-            if("1".equals(sort)){
-                sqlSelect+="order by date asc";
-            }
-            else if("2".equals(sort)){
-                sqlSelect+="order by date desc";
+            if ("1".equals(sort)) {
+                sqlSelect += "order by date asc";
+            } else if ("2".equals(sort)) {
+                sqlSelect += "order by date desc";
             }
             pstm = connection.prepareStatement(sqlSelect);
             pstm.setString(1, "%" + keyword + "%");
@@ -208,6 +207,7 @@ public class ProductDAO extends ConnectMySQL {
         }
         return data;
     }
+
     public ArrayList<Products> GetProductListByNameAndCategoryID(String pName, String product_categoryId) {
         ArrayList<Products> data = new ArrayList<>();
         try {
@@ -450,38 +450,7 @@ public class ProductDAO extends ConnectMySQL {
         return total;
     }
 
-    
-
-    public static void main(String[] args) {
-//        ProductDAO productDAO = new ProductDAO();
-//        // Định dạng số với dấu chấm
-////        int size = productDAO.getProductListByCategoryIDAndNameAndSort("1","a","ascendingSalePrice").size();
-////        size = productDAO.BestSellerProducts().size();
-////        size=productDAO.getProductListByCategoryIDAndSort("1", "rate").size();
-////        System.out.println(size);
-////        System.out.println(formattedNumber);
-//        for (Products p : productDAO.getProductListByCategoryIDAndNameAndSort("1", "a", "rate")) {
-//            System.out.println("productid: " + p.getProductID() + " ");
-//            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
-//            System.out.println("Name: " + p.getName() + " ");
-//            System.out.println("Description: " + p.getDesciption() + " ");
-//            System.out.println("picture: " + p.getPicture() + " ");
-//            System.out.println("picture2: " + p.getPicture2() + " ");
-//            System.out.println("picture3: " + p.getPicture3() + " ");
-//            System.out.println("price: " + p.getPrice() + " ");
-//            System.out.println("quantity: " + p.getQuantity() + " ");
-//            System.out.println("status: " + p.getStatus() + " ");
-//            System.out.println("sale: " + p.getSale() + " ");
-//            System.out.println("rateStar: " + p.getRateStar() + " ");
-//            System.out.println("saleprice: " + p.getSalePrice() + " ");
-//            System.out.println("");
-//        }
-//
-//        return data;
-//    }
-    }
     public Products getProductsByID(String id) {
-
         try {
             String sqlSelect = "Select * from product where ProductID=" + id;
             pstm = connection.prepareStatement(sqlSelect);
@@ -528,7 +497,7 @@ public class ProductDAO extends ConnectMySQL {
                 e.setBattery(String.valueOf(rs.getString(9)));
                 e.setConnection_distance(String.valueOf(rs.getString(10)));
                 e.setWire_length(String.valueOf(rs.getString(11)));
-                
+
                 return e;
             }
         } catch (Exception e) {
@@ -537,10 +506,7 @@ public class ProductDAO extends ConnectMySQL {
 
         return null;
     }
-    
-    
-    
-    
+
     public void updateProduct(Products p) {
         try {
 //            String sql = "UPDATE product\n"
@@ -568,7 +534,8 @@ public class ProductDAO extends ConnectMySQL {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
- public void updateEarphone(Earphone e) {
+
+    public void updateEarphone(Earphone e) {
         try {
 //            
             String sql = "UPDATE swp.earphone SET `type`=?,frequency=?,"
@@ -577,17 +544,17 @@ public class ProductDAO extends ConnectMySQL {
                     + "where earphone_ProductID=?";
             PreparedStatement stm = connection.prepareStatement(sql);
 //            stm.setInt(1, Integer.parseInt(p.getProduct_categoryID()));
-            stm.setString(1,e.getType());
+            stm.setString(1, e.getType());
             stm.setFloat(2, Float.parseFloat(e.getFrequency()));
             stm.setFloat(3, Float.parseFloat(e.getSensitive()));
             stm.setFloat(4, Float.parseFloat(e.getImpedance()));
-            stm.setString(5,e.getMeterial());
-            stm.setString(6,e.getSize());
-            stm.setString(7,e.getBattery());
-            stm.setString(8,e.getConnection_distance());
-            stm.setString(9,e.getWire_length());
+            stm.setString(5, e.getMeterial());
+            stm.setString(6, e.getSize());
+            stm.setString(7, e.getBattery());
+            stm.setString(8, e.getConnection_distance());
+            stm.setString(9, e.getWire_length());
             stm.setString(10, e.getEarphone_ProductID());
-          
+
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -611,14 +578,14 @@ public class ProductDAO extends ConnectMySQL {
             stm.setFloat(7, Float.parseFloat(p.getPrice()));
             stm.setInt(8, Integer.parseInt(p.getQuantity()));
             stm.setBoolean(9, p.getStatus().equals("1"));
-            Date date=Date.valueOf(p.getDate());
-            stm.setDate(10,date);
+            Date date = Date.valueOf(p.getDate());
+            stm.setDate(10, date);
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void addNewEarphone(Earphone e) {
         try {
             String sql = "INSERT INTO swp.`earphone` "
@@ -627,137 +594,36 @@ public class ProductDAO extends ConnectMySQL {
                     + " (?, ?, ?, ?, ?, \n"
                     + "?, ?, ?, ?, ?);";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1,e.getType());
+            stm.setString(1, e.getType());
             stm.setFloat(2, Float.parseFloat(e.getFrequency()));
             stm.setFloat(3, Float.parseFloat(e.getSensitive()));
             stm.setFloat(4, Float.parseFloat(e.getImpedance()));
-            stm.setString(5,e.getMeterial());
-            stm.setString(6,e.getSize());
-            stm.setString(7,e.getBattery());
-            stm.setString(8,e.getConnection_distance());
-            stm.setString(9,e.getWire_length());
+            stm.setString(5, e.getMeterial());
+            stm.setString(6, e.getSize());
+            stm.setString(7, e.getBattery());
+            stm.setString(8, e.getConnection_distance());
+            stm.setString(9, e.getWire_length());
             stm.setString(10, e.getEarphone_ProductID());
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-        
+
     }
-     public int getLastId(){
-         try {
+
+    public int getLastId() {
+        try {
             String sql = "SELECT * FROM swp.product ORDER BY ProductID DESC LIMIT 1";
             pstm = connection.prepareStatement(sql);
             rs = pstm.executeQuery();
-             if (rs.next()) {
-                
+            if (rs.next()) {
+
                 return rs.getInt(1);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-            return 0;
-        }
-//    public static void main(String[] args) {
-//        ProductDAO productDAO = new ProductDAO();
-//        
-//        
-//        Products p = new Products();
-//        p.setProduct_categoryID("1");
-//        p.setProductID("73");
-//        p.setName("as");
-//        p.setQuantity("2");
-//        p.setPrice("1");
-//        p.setStatus("1");
-//        p.setDate("2023-07-11");
-//        Earphone e = productDAO.getEarphoneByProductID(1+"");
-//        System.out.println(e.getMeterial());
-//           e.setFrequency("22");
-//           e.setSensitive("4");
-//           e.setImpedance("8");
-//           e.setEarphone_ProductID(productDAO.getLastId()+"");
-//           productDAO.updateProduct(p);
-//        p.setProductID("46");
-//        Categories c = new Categories();
-//        c.setCategoryID("1");
-//        p.setProduct_categoryID("1");
-//        p.setQuantity("2");
-//        p.setPrice("1");
-//        p.setStatus("1");
-//        p.setDate("2023-07-11");
-//        productDAO.addNewProduct(p);
 
-//        for(Products p  :productDAO.searchProducts("1")){
-//           
-//            p.setDate("");
-//            
-//        }
-        //         System.out.println(productDAO.getProductsByID("1").getName());
-//            
-//        for (Products p : productDAO.getProductListByCategoryIDAndSort("", "descendingSalePrice")) {
-//            System.out.println("productid: " + p.getProductID() + " ");
-//            System.out.println("categoriID: " + p.getProduct_categoryID()+ " ");
-//            System.out.println("Name: " + p.getName() + " ");
-//            System.out.println("Description: " + p.getDesciption()+ " ");
-//            System.out.println("picture: " + p.getPicture()+ " ");
-//            System.out.println("picture2: " + p.getPicture2()+ " ");
-//            System.out.println("picture3: " + p.getPicture3()+ " ");
-//            System.out.println("price: " + p.getPrice() + " ");
-//            System.out.println("quantity: " + p.getQuantity()+ " ");
-//            System.out.println("status: " + p.getStatus()+ " ");
-//            System.out.println("sale: " + p.getSale() + " ");
-//            System.out.println("rateStar: " + p.getRateStar() + " ");
-//            System.out.println("saleprice: " + p.getSalePrice() + " ");
-//            System.out.println("");
-//        }
-//        for (Products p : productDAO.BestSellerProducts()) {
-//            System.out.print("productid: " + p.getProductID() + " ");
-//            System.out.print("productName: " + p.getName() + " ");
-//            System.out.print("price: " + p.getPrice() + " ");
-//            System.out.print("sale: " + p.getSale() + " ");
-//            System.out.print("rateStar: " + p.getRateStar() + " ");
-//            System.out.print("saleprice: " + p.getSalePrice() + " ");
-//            System.out.println("");
-//        }
-//        for (Products p : productDAO.BestSellerProducts()) {
-//            if (p.getProductID().equals("1")) {
-//
-//                System.out.print("productid: " + p.getProductID() + " ");
-//                System.out.print("productName: " + p.getName() + " ");
-////            System.out.print("price: " + p.getPrice() + " ");
-//                System.out.println("picture: " + p.getPicture());
-//            }
-////            System.out.print("sale: " + p.getSale() + " ");
-////            System.out.print("rateStar: " + p.getRateStar() + " ");
-////            System.out.print("saleprice: " + p.getSalePrice() + " ");
-//            System.out.println("");
-//        }
-//        String linkImage1 = productDAO.imageLink();
-//        System.out.println(linkImage1);
-//        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
-//        decimalFormat.applyPattern("#,###");
-//        double x = 123.1;
-//        double y = 2.3;
-//        String s = decimalFormat.format(x + y);
-//        System.out.println("s: " + s);
-//        double x = 3.44;
-//        System.out.println(new DecimalFormat("#.0").format(x));
-//        for (Products p : productDAO.getProductListByType("wired")) {
-//            System.out.println("productid: " + p.getProductID() + " ");
-//            System.out.println("categoriID: " + p.getProduct_categoryID() + " ");
-//            System.out.println("Name: " + p.getName() + " ");
-//            System.out.println("Description: " + p.getDesciption() + " ");
-//            System.out.println("picture: " + p.getPicture() + " ");
-//            System.out.println("picture2: " + p.getPicture2() + " ");
-//            System.out.println("picture3: " + p.getPicture3() + " ");
-//            System.out.println("price: " + p.getPrice() + " ");
-//            System.out.println("quantity: " + p.getQuantity() + " ");
-//            System.out.println("status: " + p.getStatus() + " ");
-//            System.out.println("sale: " + p.getSale() + " ");
-//            System.out.println("rateStar: " + p.getRateStar() + " ");
-//            System.out.println("saleprice: " + p.getSalePrice() + " ");
-//            System.out.println("");
-//        }
+        return 0;
     }
-
+}
