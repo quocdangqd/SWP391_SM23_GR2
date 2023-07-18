@@ -3,7 +3,7 @@
     Created on : 24-05-2023, 01:34:40
     Author     : trand
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,12 @@
         <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
         <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
         <script>
+            function showDiv(divId, element) {
+                var div = document.getElementsByClassName(divId);
 
+                for (i = 0; i < div.length; i++)
+                    div[i].style.display = element.value === '1' ? 'block' : 'none';
+            }
             function readURL(input, thumbimage) {
                 if (input.files && input.files[0]) { //Sử dụng  cho Firefox - chrome
                     var reader = new FileReader();
@@ -95,7 +100,11 @@
             .removeimg {
                 display: none;
             }
-
+            <c:if test="${p==null}">
+                .earphone {
+                    display: none;
+                }
+            </c:if>
             #thumbbox {
                 position: relative;
                 width: 100%;
@@ -167,12 +176,15 @@
                             class="app-menu__label">Bảng điều khiển</span></a></li>
                 <li><a class="app-menu__item " href="usermanager.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
                             class="app-menu__label">Quản lý người dùng</span></a></li>
-                <li><a class="app-menu__item active" href="productmanager.jsp"><i
+                <li><a class="app-menu__item active" href="AdminController"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
                 </li>
                 <li><a class="app-menu__item" href="ordermanager.jsp"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Quản lý đơn hàng</span></a></li>
-                <li><a class="app-menu__item" href="incomemanager.jsp"><i
+                <li><a class="app-menu__item" href="accountmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
+                            class="app-menu__label">Quản lý tài khoản
+                        </span></a></li>
+                <li><a class="app-menu__item" href="AdminIncomeController"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
                 </li>
             </ul>
@@ -184,258 +196,286 @@
                     <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
                 </ul>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="tile">
-                        <h3 class="tile-title">Tạo mới sản phẩm</h3>
-                        <div class="tile-body">
-                            <div class="row element-button">
-                                <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#exampleModalCenter"><i
-                                            class="fas fa-folder-plus"></i> Thêm nhà cung cấp</a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#adddanhmuc"><i
-                                            class="fas fa-folder-plus"></i> Thêm danh mục</a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtinhtrang"><i
-                                            class="fas fa-folder-plus"></i> Thêm tình trạng</a>
-                                </div>
-                            </div>
-                            <form class="row">
+            <c:if test="${p==null}"> 
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tile">
+                            <h3 class="tile-title">Tạo mới sản phẩm</h3>
+
+                            <form class="row" action="editproduct" method="post">
+
                                 <div class="form-group col-md-3">
-                                    <label class="control-label">Mã sản phẩm </label>
-                                    <input class="form-control" type="number" placeholder="">
+                                    <label for="exampleSelect1" class="control-label">Danh mục</label>
+                                    <select name="category" class="form-control" id="exampleSelect1" onchange="showDiv('earphone', this)">
+                                        <option>-- Chọn danh mục --</option>
+                                        <c:forEach items="${categoriesList}" var="c">
+                                            <option value="${c.categoryID}" >${c.name}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Tên</label>
+                                    <input name="name" class="form-control" type="text">
+
+                                </div>
+
+                                <div class="form-group  col-md-3">
+                                    <label class="control-label">Số lượng</label>
+                                    <input name="quantity" class="form-control" type="number">
+                                </div>
+
+
+
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Giá</label>
+                                    <input name="price" class="form-control" type="number">
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Ảnh 1</label>
+                                    <input name="image" class="form-control" type="text">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label class="control-label">Tên sản phẩm</label>
-                                    <input class="form-control" type="text">
+                                    <label class="control-label">Ảnh 2</label>
+                                    <input name="image2" class="form-control" type="text">
                                 </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Ảnh 3</label>
+                                    <input name="image3" class="form-control" type="text">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Trạng thái</label>
+                                    <input name="status" value="${p.status}" class="form-control" type="text">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Ngày</label>
+                                    <input name="date" class="form-control" type="date">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone" >
+                                    <label class="control-label">Loại</label>
+                                    <input name="type" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone" >
+                                    <label class="control-label">Tần số</label>
+                                    <input name="frequency" class="form-control" type="number">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Độ nhạy </label>
+                                    <input name="sensitive" class="form-control" type="number">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Trở kháng</label>
+                                    <input name="impedance" class="form-control" type="number">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Chất liệu</label>
+                                    <input name="meterial" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Kích cỡ</label>
+                                    <input name="size" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Pin</label>
+                                    <input name="battery" class="form-control" type="text">
+                                </div><!-- comment -->
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Khoảng cách kết nối </label>
+                                    <input name="connection distance" class="form-control" type="text">
+                                </div> 
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Độ dài dây</label>
+                                    <input name="wire length" class="form-control" type="text">
+
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="control-label">Miêu tả</label>
+                                    <textarea  class="form-control" name="description" id="mota"></textarea>
+                                    <script>CKEDITOR.replace('description');</script>
+                                </div>
+
+
+                                <button class="btn btn-save" type="submit" type="button">Lưu</button>
+                                <a class="btn btn-cancel" href="AdminController">Hủy</a>
+                            </form><!-- comment -->
+                        </div>
+                    </div>
+                </div>
+            </c:if>
+            <c:if test="${p!=null}">
+
+                <div>    
+                    <div class="col-md-12">
+                        <div class="tile">
+                            <h3 class="tile-title">Chỉnh sửa sản phẩm</h3>
+
+                            <form class="row"action="editproduct" method="post">
+
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">ID</label>
+                                    <input name="id"  value="${p.productID}" class="form-control" type="text" placeholder="">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="exampleSelect1" class="control-label">Danh mục</label>
+                                    <select name="category" class="form-control" id="exampleSelect1" onchange="showDiv('earphone', this)">
+                                        <option>-- Chọn danh mục --</option>
+                                        <c:forEach items="${categoriesList}" var="c">
+                                            <option ${(p.categories.categoryID == c.categoryID)?"selected":""} value="${c.categoryID}">${c.name}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Tên</label>
+                                    <input value="${p.name}" name="name"  class="form-control" type="text">
+                                </div>
+
+
 
 
                                 <div class="form-group  col-md-3">
                                     <label class="control-label">Số lượng</label>
-                                    <input class="form-control" type="number">
+                                    <input value="${p.quantity}" name="quantity" class="form-control" type="number">
                                 </div>
-                                <div class="form-group col-md-3 ">
-                                    <label for="exampleSelect1" class="control-label">Tình trạng</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn tình trạng --</option>
-                                        <option>Còn hàng</option>
-                                        <option>Hết hàng</option>
-                                    </select>
+
+
+
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Giá</label>
+                                    <input value="${p.price}" name="price" class="form-control" type="number">
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Ảnh 1</label>
+                                    <input value="${p.picture}" name="image" class="form-control" type="text">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn danh mục --</option>
-                                        <option>Bàn ăn</option>
-                                        <option>Bàn thông minh</option>
-                                        <option>Tủ</option>
-                                        <option>Ghế gỗ</option>
-                                        <option>Ghế sắt</option>
-                                        <option>Giường người lớn</option>
-                                        <option>Giường trẻ em</option>
-                                        <option>Bàn trang điểm</option>
-                                        <option>Giá đỡ</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-3 ">
-                                    <label for="exampleSelect1" class="control-label">Nhà cung cấp</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn nhà cung cấp --</option>
-                                        <option>Phong vũ</option>
-                                        <option>Thế giới di động</option>
-                                        <option>FPT</option>
-                                        <option>Võ Trường</option>
-                                    </select>
+                                    <label class="control-label">Ảnh 2</label>
+                                    <input value="${p.picture2}" name="image2" class="form-control" type="text">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label class="control-label">Giá bán</label>
-                                    <input class="form-control" type="text">
+                                    <label class="control-label">Ảnh 3</label>
+                                    <input value="${p.picture3}" name="image3" class="form-control" type="text">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label class="control-label">Giá vốn</label>
-                                    <input class="form-control" type="text">
+                                    <label class="control-label">Trạng thái</label>
+                                    <input value="${p.status}" name="status" class="form-control" type="text">
                                 </div>
+
+                                <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <label class="control-label">Loại</label>
+                                    <input value="${earphone.type}" name="type" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'} >
+                                    <label class="control-label">Tần số</label>
+                                    <input value= "${earphone.frequency}" name="frequency" class="form-control" type="number">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'} >
+                                    <label class="control-label">Độ nhạy </label>
+                                    <input value="${earphone.sensitive}" name="sensitive" class="form-control" type="number">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'} >
+                                    <label class="control-label">Trở kháng</label>
+                                    <input value="${earphone.impedance}" name="impedance" class="form-control" type="number">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <label class="control-label">Chất liệu</label>
+                                    <input value="${earphone.meterial}" name="meterial" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <label class="control-label">Kích cỡ</label>
+                                    <input value="${earphone.size}" name="size" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <label class="control-label">Pin</label>
+                                    <input value="${earphone.battery}" name="battery" class="form-control" type="text">
+                                </div><!-- comment -->
+
+                                <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <label class="control-label">Khoảng cách kết nối </label>
+                                    <input value="${earphone.connection_distance}" name="connection distance" class="form-control" type="text">
+                                </div> 
+
+                                <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <label class="control-label">Độ dài dây</label>
+                                    <input value="${earphone.wire_length}" name="wire length" class="form-control" type="text">
+
+                                </div>
+
+
                                 <div class="form-group col-md-12">
-                                    <label class="control-label">Ảnh sản phẩm</label>
-                                    <div id="myfileupload">
-                                        <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" />
-                                    </div>
-                                    <div id="thumbbox">
-                                        <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
-                                        <a class="removeimg" href="javascript:"></a>
-                                    </div>
-                                    <div id="boxchoice">
-                                        <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
-                                        <p style="clear:both"></p>
-                                    </div>
-
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label class="control-label">Mô tả sản phẩm</label>
-                                    <textarea class="form-control" name="mota" id="mota"></textarea>
-                                    <script>CKEDITOR.replace('mota');</script>
+                                    <label class="control-label">Miêu tả</label>
+                                    <textarea name="description" class="form-control" required>${p.desciption}</textarea>
+                                    <script>CKEDITOR.replace('description');</script>
                                 </div>
 
-                        </div>
-                        <button class="btn btn-save" type="button">Lưu lại</button>
-                        <a class="btn btn-cancel" href="productmanager.jsp">Hủy bỏ</a>
-                    </div>
-                    </main>
 
-
-                    <!--
-                    MODAL CHỨC VỤ 
-                    -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                         data-backdrop="static" data-keyboard="false">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="form-group  col-md-12">
-                                            <span class="thong-tin-thanh-toan">
-                                                <h5>Thêm mới nhà cung cấp</h5>
-                                            </span>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label class="control-label">Nhập tên chức vụ mới</label>
-                                            <input class="form-control" type="text" required>
-                                        </div>
-                                    </div>
-                                    <BR>
-                                    <button class="btn btn-save" type="button">Lưu lại</button>
-                                    <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                                    <BR>
-                                </div>
                                 <div class="modal-footer">
+                                    <input type="submit" class="btn btn-success" value="Edit">
+                                    <a class="btn btn-cancel" href="AdminController">Cancel</a>
                                 </div>
-                            </div>
+
+                            </form>
+
                         </div>
                     </div>
-                    <!--
-                  MODAL
-                    -->
+                </div>
 
+            </div>
 
-
-                    <!--
-                    MODAL DANH MỤC
-                    -->
-                    <div class="modal fade" id="adddanhmuc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                         data-backdrop="static" data-keyboard="false">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="form-group  col-md-12">
-                                            <span class="thong-tin-thanh-toan">
-                                                <h5>Thêm mới danh mục </h5>
-                                            </span>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label class="control-label">Nhập tên danh mục mới</label>
-                                            <input class="form-control" type="text" required>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label class="control-label">Danh mục sản phẩm hiện đang có</label>
-                                            <ul style="padding-left: 20px;">
-                                                <li>Bàn ăn</li>
-                                                <li>Bàn thông minh</li>
-                                                <li>Tủ</li>
-                                                <li>Ghế gỗ</li>
-                                                <li>Ghế sắt</li>
-                                                <li>Giường người lớn</li>
-                                                <li>Giường trẻ em</li>
-                                                <li>Bàn trang điểm</li>
-                                                <li>Giá đỡ</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <BR>
-                                    <button class="btn btn-save" type="button">Lưu lại</button>
-                                    <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                                    <BR>
-                                </div>
-                                <div class="modal-footer">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--
-                  MODAL
-                    -->
+        </c:if>
+    </main>
 
 
 
 
-                    <!--
-                    MODAL TÌNH TRẠNG
-                    -->
-                    <div class="modal fade" id="addtinhtrang" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                         data-backdrop="static" data-keyboard="false">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="form-group  col-md-12">
-                                            <span class="thong-tin-thanh-toan">
-                                                <h5>Thêm mới tình trạng</h5>
-                                            </span>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label class="control-label">Nhập tình trạng mới</label>
-                                            <input class="form-control" type="text" required>
-                                        </div>
-                                    </div>
-                                    <BR>
-                                    <button class="btn btn-save" type="button">Lưu lại</button>
-                                    <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                                    <BR>
-                                </div>
-                                <div class="modal-footer">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--
-                  MODAL
-                    -->
 
 
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/plugins/pace.min.js"></script>
+    <script>
 
-                    <script src="js/jquery-3.2.1.min.js"></script>
-                    <script src="js/popper.min.js"></script>
-                    <script src="js/bootstrap.min.js"></script>
-                    <script src="js/main.js"></script>
-                    <script src="js/plugins/pace.min.js"></script>
-                    <script>
-                                      const inpFile = document.getElementById("inpFile");
-                                      const loadFile = document.getElementById("loadFile");
-                                      const previewContainer = document.getElementById("imagePreview");
-                                      const previewContainer = document.getElementById("imagePreview");
-                                      const previewImage = previewContainer.querySelector(".image-preview__image");
-                                      const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-                                      inpFile.addEventListener("change", function () {
-                                          const file = this.files[0];
-                                          if (file) {
-                                              const reader = new FileReader();
-                                              previewDefaultText.style.display = "none";
-                                              previewImage.style.display = "block";
-                                              reader.addEventListener("load", function () {
-                                                  previewImage.setAttribute("src", this.result);
-                                              });
-                                              reader.readAsDataURL(file);
-                                          }
-                                      });
+                        const inpFile = document.getElementById("inpFile");
+                        const loadFile = document.getElementById("loadFile");
+                        const previewContainer = document.getElementById("imagePreview");
+                        const previewContainer = document.getElementById("imagePreview");
+                        const previewImage = previewContainer.querySelector(".image-preview__image");
+                        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+                        inpFile.addEventListener("change", function () {
+                            const file = this.files[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                previewDefaultText.style.display = "none";
+                                previewImage.style.display = "block";
+                                reader.addEventListener("load", function () {
+                                    previewImage.setAttribute("src", this.result);
+                                });
+                                reader.readAsDataURL(file);
+                            }
+                        });
 
-                    </script>
-                    </body>
 
-                    </html>
+    </script>
+</body>
+
+</html>
