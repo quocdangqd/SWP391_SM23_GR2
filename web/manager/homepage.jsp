@@ -103,12 +103,12 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="homepage.jsp"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="ManagerHomepageController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item active" href="ManagerHompageController"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item active" href="ManagerHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
                 <li><a class="app-menu__item " href="ManagerProductController"><i
@@ -118,7 +118,7 @@
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
                 <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
-                <li><a class="app-menu__item" href="incomemanager.jsp"><i
+                <li><a class="app-menu__item" href="ManagerIncomeController"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
                 </li>
             </ul>
@@ -181,83 +181,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Sales chart -->
-                        <!-- ============================================================== -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-md-flex align-items-center">
-                                            <div>
-                                                <h4 class="card-title">Báo cáo</h4>
-                                                <h5 class="card-subtitle">Tổng quan tháng trước</h5>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <!-- column -->
-                                            <div class="col-lg-9">
-                                                <div class="flot-chart">
-                                                    <div
-                                                        class="flot-chart-content"
-                                                        id="flot-line-chart"
-                                                        ></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="bg-dark p-10 text-white text-center">
-                                                            <i class="mdi mdi-account fs-3 mb-1 font-16"></i>
-                                                            <h5 class="mb-0 mt-1">2540</h5>
-                                                            <small class="font-light">Tổng người truy cập</small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="bg-dark p-10 text-white text-center">
-                                                            <i class="mdi mdi-plus fs-3 font-16"></i>
-                                                            <h5 class="mb-0 mt-1">120</h5>
-                                                            <small class="font-light">Sản phẩm mới</small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 mt-3">
-                                                        <div class="bg-dark p-10 text-white text-center">
-                                                            <i class="mdi mdi-cart fs-3 mb-1 font-16"></i>
-                                                            <h5 class="mb-0 mt-1">656</h5>
-                                                            <small class="font-light">Đơn hàng mới</small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 mt-3">
-                                                        <div class="bg-dark p-10 text-white text-center">
-                                                            <i class="mdi mdi-tag fs-3 mb-1 font-16"></i>
-                                                            <h5 class="mb-0 mt-1">9540</h5>
-                                                            <small class="font-light">Tổng đơn hàng</small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 mt-3">
-                                                        <div class="bg-dark p-10 text-white text-center">
-                                                            <i class="mdi mdi-table fs-3 mb-1 font-16"></i>
-                                                            <h5 class="mb-0 mt-1">100</h5>
-                                                            <small class="font-light">Pending Orders</small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 mt-3">
-                                                        <div class="bg-dark p-10 text-white text-center">
-                                                            <i class="mdi mdi-web fs-3 mb-1 font-16"></i>
-                                                            <h5 class="mb-0 mt-1">8540</h5>
-                                                            <small class="font-light">Online Orders</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- column -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ============================================================== -->
-                        <!-- Sales chart -->
-                        <!-- col-12 -->
                         <div class="col-md-12">
                             <div class="tile">
                                 <h3 class="tile-title"><a href="ManagerOrderController">Tình trạng đơn hàng</a></h3>

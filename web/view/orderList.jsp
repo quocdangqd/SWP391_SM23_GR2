@@ -202,7 +202,7 @@
             }
             .btn:not(:disabled):not(.disabled) {
                 margin-top:0px;
-                font-size: 3rem;
+                font-size: 2rem;
 
             }
             .status {
@@ -274,9 +274,17 @@
             }
             .hover-order:hover{
                 background: white;
-                background-color: #f24137;
-                color: white;
+                color: red;
                 text-decoration: none;
+            }
+            .show-entries.active {
+                border-bottom: 4px solid red;
+                color: red;
+            }
+
+            .show-entries.active:hover {
+                border-bottom: 4px solid red;
+                color: red;
             }
             @media all and (max-width:375px){
 
@@ -300,7 +308,7 @@
                         <div class="table-filter">
                             <div class="container">
                                 <section class="row">
-                                    <a href="" class="show-entries hover-order col-lg-2">
+                                    <a href="" class="show-entries hover-order col-lg-2 active">
                                         <div>Tất cả</div>
                                     </a>
                                     <a href="" class="show-entries hover-order col-lg-3">
@@ -345,11 +353,11 @@
                                     <td>$254</td>                                  
                                     <td>
                                         <div class="row">
-                                            <button class="btn btn-primary cols-1" type="button" title="Xóa" onclick="openPopup()" style="width: 31px; height: 52px;"><i class="fas fa-trash-alt" style="width: 16px;
-                                                                                                                                                                         height: 19px;"></i>
+                                            <button class="btn btn-primary cols-4" type="button" title="Xóa" onclick="openPopup()"><i class="fas fa-trash-alt" style="margin: auto"></i>
                                             </button>
-                                            <button class="btn btn-primary cols-1" type="button" title="Xem" style="width: 31px; height: 52px;"><i class="fas fa-list" style="width: 16px;
-                                                                                                                                                   height: 19px;"></i>
+                                            <button class="btn btn-primary cols-4" type="button" title="Xem"><i class="fas fa-list" style="margin: auto"></i>
+                                            </button>
+                                            <button class="btn btn-primary cols-4" type="button" title="Đã nhận đơn hàng"><i class="fas fa-check" style="margin: auto"></i>
                                             </button>
 
                                         </div>

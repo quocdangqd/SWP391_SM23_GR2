@@ -10,7 +10,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Thêm nhân viên | Quản trị Admin</title>
+        <title>chỉnh sửa người dùng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -180,7 +180,7 @@
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb">
                     <li class="breadcrumb-item">Danh sách người dùng</li>
-                    <li class="breadcrumb-item"><a href="#">Thêm người dùng</a></li>
+                    <li class="breadcrumb-item"><a href="#">Chỉnh sửa người dùng</a></li>
                 </ul>
             </div>
             <div class="row">
@@ -188,7 +188,7 @@
 
                     <div class="tile">
 
-                        <h3 class="tile-title">Tạo mới người dùng</h3>
+                        <h3 class="tile-title">Chỉnh sửa người dùng</h3>
                         <div class="tile-body">
                             <form class="row">
                                 <div class="form-group col-md-4">

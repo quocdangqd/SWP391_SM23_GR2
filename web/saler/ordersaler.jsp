@@ -10,7 +10,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Danh sách nhân viên | Quản trị Admin</title>
+        <title>Danh sách đơn hàng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -101,15 +101,15 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="homepage.jsp"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="SalerOrderController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item active" href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
-                            class="app-menu__label">Quản lý đơn hàng</span></a></li>
-                <li><a class="app-menu__item " href="customermanager.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
-                            class="app-menu__label">Quản lý khách hàng</span></a></li>
+                <li><a class="app-menu__item active" href="SalerOrderController"><i class='app-menu__icon bx bx-tachometer'></i><span
+                            class="app-menu__label">Danh sách đơn hàng</span></a></li>
+                <li><a class="app-menu__item " href="SalerCustomerController"><i class='app-menu__icon bx bx-id-card'></i> <span
+                            class="app-menu__label">Danh sách khách hàng</span></a></li>
             </ul>
         </aside>
         <main class="app-content">
@@ -131,50 +131,26 @@
                         <div class="col-md-12">
                             <div class="tile">
                                 <h3 class="tile-title">Tình trạng đơn hàng</h3>
-                                <h4 class="tile-title"> Nguyễn Việt Dũng </h4>
+                                <h4 class="tile-title">Nhân viên: ABC </h4>
                                 <div>
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>ID đơn hàng</th>
+                                                <th>Mã đơn hàng</th>
                                                 <th>Tên khách hàng</th>
                                                 <th>Tổng tiền</th>
-                                                <th>Trạng thái</th>
+                                                <th>Trạng thái đơn hàng</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <c:forEach items="${listO}" var="o">
                                             <tr>
-                                                <td>AL3947</td>
-                                                <td>Phạm Thị Ngọc</td>
-                                                <td>
-                                                    19.770.000 đ
-                                                </td>
-                                                <td><span class="badge bg-info">Chờ xử lý</span></td>
+                                                <td><a style="color: #ff6666" href="ManagerOrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>
+                                                <td>${o.getName_user()}</td>
+                                                <td>${o.getPrice_order()}</td>
+                                                <td>${o.getStatus()}</td>
                                             </tr>
-                                            <tr>
-                                                <td>ER3835</td>
-                                                <td>Nguyễn Thị Mỹ Yến</td>
-                                                <td>
-                                                    16.770.000 đ	
-                                                </td>
-                                                <td><span class="badge bg-warning">Đang vận chuyển</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>MD0837</td>
-                                                <td>Triệu Thanh Phú</td>
-                                                <td>
-                                                    9.400.000 đ	
-                                                </td>
-                                                <td><span class="badge bg-success">Đã hoàn thành</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>MT9835</td>
-                                                <td>Đặng Hoàng Phúc	</td>
-                                                <td>
-                                                    40.650.000 đ	
-                                                </td>
-                                                <td><span class="badge bg-danger">Đã hủy	</span></td>
-                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
