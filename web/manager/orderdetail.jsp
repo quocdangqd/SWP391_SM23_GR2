@@ -211,12 +211,12 @@
                                                         <td class="text-end">${tax}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="4" class="text-lg-right">Mã giảm giá (%)</td>
-                                                        <td class="text-end"></td>
+                                                        <td colspan="4" class="text-lg-right"><b>Tổng cộng tiền:</b></td>
+                                                        <td class="text-end"><b>${grandTotal}</b></td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="4" class="text-lg-right"><b>Tổng cộng tiền thanh toán:</b></td>
-                                                        <td class="text-end"><b>${grandTotal}</b></td>
+                                                        <td colspan="4" class="text-lg-right"><b>Tổng cộng tiền thanh toán (áp dụng mã giảm giá):</b></td>
+                                                        <td class="text-end"><b>${grandTotalSale}</b></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

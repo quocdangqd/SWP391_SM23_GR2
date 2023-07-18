@@ -70,11 +70,11 @@
     </servlet>
     <servlet>
         <servlet-name>AdminController</servlet-name>
-        <servlet-class>Controller.View.AdminController</servlet-class>
+        <servlet-class>Controller.Admin.AdminController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditProductController</servlet-name>
-        <servlet-class>Controller.View.EditProductController</servlet-class>
+        <servlet-class>Controller.Admin.EditProductController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManagerOrderDetailController</servlet-name>

@@ -29,7 +29,12 @@
         <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
         <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
         <script>
+            function showDiv(divId, element) {
+                var div = document.getElementsByClassName(divId);
 
+                for (i = 0; i < div.length; i++)
+                    div[i].style.display = element.value === '1' ? 'block' : 'none';
+            }
             function readURL(input, thumbimage) {
                 if (input.files && input.files[0]) { //Sử dụng  cho Firefox - chrome
                     var reader = new FileReader();
@@ -97,6 +102,11 @@
                 display: none;
             }
 
+            <c:if test="${p==null}">
+                .earphone {
+                    display: none;
+                }
+            </c:if>
             #thumbbox {
                 position: relative;
                 width: 100%;
@@ -210,31 +220,13 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                    <select name="category" class="form-control" id="exampleSelect1">
-                                        <%--<c:if test="${category == null }">--%>
-                                            <option>-- Chọn danh mục --</option>
-                                            <c:forEach items="${categoriesList}" var="c">
-                                                <option value="${c.getCategoryID()}">${c.getName()}</option>
-                                            </c:forEach>
-                                        <%--</c:if>--%>
-                                        <%--<c:if test="${category != null }">--%>
-                                            <%--<c:forEach items="${categoriesList}" var="c">--%>
-                                                <!--<option value="${c.getCategoryID()}" selected="${c.getCategoryID()}">${c.getName()}</option>-->
-                                            <%--</c:forEach>--%>                                        
-                                        <%--</c:if>--%>
-
+                                    <select name="category" class="form-control" id="exampleSelect1" onchange="showDiv('earphone', this)">
+                                        <option>-- Chọn danh mục --</option>
+                                        <c:forEach items="${categoriesList}" var="c">
+                                            <option value="${c.getCategoryID()}">${c.getName()}</option>
+                                        </c:forEach>
                                     </select>   
                                 </div>
-                                <!--                                <div class="form-group col-md-4 ">
-                                                                    <label for="exampleSelect1" class="control-label">Nhà cung cấp</label>
-                                                                    <select class="form-control" id="exampleSelect1">
-                                                                        <option>-- Chọn nhà cung cấp --</option>
-                                                                        <option value="1">Phong vũ</option>
-                                                                        <option value="2">Thế giới di động</option>
-                                                                        <option value="3">FPT</option>
-                                                                        <option value="4">Võ Trường</option>
-                                                                    </select>
-                                                                </div>-->
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Tình trạng</label>
                                     <input name="status" value="${status}" class="form-control" type="text" readonly="" placeholder="Còn hàng">  
@@ -258,6 +250,52 @@
                                     <input value="${image3}" name="image3" class="form-control" type="text">
                                     <label class="control-label">${Image3Err}</label>
                                 </div>
+
+                                <div class="form-group col-md-3 earphone" >
+                                    <label class="control-label">Loại</label>
+                                    <input name="type" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone" >
+                                    <label class="control-label">Tần số</label>
+                                    <input name="frequency" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Độ nhạy </label>
+                                    <input name="sensitive" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Trở kháng</label>
+                                    <input name="impedance" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Chất liệu</label>
+                                    <input name="meterial" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Kích cỡ</label>
+                                    <input name="size" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Pin</label>
+                                    <input name="battery" class="form-control" type="text">
+                                </div><!-- comment -->
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Khoảng cách kết nối </label>
+                                    <input name="connection distance" class="form-control" type="text">
+                                </div> 
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Độ dài dây</label>
+                                    <input name="wire length" class="form-control" type="text">
+
+                                </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Mô tả sản phẩm</label>
                                     <input class="form-control" name="mota" value="${mota}" required="" placeholder="Nhập mô tả">
@@ -279,24 +317,25 @@
         <script src="js/main.js"></script>
         <script src="js/plugins/pace.min.js"></script>
         <script>
-                                        const inpFile = document.getElementById("inpFile");
-                                        const loadFile = document.getElementById("loadFile");
-                                        const previewContainer = document.getElementById("imagePreview");
-                                        const previewContainer = document.getElementById("imagePreview");
-                                        const previewImage = previewContainer.querySelector(".image-preview__image");
-                                        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-                                        inpFile.addEventListener("change", function () {
-                                            const file = this.files[0];
-                                            if (file) {
-                                                const reader = new FileReader();
-                                                previewDefaultText.style.display = "none";
-                                                previewImage.style.display = "block";
-                                                reader.addEventListener("load", function () {
-                                                    previewImage.setAttribute("src", this.result);
-                                                });
-                                                reader.readAsDataURL(file);
-                                            }
-                                        });
+
+//    const inpFile = document.getElementById("inpFile");
+//                                        const loadFile = document.getElementById("loadFile");
+//                                        const previewContainer = document.getElementById("imagePreview");
+//                                        const previewContainer = document.getElementById("imagePreview");
+//                                        const previewImage = previewContainer.querySelector(".image-preview__image");
+//                                        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+//                                        inpFile.addEventListener("change", function () {
+//                                            const file = this.files[0];
+//                                            if (file) {
+//                                                const reader = new FileReader();
+//                                                previewDefaultText.style.display = "none";
+//                                                previewImage.style.display = "block";
+//                                                reader.addEventListener("load", function () {
+//                                                    previewImage.setAttribute("src", this.result);
+//                                                });
+//                                                reader.readAsDataURL(file);
+//                                            }
+//                                        });
 
         </script>
     </body>

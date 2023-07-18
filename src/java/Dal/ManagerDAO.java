@@ -306,6 +306,23 @@ public class ManagerDAO extends ConnectMySQL {
         return data;
     }
 
+    public int sumPrice(int orderID) {
+        String sql = "SELECT sum(price-price*coalesce(salecodeRate,0)/100) \n"
+                + "FROM swp.salecode sc right outer join swp.order o on sc.salecodeID=o.order_salecodeID , swp.orderdetail od\n"
+                + "where  od.orderdetail_orderID=o.orderID and o.orderID=?;";
+        try {
+            pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, orderID);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
+
 //    public ArrayList<DetailOrder> getOrderIDList() {
 //        ArrayList<DetailOrder> data = new ArrayList<>();
 //        try {
@@ -363,6 +380,17 @@ public class ManagerDAO extends ConnectMySQL {
             System.out.println("getFeedbackList: " + e);
         }
         return feedback;
+    }
+
+    public void deleteFeedback(String pid) {
+        String sql = "DELETE FROM swp.feedback WHERE FeedbackID_ProductID=?;";
+        try {
+            pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, Integer.parseInt(pid));
+            pstm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("deleteFB: " + e);
+        }
     }
 
     //HOMEPAGE

@@ -6,6 +6,7 @@ package Controller.Manager;
 
 import Dal.CategoriesDAO;
 import Dal.ManagerDAO;
+import Model.Earphone;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -39,43 +40,56 @@ public class ManagerAddProductController extends HttpServlet {
         String Quantity = req.getParameter("quantity");
         String Status = req.getParameter("status");
         String date = req.getParameter("date");
+        
+        if ("1".equals(Cid)) {
+            Earphone e = new Earphone();
+            String type = req.getParameter("type");
+            String frequency = req.getParameter("frequency");
+            String sensitive = req.getParameter("sensitive");
+            String impedance = req.getParameter("impedance");
+            String meterial = req.getParameter("meterial");
+            String size = req.getParameter("size");
+            String battery = req.getParameter("battery");
+            String connection_distance = req.getParameter("connection_distance");
+            String wire_length = req.getParameter("wire_length");
+            
+        }
+            req.setAttribute("name", Name);
+            req.setAttribute("price", Price);
+            req.setAttribute("image", Image1);
+            req.setAttribute("image2", Image2);
+            req.setAttribute("image3", Image3);
+            req.setAttribute("category", Cid);
+            req.setAttribute("mota", Desciption);
+            req.setAttribute("quantity", Quantity);
+            req.setAttribute("status", Status);
 
-        req.setAttribute("name", Name);
-        req.setAttribute("price", Price);
-        req.setAttribute("image", Image1);
-        req.setAttribute("image2", Image2);
-        req.setAttribute("image3", Image3);
-        req.setAttribute("category", Cid);
-        req.setAttribute("mota", Desciption);
-        req.setAttribute("quantity", Quantity);
-        req.setAttribute("status", Status);
+            if (Float.parseFloat(Price) > 200000 && Integer.parseInt(Quantity) > 1
+                    && (Image1.endsWith(".png") || Image1.endsWith(".jpg"))
+                    && (Image2.endsWith(".png") || Image2.endsWith(".jpg"))
+                    && (Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
+                dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Price, Quantity, Status, date);
 
-        if(Float.parseFloat(Price) > 200000 && Integer.parseInt(Quantity) > 1
-                && (Image1.endsWith(".png") || Image1.endsWith(".jpg"))
-                && (Image2.endsWith(".png") || Image2.endsWith(".jpg"))
-                && (Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
-            dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3,Price, Quantity, Status, date);
+                req.setAttribute("successText", "Add Successful!!!");
+            } else {
+                if (Float.parseFloat(Price) < 200000) {
+                    req.setAttribute("PriceErr", "Price must Enter at least 200,000");
+                }
+                if (Integer.parseInt(Quantity) < 1) {
+                    req.setAttribute("QuantityErr", "Quantiy must enter at leat 1");
+                }
+                if (!(Image1.endsWith(".png") || Image1.endsWith(".jpg"))) {
+                    req.setAttribute("Image1Err", "Must enter file with .png or .jpg");
+                }
+                if (!(Image2.endsWith(".png") || Image2.endsWith(".jpg"))) {
+                    req.setAttribute("Image2Err", "Must enter file with .png or .jpg");
+                }
+                if (!(Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
+                    req.setAttribute("Image3Err", "Must enter file with .png or .jpg");
+                }
 
-            req.setAttribute("successText", "Add Successful!!!");
-        }else {
-            if (Float.parseFloat(Price) < 200000) {
-                req.setAttribute("PriceErr", "Price must Enter at least 200,000");
             }
-            if (Integer.parseInt(Quantity) < 1) {
-                req.setAttribute("QuantityErr", "Quantiy must enter at leat 1");
-            }
-            if (!(Image1.endsWith(".png") || Image1.endsWith(".jpg"))) {
-                req.setAttribute("Image1Err", "Must enter file with .png or .jpg");
-            }
-            if (!(Image2.endsWith(".png") || Image2.endsWith(".jpg"))) {
-                req.setAttribute("Image2Err", "Must enter file with .png or .jpg");
-            }
-            if (!(Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
-                req.setAttribute("Image3Err", "Must enter file with .png or .jpg");
-            }
+            req.getRequestDispatcher("addproduct.jsp").forward(req, resp);
 
-        } 
-        req.getRequestDispatcher("addproduct.jsp").forward(req, resp);
-
+        }
     }
-}
