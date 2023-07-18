@@ -275,17 +275,9 @@
             }
             .hover-order:hover{
                 background: white;
-                color: red;
+                background-color: #f24137;
+                color: white;
                 text-decoration: none;
-            }
-            .show-entries.active {
-                border-bottom: 4px solid red;
-                color: red;
-            }
-
-            .show-entries.active:hover {
-                border-bottom: 4px solid red;
-                color: red;
             }
             @media all and (max-width:375px){
 
