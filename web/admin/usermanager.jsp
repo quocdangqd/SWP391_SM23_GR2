@@ -10,7 +10,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Danh sách nhân viên | Quản trị Admin</title>
+        <title>Danh sách người dùng | Quản trị Admin</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,10 +61,7 @@
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
                 </li>
                 <li><a class="app-menu__item" href="ordermanager.jsp"><i class='app-menu__icon bx bx-task'></i><span
-                            class="app-menu__label">Quản lý đơn hàng</span></a></li>
-                <li><a class="app-menu__item" href="accountmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
-                            class="app-menu__label">Quản lý tài khoản
-                        </span></a></li>
+                            class="app-menu__label">Quản lý đơn hàng</span></a></li>            
                 <li><a class="app-menu__item" href="incomemanager.jsp"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
                 </li>
@@ -90,27 +87,6 @@
                                         Tạo mới người dùng</a>
                                 </div>
                                 <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
-                                            class="fas fa-file-upload"></i> Tải từ file</a>
-                                </div>
-
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
-                                            class="fas fa-print"></i> In dữ liệu</a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép"><i
-                                            class="fas fa-copy"></i> Sao chép</a>
-                                </div>
-
-                                <div class="col-sm-2">
-                                    <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick="myFunction(this)"><i
-                                            class="fas fa-file-pdf"></i> Xuất PDF</a>
-                                </div>
-                                <div class="col-sm-2">
                                     <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
                                             class="fas fa-trash-alt"></i> Xóa tất cả </a>
                                 </div>
@@ -130,93 +106,28 @@
                                         <th>Địa chỉ</th>
                                         <th>Số điện thoại</th>
                                         <th>Ảnh đại diện</th>
-                                        <th>Thông tin</th>
+                                        <th>Trạng thái</th>
                                         <th>Tính năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <th>ID người dùng</th>
-                                        <th>Tên đăng nhập</th>
-                                        <th>Mật khẩu</th>
-                                        <th>Vai trò</th>
-                                        <th>Họ và tên</th>
-                                        <th>Tuổi</th>
-                                        <th>Giới tính</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Ảnh đại diện</th>
-                                        <th>Thông tin</th>
-                                        <td class="table-td-center"><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                                            onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
-                                                    data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td width="10"><input type="checkbox" name="check2" value="2"></td>
-                                        <th>ID người dùng</th>
-                                        <th>Tên đăng nhập</th>
-                                        <th>Mật khẩu</th>
-                                        <th>Vai trò</th>
-                                        <th>Họ và tên</th>
-                                        <th>Tuổi</th>
-                                        <th>Giới tính</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Ảnh đại diện</th>
-                                        <th>Thông tin</th>
+                                        <td>ID người dùng</td>
+                                        <td>Tên đăng nhập</td>
+                                        <td>Mật khẩu</td>
+                                        <td>Vai trò</td>
+                                        <td>Họ và tên</td>
+                                        <td>Tuổi</td>
+                                        <td>Giới tính</td>
+                                        <td>Địa chỉ</td>
+                                        <td>Số điện thoại</td>
+                                        <td>Ảnh đại diện</td>
+                                        <td>Thông tin</td>
                                         <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                                     onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                             </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
-                                                    data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check3" value="3"></td>
-                                        <th>ID người dùng</th>
-                                        <th>Tên đăng nhập</th>
-                                        <th>Mật khẩu</th>
-                                        <th>Vai trò</th>
-                                        <th>Họ và tên</th>
-                                        <th>Tuổi</th>
-                                        <th>Giới tính</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Ảnh đại diện</th>
-                                        <th>Thông tin</th>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa" onclick="myFunction()"><i
-                                                    class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
-                                                    data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10"><input type="checkbox"></td>
-                                        <th>ID người dùng</th>
-                                        <th>Tên đăng nhập</th>
-                                        <th>Mật khẩu</th>
-                                        <th>Vai trò</th>
-                                        <th>Họ và tên</th>
-                                        <th>Tuổi</th>
-                                        <th>Giới tính</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Ảnh đại diện</th>
-                                        <th>Thông tin</th>
-                                        <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa" onclick="myFunction()"><i
-                                                    class="fas fa-trash-alt"></i>
-                                            </button>
-                                            <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
-                                                    data-toggle="modal" data-target="#ModalUP"><i class="fas fa-edit"></i>
-                                            </button>
+                                            <a href="edituser.jsp" class="btn btn-primary btn-sm" title="chỉnh sửa"><i class="fas fa-edit"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>

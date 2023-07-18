@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +83,47 @@
                 font-size: 13px;
                 border: none;
             }
-            .btn
+            .bt{
+                color: #4080ee;
+                text-transform: capitalize;
+                cursor: pointer;
+                display: block;
+                background: none;
+                border: none;
+                padding: 0;
+                margin: 0;
+                cursor: pointer;
+                text-align: inherit;
+            }
+            .but{
+                font-size: 3rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                align-self: flex-start;
+                background: #f24137;
+                border: 1px solid rgba(0,0,0,.09);
+                box-shadow: 0 1px 1px 0 rgba(0,0,0,.03);
+                border-radius: 2px!important;
+                color: white;
+                text-transform: capitalize;
+                outline: none;
+                padding: 5px 30px;
+                margin-left: 80%;
+            }
+            .end{
+                font-size: 2rem;
+            }
+            .end-n2{
+                font-size: 3rem;
+                color: red;
+            }
+            .end-n3{
+                font-size: 3rem;
+            }
+            .size{
+                font-size: 2rem;
+            }
             .table-title .btn i {
                 float: left;
                 font-size: 21px;
@@ -203,8 +242,7 @@
             }
             .btn:not(:disabled):not(.disabled) {
                 margin-top:0px;
-                font-size: 2rem;
-
+                font-size: 3rem;
             }
             .status {
                 font-size: 30px;
@@ -271,13 +309,20 @@
                 padding-top: 10px;
                 padding-bottom: 10px;
                 color: black;
-
             }
             .hover-order:hover{
                 background: white;
-                background-color: #f24137;
-                color: white;
+                border: 2px solid red;
+                color: red;
                 text-decoration: none;
+            }
+            .show-entries.active {
+                border: 2px solid red;
+                color: red;
+            }
+            .show-entries.active:hover {
+                border: 2px solid red;
+                color: red;
             }
             @media all and (max-width:375px){
 
@@ -290,123 +335,136 @@
                 <div class="table-responsive">
                     <div class="table-wrapper">
                         <div class="table-title">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <h2>Danh sách đơn hàng</h2>
-                                </div>
-
-                            </div>
+                            <h2>Thanh toán</h2>
                         </div>
-
-                        <div class="table-filter">
-                            <div class="container">
-                                <section class="row">
-                                    <a href="OrderListController?status=All" class="show-entries hover-order col-lg-2 active">
-                                        <div>Tất cả</div>
-                                    </a>
-                                    <a href="OrderListController?status=Pending" class="show-entries hover-order col-lg-3">
-                                        <div>Chờ xác nhận</div>
-                                    </a>
-                                    <a href="OrderListController?status=Shipping" class="show-entries hover-order col-lg-3">
-                                        <div>Đang giao</div>
-                                    </a>
-                                    <a href="OrderListController?status=Completed" class="show-entries hover-order col-lg-2">
-                                        <div>Hoàn thành</div>
-                                    </a>
-                                    <a href="OrderListController?status=Cancelled" class="show-entries hover-order col-lg-2">
-                                        <div>Đã hủy</div>
-                                    </a>                          
-
-                                </section>
-
-                            </div>
+                        <div class="container">
+                            <h3>Địa chỉ nhận hàng</h3>
+                            <section class="row">
+                                <h4 class="col-lg-3" style="font-weight: bold; color: black">(Họ và tên)&nbsp&nbsp&nbsp&nbsp&nbsp(Số điện thoại)</h4>
+                                <h4 class="col-lg-6">(Địa chỉ)</h4>
+                                <button type="button" class="bt" onclick="openPopupButton()"><h4>Thay đổi</h4></button>
+                            </section>
                         </div>
+                    </div>
+                </div> 
+                <div class="table-responsive">
+                    <div class="table-wrapper">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr class="font-0">
-                                    <th style="width: 200px;">Tên sản phẩm</th>
+                                    <th style="width: 500px;">Sản phẩm</th>
                                     <th>Ảnh sản phẩm</th>
-                                    <th>Số lượng sản phẩm</th>
-                                    <th style="width: 130px;">Địa chỉ</th>
-                                    <th>Ngày đặt</th>						
-                                    <th>Trạng thái</th>						
-                                    <th>Giá tiền</th>
-                                    <th style="width: 120px;">Tính năng</th>
-
+                                    <th>Số lượng</th>
+                                    <th style="width: 150px;">Thành tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${data}" var="item">
                                 <tr class="font-1">
-                                    <td>${item.getProductName()}</td>
-                                    <td><img src="${item.getPicture()}" style="width: 100px; height: 100px;"></td>
-                                    <td>${item.getQuantity()}</td>
-                                    <td>${item.getAddress()}</td>
-                                    <td>${item.getDate()}</td>                        
-                                    <td><span class="status text-success"></span>${item.getStatus()}</td>
-                                    <td>${item.getSalePrice()}đ</td>                                  
-                                    <td>
-                                        <div class="row">
-                                            <c:if test="${item.getStatus()=='Pending'}">
-                                                <button class="btn btn-primary cols-1" type="button" title="Xóa" onclick="openPopup('${item.getOrderID()}')" style="width: 31px; height: 52px;">
-                                                    <i class="fas fa-trash-alt" style="width: 16px;height: 19px;"></i>
-                                                </button>
-                                            </c:if>
-                                            <a href="TrackingController?orderID=${item.getOrderID()}&orderdetail_productID=${item.getOrderdetail_productID()}">
-                                                <button class="btn btn-primary cols-1" type="button" title="Xem" style="width: 31px; height: 52px;"><i class="fas fa-list" style="width: 16px;
-                                                                                                                                                       height: 19px;"></i>
-                                                </button>
-                                            </a>
-                                            <button class="btn btn-primary cols-4" type="button" title="Xóa" onclick="openPopup()"><i class="fas fa-trash-alt" style="margin: auto"></i>
-                                            </button>
-                                            <button class="btn btn-primary cols-4" type="button" title="Xem"><i class="fas fa-list" style="margin: auto"></i>
-                                            </button>
-                                            <button class="btn btn-primary cols-4" type="button" title="Đã nhận đơn hàng"><i class="fas fa-check" style="margin: auto"></i>
-                                            </button>
-
-                                        </div>
-                                    </td>
+                                    <td>Chuột Mickey</td>
+                                    <td>Chuột</td>
+                                    <td>2</td>
+                                    <td>100.000</td>  
                                 </tr>
-                                <c:if test="${item.getStatus()=='Pending'}">
-                                <div class="popup" id="${item.getOrderID()}">  
-                                    <h2 style="font-size: 1.5rem ;">Bạn có muốn xóa đơn hàng này không?</h2>          
-                                    <div class="row">
-                                        <div class="col-lg-6"> 
-                                            <a href="OrderListController?submit&orderID=${item.getOrderID()}">
-                                                <button type="submit" name="submit">Có</button>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-6"> 
-                                            <button type="button" onclick="closePopup('${item.getOrderID()}')">Không</button>
-                                        </div>
-
+                            </tbody>
+                        </table>
+                        <div class="table-filter">
+                            <div class="container">
+                                <section class="row">
+                                    <div class="col-md-7" style="display: flex">
+                                        <h4><input type="type" placeholder="Nhập mã giảm giá"></h4>
+                                        <button type="button" class="bt"><h4>Xác nhận</h4></button>
                                     </div>
-                                </div>
-                            </c:if>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-
+                                    <div class="col-md-5" style="display: flex; margin: auto">
+                                        <div class="end">Tổng tiền (n sản phầm): </div>&nbsp&nbsp&nbsp
+                                        <div class="end-n2">100.000</div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div class="container">
+                            <h3>Hình thức thanh toán</h3>
+                            <section class="row" style="text-align: center">
+                            <%-- Khi chưa click vào thì để nguyên, sau khi click vào thì thêm active vào --%>
+                            <a href="" class="show-entries hover-order col-lg-4">
+                                <div>Thanh toán qua ngân hàng</div>
+                            </a>
+                            <%--
+                                </a><a href="" class="show-entries hover-order col-lg-2 active">
+                                    <div>Tất cả</div>
+                                </a>
+                            --%>
+                            <a href="" class="show-entries hover-order col-lg-4">
+                                <div>Thanh toán khi nhận hàng</div>
+                            </a>                          
+                        </section>
+                    </div>
                 </div>
-            </div> 
-        </div>  
-        <!--<form action="OrderListController" method="post">-->
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div class="container" style="display: flex">
+                            <div style="margin-left: 65%">
+                                <div class="end">Tổng tiền sản phẩm: </div>
+                                <div class="end">Được giảm:</div> 
+                                <div class="end">Tổng thanh toán: </div>
+                            </div>&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <div>
+                                <div class="end">100.000 </div>
+                                <div class="end">20.000</div> 
+                                <div class="end-n2">80.000 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div class="end-n3">
+                            <div>Hãy kiểm tra thông tin thật kỹ trước khi bấm đặt hàng!</div>
+                        </div>
+                        <button class="but">Đặt hàng</button>
+                    </div>
+                </div> 
+            </div>  
 
-        <!--</form>-->
+            <div class="popup" id="popupbt">
+                <h2 style="font-size: 1.5rem ;">Địa chỉ mới</h2>
+                <div class="row">
+                    <input type="text" value="Họ và tên" class="col-lg-12" style="font-size: 1.5rem ;">
+                    <input type="text" value="Số điện thoại" class="col-lg-12" style="font-size: 1.5rem ;">
+                    <input type="text" value="Địa chỉ" class="col-lg-12" style="font-size: 1.5rem ;">
+                    <div class="col-lg-6"> 
+                        <button type="button" onclick="closePopupButton()">Lưu</button>
+                    </div>
+                    <div class="col-lg-6"> 
+                        <button type="button" onclick="closePopupButton()">Hủy</button>
+                    </div>
+                </div>
+            </div>
+            <script>
+                let popupbt = document.getElementById("popupbt");
+                function openPopupButton() {
+                    popupbt.classList.add("open-popup");
+                }
+                function closePopupButton() {
+                    popupbt.classList.remove("open-popup");
+                }
+                document.querySelectorAll('.show-entries').forEach(item => {
 
-        <script>
+                    item.addEventListener('click', event => {
 
-            function openPopup(inputted) {
-                let popup = document.getElementById(inputted);
-                popup.classList.add("open-popup");
-            }
-            function closePopup(inputted) {
-                let popup = document.getElementById(inputted);
-                popup.classList.remove("open-popup");
-            }
-        </script>
-        <!-- footer -->
-        <jsp:include page="footer.jsp"></jsp:include>
-        <!-- end footer -->
+                        document.querySelector('.active').classList.remove('active');
+
+                        event.target.classList.add('active');
+
+                    });
+
+                });
+            </script>
+            <!-- footer -->
+            <jsp:include page="footer.jsp"></jsp:include>
+            <!-- end footer -->
     </body>
 </html>

@@ -3,14 +3,14 @@
     Created on : 28-05-2023, 12:37:46
     Author     : laptop
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Hệ thống quản lý</title>
+        <title>Báo cáo doanh thu</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -101,12 +101,12 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="homepage.jsp"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="ManagerHomepageController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item " href="ManagerHompageController"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item " href="ManagerHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
                 <li><a class="app-menu__item " href="ManagerProductController"><i
@@ -116,7 +116,7 @@
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
                 <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
-                <li><a class="app-menu__item active" href="incomemanager.jsp"><i
+                <li><a class="app-menu__item active" href="ManagerIncomeController"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
                 </li>
             </ul>
@@ -137,7 +137,7 @@
                     <div class="widget-small info coloured-icon"><i class='icon bx bxs-purchase-tag-alt fa-3x' ></i>
                         <div class="info">
                             <h4>Tổng sản phẩm</h4>
-                            <p><b>8580 sản phẩm</b></p>
+                            <p><b>${requestScope.product} sản phẩm</b></p>
                         </div>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                     <div class="widget-small warning coloured-icon"><i class='icon fa-3x bx bxs-shopping-bag-alt'></i>
                         <div class="info">
                             <h4>Tổng đơn hàng</h4>
-                            <p><b>457 đơn hàng</b></p>
+                            <p><b>${requestScope.order} đơn hàng</b></p>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                     <div class="widget-small danger coloured-icon"><i class='icon fa-3x bx bxs-info-circle' ></i>
                         <div class="info">
                             <h4>Bị cấm</h4>
-                            <p><b>4 tài khoản</b></p>
+                            <p><b>${requestScope.chan} tài khoản</b></p>
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                     <div class="widget-small primary coloured-icon"><i class='icon fa-3x bx bxs-chart' ></i>
                         <div class="info">
                             <h4>Tổng thu nhập</h4>
-                            <p><b>104.890.000 đ</b></p>
+                            <p><b>${requestScope.tong} đ</b></p>
                         </div>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                     <div class="widget-small warning coloured-icon"><i class='icon fa-3x bx bxs-tag-x' ></i>
                         <div class="info">
                             <h4>Hết hàng</h4>
-                            <p><b>1 sản phẩm</b></p>
+                            <p><b>${requestScope.het} sản phẩm</b></p>
                         </div>
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                     <div class="widget-small danger coloured-icon"><i class='icon fa-3x bx bxs-receipt' ></i>
                         <div class="info">
                             <h4>Đơn hàng hủy</h4>
-                            <p><b>2 đơn hàng</b></p>
+                            <p><b>${requestScope.huy} đơn hàng</b></p>
                         </div>
                     </div>
                 </div>
@@ -196,87 +196,23 @@
                                     <tr>
                                         <th>Mã sản phẩm</th>
                                         <th>Tên sản phẩm</th>
+                                        <th width="500px">Ảnh</th>
                                         <th>Giá tiền</th>
-                                        <th>Danh mục</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="tile">
-                        <div>
-                            <h3 class="tile-title">TỔNG ĐƠN HÀNG</h3>
-                        </div>
-                        <div class="tile-body">
-                            <table class="table table-hover table-bordered" id="sampleTable">
-                                <thead>
-                                    <tr>
-                                        <th>ID đơn hàng</th>
-                                        <th>Khách hàng</th>
-                                        <th>Đơn hàng</th>
-                                        <th>Số lượng</th>
-                                        <th>Tổng tiền</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ID đơn hàng</td>
-                                        <td>Khách hàng</td>
-                                        <td>Đơn hàng</td>
-                                        <td>Số lượng</td>
-                                        <td>Tổng tiền</td>
-                                    </tr>
+                                    <c:forEach items="${listP}" var="p">
+                                        <tr>
+                                            <td>${p.getProductID()}</td>
+                                            <td>${p.getName()}</td>
+                                            <td>
+                                                <img src="${p.getPicture()}" class="col-lg-3"/>
+                                                <img src="${p.getPicture2()}" class="col-lg-3"/>
+                                                <img src="${p.getPicture3()}" class="col-lg-3"/>
+                                            </td>
+                                            <td>${p.getPrice()}</td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -295,23 +231,22 @@
                                     <tr>
                                         <th>Mã sản phẩm</th>
                                         <th>Tên sản phẩm</th>
-                                        <th>Ảnh</th>
-                                        <th>Số lượng</th>
-                                        <th>Tình trạng</th>
+                                        <th width="500px">Ảnh</th>
                                         <th>Giá tiền</th>
-                                        <th>Danh mục</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Mã sản phẩm</td>
-                                        <td>Tên sản phẩm</td>
-                                        <td>Ảnh</td>
-                                        <td>Số lượng</td>
-                                        <td>Tình trạng</td>
-                                        <td>Giá tiền</td>
-                                        <td>Danh mục</td>
-                                    </tr>
+                                    <c:forEach items="${listun}" var="l">
+                                        <tr>
+                                            <td>${l.getProductID()}</td>
+                                            <td>${l.getName()}</td>
+                                            <td><img src="${l.getPicture()}" class="col-lg-3"/>
+                                                <img src="${l.getPicture2()}" class="col-lg-3"/>
+                                                <img src="${l.getPicture3()}" class="col-lg-3"/>
+                                            </td>
+                                            <td>${l.getPrice()}</td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -347,54 +282,95 @@
         <!-- Page specific javascripts-->
         <script type="text/javascript" src="js/plugins/chart.js"></script>
         <script type="text/javascript">
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        var today = new Date();
+        var mm = today.getMonth() + 1;
+        var one = "Tháng " + (mm - 5);
+        var two = "Tháng " + (mm - 4);
+        var three = "Tháng " + (mm - 3);
+        var four = "Tháng " + (mm - 2);
+        var five = "Tháng " + (mm - 1);
+        var six = "Tháng " + (mm);
+
         var data = {
-            labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+            labels: [one, two, three, four, five, six],
+
             datasets: [{
                     label: "Dữ liệu đầu tiên",
-                    fillColor: "rgba(255, 255, 255, 0.158)",
-                    strokeColor: "black",
-                    pointColor: "rgb(220, 64, 59)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "green",
-                    data: [20, 59, 90, 51, 56, 100, 40, 60, 78, 53, 33, 81]
-                },
-                {
-                    label: "Dữ liệu kế tiếp",
-                    fillColor: "rgba(255, 255, 255, 0.158)",
-                    strokeColor: "rgb(220, 64, 59)",
-                    pointColor: "black",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "green",
-                    data: [48, 48, 49, 39, 86, 10, 50, 70, 60, 70, 75, 90]
+                    fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
+                    strokeColor: "rgb(255, 212, 59)",
+                    pointColor: "rgb(255, 212, 59)",
+                    pointStrokeColor: "rgb(255, 212, 59)",
+                    pointHighlightFill: "rgb(255, 212, 59)",
+                    pointHighlightStroke: "rgb(255, 212, 59)",
+                    data: [${firstMonth}, ${secondMonth}, ${thirdMonth}, ${fourthMonth}, ${fifthMonth}, ${currMonth}]
                 }
             ]
         };
+         var data2 = {
+            labels: [one, two, three, four, five, six],
 
-
+            datasets: [{
+                    label: "Dữ liệu đầu tiên",
+                    fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
+                    strokeColor: "rgb(255, 212, 59)",
+                    pointColor: "rgb(255, 212, 59)",
+                    pointStrokeColor: "rgb(255, 212, 59)",
+                    pointHighlightFill: "rgb(255, 212, 59)",
+                    pointHighlightStroke: "rgb(255, 212, 59)",
+                    data: [${firstMonth}, ${secondMonth}, ${thirdMonth}, ${fourthMonth}, ${fifthMonth}, ${currMonth}]
+                }
+                
+            ]
+        };
         var ctxl = $("#lineChartDemo").get(0).getContext("2d");
         var lineChart = new Chart(ctxl).Line(data);
 
         var ctxb = $("#barChartDemo").get(0).getContext("2d");
         var barChart = new Chart(ctxb).Bar(data);
         </script>
-        <!-- Google analytics script-->
         <script type="text/javascript">
-            if (document.location.hostname == 'pratikborsadiya.in') {
-                (function (i, s, o, g, r, a, m) {
-                    i['GoogleAnalyticsObject'] = r;
-                    i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                    a = s.createElement(o),
-                            m = s.getElementsByTagName(o)[0];
-                    a.async = 1;
-                    a.src = g;
-                    m.parentNode.insertBefore(a, m)
-                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-                ga('create', 'UA-72504830-1', 'auto');
-                ga('send', 'pageview');
+            //Thời Gian
+            function time() {
+                var today = new Date();
+                var weekday = new Array(7);
+                weekday[0] = "Chủ Nhật";
+                weekday[1] = "Thứ Hai";
+                weekday[2] = "Thứ Ba";
+                weekday[3] = "Thứ Tư";
+                weekday[4] = "Thứ Năm";
+                weekday[5] = "Thứ Sáu";
+                weekday[6] = "Thứ Bảy";
+                var day = weekday[today.getDay()];
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1;
+                var yyyy = today.getFullYear();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                nowTime = h + " giờ " + m + " phút " + s + " giây";
+                if (dd < 10) {
+                    dd = '0' + dd
+                }
+                if (mm < 10) {
+                    mm = '0' + mm
+                }
+                today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+                tmp = '<span class="date"> ' + today + ' - ' + nowTime +
+                        '</span>';
+                document.getElementById("clock").innerHTML = tmp;
+                clocktime = setTimeout("time()", "1000", "Javascript");
+
+                function checkTime(i) {
+                    if (i < 10) {
+                        i = "0" + i;
+                    }
+                    return i;
+                }
             }
         </script>
     </body>

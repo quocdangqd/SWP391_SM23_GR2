@@ -7,7 +7,7 @@ package Model;
 public class Products {
 
     private String ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale;
-    private String rateStar, salePrice, picture2, picture3, date;
+    private String rateStar, salePrice, picture2, picture3,date;
     private Categories categories;
 
     public String getDate() {
@@ -69,6 +69,20 @@ public class Products {
         this.picture3 = picture3;
     }
 
+    public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status, String picture2, String picture3, String date) {
+        this.ProductID = ProductID;
+        this.product_categoryID = product_categoryID;
+        this.name = name;
+        this.desciption = desciption;
+        this.picture = picture;
+        this.price = price;
+        this.quantity = quantity;
+        this.status = status;
+        this.picture2 = picture2;
+        this.picture3 = picture3;
+        this.date = date;
+    }
+
     public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status, String sale, String rateStar, String salePrice, String picture2, String picture3) {
         this.ProductID = ProductID;
         this.product_categoryID = product_categoryID;
@@ -84,7 +98,24 @@ public class Products {
         this.picture2 = picture2;
         this.picture3 = picture3;
     }
-
+    
+    public Products(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status, String sale, String rateStar, String salePrice, String picture2, String picture3, Categories categories) {
+        this.ProductID = ProductID;
+        this.product_categoryID = product_categoryID;
+        this.name = name;
+        this.desciption = desciption;
+        this.picture = picture;
+        this.price = price;
+        this.quantity = quantity;
+        this.status = status;
+        this.sale = sale;
+        this.rateStar = rateStar;
+        this.salePrice = salePrice;
+        this.picture2 = picture2;
+        this.picture3 = picture3;
+        this.categories = categories;
+    }
+    
     public String getProductID() {
         return ProductID;
     }

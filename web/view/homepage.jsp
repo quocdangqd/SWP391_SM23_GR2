@@ -273,7 +273,7 @@
                                     </div>
                                     <div class="bestselling__product-text">
                                         <h3 class="bestselling__product-title">
-                                            <a href="#" class="bestselling__product-link">${item.getName()}</a>
+                                            <a href="ProductDetailController?ProductID=${item.getProductID()}" class="bestselling__product-link">${item.getName()}</a>
                                         </h3>
 
                                         <div class="bestselling__product-rate-wrap">
@@ -290,7 +290,7 @@
                                         </span>
 
                                         <div class="bestselling__product-btn-wrap">
-                                            <a href="abc" class="bestselling__product-btn">Xem hàng</a>
+                                            <a href="ProductDetailController?ProductID=${item.getProductID()}" class="bestselling__product-btn">Xem hàng</a>
                                         </div>
                                     </div>
                                 </div>
@@ -356,61 +356,63 @@
                                                         </div>-->
                         </aside>
 
-                        <article class="product__content col-lg-9 col-md-12 col-sm-12">
+                        <article class="product__content col-lg-9 col-md-12 col-sm-12" id="articleTab">
                             <nav class="row">
-                                <ul class="product__list hide-on-mobile">
+                                <ul class="product__list hide-on-mobile" id="UlObject">
                                     <c:if test="${type=='Wired'}">
                                         <li class="product__item product__item--active">
-                                            <a href="HomePageController?type=Wired" class="product__link">Sản Phẩm Kết Nối Dây</a>
+                                            <a href="HomePageController?type=Wired" id="Wired" onclick="TypeChangeFunc('Wired','articleTab',)" class="product__link">Sản Phẩm Kết Nối Dây</a>
                                         </li>
                                     </c:if>
                                     <c:if test="${type!='Wired'}">
                                         <li class="product__item">
-                                            <a href="HomePageController?type=Wired" class="product__link">Sản Phẩm Kết Nối Dây</a>
+                                            <a href="HomePageController?type=Wired" id="Wired" onclick="TypeChangeFunc('Wired','articleTab')" class="product__link">Sản Phẩm Kết Nối Dây</a>
                                         </li>
                                     </c:if>
                                     <c:if test="${type=='Wireless'}">
                                         <li class="product__item product__item--active">
-                                            <a href="HomePageController?type=Wireless" class="product__link">Sản Phẩm Kết Nối Bluetooth</a>
+                                            <a href="HomePageController?type=Wireless" id="Wireless" onclick="TypeChangeFunc('Wireless','articleTab')" class="product__link">Sản Phẩm Kết Nối Bluetooth</a>
                                         </li>
                                     </c:if>
                                     <c:if test="${type!='Wireless'}">
                                         <li class="product__item">
-                                            <a href="HomePageController?type=Wireless" class="product__link">Sản Phẩm Kết Nối Bluetooth</a>
+                                            <a href="HomePageController?type=Wireless" id="Wireless" onclick="TypeChangeFunc('Wireless','articleTab')" class="product__link">Sản Phẩm Kết Nối Bluetooth</a>
                                         </li>
                                     </c:if>
                                     <c:if test="${type=='Console'}">
                                         <li class="product__item product__item--active">
-                                            <a href="HomePageController?type=Console" class="product__link">Sản Phẩm Mới Nhất </a>
+                                            <a href="HomePageController?type=Console" id="Console" onclick="TypeChangeFunc('Console','articleTab')" class="product__link">Sản Phẩm Mới Nhất </a>
                                         </li>
                                     </c:if>
                                     <c:if test="${type!='Console'}">
                                         <li class="product__item">
-                                            <a href="HomePageController?type=Console" class="product__link">Sản Phẩm Mới Nhất </a>
+                                            <a href="HomePageController?type=Console" id="Console" onclick="TypeChangeFunc('Console','articleTab')" class="product__link">Sản Phẩm Mới Nhất </a>
                                         </li>
                                     </c:if>
                                     <c:if test="${type=='HighPrice'}">
                                         <li class="product__item product__item--active">
-                                            <a href="HomePageController?type=HighPrice" class="product__link">Sản Phẩm Cao Cấp</a>
+                                            <a href="HomePageController?type=HighPrice" id="HighPrice" onclick="TypeChangeFunc('HighPrice','articleTab')" class="product__link">Sản Phẩm Cao Cấp</a>
                                         </li>
                                     </c:if>
                                     <c:if test="${type!='HighPrice'}">
                                         <li class="product__item ">
-                                            <a href="HomePageController?type=HighPrice" class="product__link">Sản Phẩm Cao Cấp</a>
+                                            <a href="HomePageController?type=HighPrice" id="HighPrice" onclick="TypeChangeFunc('HighPrice','articleTab')" class="product__link">Sản Phẩm Cao Cấp</a>
                                         </li>
                                     </c:if>
                                 </ul>                              
                             </nav>
 
-                            <div class="row product__panel">
+                            <div class="row product__panel" id="row product__panel">
                                 <c:forEach items="${typeProductList}" var="item">
                                     <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
                                         <div class="product__panel-item-wrap">
                                             <div class="product__panel-img-wrap">
-                                                <img src="${item.getPicture()}" alt="" class="product__panel-img">
+                                                <a href="ProductDetailController?ProductID=${item.getProductID()}">
+                                                    <img src="${item.getPicture()}" alt="" class="product__panel-img">
+                                                </a>
                                             </div>
                                             <h3 class="product__panel-heading">
-                                                <a href="product.html" class="product__panel-link">${item.getName()}</a>
+                                                <a href="ProductDetailController?ProductID=${item.getProductID()}" class="product__panel-link">${item.getName()}</a>
                                             </h3>
                                             <div class="product__panel-rate-wrap">
                                                 <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${item.getRateStar()}</i>
@@ -457,155 +459,70 @@
                         </div>
                     </div>
                     <div class="row bg-white">
-                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                            <div class="product__panel-img-wrap">
-                                <img src="images1/product/1.jpg" alt="" class="product__panel-img">
-                            </div>
-                            <h3 class="product__panel-heading">
-                                <a href="#" class="product__panel-link">Tai Nghe Gaming PRESONUS</a>
-                            </h3>
-                            <div class="product__panel-rate-wrap">
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                            </div>
 
-                            <div class="product__panel-price">
-                                <span class="product__panel-price-old product__panel-price-old-hide">
-                                    2.800.000đ
-                                </span>
-                                <span class="product__panel-price-current">
-                                    2.709.580đ
-                                </span>
-                            </div>  
-                        </div>
+                        <!--                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
+                                                    <div class="product__panel-img-wrap">
+                                                        <img src="images1/product/1.jpg" alt="" class="product__panel-img">
+                                                    </div>
+                                                    <h3 class="product__panel-heading">
+                                                        <a href="#" class="product__panel-link">Tai Nghe Gaming PRESONUS</a>
+                                                    </h3>
+                                                    <div class="product__panel-rate-wrap">
+                                                        <i class="fas fa-star product__panel-rate"></i>
+                                                        <i class="fas fa-star product__panel-rate"></i>
+                                                        <i class="fas fa-star product__panel-rate"></i>
+                                                        <i class="fas fa-star product__panel-rate"></i>
+                                                        <i class="fas fa-star product__panel-rate"></i>
+                                                    </div>
+                        
+                                                    <div class="product__panel-price">
+                                                        <span class="product__panel-price-old product__panel-price-old-hide">
+                                                            2.800.000đ
+                                                        </span>
+                                                        <span class="product__panel-price-current">
+                                                            2.709.580đ
+                                                        </span>
+                                                    </div>  
+                                                </div>-->
+                        <c:forEach items="${bottomDataList}" var="item">
+                            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
 
-                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                            <div class="product__panel-img-wrap">
-                                <img src="images1/product/7.jpg" alt="" class="product__panel-img">
-                            </div>
-                            <h3 class="product__panel-heading">
-                                <a href="#" class="product__panel-link">Chuột Dare-U EM908 RGB</a>
-                            </h3>
-                            <div class="product__panel-rate-wrap">
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                            </div>
+                                <div class="product__panel-img-wrap">
+                                    <a href="ProductDetailController?ProductID=${item.getProductID()}">
+                                        <img src="${item.getPicture()}" alt="" class="product__panel-img">
+                                    </a>
+                                </div>
+                                <h3 class="product__panel-heading">
+                                    <a href="ProductDetailController?ProductID=${item.getProductID()}" class="product__panel-link">${item.getName()}</a>
+                                </h3>
+                                <div class="product__panel-rate-wrap">
+                                    <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${item.getRateStar()}</i>
+                                    <i class="fas fa-star product__panel-rate"></i>
+                                    <i class="fas fa-star product__panel-rate"></i>
+                                    <i class="fas fa-star product__panel-rate"></i>
+                                    <i class="fas fa-star product__panel-rate"></i>
+                                    <i class="fas fa-star product__panel-rate"></i>
+                                </div>
 
-                            <div class="product__panel-price">
-                                <span class="product__panel-price-old product__panel-price-old-hide">
-                                    1.020.000đ
-                                </span>
-                                <span class="product__panel-price-current">
-                                    1.020.000đ
-                                </span>
-                            </div> 
-                        </div>
+                                <div class="product__panel-price">
+                                    <span class="product__panel-price-old product__panel-price-old-hide">
+                                        ${item.getSalePrice()}đ
+                                    </span>
+                                    <span class="product__panel-price-current">
+                                        ${item.getSalePrice()}đ
+                                    </span>
+                                </div>  
+                            </div>
+                        </c:forEach>
 
-                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                            <div class="product__panel-img-wrap">
-                                <img src="images1/product/6.jpg" alt="" class="product__panel-img">
-                            </div>
-                            <h3 class="product__panel-heading">
-                                <a href="#" class="product__panel-link">Bàn phím cơ E-DRA EK387L RGB Brown Switch</a>
-                            </h3>
-                            <div class="product__panel-rate-wrap">
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                            </div>
 
-                            <div class="product__panel-price">
-                                <span class="product__panel-price-old product__panel-price-old-hide
-                                      ">
-                                    2.900.000đ
-                                </span>
-                                <span class="product__panel-price-current">
-                                    2.900.000đ
-                                </span>
-                            </div>
-                        </div>
-                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                            <div class="product__panel-img-wrap">
-                                <img src="images1/product/4.jpg" alt="" class="product__panel-img">
-                            </div>
-                            <h3 class="product__panel-heading">
-                                <a href="#" class="product__panel-link">Bàn Phím Cơ Dell Alienware RGB AW410K</a>
-                            </h3>
-                            <div class="product__panel-rate-wrap">
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                            </div>
 
-                            <div class="product__panel-price">
-                                <span class="product__panel-price-old product__panel-price-old-hide">
-                                    2.700.000đ
-                                </span>
-                                <span class="product__panel-price-current">
-                                    2.700.000đ
-                                </span>
-                            </div> 
-                        </div>
 
-                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                            <div class="product__panel-img-wrap">
-                                <img src="images1/product/7.jpg" alt="" class="product__panel-img" >
-                            </div>
-                            <h3 class="product__panel-heading">
-                                <a href="#" class="product__panel-link">Chuột Razer Basilisk V3 (RZ01-04000100-R3M1)</a>
-                            </h3>
-                            <div class="product__panel-rate-wrap">
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                            </div>
 
-                            <div class="product__panel-price">
-                                <span class="product__panel-price-old product__panel-price-old-hide">
-                                    1.020.000đ
-                                </span>
-                                <span class="product__panel-price-current">
-                                    1.020.000đ
-                                </span>
-                            </div> 
-                        </div>
 
-                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                            <div class="product__panel-img-wrap">
-                                <img src="images1/product/9.jpg" alt="" class="product__panel-img" >
-                            </div>
-                            <h3 class="product__panel-heading">
-                                <a href="#" class="product__panel-link">Chuột Gaming Có Dây iCore GM03</a>
-                            </h3>
-                            <div class="product__panel-rate-wrap">
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                                <i class="fas fa-star product__panel-rate"></i>
-                            </div>
 
-                            <div class="product__panel-price">
-                                <span class="product__panel-price-old product__panel-price-old-hide">
-                                    821.000đ
-                                </span>
-                                <span class="product__panel-price-current">
-                                    821.000đ
-                                </span>
-                            </div> 
-                        </div>
+
+
                     </div>
                 </div>
             </section>
@@ -625,5 +542,27 @@
                     });
             </script>
         </c:if>
+        <script>
+            function TypeChangeFunc(input, divID) {
+                event.preventDefault();
+                var linkHref = document.getElementById(input).href;
+                $.ajax({
+                    url: linkHref,
+                    type: "post", //send it through get method
+                    data: {
+                        
+                        paging: true
+                    },
+                    success: function (data) {
+                        var row = document.getElementById(divID);
+                        row.innerHTML = data;
+//                    row.innerHTML += data;
+                    },
+                    error: function (xhr) {
+                        //Do Something to handle error
+                    }
+                });
+            }
+        </script>
     </body>
 </html>

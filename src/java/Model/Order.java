@@ -185,6 +185,10 @@ public class Order {
         this.price_order = price_order;
     }
 
+    public void setNote(String note) {
+        this.note = note;
+    }
+    
     
 
 }
