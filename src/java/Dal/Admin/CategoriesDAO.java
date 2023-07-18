@@ -1,5 +1,6 @@
-package Dal;
+package Dal.Admin;
 
+import Dal.*;
 import Model.Categories;
 import java.util.ArrayList;
 

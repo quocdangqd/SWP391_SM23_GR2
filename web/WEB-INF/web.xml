@@ -121,6 +121,12 @@
     <servlet>
         <servlet-name>SalerCustomerController</servlet-name>
         <servlet-class>Controller.Saler.SalerCustomerController</servlet-class>
+        <servlet-name>AdminController</servlet-name>
+        <servlet-class>Controller.Admin.AdminController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditProductController</servlet-name>
+        <servlet-class>Controller.Admin.EditProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
