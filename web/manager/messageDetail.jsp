@@ -1,13 +1,13 @@
 <%-- 
-    Document   : orderdetail
-    Created on : May 28, 2023, 6:38:55 AM
+    Document   : messageDetail
+    Created on : May 28, 2023, 8:07:50 AM
     Author     : laptop
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
         <title>Hệ thống quản lý</title>
@@ -80,10 +80,12 @@
     <body onload="time()" class="app sidebar-mini rtl">
         <!-- Navbar-->
         <header class="app-header">
-            <!-- Sidebar toggle button-->
-            <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+            <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
+                                            aria-label="Hide Sidebar"></a>
             <!-- Navbar Right Menu-->
             <ul class="app-nav">
+
+
                 <!-- User Menu-->
                 <li>
                     <div class="dropdown fas fa-user header__nav-cart-icon">
@@ -92,6 +94,7 @@
                             <a href="#">Đăng xuất</a>
                         </div>
                     </div>
+
                 </li>
             </ul>
         </header>
@@ -100,22 +103,22 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="ManagerHomepageController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="homepage.jsp"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item " href="ManagerHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item " href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
-                <li><a class="app-menu__item " href="ManagerProductController"><i
+                <li><a class="app-menu__item" href="productmanager.jsp"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
                 </li>
-                <li><a class="app-menu__item active" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
+                <li><a class="app-menu__item active" href="ordermanager.jsp"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
-                <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
+                <li><a class="app-menu__item" href="accountmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
-                <li><a class="app-menu__item" href="ManagerIncomeController"><i
+                <li><a class="app-menu__item" href="incomemanager.jsp"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
                 </li>
             </ul>
@@ -127,111 +130,114 @@
                 </ul>
                 <div id="clock"></div>
             </div>
-            <div class="page-wrapper">
-                <!-- Container fluid  -->
+            <div class="container-fluid">
                 <!-- ============================================================== -->
-                <div class="container-fluid">
-                    <!-- ============================================================== -->
-                    <!-- Start Page Content -->
-                    <!-- ============================================================== -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card card-body printableArea">
-                                <h3><b>Hóa đơn</b> <span class="pull-right" name="id">#${od[0].getOrderdeatil_orderID()}</span></h3>
-                                <hr/>
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Chat Option</h4>
+                                <div class="chat-box scrollable" style="height: 475px">
+                                    <!--chat Row -->
+                                    <ul class="chat-list">
+                                        <!--chat Row -->
+                                        <li class="chat-item">
+                                            <div class="chat-img">
+                                                <img src="../assets/images/users/1.jpg" alt="user" />
+                                            </div>
+                                            <div class="chat-content">
+                                                <h6 class="font-medium">James Anderson</h6>
+                                                <div class="box bg-light-info">
+                                                    Lorem Ipsum is simply dummy text of the printing
+                                                    &amp; type setting industry.
+                                                </div>
+                                            </div>
+                                            <div class="chat-time">10:56 am</div>
+                                        </li>
+                                        <!--chat Row -->
+                                        <li class="chat-item">
+                                            <div class="chat-img">
+                                                <img src="../assets/images/users/2.jpg" alt="user" />
+                                            </div>
+                                            <div class="chat-content">
+                                                <h6 class="font-medium">Bianca Doe</h6>
+                                                <div class="box bg-light-info">
+                                                    It’s Great opportunity to work.
+                                                </div>
+                                            </div>
+                                            <div class="chat-time">10:57 am</div>
+                                        </li>
+                                        <!--chat Row -->
+                                        <li class="odd chat-item">
+                                            <div class="chat-content">
+                                                <div class="box bg-light-inverse">
+                                                    I would love to join the team.
+                                                </div>
+                                                <br />
+                                            </div>
+                                        </li>
+                                        <!--chat Row -->
+                                        <li class="odd chat-item">
+                                            <div class="chat-content">
+                                                <div class="box bg-light-inverse">
+                                                    Whats budget of the new project.
+                                                </div>
+                                                <br />
+                                            </div>
+                                            <div class="chat-time">10:59 am</div>
+                                        </li>
+                                        <!--chat Row -->
+                                        <li class="chat-item">
+                                            <div class="chat-img">
+                                                <img src="../assets/images/users/3.jpg" alt="user" />
+                                            </div>
+                                            <div class="chat-content">
+                                                <h6 class="font-medium">Angelina Rhodes</h6>
+                                                <div class="box bg-light-info">
+                                                    Well we have good budget for the project
+                                                </div>
+                                            </div>
+                                            <div class="chat-time">11:00 am</div>
+                                        </li>
+                                        <!--chat Row -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body border-top">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="pull-left">
-                                            <address>
-                                                <div>Đơn vị bán:
-                                                    &nbsp;<b class="text-danger text-uppercase" >TechZone</b>
-                                                </div>
-                                                <div>Địa chỉ: 
-                                                    <b class="text-secondary">Thạch Hòa, Thạch Thất, Hà Nội.</b>
-                                                </div>
-                                                <div>Số điện thoại: 
-                                                    <b class="text-secondary">0198724681</b>
-                                                </div>
-                                            </address>
-                                        </div>
-                                        <div class="pull-right text-end">
-                                            <address>
-                                                <div>Người mua:
-                                                    &nbsp;<b class="text-danger text-uppercase" >${od[0].getName_user()}</b>
-                                                </div>
-                                                <div>Địa chỉ: 
-                                                    <b class="text-secondary">${od[2].getAddress()}</b>
-                                                </div>
-                                                <div>Số điện thoại: 
-                                                    <b class="text-secondary">${od[1].getPhone_number()}</b>
-                                                </div>
-                                                <p class="mt-4">
-                                                    <b>Ngày đặt:</b>
-                                                    <i class="mdi mdi-calendar"></i> 23/01/2022
-                                                </p>
-                                                <p>
-                                                    <b>Ngày nhận:</b>
-                                                    <i class="mdi mdi-calendar"></i> 24/01/2022
-                                                </p>
-                                            </address>
+                                    <div class="col-9">
+                                        <div class="input-field mt-0 mb-0">
+                                            <textarea
+                                                id="textarea1"
+                                                placeholder="Type and enter"
+                                                class="form-control border-0"
+                                                ></textarea>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="table-responsive mt-5" style="clear: both">
-                                            <table class="table table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-center">#</th>
-                                                        <th>Tên hàng hóa, dịch vụ </th>
-                                                        <th class="text-end">Số lượng</th>
-                                                        <th class="text-end">Đơn giá</th>
-                                                        <th class="text-end">Thành tiền</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <c:forEach items="${od}" var="o">
-                                                        <tr>
-                                                            <td class="text-center"></td>
-                                                            <td>${o.getName_product()}</td>
-                                                            <td class="text-end" name="quantity">${o.getQuantity()}</td>
-                                                            <td class="text-end" name="price_product">${o.getPrice_product()}</td>
-                                                            <td class="text-end">${o.getPrice()}</td>
-                                                        </tr>
-                                                    </c:forEach>
-                                                    <tr>
-                                                        <td colspan="4" class="text-lg-right">Cộng tiền hàng:</td>
-                                                        <td class="text-end">${total}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="4" class="text-lg-right">Cộng tiền thuế GTGT (VAT 10%):</td>
-                                                        <td class="text-end">${tax}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="4" class="text-lg-right">Mã giảm giá (%)</td>
-                                                        <td class="text-end"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="4" class="text-lg-right"><b>Tổng cộng tiền thanh toán:</b></td>
-                                                        <td class="text-end"><b>${grandTotal}</b></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="clearfix"></div>
-                                        <hr/>
-                                        <div class="pull-right text-end">
-                                            <button class="btn btn-danger text-white" type="submit">
-                                                Proceed to payment
-                                            </button>
-                                        </div>
+                                    <div class="col-3">
+                                        <a
+                                            class="btn-circle btn-lg btn-cyan float-end text-white"
+                                            href="javascript:void(0)"
+                                            ><i class="mdi mdi-send fs-3"></i
+                                            ></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
             </div>
         </main>
         <!-- Essential javascripts for application to work-->
@@ -289,19 +295,19 @@
             e.stopImmediatePropagation();
         });
 
-//EXCEL
-// $(document).ready(function () {
-//   $('#').DataTable({
+        //EXCEL
+        // $(document).ready(function () {
+        //   $('#').DataTable({
 
-//     dom: 'Bfrtip',
-//     "buttons": [
-//       'excel'
-//     ]
-//   });
-// });
+        //     dom: 'Bfrtip',
+        //     "buttons": [
+        //       'excel'
+        //     ]
+        //   });
+        // });
 
 
-//Thời Gian
+        //Thời Gian
         function time() {
             var today = new Date();
             var weekday = new Array(7);
@@ -341,7 +347,7 @@
                 return i;
             }
         }
-//In dữ liệu
+        //In dữ liệu
         var myApp = new function () {
             this.printTable = function () {
                 var tab = document.getElementById('sampleTable');
@@ -351,28 +357,29 @@
                 win.print();
             }
         }
-//     //Sao chép dữ liệu
-//     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+        //     //Sao chép dữ liệu
+        //     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
 
-// copyTextareaBtn.addEventListener('click', function(event) {
-//   var copyTextarea = document.querySelector('.js-copytextarea');
-//   copyTextarea.focus();
-//   copyTextarea.select();
+        // copyTextareaBtn.addEventListener('click', function(event) {
+        //   var copyTextarea = document.querySelector('.js-copytextarea');
+        //   copyTextarea.focus();
+        //   copyTextarea.select();
 
-//   try {
-//     var successful = document.execCommand('copy');
-//     var msg = successful ? 'successful' : 'unsuccessful';
-//     console.log('Copying text command was ' + msg);
-//   } catch (err) {
-//     console.log('Oops, unable to copy');
-//   }
-// });
+        //   try {
+        //     var successful = document.execCommand('copy');
+        //     var msg = successful ? 'successful' : 'unsuccessful';
+        //     console.log('Copying text command was ' + msg);
+        //   } catch (err) {
+        //     console.log('Oops, unable to copy');
+        //   }
+        // });
 
 
-//Modal
+        //Modal
         $("#show-emp").on("click", function () {
             $("#ModalUP").modal({backdrop: false, keyboard: false})
         });
         </script>
     </body>
+
 </html>

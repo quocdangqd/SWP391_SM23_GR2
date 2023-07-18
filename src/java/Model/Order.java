@@ -12,7 +12,19 @@ public class Order {
 
     private String orderID, order_userID, order_salecodeID, note, date, status;
     private String address, phone_number, orderdetail_productID;
-    private String name_user, price_order;
+    private String name_user, price_order,picture,salePrice,quantity,productName;
+
+    public Order(String orderID, String date, String status, String address, String picture, String salePrice, String quantity, String productName,String orderdetail_productID,int temp) {
+        this.orderID=orderID;
+        this.date = date;
+        this.status = status;
+        this.address = address;
+        this.picture = picture;
+        this.salePrice = salePrice;
+        this.quantity = quantity;
+        this.productName = productName;
+        this.orderdetail_productID = orderdetail_productID;
+    }
 
     public Order() {
     }
@@ -45,6 +57,14 @@ public class Order {
         return phone_number;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
@@ -67,6 +87,30 @@ public class Order {
         this.address = address;
         this.phone_number = phone_number;
         this.orderdetail_productID = orderdetail_productID;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getSalePrice() {
+        return salePrice;
+    }
+
+    public void setSalePrice(String salePrice) {
+        this.salePrice = salePrice;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
     public String getOrderID() {

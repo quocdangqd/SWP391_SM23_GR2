@@ -135,6 +135,14 @@
                     <div class="tile">
                         <div class="tile-body">
                             <div class="row element-button">
+                                <!--                                <div class="col-sm-2">
+                                                                    <a class="btn btn-add btn-sm" href="addorder.jsp" title="Thêm"><i class="fas fa-plus"></i>
+                                                                        Tạo mới đơn hàng</a>
+                                                                </div>-->
+                                <div class="col-sm-2">
+                                    <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
+                                            class="fas fa-print"></i> In dữ liệu</a>
+                                </div>
                                 <div class="col-sm-2">
                                     <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất file</a>
                                 </div>
@@ -149,7 +157,7 @@
                                         <th>Ngày tạo đơn</th>
                                         <th>Trạng thái đơn hàng</th>
                                         <th>Tổng tiền</th>
-                                        <!--                                        <th>Ghi chú</th>-->
+<!--                                        <th>Ghi chú</th>-->
                                         <th>Tính năng</th>
                                     </tr>
                                 </thead>
@@ -168,6 +176,12 @@
                                                 <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                                 </button>
+                                                </a>
+                                                <a href="ManagerUpdateOrderController?id=${o.getOrderID()}"><button class="btn btn-primary btn-sm edit" type="button" title="Sửa">
+                                                    <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </a>
+
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -222,6 +236,18 @@
                 e.stopImmediatePropagation();
             });
 
+            //EXCEL
+            // $(document).ready(function () {
+            //   $('#').DataTable({
+
+            //     dom: 'Bfrtip',
+            //     "buttons": [
+            //       'excel'
+            //     ]
+            //   });
+            // });
+
+
             //Thời Gian
             function time() {
                 var today = new Date();
@@ -270,8 +296,30 @@
                     win.document.write(tab.outerHTML);
                     win.document.close();
                     win.print();
-                };
-            };
+                }
+            }
+            //     //Sao chép dữ liệu
+            //     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+            // copyTextareaBtn.addEventListener('click', function(event) {
+            //   var copyTextarea = document.querySelector('.js-copytextarea');
+            //   copyTextarea.focus();
+            //   copyTextarea.select();
+
+            //   try {
+            //     var successful = document.execCommand('copy');
+            //     var msg = successful ? 'successful' : 'unsuccessful';
+            //     console.log('Copying text command was ' + msg);
+            //   } catch (err) {
+            //     console.log('Oops, unable to copy');
+            //   }
+            // });
+
+
+            //Modal
+            $("#show-emp").on("click", function () {
+                $("#ModalUP").modal({backdrop: false, keyboard: false})
+            });
         </script>
     </body>
 
