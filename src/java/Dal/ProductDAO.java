@@ -9,6 +9,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
 
 /**
@@ -364,14 +365,109 @@ public class ProductDAO extends ConnectMySQL {
         return total;
     }
 
-    
+    public String getCategoryIDByProductID(String productID) {
+        try {
+            String sqlSelect = "select product_categoryID from product where productid=?";
+            pstm = connection.prepareStatement(sqlSelect);
+            pstm.setInt(1, Integer.parseInt(productID));
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                return String.valueOf(rs.getInt(1));
+            }
+        } catch (Exception e) {
+            System.out.println("getCategoryIDByProductID: " + e);
+        }
+        return null;
+    }
+
+    public ArrayList<Products> GetProductListByCategoryID(String CategoryID) {
+        ArrayList<Products> data = new ArrayList<>();
+        try {
+            String sqlSelect;
+            if (CategoryID == null || CategoryID.isEmpty()) {
+                sqlSelect = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
+                        + "                        COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice',picture2,picture3\n"
+                        + "                       from swp.earphone e, swp.orderdetail od right outer join swp.product p \n"
+                        + "                        on p.ProductID=od.orderdetail_productID \n"
+                        + "                       group by productid \n"
+                        + "                       order by rate desc;";
+            } else {
+                sqlSelect = "select p.ProductID, p.product_categoryID, p.name, p.desciption, p.picture, p.price, p.quantity, p.status,coalesce( p.sale,0) 'sale',\n"
+                        + "                        COALESCE(sum(product_rate)/count(product_rate) ,0) 'rate',COALESCE(p.price-p.price*p.sale/100,p.price) 'saleprice',picture2,picture3\n"
+                        + "                       from swp.earphone e, swp.orderdetail od right outer join swp.product p \n"
+                        + "                        on p.ProductID=od.orderdetail_productID  where product_categoryID=? \n"
+                        + "                       group by productid \n"
+                        + "                       order by rate desc;";
+            }
+            pstm = connection.prepareStatement(sqlSelect);
+            if (CategoryID != null && !CategoryID.isEmpty()) {
+                pstm.setInt(1, Integer.parseInt(CategoryID));
+            }
+            rs = pstm.executeQuery();
+            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+            decimalFormat.applyPattern("#,###");
+            while (rs.next()) {
+                String ProductID = String.valueOf(rs.getInt(1));
+                String product_categoryID = String.valueOf(rs.getInt(2));
+                String name = String.valueOf(rs.getString(3));
+                String desciption = String.valueOf(rs.getString(4));
+                String picture = String.valueOf(rs.getString(5));
+                String price = String.valueOf(decimalFormat.format(rs.getFloat(6)));
+                String quantity = String.valueOf(rs.getInt(7));
+                String status = String.valueOf(rs.getInt(8));
+                String sale = String.valueOf(decimalFormat.format(rs.getFloat(9)));
+                String rateStar = String.valueOf(new DecimalFormat("#.0").format(rs.getFloat(10)));
+                if (rs.getFloat(10) - (int) rs.getFloat(10) == 0) {
+                    rateStar = String.valueOf(new DecimalFormat("#").format(rs.getFloat(10)));
+                }
+                String salePrice = String.valueOf(decimalFormat.format(rs.getDouble(11)));
+                salePrice = salePrice.replaceAll(",", ".");
+                String picture2 = String.valueOf(rs.getString(12));
+                String picture3 = String.valueOf(rs.getString(13));
+                data.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rateStar, salePrice, picture2, picture3));
+            }
+            return data;
+        } catch (Exception e) {
+            System.out.println("GetProductListByCategoryID: " + e);
+        }
+        return null;
+    }
+
+    public int RandDomNumber(int Length) {
+        Random rd = new Random();
+        return rd.nextInt(Length);
+    }
+
+    public ArrayList<Products> GetRandomProduct(ArrayList<Products> dataArrayList, int MaxSize) {
+        ArrayList<Products> data = new ArrayList<>();
+        try {
+            int count = 0;
+            int randomNum;
+            while (count < MaxSize) {
+                randomNum = RandDomNumber(dataArrayList.size());
+                if (!data.contains(dataArrayList.get(randomNum))) {
+                    count++;
+                    data.add(dataArrayList.get(randomNum));
+                }
+            }
+            return data;
+        } catch (Exception e) {
+            System.out.println("GetRandomProduct: " + e);
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
-        int months = Calendar.getInstance().get(Calendar.MONTH);
-        ArrayList list = productDAO.BestSellerProducts();
-        System.out.println(list);
-        
+        ArrayList<Products> data = productDAO.GetRandomProduct(productDAO.GetProductListByCategoryID(""), 6);
+        for (Products products : data) {
+            System.out.println(products.getProductID());
+        }
+
+//        System.out.println(productDAO.GetProductListByCategoryID("1").size());
+//        int months = Calendar.getInstance().get(Calendar.MONTH);
+//        ArrayList list = productDAO.BestSellerProducts();
+//        System.out.println(list);
 //        System.out.println(productDAO.decreaseProductAmount("1", "5"));
 //        Products p = productDAO.getProductByID("1");
 //        System.out.println("productid: " + p.getProductID() + " ");
