@@ -302,23 +302,21 @@
                             <div class="container">
                                 <section class="row">
                                     <a href="OrderListController?status=All" class="show-entries hover-order col-lg-2 active">
-                                        <div>Tất cả</div>
+                                        <div>Tất cả (${AllOrder.size()})</div>
                                     </a>
                                     <a href="OrderListController?status=Pending" class="show-entries hover-order col-lg-3">
-                                        <div>Chờ xác nhận</div>
+                                        <div>Chờ xác nhận(${orderListPendingAmount})</div>
                                     </a>
                                     <a href="OrderListController?status=Shipping" class="show-entries hover-order col-lg-3">
-                                        <div>Đang giao</div>
+                                        <div>Đang giao(${orderListShippingAmount})</div>
                                     </a>
                                     <a href="OrderListController?status=Completed" class="show-entries hover-order col-lg-2">
-                                        <div>Hoàn thành</div>
+                                        <div>Hoàn thành(${orderListCompletedAmount})</div>
                                     </a>
                                     <a href="OrderListController?status=Cancelled" class="show-entries hover-order col-lg-2">
-                                        <div>Đã hủy</div>
+                                        <div>Đã hủy(${orderListCanceledAmount})</div>
                                     </a>                          
-
                                 </section>
-
                             </div>
                         </div>
                         <table class="table table-striped table-hover">
@@ -357,13 +355,12 @@
                                                                                                                                                        height: 19px;"></i>
                                                 </button>
                                             </a>
-                                            <button class="btn btn-primary cols-4" type="button" title="Xóa" onclick="openPopup()"><i class="fas fa-trash-alt" style="margin: auto"></i>
-                                            </button>
-                                            <button class="btn btn-primary cols-4" type="button" title="Xem"><i class="fas fa-list" style="margin: auto"></i>
-                                            </button>
-                                            <button class="btn btn-primary cols-4" type="button" title="Đã nhận đơn hàng"><i class="fas fa-check" style="margin: auto"></i>
-                                            </button>
-
+                                            <!--                                            <button class="btn btn-primary cols-4" type="button" title="Xóa" onclick="openPopup()"><i class="fas fa-trash-alt" style="margin: auto"></i>
+                                                                                        </button>
+                                                                                        <button class="btn btn-primary cols-4" type="button" title="Xem"><i class="fas fa-list" style="margin: auto"></i>
+                                                                                        </button>
+                                                                                        <button class="btn btn-primary cols-4" type="button" title="Đã nhận đơn hàng"><i class="fas fa-check" style="margin: auto"></i>
+                                                                                        </button>-->
                                         </div>
                                     </td>
                                 </tr>

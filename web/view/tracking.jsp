@@ -64,7 +64,7 @@
                         <!--<div class="step"> <span class="icon"> <i class="fa fa-box-open"></i> </span> <span class="text">Đã đến nơi</span> </div>-->
                     </div>
                     <hr>                      
-                    <a href="#" class="btn btn-warning" style="font-size: 1.6rem" data-abc="true"> <i class="fa fa-chevron-left"></i> Quay về danh sách đơn hàng</a>
+                    <a href="OrderListController" class="btn btn-warning" style="font-size: 1.6rem" data-abc="true"> <i class="fa fa-chevron-left"></i> Quay về danh sách đơn hàng</a>
                 </div>
             </article>
         </div>

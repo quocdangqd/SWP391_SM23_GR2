@@ -42,7 +42,7 @@ public class OrderDAO extends ConnectMySQL {
             sqlSelect = "SELECT p.name,p.picture, u.address, o.date,o.status, od.price-od.price*coalesce(salecodeRate/100,0), od.quantity, o.orderid,p.ProductID \n"
                     + "FROM swp.user u, swp.orderdetail od, swp.product p ,swp.order o left outer join swp.salecode sc on o.order_salecodeID=sc.salecodeID\n"
                     + "WHERE u.userID = o.order_userID and od.orderdetail_orderID = o.orderID \n"
-                    + "and p.ProductID = od.orderdetail_productID  and userID =? and o.status like '%" + Status + "%'";
+                    + "and p.ProductID = od.orderdetail_productID  and userID =? and o.status like '%" + Status + "%' order by date desc;";
             pstm = connection.prepareStatement(sqlSelect);
             pstm.setInt(1, Integer.parseInt(userID));
 //            pstm.setString(2, Status);
