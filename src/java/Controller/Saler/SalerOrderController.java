@@ -4,13 +4,16 @@
  */
 package Controller.Saler;
 
+import Dal.SalerDAO;
+import Model.Order;
+import Model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.util.List;
 
 /**
  *
@@ -43,7 +46,6 @@ public class SalerOrderController extends HttpServlet {
 //            out.println("</html>");
 //        }
 //    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -56,6 +58,10 @@ public class SalerOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        SalerDAO dao = new SalerDAO();
+        List<Order> list = dao.getAllOrder();
+        request.setAttribute("listO", list);
+        request.getRequestDispatcher("../saler/ordersaler.jsp").forward(request, response);
     }
 
     /**

@@ -5,6 +5,7 @@
 package Controller.Saler;
 
 import Dal.SalerDAO;
+import Model.User;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -22,10 +23,10 @@ public class SalerCustomerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        SalerDAO users = new SalerDAO();
-//        List listS = users.getAllUserBySaler();
-//        request.setAttribute("listS", users);
-        request.getRequestDispatcher("customersaler.jsp").forward(request, response);
+        SalerDAO dao = new SalerDAO();
+        List<User> customers = dao.getAllCustomer();
+        request.setAttribute("listC", customers);
+        request.getRequestDispatcher("../saler/customersaler.jsp").forward(request, response);
     }
 
     /**

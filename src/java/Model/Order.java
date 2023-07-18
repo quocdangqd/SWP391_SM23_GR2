@@ -13,10 +13,24 @@ public class Order {
     private String orderID, order_userID, order_salecodeID, note, date, status;
     private String address, phone_number, orderdetail_productID;
     private String name_user, price_order;
+    
+    
+    
 
+    
+    
     public Order() {
     }
 
+    /**
+     *
+     * @param orderID
+     * @param order_userID
+     * @param order_salecodeID
+     * @param note
+     * @param date
+     * @param status
+     */
     public Order(String orderID, String order_userID, String order_salecodeID, String note, String date, String status) {
         this.orderID = orderID;
         this.order_userID = order_userID;
@@ -25,7 +39,19 @@ public class Order {
         this.date = date;
         this.status = status;
     }
+    
+    
+    public Order(String orderID, String cName, String phone, String address, String price, String date, String status){
+        this.orderID = orderID;
+        this.name_user = cName;
+        this.phone_number = phone;
+        this.address = address;
+        this.price_order = price;
+        this.date = date;
+        this.status = status;
+    }
 
+    
     public Order(String order_userID, String order_salecodeID, String date, String status) {
         this.order_userID = order_userID;
         this.order_salecodeID = order_salecodeID;
@@ -144,6 +170,13 @@ public class Order {
     public void setNote(String note) {
         this.note = note;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" + "orderID=" + orderID + ", date=" + date + ", status=" + status + ", address=" + address + ", phone_number=" + phone_number + ", name_user=" + name_user + ", price_order=" + price_order + '}';
+    }
+    
+    
     
     
 
