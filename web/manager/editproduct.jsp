@@ -199,18 +199,17 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Tên sản phẩm</label>
-                                        <input class="form-control" type="text" name="name" value="${o.getName()}" 
-                                               >
+                                        <input class="form-control" type="text" name="name" value="${o.getName()}">
                                     </div>
                                     <div class="form-group  col-md-6">
                                         <label class="control-label">Số lượng</label>
-                                        <input class="form-control" type="number" name="quantity" value="${o.getQuantity()}"
-                                               >
+                                        <input class="form-control" type="number" name="quantity" value="${o.getQuantity()}">
+                                        <label class="control-label">${QuantityErr}</label>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Giá bán</label>
-                                        <input class="form-control" type="text" name="price" value="${o.getPrice()}" 
-                                              >
+                                        <input class="form-control" type="text" name="price" value="${o.getPrice()}">
+                                        <label class="control-label">${PriceErr}</label>
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="exampleSelect1" class="control-label">Tình trạng sản phẩm</label>
@@ -237,14 +236,17 @@
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Ảnh 1</label>
                                         <input value="${o.getPicture()}" name="image" class="form-control" type="text">
+                                        <label class="control-label">${Image1Err}</label>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Ảnh 2</label>
                                         <input value="${o.getPicture2()}" name="image2" class="form-control" type="text">
+                                        <label class="control-label">${Image2Err}</label>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Ảnh 3 </label>
                                         <input value="${o.getPicture3()}" name="image3" class="form-control" type="text">
+                                        <label class="control-label">${Image3Err}</label>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label class="control-label">Mô tả</label>

@@ -7,7 +7,6 @@ package Controller.Manager;
 import Dal.CategoriesDAO;
 import Dal.ManagerDAO;
 import Model.Products;
-import Model.User;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -45,9 +44,36 @@ public class ManagerUpdateProductController extends HttpServlet {
         String Price = req.getParameter("price");
         String Quantity = req.getParameter("quantity");
         String Status = req.getParameter("status");
-        dao.updateProduct(Cid, Name, Desciption, Image, Image2, Image3, Quantity, Status, Price, id);
+        String date = req.getParameter("date");
+        dao.updateProduct(Cid, Name, Desciption, Image, Image2, Image3, Quantity, Status, Price, date, id);
         Products p = dao.getProductsByID(id);
         req.setAttribute("o", p);
+
+        if (Float.parseFloat(Price) > 200000 && Integer.parseInt(Quantity) > 1
+                && (Image.endsWith(".png") || Image.endsWith(".jpg"))
+                && (Image2.endsWith(".png") || Image2.endsWith(".jpg"))
+                && (Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
+            dao.updateProduct(Cid, Name, Desciption, Image, Image2, Image3, Quantity, Status, Price, date, id);
+
+            req.setAttribute("successText", "Update Successful!!!");
+        } else {
+            if (Float.parseFloat(Price) < 200000) {
+                req.setAttribute("PriceErr", "Price must Enter at least 200,000");
+            }
+            if (Integer.parseInt(Quantity) < 1) {
+                req.setAttribute("QuantityErr", "Quantiy must enter at leat 1");
+            }
+            if (!(Image.endsWith(".png") || Image.endsWith(".jpg"))) {
+                req.setAttribute("Image1Err", "Must enter file with .png or .jpg");
+            }
+            if (!(Image2.endsWith(".png") || Image2.endsWith(".jpg"))) {
+                req.setAttribute("Image2Err", "Must enter file with .png or .jpg");
+            }
+            if (!(Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
+                req.setAttribute("Image3Err", "Must enter file with .png or .jpg");
+            }
+
+        }
         req.setAttribute("successText", "Update Successful!!!");
 
         req.getRequestDispatcher("editproduct.jsp").forward(req, resp);

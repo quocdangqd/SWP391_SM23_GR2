@@ -191,21 +191,6 @@
                     <div class="tile">
                         <h3 class="tile-title">Tạo mới sản phẩm</h3>
                         <div class="tile-body">
-                            <!--                            <div class="row element-button">
-                                                            <div class="col-sm-2">
-                                                                <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#exampleModalCenter"><i
-                                                                        class="fas fa-folder-plus"></i> Thêm nhà cung cấp</a>
-                                                            </div>
-                                                            <div class="col-sm-2">
-                                                                <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#adddanhmuc"><i
-                                                                        class="fas fa-folder-plus"></i> Thêm danh mục</a>
-                                                            </div>
-                                                            <div class="col-sm-2">
-                                                                <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtinhtrang"><i
-                                                                        class="fas fa-folder-plus"></i> Thêm tình trạng</a>
-                                                            </div>
-                                                        </div>-->
-                            <p class="text-danger">${wrongText}</p>
                             <p class="text-success">${successText}</p>                                
                             <br>
                             <form class="row" action="ManagerAddProductController" method="post">
@@ -226,17 +211,17 @@
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
                                     <select name="category" class="form-control" id="exampleSelect1">
-                                        <c:if test="${category == null }">
+                                        <%--<c:if test="${category == null }">--%>
                                             <option>-- Chọn danh mục --</option>
                                             <c:forEach items="${categoriesList}" var="c">
                                                 <option value="${c.getCategoryID()}">${c.getName()}</option>
                                             </c:forEach>
-                                        </c:if>
-                                        <c:if test="${category != null }">
-                                            <c:forEach items="${categoriesList}" var="c">
-                                                <option value="${c.getCategoryID()}" selected="${c.getCategoryID()}">${c.getName()}</option>
-                                            </c:forEach>                                        
-                                        </c:if>
+                                        <%--</c:if>--%>
+                                        <%--<c:if test="${category != null }">--%>
+                                            <%--<c:forEach items="${categoriesList}" var="c">--%>
+                                                <!--<option value="${c.getCategoryID()}" selected="${c.getCategoryID()}">${c.getName()}</option>-->
+                                            <%--</c:forEach>--%>                                        
+                                        <%--</c:if>--%>
 
                                     </select>   
                                 </div>
@@ -260,7 +245,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 1</label>
-                                    <input value="${image}" name="image" class="form-control" type="text" required="" placeholder="Nhập link ảnh">
+                                    <input value="${image}" name="image" class="form-control" type="text" required="" placeholder="Nhập link ảnh .jpg hoặc .png">
                                     <label class="control-label">${Image1Err}</label>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -288,118 +273,6 @@
                 </div>
             </div>
         </main>
-        <!--
-        MODAL CHỨC VỤ 
-        -->
-        <!--        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                     data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-        
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="form-group  col-md-12">
-                                        <span class="thong-tin-thanh-toan">
-                                            <h5>Thêm mới nhà cung cấp</h5>
-                                        </span>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label">Nhập tên chức vụ mới</label>
-                                        <input class="form-control" type="text" required>
-                                    </div>
-                                </div>
-                                <BR>
-                                <button class="btn btn-save" type="submit">Lưu lại</button>
-                                <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                                <BR>
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-              MODAL
-                
-        
-                
-                MODAL DANH MỤC
-                
-                <div class="modal fade" id="adddanhmuc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                     data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-        
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="form-group  col-md-12">
-                                        <span class="thong-tin-thanh-toan">
-                                            <h5>Thêm mới danh mục </h5>
-                                        </span>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label">Nhập tên danh mục mới</label>
-                                        <input class="form-control" type="text" required>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label">Danh mục sản phẩm hiện đang có</label>
-                                        <ul style="padding-left: 20px;">
-                                            <li>Tai nghe</li>
-                                            <li>Chuột</li>
-                                            <li>Bàn phím</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <BR>
-                                <button class="btn btn-save" type="button">Lưu lại</button>
-                                <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                                <BR>
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-              MODAL
-                
-        
-        
-        
-        
-                
-                MODAL TÌNH TRẠNG
-                
-                <div class="modal fade" id="addtinhtrang" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                     data-backdrop="static" data-keyboard="false">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-        
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="form-group  col-md-12">
-                                        <span class="thong-tin-thanh-toan">
-                                            <h5>Thêm mới tình trạng</h5>
-                                        </span>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label">Nhập tình trạng mới</label>
-                                        <input class="form-control" type="text" required>
-                                    </div>
-                                </div>
-                                <BR>
-                                <button class="btn btn-save" type="button">Lưu lại</button>
-                                <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                                <BR>
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-              MODAL
-        -->
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
