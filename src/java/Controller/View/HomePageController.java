@@ -135,6 +135,7 @@ public class HomePageController extends HttpServlet {
                 session.setAttribute("bottomDataList", bottomDataList);
 //                out.print(typeProductList.size()); 
             } else if (tab.equals("logOut")) {
+                session.removeAttribute("user");
                 session.removeAttribute("role");
                 session.removeAttribute("AmountOfProductType");
             }
