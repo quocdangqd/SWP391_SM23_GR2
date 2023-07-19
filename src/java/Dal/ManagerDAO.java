@@ -150,8 +150,6 @@ public class ManagerDAO extends ConnectMySQL {
         try {
             String sql = "UPDATE product set product_categoryID=?, name=?, desciption=?,picture=?,picture2=?,picture3=?,\n"
                     + "price=?,quantity=?, status=?, date=? where ProductID = ?;";
-            decimalFormat.applyPattern("#,###");
-            dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             pstm = connection.prepareStatement(sql);
             pstm.setInt(1, Integer.parseInt(cid));
             pstm.setString(2, pname);
@@ -163,7 +161,7 @@ public class ManagerDAO extends ConnectMySQL {
             pstm.setFloat(7, Float.parseFloat(price));
             pstm.setInt(8, Integer.parseInt(quantity));
             pstm.setInt(9, Integer.parseInt(status));
-            Date date1 = Date.valueOf(date);
+            Date date1 = Date.valueOf((date));
             pstm.setDate(10, (date1));
             pstm.setInt(11, Integer.parseInt(pid));
             pstm.executeUpdate();

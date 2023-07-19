@@ -256,50 +256,50 @@
                                         <label class="control-label">${Image3Err}</label>
                                     </div>
                                     <div class="form-group col-md-6">
-                                    <label for="exampleSelect1" class="control-label">Ngày nhập</label>
-                                    <input name="date" value="${date}" class="form-control" type="text">  
-                                </div>
-                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                        <label for="exampleSelect1" class="control-label">Ngày nhập</label>
+                                        <input name="date" value="${date}" class="form-control" type="date">  
+                                    </div>
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
                                         <label class="control-label">Loại</label>
                                         <input value="${earphone.type}" name="type" class="form-control" type="text">
                                     </div>
 
-                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'} >
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'} >
                                         <label class="control-label">Tần số</label>
                                         <input value= "${earphone.frequency}" name="frequency" class="form-control" type="text">
                                     </div>
 
-                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'} >
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'} >
                                         <label class="control-label">Độ nhạy </label>
                                         <input value="${earphone.sensitive}" name="sensitive" class="form-control" type="text">
                                     </div>
 
-                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'} >
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'} >
                                         <label class="control-label">Trở kháng</label>
                                         <input value="${earphone.impedance}" name="impedance" class="form-control" type="text">
                                     </div>
 
-                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
                                         <label class="control-label">Chất liệu</label>
                                         <input value="${earphone.meterial}" name="meterial" class="form-control" type="text">
                                     </div>
 
-                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
                                         <label class="control-label">Kích cỡ</label>
                                         <input value="${earphone.size}" name="size" class="form-control" type="text">
                                     </div>
 
-                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
                                         <label class="control-label">Pin</label>
                                         <input value="${earphone.battery}" name="battery" class="form-control" type="text">
                                     </div><!-- comment -->
 
-                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
                                         <label class="control-label">Khoảng cách kết nối </label>
                                         <input value="${earphone.connection_distance}" name="connection distance" class="form-control" type="text">
                                     </div> 
 
-                                    <div class="form-group col-md-3 earphone" ${p.categories.categoryID=='1'?'style="display: block"':'style="display: none"'}>
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
                                         <label class="control-label">Độ dài dây</label>
                                         <input value="${earphone.wire_length}" name="wire length" class="form-control" type="text">
 
@@ -329,24 +329,24 @@
         <script src="js/main.js"></script>
         <script src="js/plugins/pace.min.js"></script>
         <script>
-            const inpFile = document.getElementById("inpFile");
-            const loadFile = document.getElementById("loadFile");
-            const previewContainer = document.getElementById("imagePreview");
-            const previewContainer = document.getElementById("imagePreview");
-            const previewImage = previewContainer.querySelector(".image-preview__image");
-            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-            inpFile.addEventListener("change", function () {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    previewDefaultText.style.display = "none";
-                    previewImage.style.display = "block";
-                    reader.addEventListener("load", function () {
-                        previewImage.setAttribute("src", this.result);
-                    });
-                    reader.readAsDataURL(file);
-                }
-            });
+                                            const inpFile = document.getElementById("inpFile");
+                                            const loadFile = document.getElementById("loadFile");
+                                            const previewContainer = document.getElementById("imagePreview");
+                                            const previewContainer = document.getElementById("imagePreview");
+                                            const previewImage = previewContainer.querySelector(".image-preview__image");
+                                            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+                                            inpFile.addEventListener("change", function () {
+                                                const file = this.files[0];
+                                                if (file) {
+                                                    const reader = new FileReader();
+                                                    previewDefaultText.style.display = "none";
+                                                    previewImage.style.display = "block";
+                                                    reader.addEventListener("load", function () {
+                                                        previewImage.setAttribute("src", this.result);
+                                                    });
+                                                    reader.readAsDataURL(file);
+                                                }
+                                            });
 
         </script>
     </body>

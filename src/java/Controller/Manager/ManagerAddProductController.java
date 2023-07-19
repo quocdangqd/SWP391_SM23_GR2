@@ -42,8 +42,8 @@ public class ManagerAddProductController extends HttpServlet {
         String Quantity = req.getParameter("quantity");
         String Status = req.getParameter("status");
         String date = req.getParameter("date");
-        dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Price, Quantity, Status, date);
-        req.setAttribute("successText", "Add Successful!!!");
+//        dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Price, Quantity, Status, date);
+//        req.setAttribute("successText", "Add Successful!!!");
 
         Earphone e = new Earphone();
         String type = req.getParameter("type");
@@ -77,6 +77,7 @@ public class ManagerAddProductController extends HttpServlet {
         req.setAttribute("mota", Desciption);
         req.setAttribute("quantity", Quantity);
         req.setAttribute("status", Status);
+        req.setAttribute("date", date);
         req.setAttribute("type", type);
         req.setAttribute("frequency", frequency);
         req.setAttribute("sensitive", sensitive);
@@ -87,31 +88,31 @@ public class ManagerAddProductController extends HttpServlet {
         req.setAttribute("connection_distance", connection_distance);
         req.setAttribute("wire_length", wire_length);
 
-//        if (Float.parseFloat(Price) > 200000 && Integer.parseInt(Quantity) > 1
-//                && (Image1.endsWith(".png") || Image1.endsWith(".jpg"))
-//                && (Image2.endsWith(".png") || Image2.endsWith(".jpg"))
-//                && (Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
-//            dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Price, Quantity, Status, date);
-//
-//            req.setAttribute("successText", "Add Successful!!!");
-//        } else {
-//            if (Float.parseFloat(Price) < 200000) {
-//                req.setAttribute("PriceErr", "Price must Enter at least 200,000");
-//            }
-//            if (Integer.parseInt(Quantity) < 1) {
-//                req.setAttribute("QuantityErr", "Quantiy must enter at leat 1");
-//            }
-//            if (!(Image1.endsWith(".png") || Image1.endsWith(".jpg"))) {
-//                req.setAttribute("Image1Err", "Must enter file with .png or .jpg");
-//            }
-//            if (!(Image2.endsWith(".png") || Image2.endsWith(".jpg"))) {
-//                req.setAttribute("Image2Err", "Must enter file with .png or .jpg");
-//            }
-//            if (!(Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
-//                req.setAttribute("Image3Err", "Must enter file with .png or .jpg");
-//            }
-//
-//        }
+        if (Float.parseFloat(Price) > 200000 && Integer.parseInt(Quantity) > 1
+                && (Image1.endsWith(".png") || Image1.endsWith(".jpg"))
+                && (Image2.endsWith(".png") || Image2.endsWith(".jpg"))
+                && (Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
+            dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Price, Quantity, Status, date);
+
+            req.setAttribute("successText", "Add Successful!!!");
+        } else {
+            if (Float.parseFloat(Price) < 200000) {
+                req.setAttribute("PriceErr", "Price must Enter at least 200,000");
+            }
+            if (Integer.parseInt(Quantity) < 1) {
+                req.setAttribute("QuantityErr", "Quantiy must enter at leat 1");
+            }
+            if (!(Image1.endsWith(".png") || Image1.endsWith(".jpg"))) {
+                req.setAttribute("Image1Err", "Must enter file with .png or .jpg");
+            }
+            if (!(Image2.endsWith(".png") || Image2.endsWith(".jpg"))) {
+                req.setAttribute("Image2Err", "Must enter file with .png or .jpg");
+            }
+            if (!(Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
+                req.setAttribute("Image3Err", "Must enter file with .png or .jpg");
+            }
+
+        }
         req.getRequestDispatcher("addproduct.jsp").forward(req, resp);
 
     }

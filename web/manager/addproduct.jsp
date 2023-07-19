@@ -102,11 +102,11 @@
                 display: none;
             }
 
-            <c:if test="${p==null}">
-                .earphone {
-                    display: none;
-                }
-            </c:if>
+            <%--<c:if test="${p==null}">--%>
+                /*.earphone {*/
+                    /*display: none;*/
+                /*}*/
+            <%--</c:if>--%>
             #thumbbox {
                 position: relative;
                 width: 100%;
@@ -221,7 +221,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
                                     <select name="category" class="form-control" id="exampleSelect1" onchange="showDiv('earphone', this)">
-                                        <option>-- Chọn danh mục --</option>
+<!--                                        <option>-- Chọn danh mục --</option>-->
                                         <c:forEach items="${categoriesList}" var="c">
                                             <option value="${c.getCategoryID()}">${c.getName()}</option>
                                         </c:forEach>

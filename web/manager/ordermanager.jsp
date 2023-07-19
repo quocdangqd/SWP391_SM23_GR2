@@ -161,9 +161,7 @@
                                             <td>${o.getName_user()}</td>
                                             <td>${o.getOrder_salecodeID()}</td>
                                             <td>${o.getDate()}</td>
-                                            
                                             <td>${o.getStatus()}</td>
-                                            
                                             <td>${o.getPrice_order()}</td>
                                             <!--<td>${o.getNote()}</td>-->
                                             <td>
