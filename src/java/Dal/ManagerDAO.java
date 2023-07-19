@@ -13,7 +13,6 @@ import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -93,6 +92,8 @@ public class ManagerDAO extends ConnectMySQL {
             pstm = connection.prepareStatement(sqlSelect);
             rs = pstm.executeQuery();
             decimalFormat.applyPattern("#,###");
+            dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
             while (rs.next()) {
                 Products p = new Products();
                 p.setProductID(String.valueOf(rs.getInt(1)));
@@ -107,6 +108,7 @@ public class ManagerDAO extends ConnectMySQL {
                 p.setPrice(String.valueOf(decimalFormat.format((int) rs.getFloat(8))));
                 p.setQuantity(String.valueOf(rs.getInt(9)));
                 p.setStatus(String.valueOf(rs.getInt(10)));
+                p.setDate(String.valueOf(dateFormat.format(rs.getDate(12))));
                 p.setCategories(new CategoriesDAO().getCategoryById(categories));
                 return p;
             }
@@ -121,6 +123,8 @@ public class ManagerDAO extends ConnectMySQL {
         try {
             String sql = "insert into swp.product (product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, status, date)\n"
                     + "values (?,?,?,?,?,?,?,?,?,?);";
+            decimalFormat.applyPattern("#,###");
+            dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             pstm = connection.prepareStatement(sql);
             pstm.setInt(1, Integer.parseInt(cid));
             pstm.setString(2, pname);
@@ -132,7 +136,8 @@ public class ManagerDAO extends ConnectMySQL {
             pstm.setFloat(7, Float.parseFloat(price));
             pstm.setInt(8, Integer.parseInt(quantity));
             pstm.setBoolean(9, status.equals("1"));
-            pstm.setDate(10, Date.valueOf((dateFormat.format(date))));
+            Date date1 = Date.valueOf(date);
+            pstm.setDate(10, (date1));
 
             pstm.executeUpdate();
         } catch (Exception e) {
@@ -145,6 +150,8 @@ public class ManagerDAO extends ConnectMySQL {
         try {
             String sql = "UPDATE product set product_categoryID=?, name=?, desciption=?,picture=?,picture2=?,picture3=?,\n"
                     + "price=?,quantity=?, status=?, date=? where ProductID = ?;";
+            decimalFormat.applyPattern("#,###");
+            dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             pstm = connection.prepareStatement(sql);
             pstm.setInt(1, Integer.parseInt(cid));
             pstm.setString(2, pname);
@@ -156,8 +163,9 @@ public class ManagerDAO extends ConnectMySQL {
             pstm.setFloat(7, Float.parseFloat(price));
             pstm.setInt(8, Integer.parseInt(quantity));
             pstm.setInt(9, Integer.parseInt(status));
-            pstm.setInt(10, Integer.parseInt(pid));
-            pstm.setDate(10, Date.valueOf((dateFormat.format(date))));
+            Date date1 = Date.valueOf(date);
+            pstm.setDate(10, (date1));
+            pstm.setInt(11, Integer.parseInt(pid));
             pstm.executeUpdate();
         } catch (Exception e) {
             System.out.println("updateProduct: " + e.getMessage());
@@ -454,6 +462,13 @@ public class ManagerDAO extends ConnectMySQL {
         ManagerDAO dao = new ManagerDAO();
 
         System.out.println(dao.countProductByProductID());
-        System.out.println(dao.countOrder());
+        System.out.println(dao.getAllProduct().get(1));
+        dao.updateProduct("1", "Corsair HS70", " Corsair HS70 Pro Wireless Carbon là dòng tai nghe máy tính có phần đệm tai mềm mại, dày dặn, độ sâu lớn, trùm kín tai hạn chế âm thanh từ bên ngoài lọt vào, cùng với độ bền cao, độ đàn hồi lớn ít bị biến dạng và khó rách. ",
+                "https://product.hstatic.net/200000722513/product/thumbtainghe_43854b38b58545be8683a4e1cbcf1d67_1898e6f48b834e80a6249d87d9839073_master.png",
+                "https://product.hstatic.net/200000722513/product/he-corsair-hs70-pro-wireless-carbon-2_3855186e6a3e4f74bf4f15d9dc36990d_c3bff6691ab24c7cbb963acfbe1e4cb0_master.jpg",
+                "https://product.hstatic.net/200000722513/product/he-corsair-hs70-pro-wireless-carbon-3_ba19343bfeb746f5b9c4e4f486971ea2_fee978ad3a344dccbd22e56923d397fb_master.jpg",
+                "101", "1", "1,790,000", "2023-07-11", "1");
+        System.out.println(dao.getProductsByID("1"));
+        
     }
 }

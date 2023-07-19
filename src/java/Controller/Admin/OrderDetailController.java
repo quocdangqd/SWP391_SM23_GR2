@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package Controller.Admin;
 
 import Dal.ManagerDAO;
@@ -17,10 +16,10 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class OrderDetailController extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         ManagerDAO dao = new ManagerDAO();
         String id = req.getParameter("id");
         dao.getListOrder();
@@ -33,18 +32,17 @@ public class OrderDetailController extends HttpServlet {
         double grandTotal = total + tax;
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
         decimalFormat.applyPattern("#,###");
-        
+        req.setAttribute("grandTotalSale", decimalFormat.format(dao.sumPrice(Integer.parseInt(id))));
         req.setAttribute("total", decimalFormat.format(total));
         req.setAttribute("tax", decimalFormat.format(tax));
         req.setAttribute("grandTotal", decimalFormat.format(grandTotal));
         req.getRequestDispatcher("orderdetail.jsp").forward(req, resp);
-    } 
+    }
 
-    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-    throws ServletException, IOException {
-        
+            throws ServletException, IOException {
+
     }
 
 }

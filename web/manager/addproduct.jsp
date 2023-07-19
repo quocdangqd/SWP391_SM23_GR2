@@ -253,52 +253,52 @@
 
                                 <div class="form-group col-md-3 earphone" >
                                     <label class="control-label">Loại</label>
-                                    <input name="type" class="form-control" type="text">
+                                    <input name="type" value="${type}" class="form-control" type="text">
                                 </div>
 
                                 <div class="form-group col-md-3 earphone" >
                                     <label class="control-label">Tần số</label>
-                                    <input name="frequency" class="form-control" type="text">
+                                    <input name="frequency" value="${frequency}" class="form-control" type="text">
                                 </div>
 
                                 <div class="form-group col-md-3 earphone">
                                     <label class="control-label">Độ nhạy </label>
-                                    <input name="sensitive" class="form-control" type="text">
+                                    <input name="sensitive" value="${sensitive}" class="form-control" type="text">
                                 </div>
 
                                 <div class="form-group col-md-3 earphone">
                                     <label class="control-label">Trở kháng</label>
-                                    <input name="impedance" class="form-control" type="text">
+                                    <input name="impedance" value="${impedance}" class="form-control" type="text">
                                 </div>
 
                                 <div class="form-group col-md-3 earphone">
                                     <label class="control-label">Chất liệu</label>
-                                    <input name="meterial" class="form-control" type="text">
+                                    <input name="meterial" value="${meterial}" class="form-control" type="text">
                                 </div>
 
                                 <div class="form-group col-md-3 earphone">
                                     <label class="control-label">Kích cỡ</label>
-                                    <input name="size" class="form-control" type="text">
+                                    <input name="size" value="${size}" class="form-control" type="text">
                                 </div>
 
                                 <div class="form-group col-md-3 earphone">
                                     <label class="control-label">Pin</label>
-                                    <input name="battery" class="form-control" type="text">
+                                    <input name="battery" value="${battery}" class="form-control" type="text">
                                 </div><!-- comment -->
 
                                 <div class="form-group col-md-3 earphone">
                                     <label class="control-label">Khoảng cách kết nối </label>
-                                    <input name="connection distance" class="form-control" type="text">
+                                    <input name="connection_distance" value="${connection_distance}"  class="form-control" type="text">
                                 </div> 
 
                                 <div class="form-group col-md-3 earphone">
                                     <label class="control-label">Độ dài dây</label>
-                                    <input name="wire length" class="form-control" type="text">
+                                    <input name="wire_length" value="${wire_length}" class="form-control" type="text">
 
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Mô tả sản phẩm</label>
-                                    <input class="form-control" name="mota" value="${mota}" required="" placeholder="Nhập mô tả">
+                                    <input class="form-control"  name="mota" value="${mota}" required="" placeholder="Nhập mô tả">
                                     <script>CKEDITOR.replace('mota');</script>
                                 </div>
 
