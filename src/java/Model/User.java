@@ -163,5 +163,4 @@ public class User {
     public String toString() {
         return "User{" + "userID=" + userID + ", username=" + username + ", password=" + password + ", user_roleID=" + user_roleID + ", name=" + name + ", age=" + age + ", user_sexID=" + user_sexID + ", address=" + address + ", phone_number=" + phone_number + ", avatar=" + avatar + ", register_code=" + register_code + ", email=" + email + ", status=" + status + '}';
     }
-    
 }
