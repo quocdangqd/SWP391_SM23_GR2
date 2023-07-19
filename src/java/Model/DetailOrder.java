@@ -17,6 +17,7 @@ public class DetailOrder {
     public DetailOrder() {
     }
 
+    
     public DetailOrder(String name_user, String phone_number, String address, String orderdetailID, String orderdeatil_orderID, String quantity, String price, String orderdetail_produstID, String name_product, String price_product) {
         this.name_user = name_user;
         this.phone_number = phone_number;
