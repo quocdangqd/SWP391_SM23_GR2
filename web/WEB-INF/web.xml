@@ -124,6 +124,18 @@
         <servlet-name>EditProductController</servlet-name>
         <servlet-class>Controller.Admin.EditProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManagerUserController</servlet-name>
+        <servlet-class>Controller.Admin.ManagerUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addUserController</servlet-name>
+        <servlet-class>Controller.Admin.addUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditUserController</servlet-name>
+        <servlet-class>Controller.Admin.EditUserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/auth/Register</url-pattern>
@@ -249,6 +261,18 @@
     <servlet-mapping>
         <servlet-name>EditProductController</servlet-name>
         <url-pattern>/admin/editproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerUserController</servlet-name>
+        <url-pattern>/admin/ManagerUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addUserController</servlet-name>
+        <url-pattern>/admin/addUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUserController</servlet-name>
+        <url-pattern>/admin/EditUserController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
