@@ -166,11 +166,11 @@
                                         <td>${o.getStatus()}</td>
                                         <td>${o.getOrderdetailID()}</td>
                                         <td>
-                                            <a href="ManagerFeedbackController?id=${o.getFeedbackID()}&mod=1">
-                                                <button class="btn btn-primary btn-sm trash" type="button"
-                                                        title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
+                                            <!--<a href="ManagerDeleteOrderController?id=${o.getFeedbackID()}">-->
+                                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                                 </button>
-                                            </a>
+                                            <!--</a>-->
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -207,7 +207,7 @@
                     swal({
                         title: "Cảnh báo",
 
-                        text: "Bạn có chắc chắn là muốn xóa đánh giá này?",
+                        text: "Bạn có chắc chắn là muốn xóa nhân viên này?",
                         buttons: ["Hủy bỏ", "Đồng ý"],
                     })
                             .then((willDelete) => {

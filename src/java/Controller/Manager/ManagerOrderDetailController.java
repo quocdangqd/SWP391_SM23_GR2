@@ -35,7 +35,8 @@ public class ManagerOrderDetailController extends HttpServlet {
         double grandTotal = total + tax;
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
         decimalFormat.applyPattern("#,###");
-        req.setAttribute("grandTotalSale", decimalFormat.format(dao.sumPrice(Integer.parseInt(id))));
+        
+        System.out.println("grandTotal: " + grandTotal);
         req.setAttribute("total", decimalFormat.format(total));
         req.setAttribute("tax", decimalFormat.format(tax));
         req.setAttribute("grandTotal", decimalFormat.format(grandTotal));
