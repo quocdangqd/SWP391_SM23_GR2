@@ -232,7 +232,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SalerOrderController</servlet-name>
-        <url-pattern>/saler/SalerOrderController</url-pattern>
+            <url-pattern>/saler/SalerOrderController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SalerCustomerController</servlet-name>
