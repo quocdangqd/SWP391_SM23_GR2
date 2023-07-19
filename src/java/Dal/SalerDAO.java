@@ -1,7 +1,11 @@
 package Dal;
 
+<<<<<<< HEAD
 import Model.Order;
 import Model.Products;
+=======
+import Model.Saler;
+>>>>>>> parent of 40de08a (full)
 import Model.User;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -45,10 +49,34 @@ public class SalerDAO extends ConnectMySQL {
         this.user = user;
     }
 
+<<<<<<< HEAD
     public ArrayList<Order> getNewOrder() {
         order = new ArrayList<>();
         String sql = "select o.*,u.name,od.price from swp.order o, swp.orderdetail od, swp.user u\n"
                 + "where od.orderdetail_orderID=o.orderID and u.userID=o.order_userID ORDER BY date DESC LIMIT 5;";
+=======
+//    public List<User> getAllSaler() {
+//        List<User> data = new ArrayList<>();
+//        String sql = "select name from user u "
+//                + "JOIN saler i on u.userID = i.saler_userID";
+//        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+//        decimalFormat.applyPattern("#,###");
+//        try {
+//            pstm = connection.prepareStatement(sql);
+//            rs = pstm.executeQuery();
+//            while (rs.next()) {
+////                String orderID = String.valueOf(rs.getInt(1));
+////                String name = String.valueOf(rs.getString(2));
+//            }
+//        } catch (Exception e) {
+//        }
+//        return user;
+//    }
+
+    public ArrayList<User> getAllUserSaler() {
+        user = new ArrayList<>();
+        String sql = "select * from swp.order o JOIN saler s on o.order_saleID = s.salerID where salerID = 1";
+>>>>>>> parent of 40de08a (full)
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
         decimalFormat.applyPattern("#,###");
         try {
@@ -56,6 +84,7 @@ public class SalerDAO extends ConnectMySQL {
             rs = pstm.executeQuery();
             while (rs.next()) {
                 String orderID = String.valueOf(rs.getInt(1));
+<<<<<<< HEAD
                 String order_userID = String.valueOf(rs.getInt(2));
                 String sale = String.valueOf(rs.getInt(3));
                 String note = String.valueOf(rs.getString(4));
@@ -99,5 +128,20 @@ public class SalerDAO extends ConnectMySQL {
             System.out.println("getListOrder: " + e.getMessage());
         }
         return user;
+=======
+                String name = String.valueOf(rs.getString(2));
+                String price = String.valueOf(rs.getInt(3));
+                String status = String.valueOf(rs.getString(4));
+             //   user.add(new User);
+            }
+        } catch (Exception e) {
+        }
+        return user;
+    }
+
+    public static void main(String[] args) {
+        SalerDAO dao = new SalerDAO();
+        System.out.println(dao.getAllUserSaler());
+>>>>>>> parent of 40de08a (full)
     }
 }

@@ -12,6 +12,7 @@ public class Order {
 
     private String orderID, order_userID, order_salecodeID, note, date, status;
     private String address, phone_number, orderdetail_productID;
+<<<<<<< HEAD
     private String name_user, price_order,picture,salePrice,quantity,productName;
 
     public Order(String orderID, String date, String status, String address, String picture, String salePrice, String quantity, String productName,String orderdetail_productID,int temp) {
@@ -25,6 +26,9 @@ public class Order {
         this.productName = productName;
         this.orderdetail_productID = orderdetail_productID;
     }
+=======
+    private String name_user, price_order;
+>>>>>>> parent of 40de08a (full)
 
     public Order() {
     }
