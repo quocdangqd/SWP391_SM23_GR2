@@ -256,7 +256,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="tile">
-                        <h3 class="tile-title">THỐNG KÊ DOANH THU</h3>
+                        <h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
                         <div class="embed-responsive embed-responsive-16by9">
                             <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
                         </div>
@@ -270,8 +270,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  
         </main>
+
         <!-- Essential javascripts for application to work-->
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/popper.min.js"></script>
@@ -309,24 +310,43 @@
                 }
             ]
         };
-         var data2 = {
+        var data2 = {
             labels: [one, two, three, four, five, six],
 
             datasets: [{
-                    label: "Dữ liệu đầu tiên",
-                    fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
+                    label: "Chuột",
+                    fillColor: "rgba(255, 213, 59, 0.123), 212, 59)",
                     strokeColor: "rgb(255, 212, 59)",
                     pointColor: "rgb(255, 212, 59)",
                     pointStrokeColor: "rgb(255, 212, 59)",
                     pointHighlightFill: "rgb(255, 212, 59)",
                     pointHighlightStroke: "rgb(255, 212, 59)",
-                    data: [${firstMonth}, ${secondMonth}, ${thirdMonth}, ${fourthMonth}, ${fifthMonth}, ${currMonth}]
+                    data: [${MfirstMonth}, ${MsecondMonth}, ${MthirdMonth}, ${MfourthMonth}, ${MfifthMonth}, ${McurrMonth}]
+                },
+                {
+                    label: "Bàn phím",
+                    fillColor: "rgba(9, 109, 239, 0.123)",
+                    strokeColor: "rgb(9, 109, 239)",
+                    pointColor: "rgb(9, 109, 239)",
+                    pointStrokeColor: "rgb(9, 109, 239)",
+                    pointHighlightFill: "rgb(9, 109, 239)",
+                    pointHighlightStroke: "rgb(9, 109, 239)",
+                    data: [${KfirstMonth}, ${KsecondMonth}, ${KthirdMonth}, ${KfourthMonth}, ${KfifthMonth}, ${KcurrMonth}]
+                },
+                {
+                    label: "Tai nghe",
+                    fillColor: "rgba(255, 69, 0, 0.123)",
+                    strokeColor: "rgb(255, 69, 0)",
+                    pointColor: "rgb(255, 69, 0)",
+                    pointStrokeColor: "rgb(255, 69, 0)",
+                    pointHighlightFill: "rgb(255, 69, 0)",
+                    pointHighlightStroke: "rgb(255, 69, 0)",
+                    data: [${EfirstMonth}, ${EsecondMonth}, ${EthirdMonth}, ${EfourthMonth}, ${EfifthMonth}, ${EcurrMonth}]
                 }
-                
             ]
         };
         var ctxl = $("#lineChartDemo").get(0).getContext("2d");
-        var lineChart = new Chart(ctxl).Line(data);
+        var lineChart = new Chart(ctxl).Line(data2);
 
         var ctxb = $("#barChartDemo").get(0).getContext("2d");
         var barChart = new Chart(ctxb).Bar(data);
