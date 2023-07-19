@@ -35,6 +35,19 @@ public class User {
         this.username = username;
         this.password = password;
     }
+
+    public User(String userID, String username, String password, String user_roleID, String name, String age, String user_sexID, String address, String phone_number, String status) {
+        this.userID = userID;
+        this.username = username;
+        this.password = password;
+        this.user_roleID = user_roleID;
+        this.name = name;
+        this.age = age;
+        this.user_sexID = user_sexID;
+        this.address = address;
+        this.phone_number = phone_number;
+        this.status = status;
+    }
     
     public User(String userID, String username, String password, String user_roleID, String name, String age, String user_sexID, String address, String phone_number, String avatar, String register_code, String email, String status) {
         this.userID = userID;
