@@ -130,7 +130,11 @@
                         <div class="col-md-12">
                             <div class="tile">
                                 <h3 class="tile-title">Khách hàng mới</h3>
+<<<<<<< HEAD
                                 <h4 class="tile-title">Nhân viên: ABC </h4>
+=======
+                                <h4 class="tile-title">Nhân viên: </h4>
+>>>>>>> parent of 40de08a (full)
                                 <div>
                                     <table class="table table-hover">
                                         <thead>
@@ -144,6 +148,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+<<<<<<< HEAD
                                             <c:forEach items="${listC}" var="c">
                                             <tr>
                                                 <td>${c.getUserID()}</td>
@@ -154,6 +159,18 @@
                                                 <td>${c.getAddress()}</td>
                                             </tr>
                                         </c:forEach>
+=======
+                                            <c:forEach items="${listS}" var="a">
+                                                <tr>
+                                                    <td>${a.getUserID()}</td>
+                                                    <td>${a.getName()}</td>
+                                                    <td>${a.getAge()}</td>
+                                                    <td>${a.getPhone_number()}</td>
+                                                    <td>${a.getEmail()}</td>
+                                                    <td>${a.getAddress()}</td>
+                                                </tr>
+                                            </c:forEach>
+>>>>>>> parent of 40de08a (full)
                                         </tbody>
                                     </table>
                                 </div>

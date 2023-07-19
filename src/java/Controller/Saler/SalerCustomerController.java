@@ -4,6 +4,11 @@
  */
 package Controller.Saler;
 
+<<<<<<< HEAD
+=======
+import Dal.SalerDAO;
+import java.io.IOException;
+>>>>>>> parent of 40de08a (full)
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -55,7 +60,14 @@ public class SalerCustomerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< HEAD
         processRequest(request, response);
+=======
+//        SalerDAO users = new SalerDAO();
+//        List listS = users.getAllUserBySaler();
+//        request.setAttribute("listS", users);
+        request.getRequestDispatcher("customersaler.jsp").forward(request, response);
+>>>>>>> parent of 40de08a (full)
     }
 
     /**
