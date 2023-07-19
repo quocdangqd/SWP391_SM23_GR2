@@ -72,418 +72,376 @@
         </div>
         <div class="container pb-5 mb-2">
             <div class="comparison-table">
-                <c:if test="${product1!=null}">
-                    <table class="table table-bordered">
-                        <thead class="bg-secondary">
-                            <tr>
-                                <td class="align-middle" colspan="3">
-                                    <select class="form-control custom-select" id="compare-criteria" data-filter="trigger">
-                                        <option value="all">Hiển thị tất cả</option>
-                                        <option value="summary">Summary</option>
-                                        <option value="general">General</option>
-                                        <option value="multimedia">Multimedia</option>
-                                        <option value="performance">Performance</option>
-                                        <option value="design">Design</option>
-                                        <option value="display">Display</option>
-                                        <option value="storage">Storage</option>
-                                        <option value="camera">Camera</option>
-                                        <option value="battery">Battery</option>
-                                        <option value="price">Price &amp; rating</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody id="summary" data-filter="target">
-                            <tr class="bg-secondary">
-                                <th class="text-uppercase">Summary</th>
-                                <td>${product1.getName()}</td>
-                                <td>${product2.getName()}</td>
-                            </tr>
-                            <tr>
-                                <th>Type</th>
-                                <td>${product1.getType()}</td>
-                                <td>${product2.getType()}</td>
-                            </tr>
-                            <tr>
-                                <th>Frequency</th>
-                                <td>${product1.getFrequency()}</td>
-                                <td>${product2.getFrequency()}</td>
-                            </tr>
-                            <tr>
-                                <th>Sensitive</th>
-                                <td>${product1.getSensitive()}</td>
-                                <td>${product2.getSensitive()}</td>
-                            </tr>
-                            <tr>
-                                <th>Impedance</th>
-                                <td>${product1.getImpedance()}</td>
-                                <td>${product2.getImpedance()}</td>
-                            </tr>
-                            <tr>
-                                <th>Material</th>
-                                <td>${product1.getMeterial()}</td>
-                                <td>${product2.getMeterial()}</td>
-                            </tr>
-                            <tr>
-                                <th>Size</th>
-                                <td>${product1.getSize()}</td>
-                                <td>${product2.getSize()}</td>
-                            </tr>
-                            <tr>
-                                <th>Battery</th>
-                                <td>${product1.getBattery()}</td>
-                                <td>${product2.getBattery()}</td>
-                            </tr>
-                            <tr>
-                                <th>Connection_distance</th>
-                                <td>${product1.getConnection_distance()}</td>
-                                <td>${product2.getConnection_distance()}</td>
-                            </tr>
-                            <tr>
-                                <th>Wire_length</th>
-                                <td>${product1.getWire_length()}</td>
-                                <td>${product2.getWire_length()}</td>
-                            </tr>
-                        </tbody>
-                        <tbody id="general" data-filter="target">
-                            <tr class="bg-secondary">
-                                <th class="text-uppercase">General</th>
-                                <td>${product1.getName()}</td>
-                                <td>${product2.getName()}</td>
-                            </tr>
-                            <tr>
-                                <th>Quick charging</th>
-                                <td>Yes</td>
-                                <td>${product2!=null?"Yes":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Operating system</th>
-                                <td>iOS v12</td>
-                                <!--<td>Android v9.0 Pie </td>-->
-                                <td>${product2!=null?"Android v9.0 Pie":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Sim slots</th>
-                                <td>Single SIM, GSM</td>
-                                <!--<td>Single SIM, GSM</td>-->
-                                <td>${product2!=null?"Single SIM, GSM":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Launch date</th>
-                                <td>September 12, 2018 (Official)</td>
-                                <!--<td>November 1, 2018 (Official)</td>-->
-                                <td>${product2!=null?"November 1, 2018 (Official)":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Sim size</th>
-                                <td>SIM1: Nano</td>
-                                <!--                                <td>SIM1: Nano</td>-->
-                                <td>${product2!=null?"SIM1: Nano":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Network</th>
-                                <td>4G: Available (supports Indian bands) 3G: Available, 2G: Available</td>
-                                <!--<td>4G: Available (supports Indian bands) 3G: Available, 2G: Available</td>-->
-                                <td>${product2!=null?"4G: Available (supports Indian bands) 3G: Available, 2G: Available":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Fingerprint sensor</th>
-                                <td>None (Face ID)</td>
-                                <!--                                <td>Back cover</td>-->
-                                <td>${product2!=null?"Back cover":""}</td>
-                            </tr>
-                        </tbody>
-                        <tbody id="multimedia" data-filter="target">
-                            <tr class="bg-secondary">
-                                <th class="text-uppercase">Multimedia</th>
-                                <td>${product1.getName()}</td>
-                                <td>${product2.getName()}</td>
-                            </tr>
-                            <tr>
-                                <th>Loudspeaker</th>
-                                <td>Yes</td>
-                                <!--<td>Yes</td>-->
-                                <td>${product2!=null?"Yes":""}</td>
-                            </tr>
-                            <tr>
-                                <th>FM radio</th>
-                                <td>No</td>
-                                <!--<td>No</td>-->
-                                <td>${product2!=null?"No":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Headphone jack</th>
-                                <td>No</td>
-                                <td>${product2!=null?"No":""}</td>
-                            </tr>
-                        </tbody>
-                        <tbody id="performance" data-filter="target">
-                            <tr class="bg-secondary">
-                                <th class="text-uppercase">Performance</th>
-                                <td>${product1.getName()}</td>
-                                <td>${product2.getName()}</td>
-                            </tr>
-                            <tr>
-                                <th>Processor</th>
-                                <td>Apple A12 Bionic</td>
-                                <!--<td>Qualcomm Snapdragon 845 (2.5GHz octa-core)</td>-->
-                                <td>${product2!=null?"Qualcomm Snapdragon 845 (2.5GHz octa-core)":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Graphics</th>
-                                <td>Apple GPU (4-core graphics)</td>
-                                <!--<td>Adreno 630</td>-->
-                                <td>${product2!=null?"Adreno 630":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Architecture</th>
-                                <td>64 bit</td>
-                                <td>${product2!=null?"64 bit":""}</td>
-                            </tr>
-                            <tr>
-                                <th>RAM</th>
-                                <td>4 GB</td>
-                                <!--<td>4 GB</td>-->
-                                <td>${product2!=null?"4 GB":""}</td>
-                            </tr>
-                        </tbody>
-                        <tbody id="design" data-filter="target">
-                            <tr class="bg-secondary">
-                                <th class="text-uppercase">Design</th>
-                                <td>${product1.getName()}</td>
-                                <td>${product2.getName()}</td>
-                            </tr>
-                            <tr>
-                                <th>Build material</th>
-                                <td>Case: AluminiumBack: Mineral Glass</td>
-                                <!--<td>Case: AluminiumBack: Aluminium</td>-->
-                                <td>${product2!=null?"Case: AluminiumBack: Aluminium":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Thickness</th>
-                                <td>7.7 mm</td>
-                                <!--<td>7.9 mm</td>-->
-                                <td>${product2!=null?"7.9 mm":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Width</th>
-                                <td>70.9 mm</td>
-                                <td>${product2!=null?"70.9 mm":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Height</th>
-                                <td>143.6 mm</td>
-                                <!--<td>157.9 mm</td>-->
-                                <td>${product2!=null?"157.9 mm":""}</td>
-
-                            </tr>
-                            <tr>
-                                <th>Weight</th>
-                                <td>174 grams</td>
-                                <!--<td>175 grams</td>-->
-                                <td>${product2!=null?"175 grams":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Waterproof</th>
-                                <td>Yes Water resistant (up to 30 minutes in a depth of 1 meter), IP67</td>
-                                <!--<td>Yes Water resistant (up to 30 minutes in a depth of 1 meter), IP67</td>-->
-                                <td>${product2!=null?"Yes Water resistant (up to 30 minutes in a depth of 1 meter), IP67":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Colors</th>
-                                <td>Silver, Space Grey</td>
-                                <!--<td>Black, Black and White</td>-->
-                                <td>${product2!=null?"Black, Black and White":""}</td>
-                            </tr>
-                        </tbody>
-                        <tbody id="display" data-filter="target">
-                            <tr class="bg-secondary">
-                                <th class="text-uppercase">Display</th>
-                                <td>${product1.getName()}</td>
-                                <td>${product2.getName()}</td>
-                            </tr>
-                            <tr>
-                                <th>Display type</th>
-                                <td>Super Retina OLED</td>
-                                <!--<td>'flexible' OLED</td>-->
-                                <td>${product2!=null?"'flexible' OLED":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Pixel density</th>
-                                <td>458 ppi</td>
-                                <!--                                <td>522 ppi</td>-->
-                                <td>${product2!=null?"522 ppi":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Screen protection</th>
-                                <td>Yes</td>
-                                <!--<td>Corning Gorilla Glass v5</td>-->
-                                <td>${product2!=null?"Corning Gorilla Glass v5":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Screen size</th>
-                                <td>6.5 inches</td>
-                                <!--<td>6.3 inches</td>-->
-                                <td>${product2!=null?"6.3 inches":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Screen resolution</th>
-                                <td>1125 x 2436 pixels</td>
-                                <!--<td>1440 x 2880 pixels</td>-->
-                                <td>${product2!=null?"1440 x 2880 pixels":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Touch screen</th>
-                                <td>Yes, 3D Touch Touchscreen, Multi-touch</td>
-                                <!--<td>Yes, Capacitive Touchscreen, Multi-touch</td>-->
-                                <td>${product2!=null?"Yes, Capacitive Touchscreen, Multi-touch":""}</td>
-                            </tr>
-                        </tbody>
-                        <tbody id="storage" data-filter="target">
-                            <tr class="bg-secondary">
-                                <th class="text-uppercase">Storage</th>
-                                <td>${product1.getName()}</td>
-                                <td>${product2.getName()}</td>
-                            </tr>
-                            <tr>
-                                <th>Internal memory</th>
-                                <td>64 GB</td>
-                                <!--<td>64 GB</td>-->
-                                <td>${product2!=null?"64 GB":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Expandable memory</th>
-                                <td>No</td>
-                                <!--                                <td>No</td>-->
-                                <td>${product2!=null?"No":""}</td>
-                            </tr>
-                        </tbody>
-                        <tbody id="camera" data-filter="target">
-                            <tr class="bg-secondary">
-                                <th class="text-uppercase">Camera</th>
-                                <td>${product1.getName()}</td>
-                                <td>${product2.getName()}</td>
-                            </tr>
-                            <tr>
-                                <th>Settings</th>
-                                <td>Exposure compensation, ISO control</td>
-                                <!--                                <td>Exposure compensation, ISO control</td>-->
-                                <td>${product2!=null?"Exposure compensation, ISO control":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Aperture</th>
-                                <td>F2.2</td>
-<!--                                <td>F2.4</td>-->
-                                <td>${product2!=null?"F2.4":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Camera features</th>
-                                <td>10 x Digital zoom, Optical zoom, Auto flash, Face detection, Touch to focus</td>
-<!--                                <td>Fixed zocus</td>-->
-                                <td>${product2!=null?"Fixed zocus":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Image resolution</th>
-                                <td>4000 x 3000 pixels</td>
-<!--                                <td>4000 x 3000 pixels</td>-->
-                                <td>${product2!=null?"4000 x 3000 pixels":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Sensor</th>
-                                <td>BSI sensor</td>
-<!--                                <td>CMOS image sensor</td>-->
-                                <td>${product2!=null?"CMOS image sensor":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Autofocus</th>
-                                <td>Yes</td>
-                                <!--<td>No</td>-->
-                                <td>${product2!=null?"No":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Shooting modes</th>
-                                <td>Continuos shooting, High dynamic range mode (HDR), Burst mode</td>
-<!--                                <td>Continuos shooting, High dynamic range mode (HDR)</td>-->
-                                <td>${product2!=null?"Continuos shooting, High dynamic range mode (HDR)":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Optical image stabilisation</th>
-                                <td>Yes, Dual optical image stabilization</td>
-                                <!--<td>Yes</td>-->
-                                <td>${product2!=null?"Yes":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Flash</th>
-                                <td>Yes, Retina flash</td>
-                                <!--<td>Yes, Dual LED flash</td>-->
-                                <td>${product2!=null?"Yes, Dual LED flash":""}</td>
-                            </tr>
-                        </tbody>
-                        <tbody id="battery" data-filter="target">
-                            <tr class="bg-secondary">
-                                <th class="text-uppercase">Battery</th>
-                                <td>${product1.getName()}</td>
-                                <td>${product2.getName()}</td>
-                            </tr>
-                            <tr>
-                                <th>Talktime</th>
-                                <td>Up to 21 hours(4G)</td>
-                                <!--<td>Up to 24 hours(4G)</td>-->
-                                <td>${product2!=null?"Up to 24 hours(4G)":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Quick charging</th>
-                                <td>Yes, fast, 50 % in 30 minutes</td>
-                                <!--<td>Yes</td>-->
-                                <td>${product2!=null?"Yes":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Wireless charging</th>
-                                <td>Yes</td>
-                                <!--<td>Yes</td>-->
-                                <td>${product2!=null?"Yes":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Type</th>
-                                <td>Li-ion</td>
-                                <!--<td>Li-ion</td>-->
-                                <td>${product2!=null?"Li-ion":""}</td>
-                            </tr>
-                            <tr>
-                                <th>Capacity</th>
-                                <td>3,174 mAh</td>
-                                <!--<td>3,430 mAh</td>-->
-                                <td>${product2!=null?"3,430 mAh":""}</td>
-                            </tr>
-                        </tbody>
-                        <tbody id="price" data-filter="target">
-                            <tr class="bg-secondary">
-                                <th class="text-uppercase">Price &amp; rating</th>
-                                <td>${product1.getName()}</td>
-                                <td>${product2.getName()}</td>
-                            </tr>
-                            <tr>
-                                <th>Price</th>
-                                <td>${product1.getSalePrice()}đ</td>
-                                <td>${product2.getSalePrice()}đ</td>
-                            </tr>
-                            <tr>
-                                <th>Rating</th>
-                                <td>${product1.getRate()==null?"0":product1.getRate()}/5</td>
-                                <td>${product2.getRate()==null?"0":product2.getRate()}/5</td>
-                            </tr>
-                            <!--                        <tr>
-                                                        <th></th>
-                                                        <td>
-                                                            <button class="btn btn-outline-primary btn-block" type="button" data-toggle="toast" data-target="#cart-toast">Thêm vào giỏ hàng</button>
-                                                        </td>
-                                                        <td>
-                                                            <button class="btn btn-outline-primary btn-block" type="button" data-toggle="toast" data-target="#cart-toast">Thêm vào giỏ hàng</button>
-                                                        </td>
-                                                    </tr>-->
-                        </tbody>
-                    </table>
-                </c:if>
+                <table class="table table-bordered">
+                    <thead class="bg-secondary">
+                        <tr>
+                            <td class="align-middle" colspan="3">
+                                <select class="form-control custom-select" id="compare-criteria" data-filter="trigger">
+                                    <option value="all">Hiển thị tất cả</option>
+                                    <option value="summary">Summary</option>
+                                    <option value="general">General</option>
+                                    <option value="multimedia">Multimedia</option>
+                                    <option value="performance">Performance</option>
+                                    <option value="design">Design</option>
+                                    <option value="display">Display</option>
+                                    <option value="storage">Storage</option>
+                                    <option value="camera">Camera</option>
+                                    <option value="battery">Battery</option>
+                                    <option value="price">Price &amp; rating</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody id="summary" data-filter="target">
+                        <tr class="bg-secondary">
+                            <th class="text-uppercase">Summary</th>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
+                        </tr>
+                        <tr>
+                            <th>Type</th>
+                            <td>${product1.getType()}</td>
+                            <td>${product2.getType()}</td>
+                        </tr>
+                        <tr>
+                            <th>Frequency</th>
+                            <td>${product1.getFrequency()}</td>
+                            <td>${product2.getFrequency()}</td>
+                        </tr>
+                        <tr>
+                            <th>Sensitive</th>
+                            <td>${product1.getSensitive()}</td>
+                            <td>${product2.getSensitive()}</td>
+                        </tr>
+                        <tr>
+                            <th>Impedance</th>
+                            <td>${product1.getImpedance()}</td>
+                            <td>${product2.getImpedance()}</td>
+                        </tr>
+                        <tr>
+                            <th>Material</th>
+                            <td>${product1.getMeterial()}</td>
+                            <td>${product2.getMeterial()}</td>
+                        </tr>
+                        <tr>
+                            <th>Size</th>
+                            <td>${product1.getSize()}</td>
+                            <td>${product2.getSize()}</td>
+                        </tr>
+                        <tr>
+                            <th>Battery</th>
+                            <td>${product1.getBattery()}</td>
+                            <td>${product2.getBattery()}</td>
+                        </tr>
+                        <tr>
+                            <th>Connection_distance</th>
+                            <td>${product1.getConnection_distance()}</td>
+                            <td>${product2.getConnection_distance()}</td>
+                        </tr>
+                        <tr>
+                            <th>Wire_length</th>
+                            <td>${product1.getWire_length()}</td>
+                            <td>${product2.getWire_length()}</td>
+                        </tr>
+                    </tbody>
+                    <tbody id="general" data-filter="target">
+                        <tr class="bg-secondary">
+                            <th class="text-uppercase">General</th>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
+                        </tr>
+                        <tr>
+                            <th>Quick charging</th>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <th>Operating system</th>
+                            <td>iOS v12</td>
+                            <td>Android v9.0 Pie </td>
+                        </tr>
+                        <tr>
+                            <th>Sim slots</th>
+                            <td>Single SIM, GSM</td>
+                            <td>Single SIM, GSM</td>
+                        </tr>
+                        <tr>
+                            <th>Launch date</th>
+                            <td>September 12, 2018 (Official)</td>
+                            <td>November 1, 2018 (Official)</td>
+                        </tr>
+                        <tr>
+                            <th>Sim size</th>
+                            <td>SIM1: Nano</td>
+                            <td>SIM1: Nano</td>
+                        </tr>
+                        <tr>
+                            <th>Network</th>
+                            <td>4G: Available (supports Indian bands) 3G: Available, 2G: Available</td>
+                            <td>4G: Available (supports Indian bands) 3G: Available, 2G: Available</td>
+                        </tr>
+                        <tr>
+                            <th>Fingerprint sensor</th>
+                            <td>None (Face ID)</td>
+                            <td>Back cover</td>
+                        </tr>
+                    </tbody>
+                    <tbody id="multimedia" data-filter="target">
+                        <tr class="bg-secondary">
+                            <th class="text-uppercase">Multimedia</th>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
+                        </tr>
+                        <tr>
+                            <th>Loudspeaker</th>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <th>FM radio</th>
+                            <td>No</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <th>Headphone jack</th>
+                            <td>No</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                    <tbody id="performance" data-filter="target">
+                        <tr class="bg-secondary">
+                            <th class="text-uppercase">Performance</th>
+                            <td>Apple iPhone Xs Ma</td>
+                            <td>${product2.getName()}</td>
+                        </tr>
+                        <tr>
+                            <th>Processor</th>
+                            <td>Apple A12 Bionic</td>
+                            <td>Qualcomm Snapdragon 845 (2.5GHz octa-core)</td>
+                        </tr>
+                        <tr>
+                            <th>Graphics</th>
+                            <td>Apple GPU (4-core graphics)</td>
+                            <td>Adreno 630</td>
+                        </tr>
+                        <tr>
+                            <th>Architecture</th>
+                            <td>64 bit</td>
+                            <td>64 bit</td>
+                        </tr>
+                        <tr>
+                            <th>RAM</th>
+                            <td>4 GB</td>
+                            <td>4 GB</td>
+                        </tr>
+                    </tbody>
+                    <tbody id="design" data-filter="target">
+                        <tr class="bg-secondary">
+                            <th class="text-uppercase">Design</th>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
+                        </tr>
+                        <tr>
+                            <th>Build material</th>
+                            <td>Case: AluminiumBack: Mineral Glass</td>
+                            <td>Case: AluminiumBack: Aluminium</td>
+                        </tr>
+                        <tr>
+                            <th>Thickness</th>
+                            <td>7.7 mm</td>
+                            <td>7.9 mm</td>
+                        </tr>
+                        <tr>
+                            <th>Width</th>
+                            <td>70.9 mm</td>
+                            <td>76.7 mm</td>
+                        </tr>
+                        <tr>
+                            <th>Height</th>
+                            <td>143.6 mm</td>
+                            <td>157.9 mm</td>
+                        </tr>
+                        <tr>
+                            <th>Weight</th>
+                            <td>174 grams</td>
+                            <td>175 grams</td>
+                        </tr>
+                        <tr>
+                            <th>Waterproof</th>
+                            <td>Yes Water resistant (up to 30 minutes in a depth of 1 meter), IP67</td>
+                            <td>Yes Water resistant (up to 30 minutes in a depth of 1 meter), IP67</td>
+                        </tr>
+                        <tr>
+                            <th>Colors</th>
+                            <td>Silver, Space Grey</td>
+                            <td>Black, Black and White</td>
+                        </tr>
+                    </tbody>
+                    <tbody id="display" data-filter="target">
+                        <tr class="bg-secondary">
+                            <th class="text-uppercase">Display</th>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
+                        </tr>
+                        <tr>
+                            <th>Display type</th>
+                            <td>Super Retina OLED</td>
+                            <td>'flexible' OLED</td>
+                        </tr>
+                        <tr>
+                            <th>Pixel density</th>
+                            <td>458 ppi</td>
+                            <td>522 ppi</td>
+                        </tr>
+                        <tr>
+                            <th>Screen protection</th>
+                            <td>Yes</td>
+                            <td>Corning Gorilla Glass v5</td>
+                        </tr>
+                        <tr>
+                            <th>Screen size</th>
+                            <td>6.5 inches</td>
+                            <td>6.3 inches</td>
+                        </tr>
+                        <tr>
+                            <th>Screen resolution</th>
+                            <td>1125 x 2436 pixels</td>
+                            <td>1440 x 2880 pixels</td>
+                        </tr>
+                        <tr>
+                            <th>Touch screen</th>
+                            <td>Yes, 3D Touch Touchscreen, Multi-touch</td>
+                            <td>Yes, Capacitive Touchscreen, Multi-touch</td>
+                        </tr>
+                    </tbody>
+                    <tbody id="storage" data-filter="target">
+                        <tr class="bg-secondary">
+                            <th class="text-uppercase">Storage</th>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
+                        </tr>
+                        <tr>
+                            <th>Internal memory</th>
+                            <td>64 GB</td>
+                            <td>64 GB</td>
+                        </tr>
+                        <tr>
+                            <th>Expandable memory</th>
+                            <td>No</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                    <tbody id="camera" data-filter="target">
+                        <tr class="bg-secondary">
+                            <th class="text-uppercase">Camera</th>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
+                        </tr>
+                        <tr>
+                            <th>Settings</th>
+                            <td>Exposure compensation, ISO control</td>
+                            <td>Exposure compensation, ISO control</td>
+                        </tr>
+                        <tr>
+                            <th>Aperture</th>
+                            <td>F2.2</td>
+                            <td>F2.4</td>
+                        </tr>
+                        <tr>
+                            <th>Camera features</th>
+                            <td>10 x Digital zoom, Optical zoom, Auto flash, Face detection, Touch to focus</td>
+                            <td>Fixed zocus</td>
+                        </tr>
+                        <tr>
+                            <th>Image resolution</th>
+                            <td>4000 x 3000 pixels</td>
+                            <td>4000 x 3000 pixels</td>
+                        </tr>
+                        <tr>
+                            <th>Sensor</th>
+                            <td>BSI sensor</td>
+                            <td>CMOS image sensor</td>
+                        </tr>
+                        <tr>
+                            <th>Autofocus</th>
+                            <td>Yes</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <th>Shooting modes</th>
+                            <td>Continuos shooting, High dynamic range mode (HDR), Burst mode</td>
+                            <td>Continuos shooting, High dynamic range mode (HDR)</td>
+                        </tr>
+                        <tr>
+                            <th>Optical image stabilisation</th>
+                            <td>Yes, Dual optical image stabilization</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <th>Flash</th>
+                            <td>Yes, Retina flash</td>
+                            <td>Yes, Dual LED flash</td>
+                        </tr>
+                    </tbody>
+                    <tbody id="battery" data-filter="target">
+                        <tr class="bg-secondary">
+                            <th class="text-uppercase">Battery</th>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
+                        </tr>
+                        <tr>
+                            <th>Talktime</th>
+                            <td>Up to 21 hours(4G)</td>
+                            <td>Up to 24 hours(4G)</td>
+                        </tr>
+                        <tr>
+                            <th>Quick charging</th>
+                            <td>Yes, fast, 50 % in 30 minutes</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <th>Wireless charging</th>
+                            <td>Yes</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <th>Type</th>
+                            <td>Li-ion</td>
+                            <td>Li-ion</td>
+                        </tr>
+                        <tr>
+                            <th>Capacity</th>
+                            <td>3,174 mAh</td>
+                            <td>3,430 mAh</td>
+                        </tr>
+                    </tbody>
+                    <tbody id="price" data-filter="target">
+                        <tr class="bg-secondary">
+                            <th class="text-uppercase">Price &amp; rating</th>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td>${product1.getSalePrice()}đ</td>
+                            <td>${product2.getSalePrice()}đ</td>
+                        </tr>
+                        <tr>
+                            <th>Rating</th>
+                            <td>${product1.getRate()==null?"0":product1.getRate()}/5</td>
+                            <td>${product2.getRate()==null?"0":product2.getRate()}/5</td>
+                        </tr>
+                        <!--                        <tr>
+                                                    <th></th>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary btn-block" type="button" data-toggle="toast" data-target="#cart-toast">Thêm vào giỏ hàng</button>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary btn-block" type="button" data-toggle="toast" data-target="#cart-toast">Thêm vào giỏ hàng</button>
+                                                    </td>
+                                                </tr>-->
+                    </tbody>
+                </table>
             </div>
         </div>
 

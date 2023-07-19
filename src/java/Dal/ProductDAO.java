@@ -5,12 +5,17 @@ import java.util.Locale;
 import Model.Categories;
 import Model.Earphone;
 import Model.Products;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.tomcat.dbcp.dbcp2.PStmtKey;
 
 /**
@@ -379,6 +384,220 @@ public class ProductDAO extends ConnectMySQL {
             System.out.println("decreaseProductAmount: " + e);
         }
         return false;
+    }
+
+    public List<Products> searchProducts(String keyword, String sort) {
+
+        List<Products> data = new ArrayList<>();
+        try {
+            String sqlSelect = "Select * from product where name like ? ";
+            if ("1".equals(sort)) {
+                sqlSelect += "order by date asc";
+            } else if ("2".equals(sort)) {
+                sqlSelect += "order by date desc";
+            }
+            pstm = connection.prepareStatement(sqlSelect);
+            pstm.setString(1, "%" + keyword + "%");
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                Products p = new Products();
+                p.setProductID(String.valueOf(rs.getInt(1)));
+                String categories = String.valueOf(rs.getInt(2));
+                p.setProduct_categoryID(categories);
+                p.setName(String.valueOf(rs.getString(3)));
+                p.setDesciption(String.valueOf(rs.getString(4)));
+                p.setPicture(rs.getString(5));
+                p.setPicture2(rs.getString(6));
+                p.setPicture3(rs.getString(7));
+                p.setPrice(String.valueOf(rs.getFloat(8)));
+                p.setQuantity(String.valueOf(rs.getInt(9)));
+                p.setStatus(String.valueOf(rs.getInt(10)));
+                p.setDate(String.valueOf(rs.getDate(12)));
+                p.setCategories(new CategoriesDAO().getCategoryById(categories));
+                data.add(p);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return data;
+    }
+
+    public Products getProductsByID(String id) {
+
+        try {
+            String sqlSelect = "Select * from product where ProductID=" + id;
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                Products p = new Products();
+                p.setProductID(String.valueOf(rs.getInt(1)));
+                String categories = String.valueOf(rs.getInt(2));
+                p.setProduct_categoryID(categories);
+
+                p.setName(String.valueOf(rs.getString(3)));
+                p.setDesciption(String.valueOf(rs.getString(4)));
+                p.setPicture(rs.getString(5));
+                p.setPicture2(rs.getString(6));
+                p.setPicture3(rs.getString(7));
+                p.setPrice(String.valueOf(rs.getFloat(8)));
+                p.setQuantity(String.valueOf(rs.getInt(9)));
+                p.setStatus(String.valueOf(rs.getInt(10)));
+                p.setDate(String.valueOf(rs.getDate(12)));
+                p.setCategories(new CategoriesDAO().getCategoryById(categories));
+                return p;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return null;
+    }
+
+    public Earphone getEarphoneByProductID(String id) {
+
+        try {
+            String sqlSelect = "Select * from earphone where earphone_ProductID=" + id;
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                Earphone e = new Earphone();
+                e.setType(String.valueOf(rs.getString(2)));
+                e.setFrequency(String.valueOf(rs.getFloat(3)));
+                e.setSensitive(String.valueOf(rs.getFloat(4)));
+                e.setImpedance(String.valueOf(rs.getFloat(5)));
+                e.setMeterial(String.valueOf(rs.getString(6)));
+                e.setSize(String.valueOf(rs.getString(8)));
+                e.setBattery(String.valueOf(rs.getString(9)));
+                e.setConnection_distance(String.valueOf(rs.getString(10)));
+                e.setWire_length(String.valueOf(rs.getString(11)));
+
+                return e;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return null;
+    }
+
+    public void updateProduct(Products p) {
+        try {
+//            String sql = "UPDATE product\n"
+//                    + "SET product_categoryID=?,name=?,desciption=?,picture=?,picture2=?,picture3=?,price=?,quantity=?,status=?\n"
+//                    + "WHERE productID=?;";
+            String sql = "UPDATE product\n"
+                    + "SET product_categoryID=?,name=?,desciption=?,picture=?,picture2=?,picture3=?,price=?,quantity=?,status=?,date=?\n"
+                    + "WHERE productID=?;";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, Integer.parseInt(p.getProduct_categoryID()));
+//            stm.setInt(1, Integer.parseInt("1"));
+            stm.setString(2, p.getName());
+            stm.setString(3, p.getDesciption());
+            stm.setString(4, p.getPicture());
+            stm.setString(5, p.getPicture2());
+            stm.setString(6, p.getPicture3());
+            stm.setFloat(7, Float.parseFloat(p.getPrice()));
+            stm.setInt(8, Integer.parseInt(p.getQuantity()));
+            stm.setBoolean(9, p.getStatus().equals("1"));
+            stm.setInt(9, Integer.parseInt("1"));
+            stm.setDate(10, Date.valueOf(p.getDate()));
+            stm.setString(11, p.getProductID());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void updateEarphone(Earphone e) {
+        try {
+//            
+            String sql = "UPDATE swp.earphone SET `type`=?,frequency=?,"
+                    + "`sensitive`=?,impedance=?,meterial=?,size=?,battery=?,"
+                    + "connection_distance=?,wire_length=? "
+                    + "where earphone_ProductID=?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+//            stm.setInt(1, Integer.parseInt(p.getProduct_categoryID()));
+            stm.setString(1, e.getType());
+            stm.setFloat(2, Float.parseFloat(e.getFrequency()));
+            stm.setFloat(3, Float.parseFloat(e.getSensitive()));
+            stm.setFloat(4, Float.parseFloat(e.getImpedance()));
+            stm.setString(5, e.getMeterial());
+            stm.setString(6, e.getSize());
+            stm.setString(7, e.getBattery());
+            stm.setString(8, e.getConnection_distance());
+            stm.setString(9, e.getWire_length());
+            stm.setString(10, e.getEarphone_ProductID());
+
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void addNewProduct(Products p) {
+        try {
+            String sql = "INSERT INTO swp.`product` "
+                    + "(product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, status,date) "
+                    + "VALUES\n"
+                    + " (?, ?, ?, ?, ?, \n"
+                    + "?, ?, ?, ?, ?);";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, Integer.parseInt(p.getProduct_categoryID()));
+            stm.setString(2, p.getName());
+            stm.setString(3, p.getDesciption());
+            stm.setString(4, p.getPicture());
+            stm.setString(5, p.getPicture2());
+            stm.setString(6, p.getPicture3());
+            stm.setFloat(7, Float.parseFloat(p.getPrice()));
+            stm.setInt(8, Integer.parseInt(p.getQuantity()));
+            stm.setBoolean(9, p.getStatus().equals("1"));
+            Date date = Date.valueOf(p.getDate());
+            stm.setDate(10, date);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void addNewEarphone(Earphone e) {
+        try {
+            String sql = "INSERT INTO swp.`earphone` "
+                    + "(`type`,frequency,`sensitive`,impedance,meterial,size,battery,connection_distance,wire_length, earphone_ProductID) "
+                    + "VALUES\n"
+                    + " (?, ?, ?, ?, ?, \n"
+                    + "?, ?, ?, ?, ?);";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, e.getType());
+            stm.setFloat(2, Float.parseFloat(e.getFrequency()));
+            stm.setFloat(3, Float.parseFloat(e.getSensitive()));
+            stm.setFloat(4, Float.parseFloat(e.getImpedance()));
+            stm.setString(5, e.getMeterial());
+            stm.setString(6, e.getSize());
+            stm.setString(7, e.getBattery());
+            stm.setString(8, e.getConnection_distance());
+            stm.setString(9, e.getWire_length());
+            stm.setString(10, e.getEarphone_ProductID());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public int getLastId() {
+        try {
+            String sql = "SELECT * FROM swp.product ORDER BY ProductID DESC LIMIT 1";
+            pstm = connection.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return 0;
     }
 
     public int CountProduct() {

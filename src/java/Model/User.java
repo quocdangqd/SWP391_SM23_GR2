@@ -9,17 +9,7 @@ public class User {
     // them address
     private String userID, username, password, user_roleID, name, age, user_sexID,
             address, phone_number, avatar, register_code, email, status="1";
-    public User(String name, String age, String user_sexID, String address, String phone_number, String avatar, String email,String userID) {
-        this.name = name;
-        this.age = age;
-        this.user_sexID = user_sexID;
-        this.address = address;
-        this.phone_number = phone_number;
-        this.avatar = avatar;
-        this.email = email;
-        this.userID=userID;
-    }
-            
+
     public User(String userID, String name, String address, String phone_number, String email) {
         this.userID = userID;
         this.name = name;

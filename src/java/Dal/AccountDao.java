@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  * @author DucPhaoLo
  */
 public class AccountDao extends ConnectMySQL {
-    
+
     public boolean checkExistEmail(String email) {
         try {
             String sqlSelect = "SELECT * FROM swp.user where email=?;";
@@ -27,7 +27,7 @@ public class AccountDao extends ConnectMySQL {
         }
         return false;
     }
-    
+
     public boolean checkExistAccount(String userName) {
         try {
             String sqlSelect = "SELECT * FROM swp.user where username=?;";
@@ -42,7 +42,7 @@ public class AccountDao extends ConnectMySQL {
         }
         return false;
     }
-    
+
     public boolean checkExistAccountByEmail(String email) {
         try {
             String sqlSelect = "SELECT * FROM swp.user where email=?;";
@@ -57,23 +57,7 @@ public class AccountDao extends ConnectMySQL {
         }
         return false;
     }
-    
-    public boolean checkExistAccountByEmailAndUserID(String email, String userID) {
-        try {
-            String sqlSelect = "SELECT * FROM swp.user where email=? and userid != ?;";
-            pstm = connection.prepareStatement(sqlSelect);
-            pstm.setString(1, email);
-            pstm.setInt(2, Integer.parseInt(userID));
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                return true;
-            }
-        } catch (Exception e) {
-            System.out.println("checkExistAccountByEmail: " + e);
-        }
-        return false;
-    }
-    
+
     public boolean AddUser(User user) {
         try {
             String sqlSelect = "insert into swp.user( username, password, user_roleID, name, age, user_sexID, address, phone_number, avatar, register_code, email, status) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -99,7 +83,7 @@ public class AccountDao extends ConnectMySQL {
         }
         return false;
     }
-    
+
     public User GetUserByEmail(String email) {
         String sqlSelect = "select* from swp.user where email= ?";
         try {
@@ -127,7 +111,7 @@ public class AccountDao extends ConnectMySQL {
         }
         return null;
     }
-    
+
     public User GetUserByID(String userID) {
         String sqlSelect = "select* from swp.user where userID= ?";
         try {
@@ -156,7 +140,7 @@ public class AccountDao extends ConnectMySQL {
         }
         return null;
     }
-    
+
     public boolean resetPassword(String email, String newPassword) {
         try {
             String sqlSelect = "UPDATE `swp`.`user` SET `password` = ? WHERE (`email` = ?);";
@@ -170,7 +154,7 @@ public class AccountDao extends ConnectMySQL {
         }
         return false;
     }
-    
+
     public boolean ChangePassword(String userName, String newPassword) {
         try {
             String sqlSelect = "UPDATE `swp`.`user` SET `password` = ? WHERE (`userName` = ?);";
@@ -184,7 +168,7 @@ public class AccountDao extends ConnectMySQL {
         }
         return false;
     }
-    
+
     public boolean checkLogin(User user) {
         try {
             String sqlString = "SELECT * FROM swp.user where username=? and password=?";
@@ -200,44 +184,11 @@ public class AccountDao extends ConnectMySQL {
         }
         return false;
     }
-    
-    public boolean EditUser(User user) {
-        try {
-            String sqlSelect;
-            if (user.getAvatar() == null) {
-                sqlSelect = "update swp.user set name=?,age=?,user_sexID=?,address=?,phone_number=?,email=?"
-                        + " where userid=?";
-            } else {
-                sqlSelect = "update swp.user set name=?,age=?,user_sexID=?,address=?,phone_number=?,email=?,avatar=?"
-                        + " where userid=?";
-            }
-            pstm = connection.prepareStatement(sqlSelect);
-            pstm.setString(1, user.getName());
-            pstm.setInt(2, Integer.parseInt(user.getAge()));
-            pstm.setInt(3, Integer.parseInt(user.getUser_sexID()));
-            pstm.setString(4, user.getAddress());
-            pstm.setString(5, user.getPhone_number());
-            pstm.setString(6, user.getEmail());
-            if (user.getAvatar() == null) {
-                pstm.setInt(7, Integer.parseInt(user.getUserID()));
-            } else {
-                pstm.setString(7, user.getAvatar());
-                pstm.setInt(8, Integer.parseInt(user.getUserID()));
-            }
-            pstm.execute();
-            return true;
-        } catch (Exception e) {
-            System.out.println("EditUser: " + e);
-        }
-        return false;
-    }
-    
+
     public static void main(String[] args) {
         AccountDao dao = new AccountDao();
-        User u = new User("12", "12", "1", "12", "12", "12", "12", "39");
-        dao.EditUser(u);
-//        User u = dao.GetUserByID("10");
-//        System.out.println(u.getEmail());
+        User u = dao.GetUserByID("10");
+        System.out.println(u.getEmail());
 //        User u=dao.getUserByUserName("sirducdz");
 //        System.out.println(u.getEmail());
 //        System.out.println(dao.checkExistAccount("admin1"));
@@ -248,7 +199,7 @@ public class AccountDao extends ConnectMySQL {
 //          u.setPassword("Sirducdzzzz2@");
 //          System.out.println("dao.checkLogin(u)"+dao.checkLogin(u));
     }
-    
+
     public User getUserByUserName(String userName) {
         String sqlSelect = "select* from swp.user where username= ?";
         try {
@@ -277,7 +228,7 @@ public class AccountDao extends ConnectMySQL {
         }
         return null;
     }
-    
+
     public int AccountBanned() {
         int count = 0;
         String sqlSelect = "SELECT COUNT(*) as 'count' FROM swp.user\n"
