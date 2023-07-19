@@ -4,12 +4,15 @@
  */
 package Controller.Saler;
 
+import Dal.SalerDAO;
+import Model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  *
@@ -34,7 +37,7 @@ public class SalerCustomerController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SalerCustomerController</title>");            
+            out.println("<title>Servlet SalerCustomerController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SalerCustomerController at " + request.getContextPath() + "</h1>");
@@ -55,7 +58,10 @@ public class SalerCustomerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        SalerDAO dao = new SalerDAO();
+        List<User> customers = dao.getAllCustomer();
+        request.setAttribute("listC", customers);
+        request.getRequestDispatcher("../saler/customersaler.jsp").forward(request, response);
     }
 
     /**

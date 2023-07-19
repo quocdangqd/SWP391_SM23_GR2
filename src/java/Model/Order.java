@@ -12,10 +12,10 @@ public class Order {
 
     private String orderID, order_userID, order_salecodeID, note, date, status;
     private String address, phone_number, orderdetail_productID;
-    private String name_user, price_order,picture,salePrice,quantity,productName;
+    private String name_user, price_order, picture, salePrice, quantity, productName;
 
-    public Order(String orderID, String date, String status, String address, String picture, String salePrice, String quantity, String productName,String orderdetail_productID,int temp) {
-        this.orderID=orderID;
+    public Order(String orderID, String date, String status, String address, String picture, String salePrice, String quantity, String productName, String orderdetail_productID, int temp) {
+        this.orderID = orderID;
         this.date = date;
         this.status = status;
         this.address = address;
@@ -140,7 +140,6 @@ public class Order {
     public String getNote() {
         return note;
     }
-    
 
     public void setDate(String date) {
         this.date = date;
@@ -188,7 +187,20 @@ public class Order {
     public void setNote(String note) {
         this.note = note;
     }
-    
-    
+
+    public Order(String orderID, String cName, String phone, String address, String price, String date, String status) {
+        this.orderID = orderID;
+        this.name_user = cName;
+        this.phone_number = phone;
+        this.address = address;
+        this.price_order = price;
+        this.date = date;
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" + "orderID=" + orderID + ", date=" + date + ", status=" + status + ", address=" + address + ", phone_number=" + phone_number + ", name_user=" + name_user + ", price_order=" + price_order + '}';
+    }
 
 }

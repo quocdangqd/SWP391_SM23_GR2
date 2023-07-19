@@ -701,6 +701,69 @@ public class ProductDAO extends ConnectMySQL {
         return total;
     }
 
+    public int countMouseByMonth(int month) {
+        int total = 0;
+        String sqlSelect = "SELECT SUM(od.quantity) AS total \n"
+                + "FROM orderdetail od \n"
+                + "JOIN product p ON od.orderdetail_productID = p.ProductID\n"
+                + "JOIN `order` o ON od.orderdetail_orderID = o.orderID\n"
+                + "WHERE MONTH(o.date) = ? \n"
+                + "AND p.product_categoryID = 3 AND o.status='Completed'";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            pstm.setInt(1, month);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return total;
+    }
+    
+    public int countKeyBoardByMonth(int month) {
+        int total = 0;
+        String sqlSelect = "SELECT SUM(od.quantity) AS total \n"
+                + "FROM orderdetail od \n"
+                + "JOIN product p ON od.orderdetail_productID = p.ProductID\n"
+                + "JOIN `order` o ON od.orderdetail_orderID = o.orderID\n"
+                + "WHERE MONTH(o.date) = ? \n"
+                + "AND p.product_categoryID = 2 AND o.status='Completed'";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            pstm.setInt(1, month);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return total;
+    }
+    
+    public int countEarPhoneByMonth(int month) {
+        int total = 0;
+        String sqlSelect = "SELECT SUM(od.quantity) AS total \n"
+                + "FROM orderdetail od \n"
+                + "JOIN product p ON od.orderdetail_productID = p.ProductID\n"
+                + "JOIN `order` o ON od.orderdetail_orderID = o.orderID\n"
+                + "WHERE MONTH(o.date) = ? \n"
+                + "AND p.product_categoryID = 1 AND o.status='Completed'";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            pstm.setInt(1, month);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return total;
+    }
+
     public String getCategoryIDByProductID(String productID) {
         try {
             String sqlSelect = "select product_categoryID from product where productid=?";

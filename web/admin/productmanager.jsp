@@ -55,7 +55,7 @@
 
 
                     <!-- User Menu-->
-                    <li><a class="app-nav__item" href="/homepage.jsp"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                    <li><a class="app-nav__item" href="../view/HomePageController?tab=logOut"><i class='bx bx-log-out bx-rotate-180'></i> </a>
 
                     </li>
                 </ul>
