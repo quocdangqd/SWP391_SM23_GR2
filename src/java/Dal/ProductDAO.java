@@ -635,8 +635,10 @@ public class ProductDAO extends ConnectMySQL {
         int total = 0;
         String sqlSelect = "SELECT SUM(od.quantity*p.price) as 'total' FROM \n"
                 + "swp.orderdetail od\n"
-                + "join product p\n"
-                + "on od.orderdetail_productID = p.ProductID";
+                + "join product p \n"
+                + "on od.orderdetail_productID = p.ProductID \n"
+                + "join `order` o on od.orderdetail_orderID= o.orderID \n"
+                + "where o.status='Completed'";
         try {
             pstm = connection.prepareStatement(sqlSelect);
             rs = pstm.executeQuery();
