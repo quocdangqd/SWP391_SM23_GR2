@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package Controller.Manager;
+package Controller.Admin;
 
 import Dal.ManagerDAO;
 import Model.DetailOrder;
@@ -15,22 +15,19 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class ManagerOrderDetailController extends HttpServlet {
+public class OrderDetailController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ManagerDAO dao = new ManagerDAO();
         String id = req.getParameter("id");
-
         dao.getListOrder();
         req.setAttribute("od", dao.getAllDetailOrderByOrderID(id));
         float total = 0;
-        System.out.println(dao.getAllDetailOrderByOrderID(id).size());
         for (DetailOrder orderDetail : dao.getAllDetailOrderByOrderID(id)) {
             total += (Float.parseFloat(orderDetail.getQuantity()) * Float.parseFloat(orderDetail.getPrice_product().replace(",", "")));
         }
-        System.out.println("total: " + total);
         double tax = total * 0.1;
         double grandTotal = total + tax;
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());

@@ -140,18 +140,18 @@
                                     <a class="btn btn-add btn-sm" href="ManagerAddProductController" title="Thêm"><i class="fas fa-plus"></i>
                                         Tạo mới sản phẩm</a>
                                 </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
-                                            class="fas fa-file-upload"></i> Tải từ file</a>
-                                </div>
+                                <!--                                <div class="col-sm-2">
+                                                                    <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
+                                                                            class="fas fa-file-upload"></i> Tải từ file</a>
+                                                                </div>-->
 
                                 <div class="col-sm-2">
                                     <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
                                             class="fas fa-print"></i> In dữ liệu</a>
                                 </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất file</a>
-                                </div>
+                                <!--                                <div class="col-sm-2">
+                                                                    <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất file</a>
+                                                                </div>-->
                             </div>
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
@@ -185,11 +185,12 @@
                                             <td>${o.getPrice()}</td>
                                             <td>${o.getStatus()}</td>
                                             <td>${o.getDate()}</td>
-                                            <td><a href="ManagerDeleteProduct?id=${o.getProductID()}">
+                                            <td>
+<!--                                                <a href="ManagerDeleteProduct?id=${o.getProductID()}">
                                                     <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                                             onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> 
                                                     </button>
-                                                </a>
+                                                </a>-->
                                                 <a href="ManagerUpdateProductController?id=${o.getProductID()}">
                                                     <button class="btn btn-primary btn-sm edit" type="button" title="Sửa">
                                                         <i class="fas fa-edit"></i>
@@ -205,86 +206,7 @@
                 </div>
             </div>
         </main>
-        <!--
-                
-                  MODAL
-                
-                <div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-                     data-keyboard="false">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
         
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="form-group  col-md-12">
-                                        <span class="thong-tin-thanh-toan">
-                                            <h5>Chỉnh sửa thông tin sản phẩm</h5>
-                                        </span>
-                                    </div>
-                                </div>
-                                <form action="ManagerProductController" method="post">
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Mã sản phẩm </label>
-                                        <input class="form-control" type="" value="${pid}">
-                                        <div name="pid">${pid}</div>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Danh mục</label>
-                                        <input class="form-control" type="text">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Tên sản phẩm</label>
-                                        <input class="form-control" type="text" value="${name}">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Mô tả</label>
-                                        <input class="form-control" type="text" value="${desciption}">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Ảnh</label>
-                                        <input class="form-control" type="file" value="${img}">
-                                    </div>
-                                    <div class="form-group  col-md-6">
-                                        <label class="control-label">Số lượng</label>
-                                        <input class="form-control" type="number" ${quantity}>
-                                    </div>
-                                    <div class="form-group col-md-6 ">
-                                        <label for="exampleSelect1" class="control-label">Tình trạng sản phẩm</label>
-                                        <select class="form-control" id="exampleSelect1">
-                                            <option>Còn hàng</option>
-                                            <option>Hết hàng</option>
-                                            <option>Đang nhập hàng</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Giá bán</label>
-                                        <input class="form-control" type="text" value="${price}">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                        <select class="form-control" id="exampleSelect1" name="cid">
-                                            <option>Tai nghe</option>
-                                            <option>Bàn phím</option>
-                                            <option>Chuột</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <BR>
-                                <button class="btn btn-save" type="submit">Lưu lại</button>
-                                <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                                <BR>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                MODAL
-        -->
-
         <!-- Essential javascripts for application to work-->
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/popper.min.js"></script>
@@ -299,75 +221,84 @@
         <!-- Data table plugin-->
         <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
+        <script type="text/javascript">$('#sampleTable').DataTable();</script>
         <script type="text/javascript">
-                                                                $('#sampleTable').DataTable();
-                                                                //Thời Gian
-                                                                function time() {
-                                                                    var today = new Date();
-                                                                    var weekday = new Array(7);
-                                                                    weekday[0] = "Chủ Nhật";
-                                                                    weekday[1] = "Thứ Hai";
-                                                                    weekday[2] = "Thứ Ba";
-                                                                    weekday[3] = "Thứ Tư";
-                                                                    weekday[4] = "Thứ Năm";
-                                                                    weekday[5] = "Thứ Sáu";
-                                                                    weekday[6] = "Thứ Bảy";
-                                                                    var day = weekday[today.getDay()];
-                                                                    var dd = today.getDate();
-                                                                    var mm = today.getMonth() + 1;
-                                                                    var yyyy = today.getFullYear();
-                                                                    var h = today.getHours();
-                                                                    var m = today.getMinutes();
-                                                                    var s = today.getSeconds();
-                                                                    m = checkTime(m);
-                                                                    s = checkTime(s);
-                                                                    nowTime = h + " giờ " + m + " phút " + s + " giây";
-                                                                    if (dd < 10) {
-                                                                        dd = '0' + dd
-                                                                    }
-                                                                    if (mm < 10) {
-                                                                        mm = '0' + mm
-                                                                    }
-                                                                    today = day + ', ' + dd + '/' + mm + '/' + yyyy;
-                                                                    tmp = '<span class="date"> ' + today + ' - ' + nowTime +
-                                                                            '</span>';
-                                                                    document.getElementById("clock").innerHTML = tmp;
-                                                                    clocktime = setTimeout("time()", "1000", "Javascript");
+            $('#sampleTable').DataTable();
+            //Thời Gian
+            function time() {
+                var today = new Date();
+                var weekday = new Array(7);
+                weekday[0] = "Chủ Nhật";
+                weekday[1] = "Thứ Hai";
+                weekday[2] = "Thứ Ba";
+                weekday[3] = "Thứ Tư";
+                weekday[4] = "Thứ Năm";
+                weekday[5] = "Thứ Sáu";
+                weekday[6] = "Thứ Bảy";
+                var day = weekday[today.getDay()];
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1;
+                var yyyy = today.getFullYear();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                nowTime = h + " giờ " + m + " phút " + s + " giây";
+                if (dd < 10) {
+                    dd = '0' + dd
+                }
+                if (mm < 10) {
+                    mm = '0' + mm
+                }
+                today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+                tmp = '<span class="date"> ' + today + ' - ' + nowTime +
+                        '</span>';
+                document.getElementById("clock").innerHTML = tmp;
+                clocktime = setTimeout("time()", "1000", "Javascript");
 
-                                                                    function checkTime(i) {
-                                                                        if (i < 10) {
-                                                                            i = "0" + i;
-                                                                        }
-                                                                        return i;
-                                                                    }
-                                                                }
-        </script>
-        <script>
-            function deleteRow(r) {
-                var i = r.parentNode.parentNode.rowIndex;
-                document.getElementById("myTable").deleteRow(i);
+                function checkTime(i) {
+                    if (i < 10) {
+                        i = "0" + i;
+                    }
+                    return i;
+                }
             }
-            jQuery(function () {
-                jQuery(".trash").click(function () {
-                    swal({
-                        title: "Cảnh báo",
-                        text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",
-                        buttons: ["Hủy bỏ", "Đồng ý"],
-                    })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    swal("Đã xóa thành công.!", {
-
-                                    });
-                                }
-                            });
-                });
-            });
+//            function deleteRow(r) {
+//                var i = r.parentNode.parentNode.rowIndex;
+//                document.getElementById("myTable").deleteRow(i);
+//            }
+//            jQuery(function () {
+//                jQuery(".trash").click(function () {
+//                    swal({
+//                        title: "Cảnh báo",
+//                        text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",
+//                        buttons: ["Hủy bỏ", "Đồng ý"],
+//                    })
+//                            .then((willDelete) => {
+//                                if (willDelete) {
+//                                    swal("Đã xóa thành công.!", {
+//
+//                                    });
+//                                }
+//                            });
+//                });
+//            });
             oTable = $('#sampleTable').dataTable();
             $('#all').click(function (e) {
                 $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
                 e.stopImmediatePropagation();
             });
+            //In dữ liệu
+            var myApp = new function () {
+                this.printTable = function () {
+                    var tab = document.getElementById('sampleTable');
+                    var win = window.open('', '', 'height=700,width=700');
+                    win.document.write(tab.outerHTML);
+                    win.document.close();
+                    win.print();
+                };
+            };
         </script>
     </body>
 

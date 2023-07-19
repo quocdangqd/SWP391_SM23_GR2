@@ -10,7 +10,7 @@
 <html lang="en">
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Hệ thống quản lý</title>
+        <title>Danh sách đơn hàng | Quản trị Admin</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -100,22 +100,24 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="ManagerHomepageController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="homepage.jsp"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item " href="ManagerHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item" href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
-
-                <li><a class="app-menu__item " href="ManagerProductController"><i
-                            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
+                <li><a class="app-menu__item " href="usermanager.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
+                            class="app-menu__label">Quản lý người dùng</span></a></li>
+                <li><a class="app-menu__item" href="productmanager.jsp"><i
+                            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
                 </li>
-                <li><a class="app-menu__item active" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
-                            class="app-menu__label">Danh sách đơn hàng</span></a></li>
-                <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
-                            class="app-menu__label">Đánh giá </span></a></li>
-                <li><a class="app-menu__item" href="ManagerIncomeController"><i
+                <li><a class="app-menu__item active" href="OrderController"><i class='app-menu__icon bx bx-task'></i><span
+                            class="app-menu__label">Quản lý đơn hàng</span></a></li>
+                <li><a class="app-menu__item" href="accountmanager.jsp"><i class='app-menu__icon bx bx-run'></i><span
+                            class="app-menu__label">Quản lý tài khoản
+                        </span></a></li>
+                <li><a class="app-menu__item" href="incomemanager.jsp"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
                 </li>
             </ul>
@@ -125,7 +127,15 @@
                 <ul class="app-breadcrumb breadcrumb side">
                     <li class="breadcrumb-item active"><a href="#"><b>Danh sách đơn hàng</b></a></li>
                 </ul>
+                <div class="col-sm-2">
+                    <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
+                            class="fas fa-print"></i> In hóa đơn</a>
+                </div>
                 <div id="clock"></div>
+
+
+
+
             </div>
             <div class="page-wrapper">
                 <!-- Container fluid  -->
@@ -136,7 +146,7 @@
                     <!-- ============================================================== -->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-body printableArea">
+                            <div class="card card-body printableArea" id="sample">
                                 <h3><b>Hóa đơn</b> <span class="pull-right" name="id">#${od[0].getOrderdeatil_orderID()}</span></h3>
                                 <hr/>
                                 <div class="row">
@@ -160,19 +170,15 @@
                                                     &nbsp;<b class="text-danger text-uppercase" >${od[0].getName_user()}</b>
                                                 </div>
                                                 <div>Địa chỉ: 
-                                                    <b class="text-secondary">${od[2].getAddress()}</b>
+                                                    <b class="text-secondary">${od[0].getAddress()}</b>
                                                 </div>
                                                 <div>Số điện thoại: 
-                                                    <b class="text-secondary">${od[1].getPhone_number()}</b>
+                                                    <b class="text-secondary">${od[0].getPhone_number()}</b>
                                                 </div>
-                                                <p class="mt-4">
-                                                    <b>Ngày đặt:</b>
-                                                    <i class="mdi mdi-calendar"></i> 23/01/2022
-                                                </p>
-                                                <p>
-                                                    <b>Ngày nhận:</b>
-                                                    <i class="mdi mdi-calendar"></i> 24/01/2022
-                                                </p>
+                                                <div>
+                                                    <b>Ngày đặt: ${od[0].getDate()}</b>
+                                                    <i class="mdi mdi-calendar"></i> 
+                                                </div>
                                             </address>
                                         </div>
                                     </div>
@@ -218,15 +224,15 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="clearfix"></div>
-                                        <hr/>
-                                        <div class="pull-right text-end">
-                                            <button class="btn btn-danger text-white" type="submit">
-                                                Proceed to payment
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <!--                                            <div class="col-md-12">
+                                                                                    <div class="clearfix"></div>
+                                                                                    <hr/>
+                                                                                    <div class="pull-right text-end">
+                                                                                        <button class="btn btn-danger text-white" type="submit">
+                                                                                            Proceed to payment
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>-->
                                 </div>
                             </div>
                         </div>
@@ -248,7 +254,6 @@
         <!-- Data table plugin-->
         <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript">$('#sampleTable').DataTable();</script>
         <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap tether Core JavaScript -->
         <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -261,118 +266,86 @@
         <script src="../dist/js/sidebarmenu.js"></script>
         <!--Custom JavaScript -->
         <script src="../dist/js/custom.min.js"></script>
+        <script type="text/javascript">$('#sampleTable').DataTable();</script>
         <script>
-        function deleteRow(r) {
-            var i = r.parentNode.parentNode.rowIndex;
-            document.getElementById("myTable").deleteRow(i);
-        }
-        jQuery(function () {
-            jQuery(".trash").click(function () {
-                swal({
-                    title: "Cảnh báo",
+            function deleteRow(r) {
+                var i = r.parentNode.parentNode.rowIndex;
+                document.getElementById("myTable").deleteRow(i);
+            }
+            jQuery(function () {
+                jQuery(".trash").click(function () {
+                    swal({
+                        title: "Cảnh báo",
 
-                    text: "Bạn có chắc chắn là muốn xóa nhân viên này?",
-                    buttons: ["Hủy bỏ", "Đồng ý"],
-                })
-                        .then((willDelete) => {
-                            if (willDelete) {
-                                swal("Đã xóa thành công.!", {
+                        text: "Bạn có chắc chắn là muốn xóa nhân viên này?",
+                        buttons: ["Hủy bỏ", "Đồng ý"],
+                    })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    swal("Đã xóa thành công.!", {
 
-                                });
-                            }
-                        });
+                                    });
+                                }
+                            });
+                });
             });
-        });
-        oTable = $('#sampleTable').dataTable();
-        $('#all').click(function (e) {
-            $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
-            e.stopImmediatePropagation();
-        });
-
-//EXCEL
-// $(document).ready(function () {
-//   $('#').DataTable({
-
-//     dom: 'Bfrtip',
-//     "buttons": [
-//       'excel'
-//     ]
-//   });
-// });
-
+            oTable = $('#sampleTable').dataTable();
+            $('#all').click(function (e) {
+                $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
+                e.stopImmediatePropagation();
+            });
 
 //Thời Gian
-        function time() {
-            var today = new Date();
-            var weekday = new Array(7);
-            weekday[0] = "Chủ Nhật";
-            weekday[1] = "Thứ Hai";
-            weekday[2] = "Thứ Ba";
-            weekday[3] = "Thứ Tư";
-            weekday[4] = "Thứ Năm";
-            weekday[5] = "Thứ Sáu";
-            weekday[6] = "Thứ Bảy";
-            var day = weekday[today.getDay()];
-            var dd = today.getDate();
-            var mm = today.getMonth() + 1;
-            var yyyy = today.getFullYear();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            var s = today.getSeconds();
-            m = checkTime(m);
-            s = checkTime(s);
-            nowTime = h + " giờ " + m + " phút " + s + " giây";
-            if (dd < 10) {
-                dd = '0' + dd
-            }
-            if (mm < 10) {
-                mm = '0' + mm
-            }
-            today = day + ', ' + dd + '/' + mm + '/' + yyyy;
-            tmp = '<span class="date"> ' + today + ' - ' + nowTime +
-                    '</span>';
-            document.getElementById("clock").innerHTML = tmp;
-            clocktime = setTimeout("time()", "1000", "Javascript");
-
-            function checkTime(i) {
-                if (i < 10) {
-                    i = "0" + i;
+            function time() {
+                var today = new Date();
+                var weekday = new Array(7);
+                weekday[0] = "Chủ Nhật";
+                weekday[1] = "Thứ Hai";
+                weekday[2] = "Thứ Ba";
+                weekday[3] = "Thứ Tư";
+                weekday[4] = "Thứ Năm";
+                weekday[5] = "Thứ Sáu";
+                weekday[6] = "Thứ Bảy";
+                var day = weekday[today.getDay()];
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1;
+                var yyyy = today.getFullYear();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                nowTime = h + " giờ " + m + " phút " + s + " giây";
+                if (dd < 10) {
+                    dd = '0' + dd
                 }
-                return i;
+                if (mm < 10) {
+                    mm = '0' + mm
+                }
+                today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+                tmp = '<span class="date"> ' + today + ' - ' + nowTime +
+                        '</span>';
+                document.getElementById("clock").innerHTML = tmp;
+                clocktime = setTimeout("time()", "1000", "Javascript");
+
+                function checkTime(i) {
+                    if (i < 10) {
+                        i = "0" + i;
+                    }
+                    return i;
+                }
             }
-        }
 //In dữ liệu
-        var myApp = new function () {
-            this.printTable = function () {
-                var tab = document.getElementById('sampleTable');
-                var win = window.open('', '', 'height=700,width=700');
-                win.document.write(tab.outerHTML);
-                win.document.close();
-                win.print();
-            }
-        }
-//     //Sao chép dữ liệu
-//     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+            var myApp = new function () {
+                this.printTable = function () {
+                    var tab = document.getElementById('sample');
+                    var win = window.print();
+//                    win.document.write(tab.outerHTML);
+//                    win.document.close();
+//                    win.print();
+                };
+            };
 
-// copyTextareaBtn.addEventListener('click', function(event) {
-//   var copyTextarea = document.querySelector('.js-copytextarea');
-//   copyTextarea.focus();
-//   copyTextarea.select();
-
-//   try {
-//     var successful = document.execCommand('copy');
-//     var msg = successful ? 'successful' : 'unsuccessful';
-//     console.log('Copying text command was ' + msg);
-//   } catch (err) {
-//     console.log('Oops, unable to copy');
-//   }
-// });
-
-
-//Modal
-        $("#show-emp").on("click", function () {
-            $("#ModalUP").modal({backdrop: false, keyboard: false})
-        });
         </script>
     </body>
 </html>
