@@ -58,7 +58,7 @@
             <ul class="app-menu">
                 <li><a class="app-menu__item" href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span 
                             class="app-menu__label">Bảng điều khiển</span></a></li>
-                <li><a class="app-menu__item " href="usermanager.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
+                <li><a class="app-menu__item " href="ManagerUserController"><i class='app-menu__icon bx bx-id-card'></i> <span
                             class="app-menu__label">Quản lý người dùng</span></a></li>
                 <li><a class="app-menu__item" href="AdminController"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
