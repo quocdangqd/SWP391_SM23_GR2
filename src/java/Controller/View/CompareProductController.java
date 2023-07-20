@@ -5,7 +5,6 @@
 package Controller.View;
 
 import Dal.ProductDAO;
-import Model.Earphone;
 import Model.Products;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -46,28 +45,28 @@ public class CompareProductController extends HttpServlet {
             DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
             decimalFormat.applyPattern("#,###");
             if (request.getParameter("input1") != null) {
-                Earphone earphone1 = pdao.getProductByIDComPare(request.getParameter("input1"));
-                earphone1.setSalePrice(decimalFormat.format(Float.parseFloat(earphone1.getSalePrice())).replace(",", "."));
-                session.setAttribute("product1", earphone1);
+                Products product1 = pdao.getProductByID(request.getParameter("input1"));
+                product1.setSalePrice(decimalFormat.format(Float.parseFloat(product1.getSalePrice())).replace(",", "."));
+                session.setAttribute("product1", product1);
             } else if (request.getParameter("input2") != null) {
-                Earphone earphone2 = pdao.getProductByIDComPare(request.getParameter("input2"));
-                earphone2.setSalePrice(decimalFormat.format(Float.parseFloat(earphone2.getSalePrice())).replace(",", "."));
-                session.setAttribute("product2", earphone2);
+                Products product2 = pdao.getProductByID(request.getParameter("input2"));
+                product2.setSalePrice(decimalFormat.format(Float.parseFloat(product2.getSalePrice())).replace(",", "."));
+                session.setAttribute("product2", product2);
             } else if (request.getParameter("productNameInput") != null) {
-                ArrayList<Earphone> EarphoneList = pdao.getEarphoneListByCategoryIDAndNameAndSort(categoryID, request.getParameter("productNameInput"), sortOrder);
+                ArrayList<Products> productList = pdao.getProductListByCategoryIDAndNameAndSort(categoryID, request.getParameter("productNameInput"), sortOrder);
                 if (request.getParameter("inputType").equals("input1")) {
-                    for (Earphone earphone : EarphoneList) {
-                        out.print("<a href=\"CompareProductController?input1=" + earphone.getProductID() + "\" style=\"text-decoration: none\"><li style=\"font-size: 20px\">" + earphone.getName() + "</li></a><br>");
+                    for (Products product : productList) {
+                        out.print("<a href=\"CompareProductController?input1=" + product.getProductID() + "\" style=\"text-decoration: none\"><li style=\"font-size: 20px\">" + product.getName() + "</li></a><br>");
                     }
                 } else {
-                    for (Earphone earphone : EarphoneList) {
-                        out.print("<a href=\"CompareProductController?input2=" + earphone.getProductID() + "\" style=\"text-decoration: none\"><li style=\"font-size: 20px\">" + earphone.getName() + "</li></a><br>");
+                    for (Products product : productList) {
+                        out.print("<a href=\"CompareProductController?input2=" + product.getProductID() + "\" style=\"text-decoration: none\"><li style=\"font-size: 20px\">" + product.getName() + "</li></a><br>");
                     }
                 }
                 return;
             } else {
                 String productID = request.getParameter("productID");
-                Earphone product1 = pdao.getProductByIDComPare(productID);
+                Products product1 = pdao.getProductByID(productID);
                 product1.setSalePrice(decimalFormat.format(Float.parseFloat(product1.getSalePrice())).replace(",", "."));
                 session.setAttribute("product1", product1);
             }
