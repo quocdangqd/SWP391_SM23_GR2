@@ -77,10 +77,6 @@
         <servlet-class>Controller.Manager.ManagerFeedbackController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>OrderController</servlet-name>
-        <servlet-class>Controller.Admin.OrderController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>DeleteOrderController</servlet-name>
         <servlet-class>Controller.Admin.DeleteOrderController</servlet-class>
     </servlet>
@@ -123,6 +119,10 @@
     <servlet>
         <servlet-name>SalerCustomerController</servlet-name>
         <servlet-class>Controller.Saler.SalerCustomerController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderController</servlet-name>
+        <servlet-class>Controller.Admin.OrderController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
@@ -203,10 +203,6 @@
         <url-pattern>/manager/ManagerFeedbackController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>OrderController</servlet-name>
-        <url-pattern>/admin/OrderController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>DeleteOrderController</servlet-name>
         <url-pattern>/admin/DeleteOrderController</url-pattern>
     </servlet-mapping>
@@ -249,6 +245,10 @@
     <servlet-mapping>
         <servlet-name>SalerCustomerController</servlet-name>
         <url-pattern>/saler/SalerCustomerController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderController</servlet-name>
+        <url-pattern>/admin/OrderController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
