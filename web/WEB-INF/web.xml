@@ -128,6 +128,10 @@
         <servlet-name>OrderDetailController</servlet-name>
         <servlet-class>Controller.Admin.OrderDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditCustomerController</servlet-name>
+        <servlet-class>Controller.View.EditCustomerController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/auth/Register</url-pattern>
@@ -257,6 +261,10 @@
     <servlet-mapping>
         <servlet-name>OrderDetailController</servlet-name>
         <url-pattern>/admin/OrderDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditCustomerController</servlet-name>
+        <url-pattern>/view/EditCustomerController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
