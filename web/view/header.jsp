@@ -94,7 +94,7 @@
                                 <li class="header__top-item">
                                     <div class="dropdown fas fa-user header__nav-cart-icon">
                                         <div class="dropdown-content">
-                                            <a href="#">Hồ sơ cá nhân</a>
+                                            <a href="EditCustomerController">Hồ sơ cá nhân</a>
                                             <a href="../auth/ChangePassword?tab=changePassword">Đổi mật khẩu</a>
                                             <c:if test="${role==1}">
                                                 <a href="../admin/AdminController">Admin</a>
