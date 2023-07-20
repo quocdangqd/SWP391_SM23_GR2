@@ -3,15 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Dal/ConnectMySQL.java</file>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Controller/Saler/SalerOrderController.java</file>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Controller/Manager/ManagerUpdateProductController.java</file>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Controller/Admin/EditProductController.java</file>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Controller/Account/ChangePasswordController.java</file>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Controller/Saler/SalerCustomerController.java</file>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Controller/Admin/ManagerUserController.java</file>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Controller/Admin/AdminController.java</file>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Controller/Manager/ManagerAddProductController.java</file>
+            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/web/manager/productmanager.jsp</file>
         </group>
     </open-files>
 </project-private>
