@@ -131,7 +131,7 @@
                         <div class="col-md-12">
                             <div class="tile">
                                 <h3 class="tile-title">Khách hàng mới</h3>
-                                <h4 class="tile-title">Nhân viên: </h4>
+                                <h4 class="tile-title">Nhân viên: ${sessionScope.user.getName()} </h4>
                                 <div>
                                     <table class="table table-hover">
                                         <thead>
@@ -145,7 +145,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="${listS}" var="a">
+                                            <c:forEach items="${listC}" var="a">
                                                 <tr>
                                                     <td>${a.getUserID()}</td>
                                                     <td>${a.getName()}</td>

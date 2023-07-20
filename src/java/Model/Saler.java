@@ -34,5 +34,10 @@ public class Saler {
 
     public void setSaler_userID(String saler_userID) {
         this.saler_userID = saler_userID;
-    }   
+    }
+
+    public Saler() {
+        
+    }
+   
 }

@@ -3,24 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package Controller.Admin;
+package Controller.Manager;
 
-import Dal.ManagerDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class OrderController extends HttpServlet {
+public class ManagerUpdateOrderController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
-        ManagerDAO dao = new ManagerDAO();
-        dao.getListOrder();
-        req.setAttribute("listO", dao.getOrder());
-        req.getRequestDispatcher("ordermanager.jsp").forward(req, resp);
+        
     } 
 
     

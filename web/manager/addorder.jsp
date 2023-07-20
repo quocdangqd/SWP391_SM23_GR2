@@ -1,6 +1,6 @@
 <%-- 
-    Document   : editproduct
-    Created on : Jun 26, 2023, 11:17:11 AM
+    Document   : editorder
+    Created on : Jun 26, 2023, 10:00:59 PM
     Author     : laptop
 --%>
 
@@ -11,7 +11,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Chỉnh sửa thông tin sản phẩm</title>
+        <title>Thêm mới đơn hàng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -167,10 +167,10 @@
                 <li><a class="app-menu__item " href="ManagerHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
-                <li><a class="app-menu__item active" href="ManagerProductController"><i
+                <li><a class="app-menu__item " href="ManagerProductController"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách sản phẩm</span></a>
                 </li>
-                <li><a class="app-menu__item" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
+                <li><a class="app-menu__item active" href="ManagerOrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
                 <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
@@ -182,88 +182,71 @@
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb">
-                    <li class="breadcrumb-item">Danh sách sản phẩm</li>
-                    <li class="breadcrumb-item"><a href="#">Chỉnh sửa thông tin sản phẩm</a></li>
+                    <li class="breadcrumb-item">Danh sách đơn hàng</li>
+                    <li class="breadcrumb-item"><a href="#">Thêm đơn hàng</a></li>
                 </ul>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="tile">
-                        <h3 class="tile-title">Chỉnh sửa thông tin sản phẩm</h3>
+                        <h3 class="tile-title">Tạo mới đơn hàng</h3>
                         <div class="tile-body">
-                            <form action="ManagerUpdateProductController" method="post">
+                            <p class="text-danger">${wrongText}</p>
+                            <p class="text-success">${successText}</p>
+
+                            <form action="ManagerAddOrderController" method="post">
                                 <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Mã sản phẩm </label>
-                                        <input class="form-control" type="text" value="${o.getProductID()}" name="pid" readonly="">
+<!--                                    <div class="form-group col-md-6">
+                                        <label class="control-label">ID đơn hàng</label>
+                                        <input class="form-control" type="text" value="${o.getOrderID()}" name="id">
+                                    </div>-->
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Tên khách hàng</label>
+                                        <input class="form-control" type="text" name="user" value="${listU.get(o.getOrder_userID()-1).getName()}">
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Tên sản phẩm</label>
-                                        <input class="form-control" type="text" name="name" value="${o.getName()}" 
-                                               >
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Địa chỉ</label>
+                                        <input class="form-control" type="text" name="saler" value="${o.getOrder_salecodeID()}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Số điện thoại</label>
+                                        <input class="form-control" type="text" name="order" value="${o.getNote()}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Sản phẩm</label>
+                                        <input class="form-control" type="text" name="order" value="${o.getNote()}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label class="control-label">Số lượng</label>
+                                        <input class="form-control" type="text" name="order" value="${o.getNote()}">
+                                    </div>
+                                    <div class="form-group  col-md-4">
+                                        <label class="control-label">Tổng tiền</label>
+                                        <input class="form-control" type="text">
                                     </div>
                                     <div class="form-group  col-md-6">
-                                        <label class="control-label">Số lượng</label>
-                                        <input class="form-control" type="number" name="quantity" value="${o.getQuantity()}"
-                                               >
+                                        <label class="control-label">Ngày đặt</label>
+                                        <input class="form-control" type="datetime-local" name="date" value="${o.getDate()}">
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Giá bán</label>
-                                        <input class="form-control" type="text" name="price" value="${o.getPrice()}" 
-                                              >
-                                    </div>
-                                    <div class="form-group col-md-6 ">
-                                        <label for="exampleSelect1" class="control-label">Tình trạng sản phẩm</label>
-                                        <select class="form-control" id="exampleSelect1" name="status" value="${o.getStatus()}">
-                                            <c:if test="${o.getStatus()=='0'}">
-                                                <option value="1" >Còn hàng</option>
-                                                <option value="0" selected="">Hết hàng</option>
-                                            </c:if>
-                                            <c:if test="${o.getStatus()=='1'}">
-                                                <option value="1" selected="">Còn hàng</option>
-                                                <option value="0">Hết hàng</option>
-                                            </c:if>
-                                        </select>
-                                    </div>
+                                    <div class="form-group  col-md-6">
+                                        <label for="exampleSelect1" class="control-label">Tình trạng</label>
+                                        <input name="status" value="${status}" class="form-control" type="text" readonly="" placeholder="Đang xử lý">  
 
-                                    <div class="form-group col-md-6">
-                                        <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                        <select name="category" class="form-control" id="exampleSelect1">
-                                            <c:forEach items="${categoriesList}" var="c">
-                                                <option ${(o.getCategories().getCategoryID() == c.getCategoryID())?"selected":""} value="${c.getCategoryID()}">${c.getName()}</option>
-                                            </c:forEach>
-                                        </select>
+                                        <!--                                    <select class="form-control" id="exampleSelect1" name="status">
+                                                                                    <option name="status" value="${o.getStatus()}" selected="selected">${o.getStatus()}</option>
+                                                                            </select>-->
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Ảnh 1</label>
-                                        <input value="${o.getPicture()}" name="image" class="form-control" type="text">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Ảnh 2</label>
-                                        <input value="${o.getPicture2()}" name="image2" class="form-control" type="text">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label class="control-label">Ảnh 3 </label>
-                                        <input value="${o.getPicture3()}" name="image3" class="form-control" type="text">
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <label class="control-label">Mô tả</label>
-                                        <textarea class="form-control"  name="description">${o.getDesciption()}</textarea>
-                                    </div>
-                                </div>  
+                                </div>
                                 <BR>
                                 <button class="btn btn-save" type="submit">Lưu lại</button>
-                                <a class="btn btn-cancel" data-dismiss="modal" href="ManagerProductController">Quay lại</a>
+                                <a class="btn btn-cancel" data-dismiss="modal" href="ManagerOrderController">Hủy bỏ</a>
                                 <BR>
-
-                                <p class="text-success">${successText}</p>                                
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-
 
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/popper.min.js"></script>

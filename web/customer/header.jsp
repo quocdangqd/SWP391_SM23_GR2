@@ -65,9 +65,9 @@
                         <li class="header__top-item">
                             <a href="#" class="header__top-link">Giỏ hàng</a>
                         </li>
-                        <li class="header__top-item">
+<!--                        <li class="header__top-item">
                             <a href="#" class="header__top-link">Thanh toán</a>
-                        </li>
+                        </li>-->
                         <li class="header__top-item">
                             <a href="#" class="header__top-link"></a>
                         </li>
