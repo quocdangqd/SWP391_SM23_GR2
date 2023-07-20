@@ -1,8 +1,3 @@
-<%-- 
-    Document   : userprofile
-    Created on : Jun 12, 2023, 10:21:04 PM
-    Author     : HAI DANG
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <meta charset="UTF-8">

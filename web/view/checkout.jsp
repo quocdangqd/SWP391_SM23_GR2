@@ -1,8 +1,3 @@
-<%-- 
-    Document   : customers
-    Created on : May 25, 2023, 10:57:48 PM
-    Author     : HAI DANG
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

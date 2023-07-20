@@ -1,8 +1,3 @@
-<%-- 
-    Document   : addproduct
-    Created on : 24-05-2023, 01:34:40
-    Author     : trand
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : listProduct
-    Created on : May 25, 2023, 4:53:18 PM
-    Author     : laptop
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

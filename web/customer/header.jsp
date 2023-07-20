@@ -1,9 +1,3 @@
-<%-- 
-    Document   : header
-    Created on : May 25, 2023, 4:18:53 PM
-    Author     : laptop
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">

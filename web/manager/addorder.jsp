@@ -1,9 +1,3 @@
-<%-- 
-    Document   : editorder
-    Created on : Jun 26, 2023, 10:00:59 PM
-    Author     : laptop
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

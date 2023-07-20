@@ -1,9 +1,3 @@
-<%-- 
-    Document   : orderdetail
-    Created on : May 28, 2023, 6:38:55 AM
-    Author     : laptop
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
