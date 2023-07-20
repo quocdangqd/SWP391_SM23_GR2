@@ -128,7 +128,7 @@
                 <div class="col-md-12">
                     <div class="app-title">
                         <ul class="app-breadcrumb breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><b>Bảng điều khiển</b></a></li>
+                            <li class="breadcrumb-item"><b>Bảng điều khiển</b></li>
                         </ul>
                         <div id="clock"></div>
                     </div>
@@ -141,21 +141,24 @@
                         <!-- col-6 -->
                         <div class="col-md-6">
                             <div class="widget-small info coloured-icon"><i class='icon bx bxs-data fa-3x'></i>
-                                <div class="info">
-                                    <h4>Tổng sản phẩm</h4>
-                                    <p><b>${countP} sản phẩm</b></p>
-                                    <p class="info-tong">Tổng số sản phẩm được quản lý.</p>
-                                </div>
+                                <a href="ManagerProductController"><div class="info">
+                                        <h4>Tổng sản phẩm</h4>
+                                        <p><b>${countP} sản phẩm</b></p>
+                                        <p class="info-tong">Tổng số sản phẩm được quản lý.</p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         <!-- col-6 -->
                         <div class="col-md-6">
                             <div class="widget-small warning coloured-icon"><i class='icon bx bxs-shopping-bags fa-3x'></i>
-                                <div class="info">
-                                    <h4>Tổng đơn hàng</h4>
-                                    <p><b>${countO} đơn hàng</b></p>
-                                    <p class="info-tong">Tổng số hóa đơn bán hàng.</p>
-                                </div>
+                                <a href="ManagerOrderController">
+                                    <div class="info">
+                                        <h4>Tổng đơn hàng</h4>
+                                        <p><b>${countO} đơn hàng</b></p>
+                                        <p class="info-tong">Tổng số hóa đơn bán hàng.</p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         <!-- col-6 -->
@@ -180,7 +183,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="tile">
-                                <h3 class="tile-title">Tình trạng đơn hàng</h3>
+                                <h3 class="tile-title"><a href="ManagerOrderController">Tình trạng đơn hàng</a></h3>
                                 <div>
                                     <table class="table table-bordered">
                                         <thead>
