@@ -3,7 +3,6 @@
     Created on : May 25, 2023, 10:57:48 PM
     Author     : HAI DANG
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en"><head>
@@ -25,20 +24,7 @@
             border-bottom: 1px solid #999;
             font-size: 1.5rem;
             padding: 2px;
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-        .form-control:disabled, .form-control[readonly]{
-            background-color: white;
-        }
-        element.style {
-            font-family: 'roboto';
-        }
-        .custom-control-label{
-        }
-        .custom-radio .custom-control-input:checked~.custom-control-label::after {
-            background-image: none;
-            
+            margin: 5px;
         }
     </style>
     <body>
@@ -59,14 +45,14 @@
                         <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
 
                         <div style="text-align: center">
-                            <h1 style="font-size: 4rem; font-weight: bold;">THANH TOÁN</h1>
-                            <h3 class="lead" style="font-size: 20px; padding-top: 15px; padding-bottom: 15px; font-style:italic;">Vui lòng kiểm tra thông tin khách hàng, thông tin giỏ hàng trước khi thanh toán.</h3>
+                            <h1 style="font-size: 50px; font-weight: bold;">THANH TOÁN</h1>
+                            <h3 class="lead" style="font-size: 20px; padding-top: 15px; padding-bottom: 15px">Vui lòng kiểm tra thông tin khách hàng, thông tin giỏ hàng trước khi thanh toán.</h3>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4 order-md-2 mb-4">
                                 <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="text-muted" style="font-size: 2rem; color: red;">GIỎ HÀNG</span>
+                                    <span class="text-muted" style="font-size: 30px">GIỎ HÀNG</span>
                                     <span class="badge badge-secondary badge-pill" style="background-color: #ff3333;">
                                         <a href="${user!=null?'CartController?tab=cartList':'../auth/login'}" class="col-lg-1 col-md-1 col-sm-0 header__cart">
                                         <div class="header__cart-icon-wrap">
@@ -81,8 +67,8 @@
                                     <c:forEach items="${data}" var="item">
                                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                                             <div>
-                                                <h6 class="my-0" style="font-size: 1.2rem;font-style: italic">${item.getProductName()}</h6>
-                                                <small class="text-muted" style="font-style: italic; font-weight: bold; color: black;">${item.getPrice()} x ${item.getQuantity()}</small>
+                                                <h6 class="my-0">${item.getProductName()}</h6>
+                                                <small class="text-muted">${item.getPrice()} x ${item.getQuantity()}</small>
                                             </div>
                                             <span class="text-muted">${item.getTotalcost()} đ</span>
                                         </li>
@@ -96,51 +82,50 @@
                             </div>
 
                             <div class="input-group">
-                                <input type="text" class="form-control" style="font-size: 1.8rem; font-style: italic;font-family: 'roboto';" placeholder="Mã giảm giá" name="inputSalecode">
+                                <input type="text" class="form-control" style="font-size: 20px" placeholder="Mã khuyến mãi" name="inputSalecode">
                                 <div class="input-group-append" >
-                                    <button type="submit" class="btn btn-secondary"  onclick="confirmSalecodeFunct()" name="confirmSalecode" style="background-color: #ff3333;"><h1 style="font-size: 1.2rem">Xác nhận</h1></button>
+                                    <button type="submit" class="btn btn-secondary" onclick="confirmSalecodeFunct()" name="confirmSalecode" style="background-color: #ff3333;"><h1 style="font-size: 10px">Xác nhận</h1></button>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="col-md-8 order-md-1">
-                            <h4 class="mb-3" style="font-size: 2.8rem; font-weight: bold; font-style:italic;">THÔNG TIN KHÁCH HÀNG</h4>
+                        <div class="col-md-8 order-md-1" style="font-size: 10rem;">
+                            <h4 class="mb-3" style="font-size: 30px">THÔNG TIN KHÁCH HÀNG</h4>
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label for="kh_ten"  style="font-weight: bold; font-size: 2.5rem;">Họ và tên</label>
-                                    <input type="text" class="form-control" value="${user.getName()}" readonly>
+                                    <input type="text"class="form-control" placeholder="Your User Name">
                                 </div>
                                 <div class="col-md-12">
-                                    <label for="kh_gioitinh" style="font-weight: bold; font-size: 2.5rem;">Giới tính</label>
+                                    <label for="kh_gioitinh">Giới tính</label>
                                     <input type="text" class="form-control" readonly value="${user.getUser_sexID()==1?"Nam":"Nữ"}">
                                 </div>
                                 <div class="col-md-12">
-                                    <label for="kh_diachi" style="font-weight: bold; font-size: 2.5rem;">Địa chỉ</label>
+                                    <label for="kh_diachi">Địa chỉ</label>
                                     <input type="text" class="form-control" value="${user.getAddress()}" readonly>
                                 </div>
                                 <div class="col-md-12">
-                                    <label for="kh_dienthoai" style="font-weight: bold; font-size: 2.5rem;">Điện thoại</label>
+                                    <label for="kh_dienthoai">Điện thoại</label>
                                     <input type="text" class="form-control" value="${user.getPhone_number()}" readonly>
                                 </div>
                                 <div class="col-md-12">
-                                    <label for="kh_email" style="font-weight: bold; font-size: 2.5rem;">Email</label>
-                                    <input type="email" class="form-control"  value="${user.getEmail()}" readonly>
+                                    <label for="kh_email">Email</label>
+                                    <input type="email" class="form-control" value="${user.getEmail()}" readonly>
                                 </div>
                             </div>
 
-                            <h4 class="mb-3" style="margin-top: 15px; font-weight: bold; font-size: 2.5rem;">Hình thức thanh toán</h4>
+                            <h4 class="mb-3" style="margin-top: 15px">Hình thức thanh toán</h4>
 
                             <div class="d-block my-3">
                                 <div class="custom-control custom-radio">
                                     <input id="httt-1" name="checkoutType" type="radio" class="custom-control-input" required=""
                                            value="cash">
-                                    <label class="custom-control-label" for="httt-1" style="font-size: 1.5rem;">Tiền mặt</label>
+                                    <label class="custom-control-label" for="httt-1">Tiền mặt</label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input id="httt-2" name="checkoutType" type="radio" class="custom-control-input" required=""
                                            value="transfer">
-                                    <label class="custom-control-label" for="httt-2" style="font-size: 1.5rem;">Chuyển khoản</label>
+                                    <label class="custom-control-label" for="httt-2">Chuyển khoản</label>
                                 </div>                             
                             </div>
                             <hr class="mb-4">
