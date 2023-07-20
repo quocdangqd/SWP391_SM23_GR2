@@ -41,10 +41,6 @@
         <servlet-class>Controller.Manager.ManagerAddProductController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ManagerDeleteProduct</servlet-name>
-        <servlet-class>Controller.Manager.ManagerDeleteProduct</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ManagerUpdateProductController</servlet-name>
         <servlet-class>Controller.Manager.ManagerUpdateProductController</servlet-class>
     </servlet>
@@ -73,10 +69,6 @@
         <servlet-class>Controller.Manager.ManagerOrderController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ManagerAddOrderController</servlet-name>
-        <servlet-class>Controller.Manager.ManagerAddOrderController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ManagerOrderDetailController</servlet-name>
         <servlet-class>Controller.Manager.ManagerOrderDetailController</servlet-class>
     </servlet>
@@ -91,10 +83,6 @@
     <servlet>
         <servlet-name>DeleteOrderController</servlet-name>
         <servlet-class>Controller.Admin.DeleteOrderController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ManagerUpdateOrderController</servlet-name>
-        <servlet-class>Controller.Manager.ManagerUpdateOrderController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>OrderListController</servlet-name>
@@ -179,10 +167,6 @@
         <url-pattern>/manager/ManagerAddProductController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ManagerDeleteProduct</servlet-name>
-        <url-pattern>/manager/ManagerDeleteProduct</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ManagerUpdateProductController</servlet-name>
         <url-pattern>/manager/ManagerUpdateProductController</url-pattern>
     </servlet-mapping>
@@ -211,10 +195,6 @@
         <url-pattern>/manager/ManagerOrderController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ManagerAddOrderController</servlet-name>
-        <url-pattern>/manager/ManagerAddOrderController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ManagerOrderDetailController</servlet-name>
         <url-pattern>/manager/ManagerOrderDetailController</url-pattern>
     </servlet-mapping>
@@ -229,10 +209,6 @@
     <servlet-mapping>
         <servlet-name>DeleteOrderController</servlet-name>
         <url-pattern>/admin/DeleteOrderController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ManagerUpdateOrderController</servlet-name>
-        <url-pattern>/manager/ManagerUpdateOrderController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>OrderListController</servlet-name>
