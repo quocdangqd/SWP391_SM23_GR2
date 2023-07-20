@@ -19,10 +19,8 @@ public class ManagerFeedbackController extends HttpServlet {
         ManagerDAO dao = new ManagerDAO();
         dao.getFeedbackList();
         req.setAttribute("listF", dao.getFeedback());
-        String id = req.getParameter("id");
-        if(req.getParameter("mod") != null && req.getParameter("mod").equals("1")){
-            dao.deleteFeedback(id);
-        }
+//        req.setAttribute("listU", dao.getUserList());
+//System.out.println(dao.getFeedback().get(0).getOrderdetailID());
         req.getRequestDispatcher("feedbackmanager.jsp").forward(req, resp);
     }
 

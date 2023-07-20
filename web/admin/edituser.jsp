@@ -4,6 +4,7 @@
     Author     : trand
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -166,16 +167,17 @@
                             class="app-menu__label">Bảng điều khiển</span></a></li>
                 <li><a class="app-menu__item active" href="usermanager.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
                             class="app-menu__label">Quản lý người dùng</span></a></li>
-                <li><a class="app-menu__item" href="productmanager.jsp"><i
+                <li><a class="app-menu__item" href="AdminController"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
                 </li>
                 <li><a class="app-menu__item" href="ordermanager.jsp"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Quản lý đơn hàng</span></a></li>
-                <li><a class="app-menu__item" href="incomemanager.jsp"><i
+                <li><a class="app-menu__item" href="AdminIncomeController"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
                 </li>
             </ul>
         </aside>
+        <!--<for class="app-content" action="EditUserController" method="post">-->
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb">
@@ -183,6 +185,7 @@
                     <li class="breadcrumb-item"><a href="#">Chỉnh sửa người dùng</a></li>
                 </ul>
             </div>
+
             <div class="row">
                 <div class="col-md-12">
 
@@ -193,57 +196,89 @@
                             <form class="row">
                                 <div class="form-group col-md-4">
                                     <label class="control-label">ID người dùng</label>
-                                    <input class="form-control" type="text">
+                                    <input class="form-control" type="text" readonly="" name="userID"  value="${user.getUserID()}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Tên đăng nhập</label>
-                                    <input class="form-control" type="text" required>
+                                    <input class="form-control" type="text" name="username"  value="${user.getUsername()}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Mật khẩu</label>
-                                    <input class="form-control" type="text" required>
+                                    <input class="form-control" type="text" name="password"  value="${user.getPassword()}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Họ và tên</label>
-                                    <input class="form-control" type="text" required>
+                                    <input class="form-control" type="text" name="name"  value="${user.getName()}">
                                 </div>
                                 <div class="form-group  col-md-4">
                                     <label class="control-label">Số điện thoại</label>
-                                    <input class="form-control" type="number" required>
+                                    <input class="form-control" type="number" name="phone_number"  value="${user.getPhone_number()}">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label class="control-label">Ngày sinh</label>
-                                    <input class="form-control" type="date">
+                                    <label class="control-label">Tuổi</label>
+                                    <input class="form-control" type="number" name="age"  value="${user.getAge()}">
                                 </div>
                                 <div class="form-group  col-md-4">
                                     <label class="control-label">Địa chỉ</label>
-                                    <input class="form-control" type="text" required>
+                                    <input class="form-control" type="text" name="address"  value="${user.getAddress()}">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Giới tính</label>
-                                    <select class="form-control" id="exampleSelect2" required>
+                                    <select class="form-control" id="exampleSelect2" name="user_sexID">
                                         <option>-- Chọn giới tính --</option>
-                                        <option>Nam</option>
-                                        <option>Nữ</option>
+                                        <c:if test="${user.getUser_sexID()=='1'}">
+                                            <option value="1" selected="">Nam</option>
+                                            <option value="2">Nữ</option>
+                                        </c:if>
+                                        <c:if test="${user.getUser_sexID()!='1'}">
+                                            <option value="1">Nam</option>
+                                            <option value="2"selected="">Nữ</option>
+                                        </c:if>
                                     </select>
                                 </div>
 
                                 <div class="form-group  col-md-4">
                                     <label for="exampleSelect1" class="control-label">Vai trò</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn vai trò --</option>
-                                        <option>Khách hàng</option>
-                                        <option>Quản lý</option>
-                                        <option>Admin</option>
-                                        <option>Người bán hàng</option>
+                                    <select class="form-control" id="exampleSelect1" name="user_roleID">
+                                        <c:if test="${user.getUser_roleID()=='1'}">
+                                            <option value="3">Khách hàng</option>
+                                            <option value="2">Quản lý</option>
+                                            <option value="1" selected="">Admin</option>
+                                            <option value="4">Người bán hàng</option>
+                                        </c:if>
+                                        <c:if test="${user.getUser_roleID()=='2'}">
+                                            <option value="3">Khách hàng</option>
+                                            <option value="2" selected="">Quản lý</option>
+                                            <option value="1" >Admin</option>
+                                            <option value="4">Người bán hàng</option>
+                                        </c:if>
+                                        <c:if test="${user.getUser_roleID()=='3'}">
+                                            <option value="3" selected="">Khách hàng</option>
+                                            <option value="2">Quản lý</option>
+                                            <option value="1" >Admin</option>
+                                            <option value="4">Người bán hàng</option>
+                                        </c:if>
+                                        <c:if test="${user.getUser_roleID()=='4'}">
+                                            <option value="3">Khách hàng</option>
+                                            <option value="2">Quản lý</option>
+                                            <option value="1" >Admin</option>
+                                            <option value="4" selected="">Người bán hàng</option>
+                                        </c:if>
+
+
                                     </select>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Tình trạng</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn tình trạng --</option>
-                                        <option>Mở tài khoản</option>
-                                        <option>Khóa tài khoản</option>
+                                    <select class="form-control" id="exampleSelect1" name="status">
+                                        <c:if test="${user.getStatus()=='1'}">
+                                            <option value="1"selected="">Tài khoản mở</option>
+                                            <option value="0">Tài khoản Khóa</option>
+                                        </c:if>
+                                        <c:if test="${user.getStatus()=='0'}">
+                                            <option value="1">Tài khoản mở</option>
+                                            <option value="0" selected="">Tài khoản khóa</option>
+                                        </c:if>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12">
@@ -262,20 +297,21 @@
 
                                 </div>
 
+                                <input class="btn btn-save" type="submit" name="Submit" value="Lưu lại"> 
+                                <a class="btn btn-cancel" href="ManagerUserController">Hủy bỏ</a>
 
-
+                            </form>
+                            ${message}
                         </div>
-                        <button class="btn btn-save" type="button">Lưu lại</button>
-                        <a class="btn btn-cancel" href="usermanager.jsp">Hủy bỏ</a>
                     </div>
 
                     </main>
-
+                    <!--</form>-->
 
                     <!--
                     MODAL
                     -->
-                    
+
                     <!--
                     MODAL
                     -->

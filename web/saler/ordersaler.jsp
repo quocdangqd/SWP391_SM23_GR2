@@ -4,6 +4,7 @@
     Author     : trand
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,7 +102,7 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="SalerOrderController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="../view/HomePageController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
@@ -131,23 +132,29 @@
                         <div class="col-md-12">
                             <div class="tile">
                                 <h3 class="tile-title">Tình trạng đơn hàng</h3>
-                                <h4 class="tile-title">Nhân viên: ABC </h4>
+                                <h4 class="tile-title">Nhân viên: ${sessionScope.user.getName()} </h4>
                                 <div>
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>Mã đơn hàng</th>
                                                 <th>Tên khách hàng</th>
+                                                <th>So Dien Thoai</th>
+                                                <th>Dia Chi</th>                                               
                                                 <th>Tổng tiền</th>
+                                                <th>Ngay dat hang</th>
                                                 <th>Trạng thái đơn hàng</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <c:forEach items="${listO}" var="o">
                                             <tr>
-                                                <td><a style="color: #ff6666" href="ManagerOrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>
+                                                <td><a style="color: #ff6666" href="ManagerOrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>                                           
                                                 <td>${o.getName_user()}</td>
+                                                <td>${o.getPhone_number()}</td>
+                                                 <td>${o.getAddress()}</td>
                                                 <td>${o.getPrice_order()}</td>
+                                                <td>${o.getDate()}</td>
                                                 <td>${o.getStatus()}</td>
                                             </tr>
                                         </c:forEach>
