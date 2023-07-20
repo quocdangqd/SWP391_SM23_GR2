@@ -7,13 +7,12 @@ package Dal;
 import Model.DetailOrder;
 import Model.Feedback;
 import Model.Order;
-import Model.Orderdetail;
 import Model.Products;
 import Model.User;
-import java.sql.Array;
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -54,6 +53,9 @@ public class ManagerDAO extends ConnectMySQL {
         this.feedback = feedback;
     }
 
+    DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
     //PRODUCT MANAGER
     public ArrayList<Products> getAllProduct() {
         product = new ArrayList<>();
@@ -61,8 +63,8 @@ public class ManagerDAO extends ConnectMySQL {
         try {
             pstm = connection.prepareStatement(sql);
             rs = pstm.executeQuery();
-            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
             decimalFormat.applyPattern("#,###");
+            dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             while (rs.next()) {
                 String ProductID = String.valueOf(rs.getInt(1));
                 String product_categoryID = String.valueOf(rs.getInt(2));
@@ -74,7 +76,7 @@ public class ManagerDAO extends ConnectMySQL {
                 String price = String.valueOf(decimalFormat.format((int) rs.getFloat(8)));
                 String quantity = String.valueOf(rs.getInt(9));
                 String status = String.valueOf(rs.getInt(10));
-                String date = String.valueOf(rs.getString(10));
+                String date = String.valueOf(dateFormat.format(rs.getDate(12)));
                 product.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, picture2, picture3, date));
             }
 
@@ -89,8 +91,9 @@ public class ManagerDAO extends ConnectMySQL {
             String sqlSelect = "Select * from product where ProductID=" + id;
             pstm = connection.prepareStatement(sqlSelect);
             rs = pstm.executeQuery();
-            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
             decimalFormat.applyPattern("#,###");
+            dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
             while (rs.next()) {
                 Products p = new Products();
                 p.setProductID(String.valueOf(rs.getInt(1)));
@@ -105,6 +108,7 @@ public class ManagerDAO extends ConnectMySQL {
                 p.setPrice(String.valueOf(decimalFormat.format((int) rs.getFloat(8))));
                 p.setQuantity(String.valueOf(rs.getInt(9)));
                 p.setStatus(String.valueOf(rs.getInt(10)));
+                p.setDate(String.valueOf(dateFormat.format(rs.getDate(12))));
                 p.setCategories(new CategoriesDAO().getCategoryById(categories));
                 return p;
             }
@@ -115,10 +119,12 @@ public class ManagerDAO extends ConnectMySQL {
         return null;
     }
 
-    public void addNewProduct(String cid, String pname, String desciption, String img1, String img2, String img3, String quantity, String status, String price) {
+    public void addNewProduct(String cid, String pname, String desciption, String img1, String img2, String img3, String price, String quantity, String status, String date) {
         try {
-            String sql = "insert into product (product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, status)\n"
-                    + "values (?, ?, ?, ?,?, ?, ?, ?, ?);";
+            String sql = "insert into swp.product (product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, status, date)\n"
+                    + "values (?,?,?,?,?,?,?,?,?,?);";
+            decimalFormat.applyPattern("#,###");
+            dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             pstm = connection.prepareStatement(sql);
             pstm.setInt(1, Integer.parseInt(cid));
             pstm.setString(2, pname);
@@ -130,6 +136,8 @@ public class ManagerDAO extends ConnectMySQL {
             pstm.setFloat(7, Float.parseFloat(price));
             pstm.setInt(8, Integer.parseInt(quantity));
             pstm.setBoolean(9, status.equals("1"));
+            Date date1 = Date.valueOf(date);
+            pstm.setDate(10, (date1));
 
             pstm.executeUpdate();
         } catch (Exception e) {
@@ -138,10 +146,10 @@ public class ManagerDAO extends ConnectMySQL {
         }
     }
 
-    public void updateProduct(String cid, String pname, String desciption, String img1, String img2, String img3, String quantity, String status, String price, String pid) {
+    public void updateProduct(String cid, String pname, String desciption, String img1, String img2, String img3, String quantity, String status, String price, String date, String pid) {
         try {
             String sql = "UPDATE product set product_categoryID=?, name=?, desciption=?,picture=?,picture2=?,picture3=?,\n"
-                    + "price=?,quantity=?, status=? where ProductID = ?;";
+                    + "price=?,quantity=?, status=?, date=? where ProductID = ?;";
             pstm = connection.prepareStatement(sql);
             pstm.setInt(1, Integer.parseInt(cid));
             pstm.setString(2, pname);
@@ -153,24 +161,12 @@ public class ManagerDAO extends ConnectMySQL {
             pstm.setFloat(7, Float.parseFloat(price));
             pstm.setInt(8, Integer.parseInt(quantity));
             pstm.setInt(9, Integer.parseInt(status));
-            pstm.setInt(10, Integer.parseInt(pid));
-
+            Date date1 = Date.valueOf((date));
+            pstm.setDate(10, (date1));
+            pstm.setInt(11, Integer.parseInt(pid));
             pstm.executeUpdate();
         } catch (Exception e) {
             System.out.println("updateProduct: " + e.getMessage());
-
-        }
-    }
-
-    public void deleteProduct(String productID) {
-        try {
-            String sql = "delete from Product where ProductID=?;";
-            pstm = connection.prepareStatement(sql);
-            pstm.setString(1, productID);
-            pstm.executeUpdate();
-
-        } catch (Exception e) {
-            System.out.println("deleteProduct: " + e.getMessage());
 
         }
     }
@@ -180,8 +176,6 @@ public class ManagerDAO extends ConnectMySQL {
         order = new ArrayList<>();
         String sql = "select o.*,u.name,od.price from swp.order o, swp.orderdetail od, swp.user u\n"
                 + "where od.orderdetail_orderID=o.orderID and u.userID=o.order_userID ORDER BY date DESC;";
-        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
-        decimalFormat.applyPattern("#,###");
         try {
             pstm = connection.prepareStatement(sql);
             rs = pstm.executeQuery();
@@ -190,7 +184,7 @@ public class ManagerDAO extends ConnectMySQL {
                 String order_userID = String.valueOf(rs.getInt(2));
                 String sale = String.valueOf(rs.getInt(3));
                 String note = String.valueOf(rs.getString(4));
-                String date = String.valueOf(rs.getTimestamp(5));
+                String date = String.valueOf(dateFormat.format(rs.getTimestamp(5)));
                 String status = rs.getString(6);
                 String name_user = rs.getString(7);
                 String price_order = String.valueOf(decimalFormat.format((int) rs.getFloat(8)));
@@ -213,7 +207,7 @@ public class ManagerDAO extends ConnectMySQL {
                 String order_userID = String.valueOf(rs.getInt(2));
                 String sale = String.valueOf(rs.getInt(3));
                 String note = String.valueOf(rs.getString(4));
-                String date = String.valueOf(rs.getTimestamp(5));
+                String date = String.valueOf(dateFormat.format(rs.getTimestamp(5)));
                 String status = rs.getString(6);
                 String name_user = rs.getString(7);
                 String price_order = String.valueOf(rs.getInt(8));
@@ -289,11 +283,10 @@ public class ManagerDAO extends ConnectMySQL {
         ArrayList<DetailOrder> data = new ArrayList<>();
         try {
             String sqlSelect = "SELECT  u.name, u.phone_number, u.address, od.orderdetail_orderID,\n"
-                    + "od.orderdetail_productID, od.orderdetailID, od.price, od.quantity, p.name, p.price\n"
+                    + "od.orderdetail_productID, od.orderdetailID, od.price, od.quantity, p.name, p.price, o.date\n"
                     + "FROM swp.user u, swp.orderdetail od, swp.product p ,swp.order o \n"
                     + "WHERE u.userID = o.order_userID and od.orderdetail_orderID = o.orderID \n"
                     + "and p.ProductID = od.orderdetail_productID  and orderid =" + id;
-            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
             decimalFormat.applyPattern("#,###");
             pstm = connection.prepareStatement(sqlSelect);
             rs = pstm.executeQuery();
@@ -309,8 +302,9 @@ public class ManagerDAO extends ConnectMySQL {
                 String quantity = String.valueOf(rs.getInt(8));
                 String name_product = rs.getString(9);
                 String price_product = String.valueOf(decimalFormat.format((int) rs.getFloat(10)));
+                String date = String.valueOf(dateFormat.format(rs.getTimestamp(11)));
                 data.add(new DetailOrder(name_user, phone_number, address, orderdetailID, orderdeatil_orderID,
-                        quantity, price, orderdetail_productID, name_product, price_product));
+                        quantity, price, orderdetail_productID, name_product, price_product, date));
             }
         } catch (Exception e) {
             System.out.println("getAllOrderDetailByOrderID: " + e.getMessage());
@@ -318,34 +312,52 @@ public class ManagerDAO extends ConnectMySQL {
         return data;
     }
 
-    public ArrayList<DetailOrder> getOrderIDList() {
-        ArrayList<DetailOrder> data = new ArrayList<>();
+    public int sumPrice(int orderID) {
+        String sql = "SELECT sum(price-price*coalesce(salecodeRate,0)/100) \n"
+                + "FROM swp.salecode sc right outer join swp.order o on sc.salecodeID=o.order_salecodeID , swp.orderdetail od\n"
+                + "where  od.orderdetail_orderID=o.orderID and o.orderID=?;";
         try {
-            String sqlSelect = "";
-            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
-            decimalFormat.applyPattern("#,###");
-            pstm = connection.prepareStatement(sqlSelect);
+            pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, orderID);
             rs = pstm.executeQuery();
             while (rs.next()) {
-                String name_user = rs.getString(1);
-                String phone_number = rs.getString(2);
-                String address = rs.getString(3);
-                String orderdeatil_orderID = String.valueOf(rs.getInt(4));
-                String orderdetail_productID = String.valueOf(rs.getInt(5));
-                String orderdetailID = String.valueOf(rs.getInt(6));
-                String price = String.valueOf(decimalFormat.format((int) (rs.getFloat(7))));
-                String quantity = String.valueOf(rs.getInt(8));
-                String name_product = rs.getString(9);
-                String price_product = String.valueOf(decimalFormat.format((int) rs.getFloat(10)));
-                data.add(new DetailOrder(name_user, phone_number, address, orderdetailID, orderdeatil_orderID,
-                        quantity, price, orderdetail_productID, name_product, price_product));
+                return rs.getInt(1);
             }
         } catch (Exception e) {
-            System.out.println("getAllOrderDetailByOrderID: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
-        return data;
+        return 0;
     }
 
+//    public ArrayList<DetailOrder> getOrderIDList() {
+//        ArrayList<DetailOrder> data = new ArrayList<>();
+//        try {
+//            String sqlSelect = "";
+//            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
+//            decimalFormat.applyPattern("#,###");
+//            pstm = connection.prepareStatement(sqlSelect);
+//            rs = pstm.executeQuery();
+//            while (rs.next()) {
+//                String name_user = rs.getString(1);
+//                String phone_number = rs.getString(2);
+//                String address = rs.getString(3);
+//                String orderdeatil_orderID = String.valueOf(rs.getInt(4));
+//                String orderdetail_productID = String.valueOf(rs.getInt(5));
+//                String orderdetailID = String.valueOf(rs.getInt(6));
+//                String price = String.valueOf(decimalFormat.format((int) (rs.getFloat(7))));
+//                String quantity = String.valueOf(rs.getInt(8));
+//                String name_product = rs.getString(9);
+//                String price_product = String.valueOf(decimalFormat.format((int) rs.getFloat(10)));
+//                String date = String.valueOf(rs.getTimestamp(11));
+//
+//                data.add(new DetailOrder(name_user, phone_number, address, orderdetailID, orderdeatil_orderID,
+//                        quantity, price, orderdetail_productID, name_product, price_product, date));
+//            }
+//        } catch (Exception e) {
+//            System.out.println("getAllOrderDetailByOrderID: " + e.getMessage());
+//        }
+//        return data;
+//    }
     //FEEDBACK
     public ArrayList<Feedback> getFeedbackList() {
         feedback = new ArrayList<>();
@@ -363,7 +375,7 @@ public class ManagerDAO extends ConnectMySQL {
                 String feedbackID_userID = String.valueOf(rs.getInt(3));
                 String information = String.valueOf(rs.getString(4));
                 String status = String.valueOf(rs.getString(5));
-                String date = String.valueOf(rs.getTimestamp(6));
+                String date = String.valueOf(dateFormat.format(rs.getTimestamp(6)));
                 String username = String.valueOf(rs.getString(7));
                 String orderdetailID = String.valueOf(rs.getInt(8));
                 String productName = String.valueOf(rs.getString(9));
@@ -374,6 +386,17 @@ public class ManagerDAO extends ConnectMySQL {
             System.out.println("getFeedbackList: " + e);
         }
         return feedback;
+    }
+
+    public void deleteFeedback(String pid) {
+        String sql = "DELETE FROM swp.feedback WHERE FeedbackID_ProductID=?;";
+        try {
+            pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, Integer.parseInt(pid));
+            pstm.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("deleteFB: " + e);
+        }
     }
 
     //HOMEPAGE
@@ -411,7 +434,6 @@ public class ManagerDAO extends ConnectMySQL {
         order = new ArrayList<>();
         String sql = "select o.*,u.name,od.price from swp.order o, swp.orderdetail od, swp.user u\n"
                 + "where od.orderdetail_orderID=o.orderID and u.userID=o.order_userID ORDER BY date DESC LIMIT 5;";
-        DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
         decimalFormat.applyPattern("#,###");
         try {
             pstm = connection.prepareStatement(sql);
@@ -421,7 +443,7 @@ public class ManagerDAO extends ConnectMySQL {
                 String order_userID = String.valueOf(rs.getInt(2));
                 String sale = String.valueOf(rs.getInt(3));
                 String note = String.valueOf(rs.getString(4));
-                String date = String.valueOf(rs.getTimestamp(5));
+                String date = String.valueOf(dateFormat.format(rs.getTimestamp(5)));
                 String status = rs.getString(6);
                 String name_user = rs.getString(7);
                 String price_order = String.valueOf(decimalFormat.format((int) rs.getFloat(8)));
@@ -438,6 +460,13 @@ public class ManagerDAO extends ConnectMySQL {
         ManagerDAO dao = new ManagerDAO();
 
         System.out.println(dao.countProductByProductID());
-        System.out.println(dao.countOrder());
+        System.out.println(dao.getAllProduct().get(1));
+        dao.updateProduct("1", "Corsair HS70", " Corsair HS70 Pro Wireless Carbon là dòng tai nghe máy tính có phần đệm tai mềm mại, dày dặn, độ sâu lớn, trùm kín tai hạn chế âm thanh từ bên ngoài lọt vào, cùng với độ bền cao, độ đàn hồi lớn ít bị biến dạng và khó rách. ",
+                "https://product.hstatic.net/200000722513/product/thumbtainghe_43854b38b58545be8683a4e1cbcf1d67_1898e6f48b834e80a6249d87d9839073_master.png",
+                "https://product.hstatic.net/200000722513/product/he-corsair-hs70-pro-wireless-carbon-2_3855186e6a3e4f74bf4f15d9dc36990d_c3bff6691ab24c7cbb963acfbe1e4cb0_master.jpg",
+                "https://product.hstatic.net/200000722513/product/he-corsair-hs70-pro-wireless-carbon-3_ba19343bfeb746f5b9c4e4f486971ea2_fee978ad3a344dccbd22e56923d397fb_master.jpg",
+                "101", "1", "1,790,000", "2023-07-11", "1");
+        System.out.println(dao.getProductsByID("1"));
+        
     }
 }

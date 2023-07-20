@@ -29,7 +29,12 @@
         <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
         <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
         <script>
+            function showDiv(divId, element) {
+                var div = document.getElementsByClassName(divId);
 
+                for (i = 0; i < div.length; i++)
+                    div[i].style.display = element.value === '1' ? 'block' : 'none';
+            }
             function readURL(input, thumbimage) {
                 if (input.files && input.files[0]) { //Sử dụng  cho Firefox - chrome
                     var reader = new FileReader();
@@ -97,6 +102,11 @@
                 display: none;
             }
 
+            <%--<c:if test="${p==null}">--%>
+                /*.earphone {*/
+                    /*display: none;*/
+                /*}*/
+            <%--</c:if>--%>
             #thumbbox {
                 position: relative;
                 width: 100%;
@@ -191,75 +201,104 @@
                     <div class="tile">
                         <h3 class="tile-title">Tạo mới sản phẩm</h3>
                         <div class="tile-body">
-                            <div class="row element-button">
-                                <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#exampleModalCenter"><i
-                                            class="fas fa-folder-plus"></i> Thêm nhà cung cấp</a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#adddanhmuc"><i
-                                            class="fas fa-folder-plus"></i> Thêm danh mục</a>
-                                </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addtinhtrang"><i
-                                            class="fas fa-folder-plus"></i> Thêm tình trạng</a>
-                                </div>
-                            </div>
-                            <p class="text-danger">${wrongText}</p>
                             <p class="text-success">${successText}</p>                                
-                            <br> <br>
-
+                            <br>
                             <form class="row" action="ManagerAddProductController" method="post">
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Tên sản phẩm</label>
-                                    <input name="name" class="form-control" type="text" value="${name}" required="Nhập tên sản phẩm">
+                                    <input name="name" class="form-control" type="text" value="${name}" required="" placeholder="Nhập tên sản phẩm">
                                 </div>
                                 <div class="form-group  col-md-4">
                                     <label class="control-label">Số lượng</label>
-                                    <input class="form-control" type="number" name="quantity" value="${quantity}" required="Nhập số lượng">
+                                    <input class="form-control" type="number" name="quantity" value="${quantity}" required="" placeholder="Nhập số lượng">
+                                    <label class="control-label">${QuantityErr}</label>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Giá bán</label>
-                                    <input class="form-control" type="number" name='price' value="${price}" required="Nhập giá">
+                                    <input class="form-control" type="number" name='price' value="${price}" required="" placeholder="Nhập giá">
+                                    <label class="control-label">${PriceErr}</label>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                    <select name="category" class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn danh mục --</option>
+                                    <select name="category" class="form-control" id="exampleSelect1" onchange="showDiv('earphone', this)">
+<!--                                        <option>-- Chọn danh mục --</option>-->
                                         <c:forEach items="${categoriesList}" var="c">
-                                            <option value="${c.getCategoryID()}" >${c.getName()}</option>
+                                            <option value="${c.getCategoryID()}">${c.getName()}</option>
                                         </c:forEach>
                                     </select>   
-                                </div>
-                                <div class="form-group col-md-4 ">
-                                    <label for="exampleSelect1" class="control-label">Nhà cung cấp</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn nhà cung cấp --</option>
-                                        <option value="1">Phong vũ</option>
-                                        <option value="2">Thế giới di động</option>
-                                        <option value="3">FPT</option>
-                                        <option value="4">Võ Trường</option>
-                                    </select>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Tình trạng</label>
                                     <input name="status" value="${status}" class="form-control" type="text" readonly="" placeholder="Còn hàng">  
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <label for="exampleSelect1" class="control-label">Ngày nhập</label>
+                                    <input name="date" value="${date}" class="form-control" type="date">  
+                                </div>
+                                <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 1</label>
-                                    <input value="${image}" name="image" class="form-control" type="text" required="Nhập link ảnh">
+                                    <input value="${image}" name="image" class="form-control" type="text" required="" placeholder="Nhập link ảnh .jpg hoặc .png">
+                                    <label class="control-label">${Image1Err}</label>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 2</label>
                                     <input value="${image2}" name="image2" class="form-control" type="text">
+                                    <label class="control-label">${Image2Err}</label>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 3 </label>
                                     <input value="${image3}" name="image3" class="form-control" type="text">
+                                    <label class="control-label">${Image3Err}</label>
+                                </div>
+
+                                <div class="form-group col-md-3 earphone" >
+                                    <label class="control-label">Loại</label>
+                                    <input name="type" value="${type}" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone" >
+                                    <label class="control-label">Tần số</label>
+                                    <input name="frequency" value="${frequency}" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Độ nhạy </label>
+                                    <input name="sensitive" value="${sensitive}" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Trở kháng</label>
+                                    <input name="impedance" value="${impedance}" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Chất liệu</label>
+                                    <input name="meterial" value="${meterial}" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Kích cỡ</label>
+                                    <input name="size" value="${size}" class="form-control" type="text">
+                                </div>
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Pin</label>
+                                    <input name="battery" value="${battery}" class="form-control" type="text">
+                                </div><!-- comment -->
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Khoảng cách kết nối </label>
+                                    <input name="connection_distance" value="${connection_distance}"  class="form-control" type="text">
+                                </div> 
+
+                                <div class="form-group col-md-3 earphone">
+                                    <label class="control-label">Độ dài dây</label>
+                                    <input name="wire_length" value="${wire_length}" class="form-control" type="text">
+
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Mô tả sản phẩm</label>
-                                    <textarea class="form-control" name="mota" id="mota" value="${mota}" readonly="Nhập mô tả"></textarea>
+                                    <input class="form-control"  name="mota" value="${mota}" required="" placeholder="Nhập mô tả">
                                     <script>CKEDITOR.replace('mota');</script>
                                 </div>
 
@@ -272,142 +311,31 @@
                 </div>
             </div>
         </main>
-        <!--
-        MODAL CHỨC VỤ 
-        -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-             data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="form-group  col-md-12">
-                                <span class="thong-tin-thanh-toan">
-                                    <h5>Thêm mới nhà cung cấp</h5>
-                                </span>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Nhập tên chức vụ mới</label>
-                                <input class="form-control" type="text" required>
-                            </div>
-                        </div>
-                        <BR>
-                        <button class="btn btn-save" type="submit">Lưu lại</button>
-                        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                        <BR>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--
-      MODAL
-        -->
-
-        <!--
-        MODAL DANH MỤC
-        -->
-        <div class="modal fade" id="adddanhmuc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-             data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="form-group  col-md-12">
-                                <span class="thong-tin-thanh-toan">
-                                    <h5>Thêm mới danh mục </h5>
-                                </span>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Nhập tên danh mục mới</label>
-                                <input class="form-control" type="text" required>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Danh mục sản phẩm hiện đang có</label>
-                                <ul style="padding-left: 20px;">
-                                    <li>Tai nghe</li>
-                                    <li>Chuột</li>
-                                    <li>Bàn phím</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <BR>
-                        <button class="btn btn-save" type="button">Lưu lại</button>
-                        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                        <BR>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--
-      MODAL
-        -->
-
-
-
-
-        <!--
-        MODAL TÌNH TRẠNG
-        -->
-        <div class="modal fade" id="addtinhtrang" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-             data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="form-group  col-md-12">
-                                <span class="thong-tin-thanh-toan">
-                                    <h5>Thêm mới tình trạng</h5>
-                                </span>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Nhập tình trạng mới</label>
-                                <input class="form-control" type="text" required>
-                            </div>
-                        </div>
-                        <BR>
-                        <button class="btn btn-save" type="button">Lưu lại</button>
-                        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                        <BR>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--
-      MODAL
-        -->
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
         <script src="js/plugins/pace.min.js"></script>
         <script>
-                                        const inpFile = document.getElementById("inpFile");
-                                        const loadFile = document.getElementById("loadFile");
-                                        const previewContainer = document.getElementById("imagePreview");
-                                        const previewContainer = document.getElementById("imagePreview");
-                                        const previewImage = previewContainer.querySelector(".image-preview__image");
-                                        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-                                        inpFile.addEventListener("change", function () {
-                                            const file = this.files[0];
-                                            if (file) {
-                                                const reader = new FileReader();
-                                                previewDefaultText.style.display = "none";
-                                                previewImage.style.display = "block";
-                                                reader.addEventListener("load", function () {
-                                                    previewImage.setAttribute("src", this.result);
-                                                });
-                                                reader.readAsDataURL(file);
-                                            }
-                                        });
+
+//    const inpFile = document.getElementById("inpFile");
+//                                        const loadFile = document.getElementById("loadFile");
+//                                        const previewContainer = document.getElementById("imagePreview");
+//                                        const previewContainer = document.getElementById("imagePreview");
+//                                        const previewImage = previewContainer.querySelector(".image-preview__image");
+//                                        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+//                                        inpFile.addEventListener("change", function () {
+//                                            const file = this.files[0];
+//                                            if (file) {
+//                                                const reader = new FileReader();
+//                                                previewDefaultText.style.display = "none";
+//                                                previewImage.style.display = "block";
+//                                                reader.addEventListener("load", function () {
+//                                                    previewImage.setAttribute("src", this.result);
+//                                                });
+//                                                reader.readAsDataURL(file);
+//                                            }
+//                                        });
 
         </script>
     </body>

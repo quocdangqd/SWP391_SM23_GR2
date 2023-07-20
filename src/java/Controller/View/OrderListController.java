@@ -4,18 +4,12 @@
  */
 package Controller.View;
 
-import Dal.OrderDAO;
-import Model.Order;
-import Model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-
 /**
  *
  * @author PC
@@ -35,34 +29,7 @@ public class OrderListController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            if (session.getAttribute("user") != null) {
-                OrderDAO orderDAO = new OrderDAO();
-                if (request.getParameter("submit") != null) {
-                    orderDAO.UpdateOrderByID("Cancelled", request.getParameter("orderID"));
-                }
-                String status = request.getParameter("status");
-                User user = (User) session.getAttribute("user");
-                if (status == null) {
-                    status = "All";
-                    ArrayList<Order> AllOrder = orderDAO.GetOrderListByUserID(user.getUserID(), status);// **
-                    session.setAttribute("AllOrder", AllOrder);
-                }
-
-                ArrayList<Order> orderList = orderDAO.GetOrderListByUserID(user.getUserID(), status);// **
-                session.setAttribute("data", orderList);
-                ArrayList<Order> orderListCanceled = orderDAO.GetOrderListByUserID(user.getUserID(), "Cancelled");// **
-                session.setAttribute("orderListCanceledAmount", orderListCanceled.size());
-                ArrayList<Order> orderListCompleted = orderDAO.GetOrderListByUserID(user.getUserID(), "Completed");// **
-                session.setAttribute("orderListCompletedAmount", orderListCompleted.size());
-                ArrayList<Order> orderListShipping = orderDAO.GetOrderListByUserID(user.getUserID(), "Shipping");// **
-                session.setAttribute("orderListShippingAmount", orderListShipping.size());
-                ArrayList<Order> orderListPending = orderDAO.GetOrderListByUserID(user.getUserID(), "Pending");// **
-                session.setAttribute("orderListPendingAmount", orderListPending.size());
-                request.getRequestDispatcher("orderList.jsp").forward(request, response);
-//                
-            }
-
+            
         }
     }
 
