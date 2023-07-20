@@ -89,6 +89,9 @@
                                     <a href="${user!=null?'OrderListController':'../auth/login'}" class="header__top-link">Đơn Hàng </a>
                                 </li>
                                 <li class="header__top-item">
+                                    <a class="header__top-link"></a>
+                                </li>
+                                <li class="header__top-item">
                                     <div class="dropdown fas fa-user header__nav-cart-icon">
                                         <div class="dropdown-content">
                                             <a href="#">Hồ sơ cá nhân</a>

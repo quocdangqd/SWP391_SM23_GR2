@@ -275,9 +275,17 @@
             }
             .hover-order:hover{
                 background: white;
-                background-color: #f24137;
-                color: white;
+                color: red;
                 text-decoration: none;
+            }
+            .show-entries.active {
+                border-bottom: 4px solid red;
+                color: red;
+            }
+
+            .show-entries.active:hover {
+                border-bottom: 4px solid red;
+                color: red;
             }
             @media all and (max-width:375px){
 
@@ -301,7 +309,7 @@
                         <div class="table-filter">
                             <div class="container">
                                 <section class="row">
-                                    <a href="OrderListController?status=All" class="show-entries hover-order col-lg-2 active">
+                                    <a href="OrderListController?status=All" class="show-entries hover-order col-lg-2">
                                         <div>Tất cả (${AllOrder.size()})</div>
                                     </a>
                                     <a href="OrderListController?status=Pending" class="show-entries hover-order col-lg-3">
