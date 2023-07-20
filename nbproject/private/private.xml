@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/web/manager/productmanager.jsp</file>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Dal/ConnectMySQL.java</file>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Controller/Admin/OrderDetailController.java</file>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/web/admin/ordermanager.jsp</file>
-            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/web/admin/orderdetail.jsp</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/Dal/ConnectMySQL.java</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/web/WEB-INF/web.xml</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/filter/AuthorityManagerAuthorFilter.java</file>
+            <file>file:/E:/fpt/swp/SWP391_SM23_GR2/src/java/filter/AuthorityAdminAuthorFilter.java</file>
         </group>
     </open-files>
 </project-private>

@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Filter.java to edit this template
+ */
 package filter;
 
 import Model.User;
@@ -17,11 +21,10 @@ import java.io.StringWriter;
 
 /**
  *
- * @author
+ * @author dell
  */
-//ADMIN
-@WebFilter(filterName = "AuthorityAdminAuthorFilter", urlPatterns = {"/admin/AdminHomepageController","/admin/AdminController","/admin/AdminIncomeController","/admin/editproduct","/admin/ManagerUserController","/admin/addUserController","/admin/EditUserController"})
-public class AuthorityAdminAuthorFilter implements Filter {
+@WebFilter(filterName = "AuthorityManagerFilter", urlPatterns = {"/manager/ManagerAddProductController","/manager/ManagerFeedbackController","/manager/ManagerHomepageController","/manager/ManagerIncomeController","/manager/ManagerOrderController","/manager/ManagerOrderDetailController","/manager/ManagerProductController","/manager/ManagerUpdateProductController"})
+public class AuthorityManagerFilter implements Filter {
     
     private static final boolean debug = true;
 
@@ -30,21 +33,60 @@ public class AuthorityAdminAuthorFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
     
-    public AuthorityAdminAuthorFilter() {
+    public AuthorityManagerFilter() {
     }    
     
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("AuthorityAdminAuthorFilter:DoBeforeProcessing");
+            log("AuthorityManagerFilter:DoBeforeProcessing");
         }
+
+        // Write code here to process the request and/or response before
+        // the rest of the filter chain is invoked.
+        // For example, a logging filter might log items on the request object,
+        // such as the parameters.
+        /*
+	for (Enumeration en = request.getParameterNames(); en.hasMoreElements(); ) {
+	    String name = (String)en.nextElement();
+	    String values[] = request.getParameterValues(name);
+	    int n = values.length;
+	    StringBuffer buf = new StringBuffer();
+	    buf.append(name);
+	    buf.append("=");
+	    for(int i=0; i < n; i++) {
+	        buf.append(values[i]);
+	        if (i < n-1)
+	            buf.append(",");
+	    }
+	    log(buf.toString());
+	}
+         */
     }    
     
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("AuthorityAdminAuthorFilter:DoAfterProcessing");
+            log("AuthorityManagerFilter:DoAfterProcessing");
         }
+
+        // Write code here to process the request and/or response after
+        // the rest of the filter chain is invoked.
+        // For example, a logging filter might log the attributes on the
+        // request object after the request has been processed. 
+        /*
+	for (Enumeration en = request.getAttributeNames(); en.hasMoreElements(); ) {
+	    String name = (String)en.nextElement();
+	    Object value = request.getAttribute(name);
+	    log("attribute: " + name + "=" + value.toString());
+
+	}
+         */
+        // For example, a filter might append something to the response.
+        /*
+	PrintWriter respOut = new PrintWriter(response.getWriter());
+	respOut.println("<P><B>This has been appended by an intrusive filter.</B>");
+         */
     }
 
     /**
@@ -61,18 +103,16 @@ public class AuthorityAdminAuthorFilter implements Filter {
             throws IOException, ServletException {
         
         if (debug) {
-            log("AuthorityAdminAuthorFilter:doFilter()");
+            log("AuthorityManagerFilter:doFilter()");
         }
         
         doBeforeProcessing(request, response);
-        
-// xử lý logic       
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         
         if(httpRequest.getSession().getAttribute("user")!=null){
             User a = (User)httpRequest.getSession().getAttribute("user");
-            if(a.getUser_roleID().equals("1")){
+            if(a.getUser_roleID().equals("2")||a.getUser_roleID().equals("1")){
                 chain.doFilter(request, response);
                 return;
         }else{
@@ -83,9 +123,6 @@ public class AuthorityAdminAuthorFilter implements Filter {
              httpResponse.sendRedirect("../view/homepage");
             
         }
-
-// xử lý logic 
-        
         Throwable problem = null;
         try {
             chain.doFilter(request, response);
@@ -141,7 +178,7 @@ public class AuthorityAdminAuthorFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {                
-                log("AuthorityAdminAuthorFilter:Initializing filter");
+                log("AuthorityManagerFilter:Initializing filter");
             }
         }
     }
@@ -152,9 +189,9 @@ public class AuthorityAdminAuthorFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("AuthorityAdminAuthorFilter()");
+            return ("AuthorityManagerFilter()");
         }
-        StringBuffer sb = new StringBuffer("AuthorityAdminAuthorFilter(");
+        StringBuffer sb = new StringBuffer("AuthorityManagerFilter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());
