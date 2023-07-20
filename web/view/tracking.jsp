@@ -41,11 +41,6 @@
                         </div>
                     </article>
                     <div class="track">
-                        <c:if test="${order.getStatus()=='Cancelled'}">
-                            <div class="step"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Xác nhận đơn hàng</span> </div>
-                            <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Hàng đang Giao</span> </div>
-                            <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text">Hoàn Thành</span> </div>
-                        </c:if>
                         <c:if test="${order.getStatus()=='Pending'}">
                             <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Xác nhận đơn hàng</span> </div>
                             <div class="step "> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">Hàng đang Giao</span> </div>
@@ -64,7 +59,7 @@
                         <!--<div class="step"> <span class="icon"> <i class="fa fa-box-open"></i> </span> <span class="text">Đã đến nơi</span> </div>-->
                     </div>
                     <hr>                      
-                    <a href="OrderListController" class="btn btn-warning" style="font-size: 1.6rem" data-abc="true"> <i class="fa fa-chevron-left"></i> Quay về danh sách đơn hàng</a>
+                    <a href="#" class="btn btn-warning" style="font-size: 1.6rem" data-abc="true"> <i class="fa fa-chevron-left"></i> Quay về danh sách đơn hàng</a>
                 </div>
             </article>
         </div>

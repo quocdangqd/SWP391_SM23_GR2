@@ -6,35 +6,15 @@ package Model;
 
 /**
  *
- * @author PC
+ * @author dell
  */
 public class Earphone {
-    private String ProductID, product_categoryID, name, desciption, picture, price, quantity, status, sale, rate, saleprice, picture2, picture3, earphoneID, type, frequency, sensitive, impedance, meterial, earphone_ProductID, size, battery, connection_distance, wire_length;
+    private String earphoneID,type,frequency,sensitive,impedance,meterial,earphone_ProductID,size,battery,connection_distance,wire_length;
 
     public Earphone() {
     }
 
-    public Earphone(String ProductID, String name) {
-        this.ProductID = ProductID;
-        this.name = name;
-    }
-
-    
-
-    public Earphone(String ProductID, String product_categoryID, String name, String desciption, String picture, String price, String quantity, String status, String sale, String rate, String saleprice, String picture2, String picture3, String earphoneID, String type, String frequency, String sensitive, String impedance, String meterial, String earphone_ProductID, String size, String battery, String connection_distance, String wire_length) {
-        this.ProductID = ProductID;
-        this.product_categoryID = product_categoryID;
-        this.name = name;
-        this.desciption = desciption;
-        this.picture = picture;
-        this.price = price;
-        this.quantity = quantity;
-        this.status = status;
-        this.sale = sale;
-        this.rate = rate;
-        this.saleprice = saleprice;
-        this.picture2 = picture2;
-        this.picture3 = picture3;
+    public Earphone(String earphoneID, String type, String frequency, String sensitive, String impedance, String meterial, String earphone_ProductID, String size, String battery, String connection_distance, String wire_length) {
         this.earphoneID = earphoneID;
         this.type = type;
         this.frequency = frequency;
@@ -46,110 +26,6 @@ public class Earphone {
         this.battery = battery;
         this.connection_distance = connection_distance;
         this.wire_length = wire_length;
-    }
-
-    public String getProductID() {
-        return ProductID;
-    }
-
-    public void setProductID(String ProductID) {
-        this.ProductID = ProductID;
-    }
-
-    public String getProduct_categoryID() {
-        return product_categoryID;
-    }
-
-    public void setProduct_categoryID(String product_categoryID) {
-        this.product_categoryID = product_categoryID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDesciption() {
-        return desciption;
-    }
-
-    public void setDesciption(String desciption) {
-        this.desciption = desciption;
-    }
-
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getSale() {
-        return sale;
-    }
-
-    public void setSale(String sale) {
-        this.sale = sale;
-    }
-
-    public String getRate() {
-        return rate;
-    }
-
-    public void setRate(String rate) {
-        this.rate = rate;
-    }
-
-    public String getSalePrice() {
-        return saleprice;
-    }
-
-    public void setSalePrice(String saleprice) {
-        this.saleprice = saleprice;
-    }
-
-    public String getPicture2() {
-        return picture2;
-    }
-
-    public void setPicture2(String picture2) {
-        this.picture2 = picture2;
-    }
-
-    public String getPicture3() {
-        return picture3;
-    }
-
-    public void setPicture3(String picture3) {
-        this.picture3 = picture3;
     }
 
     public String getEarphoneID() {
@@ -239,5 +115,9 @@ public class Earphone {
     public void setWire_length(String wire_length) {
         this.wire_length = wire_length;
     }
-    
+
+
+
+
+
 }

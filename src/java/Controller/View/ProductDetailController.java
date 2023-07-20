@@ -116,10 +116,8 @@ public class ProductDetailController extends HttpServlet {
                 return;
             } else {
                 String ProductID = request.getParameter("ProductID");
+
                 Products productDetail = pdao.getProductByID(ProductID);
-                ArrayList<Products> bottomDataList =pdao.GetRandomProduct(pdao.GetProductListByCategoryID(pdao.getCategoryIDByProductID(ProductID)), 6) ;
-                session.setAttribute("bottomDataList",bottomDataList); 
-//                System.out.println("bottomDataList.size(): "+bottomDataList.size());
                 ArrayList<Feedback> feedbackList;
                 if (request.getParameter("loadMore") != null) {
                     String offset = request.getParameter("amount");
