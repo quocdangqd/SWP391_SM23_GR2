@@ -29,7 +29,12 @@
         <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
         <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
         <script>
+            function showDiv(divId, element) {
+                var div = document.getElementsByClassName(divId);
 
+                for (i = 0; i < div.length; i++)
+                    div[i].style.display = element.value === '1' ? 'block' : 'none';
+            }
             function readURL(input, thumbimage) {
                 if (input.files && input.files[0]) { //Sử dụng  cho Firefox - chrome
                     var reader = new FileReader();
@@ -96,7 +101,11 @@
             .removeimg {
                 display: none;
             }
-
+            <c:if test="${p==null}">
+                .earphone {
+                    display: none;
+                }
+            </c:if>
             #thumbbox {
                 position: relative;
                 width: 100%;
@@ -142,12 +151,10 @@
         </style>
         <!-- Navbar-->
         <header class="app-header">
-            <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
-                                            aria-label="Hide Sidebar"></a>
+            <!-- Sidebar toggle button-->
+            <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
             <!-- Navbar Right Menu-->
             <ul class="app-nav">
-
-
                 <!-- User Menu-->
                 <li><a class="app-nav__item" href="../view/homepage"><i class='bx bx-log-out bx-rotate-180'></i> </a>
 
@@ -199,18 +206,17 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Tên sản phẩm</label>
-                                        <input class="form-control" type="text" name="name" value="${o.getName()}" 
-                                               >
+                                        <input class="form-control" type="text" name="name" value="${o.getName()}">
                                     </div>
                                     <div class="form-group  col-md-6">
                                         <label class="control-label">Số lượng</label>
-                                        <input class="form-control" type="number" name="quantity" value="${o.getQuantity()}"
-                                               >
+                                        <input class="form-control" type="number" name="quantity" value="${o.getQuantity()}">
+                                        <label class="control-label">${QuantityErr}</label>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Giá bán</label>
-                                        <input class="form-control" type="text" name="price" value="${o.getPrice()}" 
-                                              >
+                                        <input class="form-control" type="text" name="price" value="${o.getPrice()}">
+                                        <label class="control-label">${PriceErr}</label>
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="exampleSelect1" class="control-label">Tình trạng sản phẩm</label>
@@ -228,7 +234,7 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                        <select name="category" class="form-control" id="exampleSelect1">
+                                        <select name="category" class="form-control" id="exampleSelect1" onchange="showDiv('earphone', this)">
                                             <c:forEach items="${categoriesList}" var="c">
                                                 <option ${(o.getCategories().getCategoryID() == c.getCategoryID())?"selected":""} value="${c.getCategoryID()}">${c.getName()}</option>
                                             </c:forEach>
@@ -237,14 +243,66 @@
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Ảnh 1</label>
                                         <input value="${o.getPicture()}" name="image" class="form-control" type="text">
+                                        <label class="control-label">${Image1Err}</label>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Ảnh 2</label>
                                         <input value="${o.getPicture2()}" name="image2" class="form-control" type="text">
+                                        <label class="control-label">${Image2Err}</label>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Ảnh 3 </label>
                                         <input value="${o.getPicture3()}" name="image3" class="form-control" type="text">
+                                        <label class="control-label">${Image3Err}</label>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleSelect1" class="control-label">Ngày nhập</label>
+                                        <input name="date" value="${date}" class="form-control" type="date">  
+                                    </div>
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
+                                        <label class="control-label">Loại</label>
+                                        <input value="${earphone.type}" name="type" class="form-control" type="text">
+                                    </div>
+
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'} >
+                                        <label class="control-label">Tần số</label>
+                                        <input value= "${earphone.frequency}" name="frequency" class="form-control" type="text">
+                                    </div>
+
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'} >
+                                        <label class="control-label">Độ nhạy </label>
+                                        <input value="${earphone.sensitive}" name="sensitive" class="form-control" type="text">
+                                    </div>
+
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'} >
+                                        <label class="control-label">Trở kháng</label>
+                                        <input value="${earphone.impedance}" name="impedance" class="form-control" type="text">
+                                    </div>
+
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
+                                        <label class="control-label">Chất liệu</label>
+                                        <input value="${earphone.meterial}" name="meterial" class="form-control" type="text">
+                                    </div>
+
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
+                                        <label class="control-label">Kích cỡ</label>
+                                        <input value="${earphone.size}" name="size" class="form-control" type="text">
+                                    </div>
+
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
+                                        <label class="control-label">Pin</label>
+                                        <input value="${earphone.battery}" name="battery" class="form-control" type="text">
+                                    </div><!-- comment -->
+
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
+                                        <label class="control-label">Khoảng cách kết nối </label>
+                                        <input value="${earphone.connection_distance}" name="connection distance" class="form-control" type="text">
+                                    </div> 
+
+                                    <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
+                                        <label class="control-label">Độ dài dây</label>
+                                        <input value="${earphone.wire_length}" name="wire length" class="form-control" type="text">
+
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label class="control-label">Mô tả</label>
@@ -271,24 +329,24 @@
         <script src="js/main.js"></script>
         <script src="js/plugins/pace.min.js"></script>
         <script>
-            const inpFile = document.getElementById("inpFile");
-            const loadFile = document.getElementById("loadFile");
-            const previewContainer = document.getElementById("imagePreview");
-            const previewContainer = document.getElementById("imagePreview");
-            const previewImage = previewContainer.querySelector(".image-preview__image");
-            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-            inpFile.addEventListener("change", function () {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    previewDefaultText.style.display = "none";
-                    previewImage.style.display = "block";
-                    reader.addEventListener("load", function () {
-                        previewImage.setAttribute("src", this.result);
-                    });
-                    reader.readAsDataURL(file);
-                }
-            });
+                                            const inpFile = document.getElementById("inpFile");
+                                            const loadFile = document.getElementById("loadFile");
+                                            const previewContainer = document.getElementById("imagePreview");
+                                            const previewContainer = document.getElementById("imagePreview");
+                                            const previewImage = previewContainer.querySelector(".image-preview__image");
+                                            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+                                            inpFile.addEventListener("change", function () {
+                                                const file = this.files[0];
+                                                if (file) {
+                                                    const reader = new FileReader();
+                                                    previewDefaultText.style.display = "none";
+                                                    previewImage.style.display = "block";
+                                                    reader.addEventListener("load", function () {
+                                                        previewImage.setAttribute("src", this.result);
+                                                    });
+                                                    reader.readAsDataURL(file);
+                                                }
+                                            });
 
         </script>
     </body>

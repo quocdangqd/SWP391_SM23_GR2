@@ -128,12 +128,12 @@
                 <div class="col-md-12">
                     <div class="tile">
                         <div class="tile-body">
-                            <div class="row element-button">
+<!--                            <div class="row element-button">
                                 <div class="col-sm-2">
                                     <a class="btn btn-add btn-sm" href="" title="Thêm"><i class="fas fa-plus"></i>
                                         Tạo mới đánh giá</a>
                                 </div>
-                            </div>
+                            </div>-->
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                     <tr>
@@ -160,11 +160,11 @@
                                         <td>${o.getStatus()}</td>
                                         <td>${o.getOrderdetailID()}</td>
                                         <td>
-                                            <!--<a href="ManagerDeleteOrderController?id=${o.getFeedbackID()}">-->
-                                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
+                                            <a href="ManagerFeedbackController?id=${o.getFeedbackID()}&mod=1">
+                                                <button class="btn btn-primary btn-sm trash" type="button"
+                                                        title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                                 </button>
-                                            <!--</a>-->
+                                            </a>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -201,7 +201,7 @@
                     swal({
                         title: "Cảnh báo",
 
-                        text: "Bạn có chắc chắn là muốn xóa nhân viên này?",
+                        text: "Bạn có chắc chắn là muốn xóa đánh giá này?",
                         buttons: ["Hủy bỏ", "Đồng ý"],
                     })
                             .then((willDelete) => {
