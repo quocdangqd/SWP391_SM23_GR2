@@ -50,7 +50,7 @@
                                 </ul>
                                 <img src="${product1.getPicture()}" width="180px" height="180px" style="margin: 10px 0px 10px 0px"/><br>
                                 Giá chỉ có: ${product1.getSalePrice()}<br>
-                                <a href="#" target="target"><h5>Xem chi tiết</h5></a>
+                                <a href="ProductDetailController?ProductID=${product1.getProductID()}" target="target"><h5>Xem chi tiết</h5></a>
                             </td>
                             <td>
                                 <input value="${product2.getName()}"  id='input2' oninput="searchFunct('input2','productList2')" type="text" name="name" style="padding: 0 12px; width: 320px; text-align: center"><br>
@@ -63,7 +63,7 @@
                                     <img  width="180px" height="180px" style="margin: 10px 0px 10px 0px"/><br>
                                 </c:if>
                                 Giá chỉ có: ${product2.getSalePrice()}<br>
-                                <a href="#" target="target"><h5>Xem chi tiết</h5></a>
+                                <a href="ProductDetailController?ProductID=${product2.getProductID()}" target="target"><h5>Xem chi tiết</h5></a>
                             </td>
                         </tr>
                     </thead>
@@ -99,36 +99,56 @@
                             <td>${product2.getName()}</td>
                         </tr>
                         <tr>
-                            <th>Performance</th>
-                            <td>Hexa Core</td>
-                            <td>Octa Core</td>
+                            <th>Type</th>
+                            <td>${product1.getType()}</td>
+                            <td>${product2.getType()}</td>
                         </tr>
                         <tr>
-                            <th>Display</th>
-                            <td>6.5-inch</td>
-                            <td>6.3-inch</td>
+                            <th>Frequency</th>
+                            <td>${product1.getFrequency()}</td>
+                            <td>${product2.getFrequency()}</td>
                         </tr>
                         <tr>
-                            <th>Storage</th>
-                            <td>64 GB</td>
-                            <td>64 GB</td>
+                            <th>Sensitive</th>
+                            <td>${product1.getSensitive()}</td>
+                            <td>${product2.getSensitive()}</td>
                         </tr>
                         <tr>
-                            <th>Camera</th>
-                            <td>Dual 12-megapixel</td>
-                            <td>12.2-megapixel</td>
+                            <th>Impedance</th>
+                            <td>${product1.getImpedance()}</td>
+                            <td>${product2.getImpedance()}</td>
+                        </tr>
+                        <tr>
+                            <th>Material</th>
+                            <td>${product1.getMeterial()}</td>
+                            <td>${product2.getMeterial()}</td>
+                        </tr>
+                        <tr>
+                            <th>Size</th>
+                            <td>${product1.getSize()}</td>
+                            <td>${product2.getSize()}</td>
                         </tr>
                         <tr>
                             <th>Battery</th>
-                            <td>3,174 mAh</td>
-                            <td>3,430 mAh</td>
+                            <td>${product1.getBattery()}</td>
+                            <td>${product2.getBattery()}</td>
+                        </tr>
+                        <tr>
+                            <th>Connection_distance</th>
+                            <td>${product1.getConnection_distance()}</td>
+                            <td>${product2.getConnection_distance()}</td>
+                        </tr>
+                        <tr>
+                            <th>Wire_length</th>
+                            <td>${product1.getWire_length()}</td>
+                            <td>${product2.getWire_length()}</td>
                         </tr>
                     </tbody>
                     <tbody id="general" data-filter="target">
                         <tr class="bg-secondary">
                             <th class="text-uppercase">General</th>
-                            <td>Apple iPhone Xs Max</td>
-                            <td>Google Pixel 3 XL</td>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
                         </tr>
                         <tr>
                             <th>Quick charging</th>
@@ -169,8 +189,8 @@
                     <tbody id="multimedia" data-filter="target">
                         <tr class="bg-secondary">
                             <th class="text-uppercase">Multimedia</th>
-                            <td>Apple iPhone Xs Max</td>
-                            <td>Google Pixel 3 XL</td>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
                         </tr>
                         <tr>
                             <th>Loudspeaker</th>
@@ -192,7 +212,7 @@
                         <tr class="bg-secondary">
                             <th class="text-uppercase">Performance</th>
                             <td>Apple iPhone Xs Ma</td>
-                            <td>Google Pixel 3 XL</td>
+                            <td>${product2.getName()}</td>
                         </tr>
                         <tr>
                             <th>Processor</th>
@@ -218,8 +238,8 @@
                     <tbody id="design" data-filter="target">
                         <tr class="bg-secondary">
                             <th class="text-uppercase">Design</th>
-                            <td>Apple iPhone Xs Max</td>
-                            <td>Google Pixel 3 XL</td>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
                         </tr>
                         <tr>
                             <th>Build material</th>
@@ -260,8 +280,8 @@
                     <tbody id="display" data-filter="target">
                         <tr class="bg-secondary">
                             <th class="text-uppercase">Display</th>
-                            <td>Apple iPhone Xs Max</td>
-                            <td>Google Pixel 3 XL</td>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
                         </tr>
                         <tr>
                             <th>Display type</th>
@@ -297,8 +317,8 @@
                     <tbody id="storage" data-filter="target">
                         <tr class="bg-secondary">
                             <th class="text-uppercase">Storage</th>
-                            <td>Apple iPhone Xs Max</td>
-                            <td>Google Pixel 3 XL</td>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
                         </tr>
                         <tr>
                             <th>Internal memory</th>
@@ -314,8 +334,8 @@
                     <tbody id="camera" data-filter="target">
                         <tr class="bg-secondary">
                             <th class="text-uppercase">Camera</th>
-                            <td>Apple iPhone Xs Max</td>
-                            <td>Google Pixel 3 XL</td>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
                         </tr>
                         <tr>
                             <th>Settings</th>
@@ -366,8 +386,8 @@
                     <tbody id="battery" data-filter="target">
                         <tr class="bg-secondary">
                             <th class="text-uppercase">Battery</th>
-                            <td>Apple iPhone Xs Max</td>
-                            <td>Google Pixel 3 XL</td>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
                         </tr>
                         <tr>
                             <th>Talktime</th>
@@ -398,28 +418,28 @@
                     <tbody id="price" data-filter="target">
                         <tr class="bg-secondary">
                             <th class="text-uppercase">Price &amp; rating</th>
-                            <td>Apple iPhone Xs Max</td>
-                            <td>Google Pixel 3 XL</td>
+                            <td>${product1.getName()}</td>
+                            <td>${product2.getName()}</td>
                         </tr>
                         <tr>
                             <th>Price</th>
-                            <td>$1,099</td>
-                            <td>$899</td>
+                            <td>${product1.getSalePrice()}đ</td>
+                            <td>${product2.getSalePrice()}đ</td>
                         </tr>
                         <tr>
                             <th>Rating</th>
-                            <td>4.5/5</td>
-                            <td>4.5/5</td>
+                            <td>${product1.getRate()==null?"0":product1.getRate()}/5</td>
+                            <td>${product2.getRate()==null?"0":product2.getRate()}/5</td>
                         </tr>
-                        <tr>
-                            <th></th>
-                            <td>
-                                <button class="btn btn-outline-primary btn-block" type="button" data-toggle="toast" data-target="#cart-toast">Thêm vào giỏ hàng</button>
-                            </td>
-                            <td>
-                                <button class="btn btn-outline-primary btn-block" type="button" data-toggle="toast" data-target="#cart-toast">Thêm vào giỏ hàng</button>
-                            </td>
-                        </tr>
+                        <!--                        <tr>
+                                                    <th></th>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary btn-block" type="button" data-toggle="toast" data-target="#cart-toast">Thêm vào giỏ hàng</button>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-primary btn-block" type="button" data-toggle="toast" data-target="#cart-toast">Thêm vào giỏ hàng</button>
+                                                    </td>
+                                                </tr>-->
                     </tbody>
                 </table>
             </div>

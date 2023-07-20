@@ -22,17 +22,21 @@ public class ManagerOrderDetailController extends HttpServlet {
             throws ServletException, IOException {
         ManagerDAO dao = new ManagerDAO();
         String id = req.getParameter("id");
+
         dao.getListOrder();
         req.setAttribute("od", dao.getAllDetailOrderByOrderID(id));
         float total = 0;
+        System.out.println(dao.getAllDetailOrderByOrderID(id).size());
         for (DetailOrder orderDetail : dao.getAllDetailOrderByOrderID(id)) {
             total += (Float.parseFloat(orderDetail.getQuantity()) * Float.parseFloat(orderDetail.getPrice_product().replace(",", "")));
         }
+        System.out.println("total: " + total);
         double tax = total * 0.1;
         double grandTotal = total + tax;
         DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
         decimalFormat.applyPattern("#,###");
-        req.setAttribute("grandTotalSale", decimalFormat.format(dao.sumPrice(Integer.parseInt(id))));
+        
+        System.out.println("grandTotal: " + grandTotal);
         req.setAttribute("total", decimalFormat.format(total));
         req.setAttribute("tax", decimalFormat.format(tax));
         req.setAttribute("grandTotal", decimalFormat.format(grandTotal));

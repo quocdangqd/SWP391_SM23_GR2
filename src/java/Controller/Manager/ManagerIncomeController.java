@@ -49,8 +49,6 @@ public class ManagerIncomeController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -67,13 +65,35 @@ public class ManagerIncomeController extends HttpServlet {
         List listpro = dao.BestSellerProducts();
         List listun = dao.limitProducts();
         int months = Calendar.getInstance().get(Calendar.MONTH);
-       
+
         request.setAttribute("firstMonth", dao.totalIncomeByMonth(months - 4));
         request.setAttribute("secondMonth", dao.totalIncomeByMonth(months - 3));
         request.setAttribute("thirdMonth", dao.totalIncomeByMonth(months - 2));
-        request.setAttribute("fourthMonth",dao.totalIncomeByMonth(months - 1));
+        request.setAttribute("fourthMonth", dao.totalIncomeByMonth(months - 1));
         request.setAttribute("fifthMonth", dao.totalIncomeByMonth(months - 0));
-        request.setAttribute("currMonth", dao.totalIncomeByMonth(months +1));
+        request.setAttribute("currMonth", dao.totalIncomeByMonth(months + 1));
+
+        request.setAttribute("EfirstMonth", dao.countEarPhoneByMonth(months - 4));
+        request.setAttribute("EsecondMonth", dao.countEarPhoneByMonth(months - 3));
+        request.setAttribute("EthirdMonth", dao.countEarPhoneByMonth(months - 2));
+        request.setAttribute("EfourthMonth", dao.countEarPhoneByMonth(months - 1));
+        request.setAttribute("EfifthMonth", dao.countEarPhoneByMonth(months - 0));
+        request.setAttribute("EcurrMonth", dao.countEarPhoneByMonth(months + 1));
+
+        request.setAttribute("KfirstMonth", dao.countKeyBoardByMonth(months - 4));
+        request.setAttribute("KsecondMonth", dao.countKeyBoardByMonth(months - 3));
+        request.setAttribute("KthirdMonth", dao.countKeyBoardByMonth(months - 2));
+        request.setAttribute("KfourthMonth", dao.countKeyBoardByMonth(months - 1));
+        request.setAttribute("KfifthMonth", dao.countKeyBoardByMonth(months - 0));
+        request.setAttribute("KcurrMonth", dao.countKeyBoardByMonth(months + 1));
+
+        request.setAttribute("MfirstMonth", dao.countMouseByMonth(months - 4));
+        request.setAttribute("MsecondMonth", dao.countMouseByMonth(months - 3));
+        request.setAttribute("MthirdMonth", dao.countMouseByMonth(months - 2));
+        request.setAttribute("MfourthMonth", dao.countMouseByMonth(months - 1));
+        request.setAttribute("MfifthMonth", dao.countMouseByMonth(months - 0));
+        request.setAttribute("McurrMonth", dao.countMouseByMonth(months + 1));
+
         request.setAttribute("product", count);
         request.setAttribute("order", count1);
         request.setAttribute("het", count2);

@@ -66,9 +66,12 @@
                                 <li class="header__top-item">
                                     <a href="${user!=null?'CartController?tab=cartList':'../auth/login'}" class="header__top-link">Giỏ hàng</a>
                                 </li>
-                                <li class="header__top-item">
+<!--                                <li class="header__top-item">
+                                    <a href="${user!=null?'OrderListController':'../auth/login'}" class="header__top-link">Đơn Hàng Của Tôi</a>
+                                </li>-->
+<!--                                <li class="header__top-item">
                                     <a href="../auth/login" class="header__top-link">Thanh toán</a>
-                                </li>
+                                </li>-->
                                 <li class="header__top-item">
                                     <a href="../auth/login" class="header__top-link">Đăng nhập</a>
                                 </li>
@@ -79,18 +82,22 @@
                                 <li class="header__top-item">
                                     <a href="CartController?tab=cartList" class="header__top-link">Giỏ hàng</a>
                                 </li>
-                                <li class="header__top-item">
+<!--                                <li class="header__top-item">
                                     <a href="#" class="header__top-link">Thanh toán</a>
-                                </li>
+                                </li>-->
                                 <li class="header__top-item">
-                                    <a href="#" class="header__top-link"></a>
+                                    <a href="${user!=null?'OrderListController':'../auth/login'}" class="header__top-link">Đơn Hàng </a>
                                 </li>
                                 <li class="header__top-item">
                                     <div class="dropdown fas fa-user header__nav-cart-icon">
                                         <div class="dropdown-content">
                                             <a href="#">Hồ sơ cá nhân</a>
                                             <a href="../auth/ChangePassword?tab=changePassword">Đổi mật khẩu</a>
+                                            <c:if test="${role==1}">
+                                                <a href="../admin/AdminController">Admin</a>
+                                            </c:if>
                                             <a href="HomePageController?tab=logOut">Đăng xuất</a>
+                                            
                                         </div>
                                     </div>
                                 </li>
@@ -176,9 +183,9 @@
                             <li class="header__nav-item">
                                 <a href="compareProduct.jsp" class="header__nav-link">SO SÁNH SẢN PHẨM</a>
                             </li>  
-                            <li class="header__nav-item">
+<!--                            <li class="header__nav-item">
                                 <a href="checkout2.jsp" class="header__nav-link">THANH TOÁN</a>
-                            </li>               
+                            </li>               -->
                             <li class="header__nav-item">
                                 <a href="contact.jsp" class="header__nav-link">LIÊN HỆ</a>
                             </li>
