@@ -96,6 +96,12 @@
                                             <c:if test="${role==1}">
                                                 <a href="../admin/AdminController">Admin</a>
                                             </c:if>
+                                                <c:if test="${role==2}">
+                                                <a href="../manager/ManagerHomepageController">Manager</a>
+                                            </c:if>                                          
+                                                <c:if test="${role==4}">
+                                                <a href="../saler/SalerOrderController">Saler</a>
+                                            </c:if>
                                             <a href="HomePageController?tab=logOut">Đăng xuất</a>
                                             
                                         </div>

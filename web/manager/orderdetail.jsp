@@ -84,14 +84,11 @@
             <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
             <!-- Navbar Right Menu-->
             <ul class="app-nav">
+
+
                 <!-- User Menu-->
-                <li>
-                    <div class="dropdown fas fa-user header__nav-cart-icon">
-                        <div class="dropdown-content">
-                            <a href="#">Đổi mật khẩu</a>
-                            <a href="#">Đăng xuất</a>
-                        </div>
-                    </div>
+                <li><a class="app-nav__item" href="../view/homepage"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+
                 </li>
             </ul>
         </header>

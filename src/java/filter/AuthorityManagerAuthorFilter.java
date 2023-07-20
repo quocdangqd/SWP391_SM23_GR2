@@ -1,18 +1,17 @@
 ///*
-// * To change this license header, choose License Headers in Project Properties.
-// * To change this template file, choose Tools | Templates
-// * and open the template in the editor.
+// * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+// * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
 // */
 //package filter;
 //
 //import Model.User;
-//import jakarta.servlet.Filter;
 //import jakarta.servlet.FilterChain;
 //import jakarta.servlet.FilterConfig;
 //import jakarta.servlet.ServletException;
 //import jakarta.servlet.ServletRequest;
 //import jakarta.servlet.ServletResponse;
-//import jakarta.servlet.annotation.WebFilter;
+//import jakarta.servlet.annotation.WebServlet;
+//import jakarta.servlet.http.HttpServlet;
 //import jakarta.servlet.http.HttpServletRequest;
 //import jakarta.servlet.http.HttpServletResponse;
 //import java.io.IOException;
@@ -22,34 +21,73 @@
 //
 ///**
 // *
-// * @author
+// * @author HAI DANG
 // */
-////ADMIN
-//@WebFilter(filterName = "AuthorityAdminAuthorFilter", urlPatterns = {"/admin/AdminController","/admin/AdminIncomeController","/admin/editproduct","/admin/ManagerUserController","/admin/addUserController","/admin/EditUserController"})
-//public class AuthorityAdminAuthorFilter implements Filter {
-//    
+//@WebServlet(name = "AuthorityManagerAuthorFilter", urlPatterns = {"/AuthorityManagerAuthorFilter"})
+//
+//public class AuthorityManagerAuthorFilter extends HttpServlet {
+//
 //    private static final boolean debug = true;
 //
 //    // The filter configuration object we are associated with.  If
 //    // this value is null, this filter instance is not currently
 //    // configured. 
 //    private FilterConfig filterConfig = null;
-//    
-//    public AuthorityAdminAuthorFilter() {
-//    }    
-//    
+//
+//    public AuthorityManagerAuthorFilter() {
+//    }
+//
 //    private void doBeforeProcessing(ServletRequest request, ServletResponse response)
 //            throws IOException, ServletException {
 //        if (debug) {
-//            log("AuthorityAdminAuthorFilter:DoBeforeProcessing");
+//            log("AuthorityManagerAuthorFilter:DoBeforeProcessing");
 //        }
-//    }    
-//    
+//
+//        // Write code here to process the request and/or response before
+//        // the rest of the filter chain is invoked.
+//        // For example, a logging filter might log items on the request object,
+//        // such as the parameters.
+//        /*
+//	for (Enumeration en = request.getParameterNames(); en.hasMoreElements(); ) {
+//	    String name = (String)en.nextElement();
+//	    String values[] = request.getParameterValues(name);
+//	    int n = values.length;
+//	    StringBuffer buf = new StringBuffer();
+//	    buf.append(name);
+//	    buf.append("=");
+//	    for(int i=0; i < n; i++) {
+//	        buf.append(values[i]);
+//	        if (i < n-1)
+//	            buf.append(",");
+//	    }
+//	    log(buf.toString());
+//	}
+//         */
+//    }
+//
 //    private void doAfterProcessing(ServletRequest request, ServletResponse response)
 //            throws IOException, ServletException {
 //        if (debug) {
-//            log("AuthorityAdminAuthorFilter:DoAfterProcessing");
+//            log("AuthorityManagerAuthorFilter:DoAfterProcessing");
 //        }
+//
+//        // Write code here to process the request and/or response after
+//        // the rest of the filter chain is invoked.
+//        // For example, a logging filter might log the attributes on the
+//        // request object after the request has been processed. 
+//        /*
+//	for (Enumeration en = request.getAttributeNames(); en.hasMoreElements(); ) {
+//	    String name = (String)en.nextElement();
+//	    Object value = request.getAttribute(name);
+//	    log("attribute: " + name + "=" + value.toString());
+//
+//	}
+//         */
+//        // For example, a filter might append something to the response.
+//        /*
+//	PrintWriter respOut = new PrintWriter(response.getWriter());
+//	respOut.println("<P><B>This has been appended by an intrusive filter.</B>");
+//         */
 //    }
 //
 //    /**
@@ -64,33 +102,32 @@
 //    public void doFilter(ServletRequest request, ServletResponse response,
 //            FilterChain chain)
 //            throws IOException, ServletException {
-//        
+//
 //        if (debug) {
-//            log("AuthorityAdminAuthorFilter:doFilter()");
+//            log("AuthorityManagerAuthorFilter:doFilter()");
 //        }
-//        
+//
 //        doBeforeProcessing(request, response);
-//        
+//
 //// xử lý logic       
 //        HttpServletRequest httpRequest = (HttpServletRequest) request;
 //        HttpServletResponse httpResponse = (HttpServletResponse) response;
-//        
-//        if(httpRequest.getSession().getAttribute("user")!=null){
-//            User a = (User)httpRequest.getSession().getAttribute("user");
-//            if(a.getUser_roleID().equals("1")){
+//
+//        if (httpRequest.getSession().getAttribute("user") != null) {
+//            User a = (User) httpRequest.getSession().getAttribute("user");
+//            if (a.getUser_roleID().equals("2")) {
 //                chain.doFilter(request, response);
 //                return;
-//        }else{
-//                 httpResponse.sendRedirect("../view/homepage"); 
-//           
+//            } else {
+//                httpResponse.sendRedirect("../view/homepage");
+//
 //            }
-//        }else{
-//             httpResponse.sendRedirect("../view/homepage");
-//            
+//        } else {
+//            httpResponse.sendRedirect("../view/homepage");
+//
 //        }
 //
 //// xử lý logic 
-//        
 //        Throwable problem = null;
 //        try {
 //            chain.doFilter(request, response);
@@ -101,7 +138,7 @@
 //            problem = t;
 //            t.printStackTrace();
 //        }
-//        
+//
 //        doAfterProcessing(request, response);
 //
 //        // If there was a problem, we want to rethrow it if it is
@@ -136,17 +173,17 @@
 //    /**
 //     * Destroy method for this filter
 //     */
-//    public void destroy() {        
+//    public void destroy() {
 //    }
 //
 //    /**
 //     * Init method for this filter
 //     */
-//    public void init(FilterConfig filterConfig) {        
+//    public void init(FilterConfig filterConfig) {
 //        this.filterConfig = filterConfig;
 //        if (filterConfig != null) {
-//            if (debug) {                
-//                log("AuthorityAdminAuthorFilter:Initializing filter");
+//            if (debug) {
+//                log("AuthorityManagerAuthorFilter:Initializing filter");
 //            }
 //        }
 //    }
@@ -157,27 +194,27 @@
 //    @Override
 //    public String toString() {
 //        if (filterConfig == null) {
-//            return ("AuthorityAdminAuthorFilter()");
+//            return ("AuthorityManagerAuthorFilter()");
 //        }
-//        StringBuffer sb = new StringBuffer("AuthorityAdminAuthorFilter(");
+//        StringBuffer sb = new StringBuffer("AuthorityManagerAuthorFilter(");
 //        sb.append(filterConfig);
 //        sb.append(")");
 //        return (sb.toString());
 //    }
-//    
+//
 //    private void sendProcessingError(Throwable t, ServletResponse response) {
-//        String stackTrace = getStackTrace(t);        
-//        
+//        String stackTrace = getStackTrace(t);
+//
 //        if (stackTrace != null && !stackTrace.equals("")) {
 //            try {
 //                response.setContentType("text/html");
 //                PrintStream ps = new PrintStream(response.getOutputStream());
-//                PrintWriter pw = new PrintWriter(ps);                
+//                PrintWriter pw = new PrintWriter(ps);
 //                pw.print("<html>\n<head>\n<title>Error</title>\n</head>\n<body>\n"); //NOI18N
 //
 //                // PENDING! Localize this for next official release
-//                pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");                
-//                pw.print(stackTrace);                
+//                pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");
+//                pw.print(stackTrace);
 //                pw.print("</pre></body>\n</html>"); //NOI18N
 //                pw.close();
 //                ps.close();
@@ -194,7 +231,7 @@
 //            }
 //        }
 //    }
-//    
+//
 //    public static String getStackTrace(Throwable t) {
 //        String stackTrace = null;
 //        try {
@@ -208,9 +245,9 @@
 //        }
 //        return stackTrace;
 //    }
-//    
+//
 //    public void log(String msg) {
-//        filterConfig.getServletContext().log(msg);        
+//        filterConfig.getServletContext().log(msg);
 //    }
-//    
+//
 //}

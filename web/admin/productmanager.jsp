@@ -17,7 +17,16 @@
             <style>
                 .left-box {
                     float: left;
-                    margin-bottom: 10px
+                    margin-bottom: 10px;
+                    font-family: 'roboto';
+                }
+                .title{
+                    font-family: 'roboto';
+                }
+                .breadcrumb{
+                    margin: 0;
+                    padding: 0;
+                    background-color: #ffffff;
                 }
             </style>
             <link rel="icon" href="image/icon.png" type="image/x-icon"/>
@@ -55,7 +64,7 @@
 
 
                     <!-- User Menu-->
-                    <li><a class="app-nav__item" href="../view/HomePageController?tab=logOut"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                    <li><a class="app-nav__item" href="../view/homepage"><i class='bx bx-log-out bx-rotate-180'></i> </a>
 
                     </li>
                 </ul>
@@ -69,7 +78,7 @@
                     </div>
                 </div>
                 <hr>
-                <ul class="app-menu">
+                <ul class="app-menu" style="font-family: 'roboto';">
                     <li><a class="app-menu__item" href="homepage.jsp"><i class='app-menu__icon bx bx-tachometer'></i><span
                                 class="app-menu__label">Bảng điều khiển</span></a></li>
                     <li><a class="app-menu__item " href="usermanager.jsp"><i class='app-menu__icon bx bx-id-card'></i> <span
@@ -88,7 +97,7 @@
             <main class="app-content">
                 <div class="app-title">
                     <ul class="app-breadcrumb breadcrumb side">
-                        <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
+                        <li class="breadcrumb-item active"><a style="font-family: 'roboto'; color: black;"><b>Danh sách sản phẩm</b></a></li>
                     </ul>
                     <div id="clock"></div>
                 </div>
@@ -97,14 +106,10 @@
                         <div class="tile">
                             <div class="tile-body">
                                 <div class="row element-button">
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-2" style="font-family: 'roboto'">
 
                                         <a class="btn btn-add btn-sm" href="editproduct?action=add" title="Thêm"><i class="fas fa-plus"></i>
                                             Tạo mới sản phẩm</a>
-                                    </div>
-
-                                    <div class="col-sm-2">
-                                        <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
                                     </div>
 
                                     <div class="col-sm-2">
@@ -115,7 +120,7 @@
 
                                 </div>
                                 <form action="AdminController" method="get">
-                                    <label >Tim kiem</label>
+                                    <label >Tìm kiếm</label>
                                     <div>
 
                                         <input value="${search}" name="search" type="text" class="left-box"/>
