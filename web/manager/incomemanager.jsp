@@ -122,7 +122,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-6">
                     <div class="widget-small info coloured-icon"><i class='icon bx bxs-purchase-tag-alt fa-3x' ></i>
                         <div class="info">
                             <h4>Tổng sản phẩm</h4>
@@ -130,19 +130,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-6">
                     <div class="widget-small warning coloured-icon"><i class='icon fa-3x bx bxs-shopping-bag-alt'></i>
                         <div class="info">
                             <h4>Tổng đơn hàng</h4>
                             <p><b>${requestScope.order} đơn hàng</b></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="widget-small danger coloured-icon"><i class='icon fa-3x bx bxs-info-circle' ></i>
-                        <div class="info">
-                            <h4>Bị cấm</h4>
-                            <p><b>${requestScope.chan} tài khoản</b></p>
                         </div>
                     </div>
                 </div>
