@@ -1,9 +1,3 @@
-<%-- 
-    Document   : footer
-    Created on : May 25, 2023, 4:26:58 PM
-    Author     : laptop
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <footer>
             <section class="footer__top">

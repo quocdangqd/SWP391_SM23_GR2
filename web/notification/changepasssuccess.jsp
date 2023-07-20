@@ -1,9 +1,3 @@
-<%-- 
-    Document   : changpasssuccess
-    Created on : May 31, 2023, 1:46:09 PM
-    Author     : HAI DANG
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

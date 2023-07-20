@@ -1,9 +1,3 @@
-<%-- 
-    Document   : product
-    Created on : May 25, 2023, 4:22:16 PM
-    Author     : laptop
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

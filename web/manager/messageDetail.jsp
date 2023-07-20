@@ -1,9 +1,3 @@
-<%-- 
-    Document   : messageDetail
-    Created on : May 28, 2023, 8:07:50 AM
-    Author     : laptop
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

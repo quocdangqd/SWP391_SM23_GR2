@@ -1,9 +1,3 @@
-<%-- 
-    Document   : doiMatKhau
-    Created on : May 23, 2023, 4:09:43 PM
-    Author     : PC
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

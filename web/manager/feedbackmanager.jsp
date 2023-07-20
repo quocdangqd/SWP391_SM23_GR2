@@ -1,9 +1,3 @@
-<%-- 
-    Document   : feedbackmanager
-    Created on : Jul 11, 2023, 1:50:02 AM
-    Author     : laptop
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

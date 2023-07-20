@@ -1,8 +1,3 @@
-<%-- 
-    Document   : userprofile
-    Created on : Jun 12, 2023, 10:21:04 PM
-    Author     : HAI DANG
---%>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

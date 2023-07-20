@@ -1,9 +1,3 @@
-<%-- 
-    Document   : adduser
-    Created on : 24-05-2023, 01:33:26
-    Author     : trand
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

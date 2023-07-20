@@ -1,4 +1,3 @@
-
 package Impl;
 
 /**
@@ -65,7 +64,7 @@ public class LoginAndRegisterValidation {
             return false;
         }
     }
-    
+
     public int GetAge(String DOB) throws ParseException {
         int year, month, day;
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
@@ -78,5 +77,5 @@ public class LoginAndRegisterValidation {
         // Kiểm tra xem người dùng có đủ 12 tuổi hay không
         return age;
     }
-    
+
 }

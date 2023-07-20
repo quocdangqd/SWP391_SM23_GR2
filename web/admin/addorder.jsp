@@ -1,9 +1,3 @@
-<%-- 
-    Document   : addorder
-    Created on : 24-05-2023, 01:35:30
-    Author     : trand
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
