@@ -124,6 +124,10 @@
         <servlet-name>OrderController</servlet-name>
         <servlet-class>Controller.Admin.OrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderDetailController</servlet-name>
+        <servlet-class>Controller.Admin.OrderDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/auth/Register</url-pattern>
@@ -249,6 +253,10 @@
     <servlet-mapping>
         <servlet-name>OrderController</servlet-name>
         <url-pattern>/admin/OrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetailController</servlet-name>
+        <url-pattern>/admin/OrderDetailController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
