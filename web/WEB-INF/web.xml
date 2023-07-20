@@ -41,6 +41,10 @@
         <servlet-class>Controller.Manager.ManagerAddProductController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ManagerDeleteProduct</servlet-name>
+        <servlet-class>Controller.Manager.ManagerDeleteProduct</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ManagerUpdateProductController</servlet-name>
         <servlet-class>Controller.Manager.ManagerUpdateProductController</servlet-class>
     </servlet>
@@ -69,12 +73,8 @@
         <servlet-class>Controller.Manager.ManagerOrderController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AdminController</servlet-name>
-        <servlet-class>Controller.Admin.AdminController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditProductController</servlet-name>
-        <servlet-class>Controller.Admin.EditProductController</servlet-class>
+        <servlet-name>ManagerAddOrderController</servlet-name>
+        <servlet-class>Controller.Manager.ManagerAddOrderController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManagerOrderDetailController</servlet-name>
@@ -89,12 +89,16 @@
         <servlet-class>Controller.Admin.OrderController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>OrderListController</servlet-name>
-        <servlet-class>Controller.View.OrderListController</servlet-class>
+        <servlet-name>DeleteOrderController</servlet-name>
+        <servlet-class>Controller.Admin.DeleteOrderController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>OrderDetailController</servlet-name>
-        <servlet-class>Controller.Admin.OrderDetailController</servlet-class>
+        <servlet-name>ManagerUpdateOrderController</servlet-name>
+        <servlet-class>Controller.Manager.ManagerUpdateOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderListController</servlet-name>
+        <servlet-class>Controller.View.OrderListController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ManagerIncomeController</servlet-name>
@@ -105,12 +109,32 @@
         <servlet-class>Controller.Saler.SalerOrderController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SalerCustomerController</servlet-name>
-        <servlet-class>Controller.Saler.SalerCustomerController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AdminIncomeController</servlet-name>
         <servlet-class>Controller.Admin.AdminIncomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminController</servlet-name>
+        <servlet-class>Controller.Admin.AdminController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditProductController</servlet-name>
+        <servlet-class>Controller.Admin.EditProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerUserController</servlet-name>
+        <servlet-class>Controller.Admin.ManagerUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addUserController</servlet-name>
+        <servlet-class>Controller.Admin.addUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditUserController</servlet-name>
+        <servlet-class>Controller.Admin.EditUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SalerCustomerController</servlet-name>
+        <servlet-class>Controller.Saler.SalerCustomerController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
@@ -155,6 +179,10 @@
         <url-pattern>/manager/ManagerAddProductController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ManagerDeleteProduct</servlet-name>
+        <url-pattern>/manager/ManagerDeleteProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ManagerUpdateProductController</servlet-name>
         <url-pattern>/manager/ManagerUpdateProductController</url-pattern>
     </servlet-mapping>
@@ -183,12 +211,8 @@
         <url-pattern>/manager/ManagerOrderController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AdminController</servlet-name>
-        <url-pattern>/admin/AdminController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EditProductController</servlet-name>
-        <url-pattern>/admin/editproduct</url-pattern>
+        <servlet-name>ManagerAddOrderController</servlet-name>
+        <url-pattern>/manager/ManagerAddOrderController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManagerOrderDetailController</servlet-name>
@@ -203,12 +227,16 @@
         <url-pattern>/admin/OrderController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>OrderListController</servlet-name>
-        <url-pattern>/view/OrderListController</url-pattern>
+        <servlet-name>DeleteOrderController</servlet-name>
+        <url-pattern>/admin/DeleteOrderController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>OrderDetailController</servlet-name>
-        <url-pattern>/admin/OrderDetailController</url-pattern>
+        <servlet-name>ManagerUpdateOrderController</servlet-name>
+        <url-pattern>/manager/ManagerUpdateOrderController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderListController</servlet-name>
+        <url-pattern>/view/OrderListController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ManagerIncomeController</servlet-name>
@@ -219,12 +247,32 @@
         <url-pattern>/saler/SalerOrderController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SalerCustomerController</servlet-name>
-        <url-pattern>/saler/SalerCustomerController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AdminIncomeController</servlet-name>
         <url-pattern>/admin/AdminIncomeController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminController</servlet-name>
+        <url-pattern>/admin/AdminController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductController</servlet-name>
+        <url-pattern>/admin/editproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerUserController</servlet-name>
+        <url-pattern>/admin/ManagerUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addUserController</servlet-name>
+        <url-pattern>/admin/addUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUserController</servlet-name>
+        <url-pattern>/admin/EditUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SalerCustomerController</servlet-name>
+        <url-pattern>/saler/SalerCustomerController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

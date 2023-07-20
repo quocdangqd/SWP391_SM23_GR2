@@ -164,14 +164,11 @@
                                     <a href="#" class="product__main-tab-link product__main-tab-link--active">
                                         Mô tả
                                     </a>
-                                    <a href="#" class="product__main-tab-link">
-                                        Đánh giá
-                                    </a>
                                 </div>
 
                                 <div class="col-12 product__main-content-wrap">
                                     <h2 class="product__main-content-heading">
-                                        Tai nghe Corsair HS70 Pro Wireless Carbon
+                                        ${productDetail.getName()}
                                     </h2>
                                     <h2 class="thongtin">    <span>Thông tin chi tiết</span> 
                                     </h2>
@@ -240,82 +237,83 @@
                                 <h3 class="product__aside-heading">
                                     Có thể bạn thích
                                 </h3>
-
                                 <div class="product__aside-list">
-                                    <div class="product__aside-item product__aside-item--border">
-                                        <div class="product__aside-img-wrap">
-                                            <img src="images1/product/t1.jpg" class="product__aside-img">
-                                        </div>
-                                        <div class="product__aside-title">
-                                            <a href="#" class="product__aside-link">
-                                                <h4 class="product__aside-link-heading"> Tai nghe Corsair HS70 Pro Wireless Carbon</h4>
-                                            </a>
-
-                                            <div class="product__aside-rate-wrap">
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                                <i class="fas fa-star product__aside-rate"></i>
+                                    <c:forEach items="${bottomDataList}" var="item">
+                                        <div class="product__aside-item product__aside-item--border">
+                                            <div class="product__aside-img-wrap">
+                                                <img src="${item.getPicture()}" class="product__aside-img">
                                             </div>
+                                            <div class="product__aside-title">
+                                                <a href="ProductDetailController?ProductID=${item.getProductID()}" class="product__aside-link">
+                                                    <h4 class="product__aside-link-heading">${item.getName()}</h4>
+                                                </a>
+                                                <div class="product__aside-rate-wrap">
+                                                    <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${item.getRateStar()}</i>
+                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                </div>
 
-                                            <div class="product__aside-price">
-                                                <span class="product__aside-price-current">
-                                                    72.250
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="product__aside-item">
-                                        <div class="product__aside-img-wrap">
-                                            <img src="images1/product/t2.jpg" class="product__aside-img">
-                                        </div>
-                                        <div class="product__aside-title">
-                                            <a href="#" class="product__aside-link">
-                                                <h4 class="product__aside-link-heading">Tai nghe Havit H2002D</h4>
-                                            </a>
-
-                                            <div class="product__aside-rate-wrap">
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                            </div>
-
-                                            <div class="product__aside-price">
-                                                <span class="product__aside-price-current">
-                                                    76.800đ
-                                                </span>
+                                                <div class="product__aside-price">
+                                                    <span class="product__aside-price-current">
+                                                        ${item.getSalePrice()}đ
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </c:forEach>
 
-                                    <div class="product__aside-item">
-                                        <div class="product__aside-img-wrap">
-                                            <img src="images1/product/t3.jpg" class="product__aside-img">
-                                        </div>
-                                        <div class="product__aside-title">
-                                            <a href="#" class="product__aside-link">
-                                                <h4 class="product__aside-link-heading">Tai nghe Gaming HAVIT H2028U</h4>
-                                            </a>
+                                    <!--                                    <div class="product__aside-item">
+                                                                            <div class="product__aside-img-wrap">
+                                                                                <img src="images1/product/t2.jpg" class="product__aside-img">
+                                                                            </div>
+                                                                            <div class="product__aside-title">
+                                                                                <a href="#" class="product__aside-link">
+                                                                                    <h4 class="product__aside-link-heading">Tai nghe Havit H2002D</h4>
+                                                                                </a>
+                                    
+                                                                                <div class="product__aside-rate-wrap">
+                                                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                                                </div>
+                                    
+                                                                                <div class="product__aside-price">
+                                                                                    <span class="product__aside-price-current">
+                                                                                        76.800đ
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>-->
 
-                                            <div class="product__aside-rate-wrap">
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                                <i class="fas fa-star product__aside-rate"></i>
-                                            </div>
-
-                                            <div class="product__aside-price">
-                                                <span class="product__aside-price-current">
-                                                    69.000đ
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>                                                        
+                                    <!--                                    <div class="product__aside-item">
+                                                                            <div class="product__aside-img-wrap">
+                                                                                <img src="images1/product/t3.jpg" class="product__aside-img">
+                                                                            </div>
+                                                                            <div class="product__aside-title">
+                                                                                <a href="#" class="product__aside-link">
+                                                                                    <h4 class="product__aside-link-heading">Tai nghe Gaming HAVIT H2028U</h4>
+                                                                                </a>
+                                    
+                                                                                <div class="product__aside-rate-wrap">
+                                                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                                                    <i class="fas fa-star product__aside-rate"></i>
+                                                                                </div>
+                                    
+                                                                                <div class="product__aside-price">
+                                                                                    <span class="product__aside-price-current">
+                                                                                        69.000đ
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>                                                        -->
                                 </div>
                             </div>
                         </aside>
@@ -326,11 +324,15 @@
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <h3 >Bình luận sản phẩm</h3>
                             <c:if test="${checkBuyProduct==true}">
-                                <input type="radio" name="star" value="1" checked=""> 1 <i class="fas fa-star product__panel-rate"></i> <br>
-                                <input type="radio" name="star" value="2"> 2 <i class="fas fa-star product__panel-rate"></i> <br>
-                                <input type="radio" name="star" value="3"> 3 <i class="fas fa-star product__panel-rate"></i> <br>
-                                <input type="radio" name="star" value="4"> 4 <i class="fas fa-star product__panel-rate"></i> <br>
-                                <input type="radio" name="star" value="5"> 5 <i class="fas fa-star product__panel-rate"></i> <br>
+                                <!--<div style="margin:  ">-->
+                                <!--style="margin-left: 450px"-->
+                                <section style="font-size: 17px; margin-left: 350px">
+                                    <input type="radio"  name="star"  value="1" checked=""> 1 <i class="fas fa-star product__panel-rate"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="star" value="2"> 2 <i class="fas fa-star product__panel-rate"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="star" value="3"> 3 <i class="fas fa-star product__panel-rate"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="star" value="4"> 4 <i class="fas fa-star product__panel-rate"></i>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="star" value="5"> 5 <i class="fas fa-star product__panel-rate"></i> 
+                                </section>
                                 <div class="form-group">
                                     <label>Nội dung:</label>
                                     <textarea name="comm_details"  rows="8" id ='formcontent' class="form-control"></textarea>     
@@ -394,159 +396,36 @@
                             </div>
                         </div>
                         <div class="row bg-white">
-                            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                <div class="product__panel-img-wrap">
-                                    <img src="images1/product/t1.jpg" alt="" class="product__panel-img">
-                                </div>
-                                <h3 class="product__panel-heading">
-                                    <a href="#" class="product__panel-link">Tai nghe Corsair HS70 Pro Wireless Carbon</a>
-                                </h3>
-                                <div class="product__panel-rate-wrap">
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                </div>
+                            <c:forEach items="${bottomDataList}" var="item">
+                                <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
 
-                                <div class="product__panel-price">
-                                    <span class="product__panel-price-old product__panel-price-old-hide">
-                                        300.000đ
-                                    </span>
-                                    <span class="product__panel-price-current">
-                                        273.000đ
-                                    </span>
-                                </div>  
-                            </div>
+                                    <div class="product__panel-img-wrap">
+                                        <a href="ProductDetailController?ProductID=${item.getProductID()}">
+                                            <img src="${item.getPicture()}" alt="" class="product__panel-img">
+                                        </a>
+                                    </div>
+                                    <h3 class="product__panel-heading">
+                                        <a href="ProductDetailController?ProductID=${item.getProductID()}" class="product__panel-link">${item.getName()}</a>
+                                    </h3>
+                                    <div class="product__panel-rate-wrap">
+                                        <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px">${item.getRateStar()}</i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                    </div>
 
-                            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                <div class="product__panel-img-wrap">
-                                    <img src="images1/product/t2.jpg" alt="" class="product__panel-img">
-                                </div>
-                                <h3 class="product__panel-heading">
-                                    <a href="#" class="product__panel-link">Tai nghe Havit H2002D</a>
-                                </h3>
-                                <div class="product__panel-rate-wrap">
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                </div>
+                                    <div class="product__panel-price">
+                                        <span class="product__panel-price-old product__panel-price-old-hide">
 
-                                <div class="product__panel-price">
-                                    <span class="product__panel-price-old product__panel-price-old-hide">
-                                        150.000đ
-                                    </span>
-                                    <span class="product__panel-price-current">
-                                        120.000đ
-                                    </span>
-                                </div> 
-                            </div>
-
-                            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                <div class="product__panel-img-wrap">
-                                    <img src="images1/product/t3.jpg" alt="" class="product__panel-img">
+                                        </span>
+                                        <span class="product__panel-price-current">
+                                            ${item.getSalePrice()}đ
+                                        </span>
+                                    </div>  
                                 </div>
-                                <h3 class="product__panel-heading">
-                                    <a href="#" class="product__panel-link">Tai nghe Gaming HAVIT H2028U</a>
-                                </h3>
-                                <div class="product__panel-rate-wrap">
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                </div>
-
-                                <div class="product__panel-price">
-                                    <span class="product__panel-price-old product__panel-price-old-hide
-                                          ">
-                                        50.000đ
-                                    </span>
-                                    <span class="product__panel-price-current">
-                                        47.200đ
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                <div class="product__panel-img-wrap">
-                                    <img src="images1/product/t4.jpg" alt="" class="product__panel-img">
-                                </div>
-                                <h3 class="product__panel-heading">
-                                    <a href="#" class="product__panel-link">Tai nghe Havit H2008D</a>
-                                </h3>
-                                <div class="product__panel-rate-wrap">
-                                    <i class="product__panel-rate" style="text-decoration: underline;font-size: 20px; margin-right: 5px"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                </div>
-
-                                <div class="product__panel-price">
-                                    <span class="product__panel-price-old product__panel-price-old-hide">
-                                        30.000đ
-                                    </span>
-                                    <span class="product__panel-price-current">
-                                        24.000đ
-                                    </span>
-                                </div> 
-                            </div>
-
-                            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                <div class="product__panel-img-wrap">
-                                    <img src="images1/product/t5.jpg" alt="" class="product__panel-img" width="110">
-                                </div>
-                                <h3 class="product__panel-heading">
-                                    <a href="#" class="product__panel-link">Tai nghe Razer Hammerhead PRO V2 <br>
-
-                                    </a>
-                                </h3>
-                                <div class="product__panel-rate-wrap">
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                </div>
-
-                                <div class="product__panel-price">
-                                    <span class="product__panel-price-old product__panel-price-old-hide">
-                                        62.000đ
-                                    </span>
-                                    <span class="product__panel-price-current">
-                                        37.200đ
-                                    </span>
-                                </div> 
-                            </div>
-
-                            <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                <div class="product__panel-img-wrap">
-                                    <img src="images1/product/t6.jpg" alt="" class="product__panel-img" >
-                                </div>
-                                <h3 class="product__panel-heading">
-                                    <a href="#" class="product__panel-link">Tai nghe HyperX Cloud Earbuds 
-                                    </a>
-                                </h3>
-                                <div class="product__panel-rate-wrap">
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                    <i class="fas fa-star product__panel-rate"></i>
-                                </div>
-
-                                <div class="product__panel-price">
-                                    <span class="product__panel-price-old product__panel-price-old-hide">
-                                        85.000đ
-                                    </span>
-                                    <span class="product__panel-price-current">
-                                        72.250đ
-                                    </span>
-                                </div> 
-                            </div>
+                            </c:forEach>
                         </div>
                     </section>
                 </div>  
@@ -700,8 +579,8 @@
                                                 break;
                                             }
                                         }
-//                                        console.log(starValue);
-//                                        console.log(comm_details);
+                                        //                                        console.log(starValue);
+                                        //                                        console.log(comm_details);
                                         var comm_details = document.getElementById('formcontent').value;
                                         $.ajax({
                                             url: "/TechZone/view/ProductDetailController",
