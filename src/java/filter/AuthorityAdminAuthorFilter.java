@@ -20,7 +20,10 @@ import java.io.StringWriter;
  * @author
  */
 //ADMIN
-@WebFilter(filterName = "AuthorityAdminAuthorFilter", urlPatterns = {"/admin/AdminHomepageController","/admin/AdminController","/admin/AdminIncomeController","/admin/editproduct","/admin/ManagerUserController","/admin/addUserController","/admin/EditUserController"})
+@WebFilter(filterName = "AuthorityAdminAuthorFilter", urlPatterns = {"/admin/AdminHomepageController","/admin/AdminController",
+    "/admin/AdminIncomeController","/admin/editproduct","/admin/ManagerUserController",
+    "/admin/addUserController","/admin/EditUserController", "/admin/DeleteOrderController", 
+    "/admin/OrderDetailController"})
 public class AuthorityAdminAuthorFilter implements Filter {
     
     private static final boolean debug = true;
