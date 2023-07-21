@@ -309,39 +309,74 @@
                         <div class="table-filter">
                             <div class="container">
                                 <section class="row">
-                                    <a href="OrderListController?status=All" class="show-entries hover-order col-lg-2">
+                                <c:if test="${status=='All'}">
+                                    <a href="OrderListController?status=All" class="show-entries hover-order col-lg-2 active">
                                         <div>Tất cả (${AllOrder.size()})</div>
                                     </a>
+                                </c:if>
+                                <c:if test="${status!='All'}">
+                                    <a href="OrderListController?status=All" class="show-entries hover-order col-lg-2 ">
+                                        <div>Tất cả (${AllOrder.size()})</div>
+                                    </a>
+                                </c:if>
+                                <c:if test="${status=='Pending'}">
+                                    <a href="OrderListController?status=Pending" class="show-entries hover-order col-lg-3 active">
+                                        <div>Chờ xác nhận(${orderListPendingAmount})</div>
+                                    </a>
+                                </c:if>
+                                <c:if test="${status!='Pending'}">
                                     <a href="OrderListController?status=Pending" class="show-entries hover-order col-lg-3">
                                         <div>Chờ xác nhận(${orderListPendingAmount})</div>
                                     </a>
+                                </c:if>
+                                <c:if test="${status=='Shipping'}">
+                                    <a href="OrderListController?status=Shipping" class="show-entries hover-order col-lg-3 active">
+                                        <div>Đang giao(${orderListShippingAmount})</div>
+                                    </a>
+                                </c:if>
+                                <c:if test="${status!='Shipping'}">
                                     <a href="OrderListController?status=Shipping" class="show-entries hover-order col-lg-3">
                                         <div>Đang giao(${orderListShippingAmount})</div>
                                     </a>
-                                    <a href="OrderListController?status=Completed" class="show-entries hover-order col-lg-2">
+                                </c:if>
+                                <c:if test="${status=='Completed'}">
+                                    <a href="OrderListController?status=Completed" class="show-entries hover-order col-lg-2 active">
                                         <div>Hoàn thành(${orderListCompletedAmount})</div>
                                     </a>
+                                </c:if>
+                                <c:if test="${status!='Completed'}">
+                                    <a href="OrderListController?status=Completed" class="show-entries hover-order col-lg-2 ">
+                                        <div>Hoàn thành(${orderListCompletedAmount})</div>
+                                    </a>
+                                </c:if>
+                                <c:if test="${status=='Cancelled'}">
+                                    <a href="OrderListController?status=Cancelled" class="show-entries hover-order col-lg-2 active">
+                                        <div>Đã hủy(${orderListCanceledAmount})</div>
+                                    </a>      
+                                </c:if>   
+                                <c:if test="${status!='Cancelled'}">
                                     <a href="OrderListController?status=Cancelled" class="show-entries hover-order col-lg-2">
                                         <div>Đã hủy(${orderListCanceledAmount})</div>
-                                    </a>                          
-                                </section>
-                            </div>
+                                    </a>      
+                                </c:if> 
+                            </section>
                         </div>
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr class="font-0">
-                                    <th style="width: 200px;">Tên sản phẩm</th>
-                                    <th>Ảnh sản phẩm</th>
-                                    <th>Số lượng sản phẩm</th>
-                                    <th style="width: 130px;">Địa chỉ</th>
-                                    <th>Ngày đặt</th>						
-                                    <th>Trạng thái</th>						
-                                    <th>Giá tiền</th>
-                                    <th style="width: 120px;">Tính năng</th>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr class="font-0">
+                                <th style="width: 200px;">Tên sản phẩm</th>
+                                <th>Ảnh sản phẩm</th>
+                                <th>Số lượng sản phẩm</th>
+                                <th style="width: 130px;">Địa chỉ</th>
+                                <th>Ngày đặt</th>						
+                                <th>Trạng thái</th>						
+                                <th>Giá tiền</th>
+                                <th style="width: 120px;">Tính năng</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <c:forEach items="${data}" var="item">
                                 <tr class="font-1">
                                     <td>${item.getProductName()}</td>
@@ -363,12 +398,17 @@
                                                                                                                                                        height: 19px;"></i>
                                                 </button>
                                             </a>
-                                            <!--                                            <button class="btn btn-primary cols-4" type="button" title="Xóa" onclick="openPopup()"><i class="fas fa-trash-alt" style="margin: auto"></i>
-                                                                                        </button>
-                                                                                        <button class="btn btn-primary cols-4" type="button" title="Xem"><i class="fas fa-list" style="margin: auto"></i>
-                                                                                        </button>
-                                                                                        <button class="btn btn-primary cols-4" type="button" title="Đã nhận đơn hàng"><i class="fas fa-check" style="margin: auto"></i>
+                                            <!--                                                <button class="btn btn-primary cols-4" type="button" title="Xóa" onclick="openPopup()"><i class="fas fa-trash-alt" style="margin: auto"></i>
+                                                                                            </button>-->
+                                            <!--                                            <button class="btn btn-primary cols-4" type="button" title="Xem"><i class="fas fa-list" style="margin: auto"></i>
                                                                                         </button>-->
+                                            <c:if test="${item.getStatus()=='Shipping'}">
+                                                <a href="OrderListController?orderID=${item.getOrderID()}&ConfirmGetOrder">
+                                                    <button class="btn btn-primary cols-1" type="button" title="Đã nhận đơn hàng" style="width: 31px; height: 52px;"><i class="fas fa-check" style="width: 16px;
+                                                                                                                                                                        height: 19px;"></i>
+                                                    </button>
+                                                </a>
+                                            </c:if>
                                         </div>
                                     </td>
                                 </tr>

@@ -34,7 +34,7 @@
 
 
                 <!-- User Menu-->
-                <li><a class="app-nav__item" href="/homepage.jsp"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                <li><a class="app-nav__item" href="../view/homepage"><i class='bx bx-log-out bx-rotate-180'></i> </a>
 
                 </li>
             </ul>
@@ -82,13 +82,12 @@
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                     <tr>
-                                        <th width="10"><input type="checkbox" id="all"></th>
                                         <th>Mã đơn hàng</th>
                                         <th>Khách hàng</th>
                                         <th>Tư vấn viên</th>
                                         <th>Ngày tạo đơn</th>
                                         <th>Tổng tiền</th>
-                                        <th>Trạng thái đơn hàng</th>
+                                        <th style="width: 20%">Trạng thái đơn hàng</th>
                                         <!--                                        <th>Ghi chú</th>-->
                                         <!--<th>Tính năng</th>-->
                                     </tr>
@@ -96,8 +95,7 @@
                                 <tbody>
                                     <c:forEach items="${listO}" var="o">
                                         <tr>
-                                            <td width="10"><input type="checkbox" name="check1" value="1" ></td>
-                                            <td><a  title="Đơn hàng chi tiết" style="color: #ff6666" href="OrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>
+                                            <td style="width:8%;"><a title="Đơn hàng chi tiết">${o.getOrderID()}</a></td>
                                             <td>${o.getName_user()}</td>
                                             <td>${o.getOrder_salecodeID()}</td>
                                             <td>${o.getDate()}</td>
@@ -112,7 +110,8 @@
                                                         <option value="Completed" ${o.getStatus().equals("Completed") ? "selected" : "" }>Completed</option>
                                                         <option value="Cancelled" ${ o.getStatus().equals("Cancelled") ? "selected" : "" }>Cancelled</option>
                                                     </select>
-                                                    <input type="submit" value="Update">
+                                                    <input style="background-color: #99ffff; border: 2px solid #00ffff; border-radius: 10px;color: blue;" type="submit" value="Cập nhật">
+                                                    <a href="OrderDetailController?id=${o.getOrderID()}" style="background-color: #ffff99; border: 2px solid #ccff36; border-radius: 10px;color: blue; padding: 1px 6px 1px 6px;" type="submit" value="Chi tiết"> Chi tiết</a>
                                                 </form>
                                             </td>
                                             <!--<td>${o.getNote()}</td>-->

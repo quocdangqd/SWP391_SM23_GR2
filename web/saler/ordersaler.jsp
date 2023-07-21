@@ -5,7 +5,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Danh sách khách hàng</title>
+        <title>Danh sách đơn hàng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,7 +64,6 @@
                 <div class="col-md-12">
                     <div class="tile">
                         <div class="tile-body">
-                            <h3 class="tile-title">Khách hàng mới</h3>
                             <h4 class="tile-title">Nhân viên: ${sessionScope.user.getName()} </h4>
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>

@@ -30,7 +30,7 @@
             <div class="col-md-4 border-right">  
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="rounded-circle mt-5" width="150px"
-                         alt="avatar">
+                         alt="">
                     <label class="chosen" style="font-size: 20px;" ><input type="file" class="d-flex flex-column align-items-center text-center p-3 py-5">
                     </label>           
                 </div>

@@ -56,7 +56,7 @@
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb side">
-                    <li class="breadcrumb-item active"><a href="#"><b>Danh sách đơn hàng</b></a></li>
+                    <li class="breadcrumb-item active"><a href="#"><b>Danh sách khách hàng</b></a></li>
                 </ul>
                 <div id="clock"></div>
             </div>
@@ -64,7 +64,6 @@
                 <div class="col-md-12">
                     <div class="tile">
                         <div class="tile-body">
-                            <h3 class="tile-title">Khách hàng mới</h3>
                             <h4 class="tile-title">Nhân viên: ${sessionScope.user.getName()} </h4>
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
