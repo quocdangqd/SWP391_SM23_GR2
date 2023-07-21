@@ -170,8 +170,11 @@ public class ManagerDAO extends ConnectMySQL {
     //ORDER MANAGER
     public ArrayList<Order> getListOrder() {
         order = new ArrayList<>();
-        String sql = "select o.*,u.name,od.price from swp.order o, swp.orderdetail od, swp.user u\n"
-                + "where od.orderdetail_orderID=o.orderID and u.userID=o.order_userID ORDER BY date DESC;";
+        String sql = "SELECT o.*, u.name, SUM(od.price) \n"
+                + "FROM swp.order o, swp.user u, swp.orderdetail od \n"
+                + "WHERE u.userID=o.order_userID AND od.orderdetail_orderID = o.orderID \n"
+                + "GROUP BY o.orderID \n"
+                + "ORDER BY (o.date) DESC;";
         try {
             pstm = connection.prepareStatement(sql);
             rs = pstm.executeQuery();
@@ -184,7 +187,7 @@ public class ManagerDAO extends ConnectMySQL {
                 String status = rs.getString(6);
                 String name_user = rs.getString(7);
                 String price_order = String.valueOf(decimalFormat.format((int) rs.getFloat(8)));
-                order.add(new Order(orderID, order_userID, order_userID, note, date, status, name_user, price_order));
+                order.add(new Order(orderID, order_userID, sale, note, date, status, name_user, price_order));
             }
 
         } catch (Exception e) {
@@ -232,46 +235,6 @@ public class ManagerDAO extends ConnectMySQL {
             System.out.println("addNewOrder: " + e.getMessage());
 
         }
-    }
-
-    public ArrayList<User> getUserList() {
-        ArrayList<User> data = new ArrayList<>();
-        try {
-            String sqlSelectString = "SELECT * FROM swp.user;";
-            pstm = connection.prepareStatement(sqlSelectString);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                String userID = String.valueOf(rs.getString(1));
-                String name = String.valueOf(rs.getString(5));
-                String address = String.valueOf(rs.getString(8));
-                String phone_number = String.valueOf(rs.getInt(9));
-                String email = String.valueOf(rs.getString(12));
-                data.add(new User(userID, name, address, phone_number, email));
-            }
-        } catch (Exception e) {
-            System.out.println("getUserList: " + e);
-        }
-        return data;
-    }
-
-    public User getUserById(String id) {
-        try {
-            String sqlSelectString = "SELECT * FROM swp.user where userID=?;";
-            pstm = connection.prepareStatement(sqlSelectString);
-            pstm.setInt(1, Integer.parseInt(id));
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                String userID = String.valueOf(rs.getString(1));
-                String name = String.valueOf(rs.getString(5));
-                String address = String.valueOf(rs.getString(8));
-                String phone_number = String.valueOf(rs.getInt(9));
-                String email = String.valueOf(rs.getString(12));
-                return new User(userID, name, address, phone_number, email);
-            }
-        } catch (Exception e) {
-            System.out.println("getUserById: " + e);
-        }
-        return null;
     }
 
     //ORDER DETAIL
@@ -325,35 +288,6 @@ public class ManagerDAO extends ConnectMySQL {
         return 0;
     }
 
-//    public ArrayList<DetailOrder> getOrderIDList() {
-//        ArrayList<DetailOrder> data = new ArrayList<>();
-//        try {
-//            String sqlSelect = "";
-//            DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
-//            decimalFormat.applyPattern("#,###");
-//            pstm = connection.prepareStatement(sqlSelect);
-//            rs = pstm.executeQuery();
-//            while (rs.next()) {
-//                String name_user = rs.getString(1);
-//                String phone_number = rs.getString(2);
-//                String address = rs.getString(3);
-//                String orderdeatil_orderID = String.valueOf(rs.getInt(4));
-//                String orderdetail_productID = String.valueOf(rs.getInt(5));
-//                String orderdetailID = String.valueOf(rs.getInt(6));
-//                String price = String.valueOf(decimalFormat.format((int) (rs.getFloat(7))));
-//                String quantity = String.valueOf(rs.getInt(8));
-//                String name_product = rs.getString(9);
-//                String price_product = String.valueOf(decimalFormat.format((int) rs.getFloat(10)));
-//                String date = String.valueOf(rs.getTimestamp(11));
-//
-//                data.add(new DetailOrder(name_user, phone_number, address, orderdetailID, orderdeatil_orderID,
-//                        quantity, price, orderdetail_productID, name_product, price_product, date));
-//            }
-//        } catch (Exception e) {
-//            System.out.println("getAllOrderDetailByOrderID: " + e.getMessage());
-//        }
-//        return data;
-//    }
     //FEEDBACK
     public ArrayList<Feedback> getFeedbackList() {
         feedback = new ArrayList<>();
@@ -463,6 +397,6 @@ public class ManagerDAO extends ConnectMySQL {
                 "https://product.hstatic.net/200000722513/product/he-corsair-hs70-pro-wireless-carbon-3_ba19343bfeb746f5b9c4e4f486971ea2_fee978ad3a344dccbd22e56923d397fb_master.jpg",
                 "101", "1", "1,790,000", "2023-07-11", "1");
         System.out.println(dao.getProductsByID("1"));
-        
+
     }
 }

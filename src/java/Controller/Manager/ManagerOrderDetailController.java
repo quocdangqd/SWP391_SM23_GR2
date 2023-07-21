@@ -22,7 +22,8 @@ public class ManagerOrderDetailController extends HttpServlet {
         req.setAttribute("od", dao.getAllDetailOrderByOrderID(id));
         float total = 0;
         for (DetailOrder orderDetail : dao.getAllDetailOrderByOrderID(id)) {
-            total += (Float.parseFloat(orderDetail.getQuantity()) * Float.parseFloat(orderDetail.getPrice_product().replace(",", "")));
+            total += (Float.parseFloat(orderDetail.getPrice().replace(",", "")));
+        System.out.println(total);
         }
         double tax = total * 0.1;
         double grandTotal = total + tax;

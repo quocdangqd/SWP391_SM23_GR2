@@ -96,8 +96,8 @@
                                 <tbody>
                                     <c:forEach items="${listO}" var="o">
                                         <tr>
-                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                            <td><a style="color: #ff6666" href="OrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>
+                                            <td width="10"><input type="checkbox" name="check1" value="1" ></td>
+                                            <td><a  title="Đơn hàng chi tiết" style="color: #ff6666" href="OrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>
                                             <td>${o.getName_user()}</td>
                                             <td>${o.getOrder_salecodeID()}</td>
                                             <td>${o.getDate()}</td>
