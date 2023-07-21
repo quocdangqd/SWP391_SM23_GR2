@@ -172,7 +172,7 @@ public class ManagerDAO extends ConnectMySQL {
         order = new ArrayList<>();
         String sql = "SELECT o.*, u.name, SUM(od.price) \n"
                 + "FROM swp.order o, swp.user u, swp.orderdetail od \n"
-                + "WHERE u.userID=o.order_userID AND od.orderdetail_orderID = o.orderID \n"
+                + "WHERE u.userID=o.order_userID AND od.orderdetail_orderID = o.orderID\n"
                 + "GROUP BY o.orderID \n"
                 + "ORDER BY (o.date) DESC;";
         try {
@@ -217,24 +217,6 @@ public class ManagerDAO extends ConnectMySQL {
         }
 
         return null;
-    }
-
-    public void addNewOrder(String date, String order_userID, String note, String order_salecodeID, String status) {
-        try {
-            String sql = "insert into swp.order ( date, order_userID, note, order_salecodeID, status)\n"
-                    + "  values (?,?,?,?,?);";
-            pstm = connection.prepareStatement(sql);
-            pstm.setString(1, date);
-            pstm.setString(2, order_userID);
-            pstm.setString(3, note);
-            pstm.setString(4, order_salecodeID);
-            pstm.setString(5, status);
-
-            pstm.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("addNewOrder: " + e.getMessage());
-
-        }
     }
 
     //ORDER DETAIL

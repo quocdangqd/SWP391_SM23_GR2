@@ -135,10 +135,9 @@
                                         <th>Khách hàng</th>
                                         <th>Tư vấn viên</th>
                                         <th>Ngày tạo đơn</th>
-                                        <th>Trạng thái đơn hàng</th>
                                         <th>Tổng tiền</th>
-                                        <!--                                        <th>Ghi chú</th>-->
-                                        <th>Tính năng</th>
+                                        <th>Trạng thái đơn hàng</th>
+<!--                                        <th>Tính năng</th>-->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -149,14 +148,26 @@
                                             <td>${o.getName_user()}</td>
                                             <td>${o.getOrder_salecodeID()}</td>
                                             <td>${o.getDate()}</td>
-                                            <td>${o.getStatus()}</td>
                                             <td>${o.getPrice_order()}</td>
-                                            <!--<td>${o.getNote()}</td>-->
                                             <td>
+                                                <form action="ManagerOrderController" method="post">
+                                                    <input type="hidden" name="orderId" value="${o.getOrderID()}">
+
+                                                    <select name="newStatus">
+                                                        <option value="Pending" ${ o.getStatus().equals("Pending") ? "selected" : "" }>Pending</option>
+                                                        <option value="Shipping" ${o.getStatus().equals("Shipping") ? "selected" : "" }>Shipping</option>
+                                                        <option value="Completed" ${o.getStatus().equals("Completed") ? "selected" : "" }>Completed</option>
+                                                        <option value="Cancelled" ${ o.getStatus().equals("Cancelled") ? "selected" : "" }>Cancelled</option>
+                                                    </select>
+                                                    <input type="submit" value="Update">
+                                                </form>
+                                            </td>
+                                            <!--<td>${o.getNote()}</td>-->
+<!--                                            <td>
                                                 <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                                 </button>
-                                            </td>
+                                            </td>-->
                                         </tr>
                                     </c:forEach>
                                 </tbody>

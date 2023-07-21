@@ -1,6 +1,8 @@
 package Controller.Manager;
 
 import Dal.ManagerDAO;
+import Dal.OrderDAO;
+import Model.Order;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -21,6 +23,16 @@ public class ManagerOrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        String orderId = req.getParameter("orderId");
+        String newStatus = req.getParameter("newStatus");
+
+        OrderDAO odao = new OrderDAO();
+
+        odao.UpdateOrderByID(newStatus, orderId);
+        ManagerDAO dao = new ManagerDAO();
+        dao.getListOrder();
+        req.setAttribute("listO", dao.getOrder());
+        req.getRequestDispatcher("ordermanager.jsp").forward(req, resp);
 
     }
 
