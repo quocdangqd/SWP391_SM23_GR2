@@ -74,11 +74,11 @@
                 <div class="col-md-12">
                     <div class="tile">
                         <div class="tile-body">
-<!--                            <div class="row element-button">
-                                <div class="col-sm-2">
-                                    <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất file</a>
-                                </div>
-                            </div>-->
+                            <!--                            <div class="row element-button">
+                                                            <div class="col-sm-2">
+                                                                <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất file</a>
+                                                            </div>
+                                                        </div>-->
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                     <tr>
@@ -87,10 +87,10 @@
                                         <th>Khách hàng</th>
                                         <th>Tư vấn viên</th>
                                         <th>Ngày tạo đơn</th>
-                                        <th>Trạng thái đơn hàng</th>
                                         <th>Tổng tiền</th>
+                                        <th>Trạng thái đơn hàng</th>
                                         <!--                                        <th>Ghi chú</th>-->
-                                        <th>Tính năng</th>
+                                        <!--<th>Tính năng</th>-->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -101,14 +101,26 @@
                                             <td>${o.getName_user()}</td>
                                             <td>${o.getOrder_salecodeID()}</td>
                                             <td>${o.getDate()}</td>
-                                            <td>${o.getStatus()}</td>
                                             <td>${o.getPrice_order()}</td>
-                                            <!--<td>${o.getNote()}</td>-->
                                             <td>
-                                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                                </button>
+                                                <form action="OrderController" method="post">
+                                                    <input type="hidden" name="orderId" value="${o.getOrderID()}">
+
+                                                    <select name="newStatus">
+                                                        <option value="Pending" ${ o.getStatus().equals("Pending") ? "selected" : "" }>Pending</option>
+                                                        <option value="Shipping" ${o.getStatus().equals("Shipping") ? "selected" : "" }>Shipping</option>
+                                                        <option value="Completed" ${o.getStatus().equals("Completed") ? "selected" : "" }>Completed</option>
+                                                        <option value="Cancelled" ${ o.getStatus().equals("Cancelled") ? "selected" : "" }>Cancelled</option>
+                                                    </select>
+                                                    <input type="submit" value="Update">
+                                                </form>
                                             </td>
+                                            <!--<td>${o.getNote()}</td>-->
+                                            <!--                                            <td>
+                                                                                            <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                                                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
+                                                                                            </button>
+                                                                                        </td>-->
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -245,6 +257,27 @@
             $("#show-emp").on("click", function () {
                 $("#ModalUP").modal({backdrop: false, keyboard: false})
             });
+
+            function updateOrderStatus(orderId) {
+                var newStatus = $("#status_" + orderId).val();
+                $.ajax({
+                    url: "OrderController", // Đường dẫn đến Servlet để xử lý cập nhật trạng thái đơn hàng
+                    method: "POST",
+                    data: {orderId: orderId, newStatus: newStatus},
+                    success: function (response) {
+                        // Xử lý kết quả thành công (nếu cần)
+                        // Ví dụ: Hiển thị thông báo cập nhật thành công
+                        alert("Update successful!");
+                        // Reload trang để cập nhật lại danh sách đơn hàng
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý lỗi (nếu cần)
+                        // Ví dụ: Hiển thị thông báo lỗi
+                        alert("Update failed. Please try again later.");
+                    }
+                });
+            }
         </script>
     </body>
 
