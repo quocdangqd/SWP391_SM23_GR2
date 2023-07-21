@@ -91,7 +91,7 @@
                                             <a href="EditCustomerController">Hồ sơ cá nhân</a>
                                             <a href="../auth/ChangePassword?tab=changePassword">Đổi mật khẩu</a>
                                             <c:if test="${role==1}">
-                                                <a href="../admin/AdminController">Admin</a>
+                                                <a href="../admin/AdminHomepageController">Admin</a>
                                             </c:if>
                                                 <c:if test="${role==2}">
                                                 <a href="../manager/ManagerHomepageController">Manager</a>

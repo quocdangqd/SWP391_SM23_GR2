@@ -12,7 +12,10 @@ public class ConnectMySQL {
     ResultSet rs;// luu tru va xu li du lieu
     private static String DB_URL = "jdbc:mysql://localhost:3306/swp";
     private static String USER_NAME = "root";
-    private static String PASSWORD = "Sirducdz7a@";
+    private static String PASSWORD = "123456";
+//    private static String DB_URL = "jdbc:mysql://dbtechzone.cvvwwrw5xmcg.us-east-1.rds.amazonaws.com/swp";
+//    private static String USER_NAME = "admin";
+//    private static String PASSWORD = "12345678";
     protected Connection connection = null;
     public ConnectMySQL() {
         try {
