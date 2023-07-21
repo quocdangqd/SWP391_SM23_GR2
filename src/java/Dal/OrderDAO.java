@@ -143,7 +143,7 @@ public class OrderDAO extends ConnectMySQL {
         }
         return null;
     }
-    
+
     public ArrayList<Order> getAllOrder() {
         ArrayList<Order> data = new ArrayList<>();
         String sqlSelect = "SELECT * FROM swp.order";

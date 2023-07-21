@@ -36,6 +36,8 @@ public class OrderListController extends HttpServlet {
                 OrderDAO orderDAO = new OrderDAO();
                 if (request.getParameter("submit") != null) {
                     orderDAO.UpdateOrderByID("Cancelled", request.getParameter("orderID"));
+                } else if (request.getParameter("ConfirmGetOrder") != null) {
+                    orderDAO.UpdateOrderByID("Completed", request.getParameter("orderID"));
                 }
                 String status = request.getParameter("status");
                 User user = (User) session.getAttribute("user");
@@ -44,7 +46,7 @@ public class OrderListController extends HttpServlet {
                     ArrayList<Order> AllOrder = orderDAO.GetOrderListByUserID(user.getUserID(), status);// **
                     session.setAttribute("AllOrder", AllOrder);
                 }
-
+                request.setAttribute("status", status);
                 ArrayList<Order> orderList = orderDAO.GetOrderListByUserID(user.getUserID(), status);// **
                 session.setAttribute("data", orderList);
                 ArrayList<Order> orderListCanceled = orderDAO.GetOrderListByUserID(user.getUserID(), "Cancelled");// **
