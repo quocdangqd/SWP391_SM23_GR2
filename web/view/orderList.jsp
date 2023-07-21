@@ -309,7 +309,7 @@
                         <div class="table-filter">
                             <div class="container">
                                 <section class="row">
-                                    <a href="OrderListController?status=All" class="show-entries hover-order col-lg-2">
+                                    <a href="OrderListController?status=All" class="show-entries hover-order col-lg-2 active">
                                         <div>Tất cả (${AllOrder.size()})</div>
                                     </a>
                                     <a href="OrderListController?status=Pending" class="show-entries hover-order col-lg-3">

@@ -34,7 +34,7 @@
                 <c:if test="${user.getAvatar()!=null}">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                         <img src="UserImage/${user.getAvatar()}" class="rounded-circle mt-5" width="150px"
-                             alt="avatar">
+                             alt="">
                         <label class="chosen" style="font-size: 20px;" >
                             <input type="file" name="avatar" class="d-flex flex-column align-items-center text-center p-3 py-5">
                         </label>           
