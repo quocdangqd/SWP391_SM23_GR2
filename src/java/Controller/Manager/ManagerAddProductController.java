@@ -88,7 +88,7 @@ public class ManagerAddProductController extends HttpServlet {
                 && (Image1.endsWith(".png") || Image1.endsWith(".jpg"))
                 && (Image2.endsWith(".png") || Image2.endsWith(".jpg"))
                 && (Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
-            dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Price, Quantity, Status, date);
+            dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Price, Quantity, "1", date);
 
             req.setAttribute("successText", "Add Successful!!!");
         } else {
