@@ -215,9 +215,9 @@
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
                                     <select name="category" class="form-control" id="exampleSelect1" onchange="showDiv('earphone', this)">
-<!--                                        <option>-- Chọn danh mục --</option>-->
+                                        <!--<option>-- Chọn danh mục --</option>-->
                                         <c:forEach items="${categoriesList}" var="c">
-                                            <option value="${c.getCategoryID()}">${c.getName()}</option>
+                                            <option value="${c.getCategoryID()}" ${c.getCategoryID() eq category ? 'selected' : ''}>${c.getName()}</option>
                                         </c:forEach>
                                     </select>   
                                 </div>

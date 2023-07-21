@@ -15,6 +15,8 @@ public class ManagerHomepageController extends HttpServlet {
         ManagerDAO dao = new ManagerDAO();
         req.setAttribute("countP", dao.countProductByProductID());
         req.setAttribute("countO", dao.countOrder());
+        req.setAttribute("countPS", dao.countProductStock());
+        req.setAttribute("countOC", dao.countOrderCancelled());
         dao.getNewOrder();
         req.setAttribute("listO", dao.getOrder());
         req.getRequestDispatcher("homepage.jsp").forward(req, resp);

@@ -117,7 +117,7 @@ public class ManagerDAO extends ConnectMySQL {
 
     public void addNewProduct(String cid, String pname, String desciption, String img1, String img2, String img3, String price, String quantity, String status, String date) {
         try {
-            String sql = "insert into swp.product (product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, status, date)\n"
+            String sql = "insert into swp.product (product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, sale, date)\n"
                     + "values (?,?,?,?,?,?,?,?,?,?);";
             decimalFormat.applyPattern("#,###");
             dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -338,6 +338,37 @@ public class ManagerDAO extends ConnectMySQL {
             }
         } catch (Exception e) {
             System.out.println("countOrder: " + e);
+        }
+        return count;
+    }
+
+    public int countProductStock() {
+        int count = 0;
+        try {
+            String sqlSelectString = "select count(ProductID) from swp.product where quantity<5;";
+            pstm = connection.prepareStatement(sqlSelectString);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("countProductStock: " + e);
+        }
+        return count;
+    }
+
+    public int countOrderCancelled() {
+        int count = 0;
+        String sqlSelect = "SELECT COUNT(*) FROM swp.order\n"
+                + "where status = 'Cancelled'";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return count;
     }

@@ -154,7 +154,7 @@
                             <div class="widget-small danger coloured-icon"><i class='icon bx bxs-error-alt fa-3x'></i>
                                 <div class="info">
                                     <h4>Sắp hết hàng</h4>
-                                    <p><b>4 sản phẩm</b></p>
+                                    <p><b>${countPS} sản phẩm</b></p>
                                     <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
                                 </div>
                             </div>
@@ -162,11 +162,13 @@
                         <!--col-6--> 
                         <div class="col-md-6">
                             <div class="widget-small danger coloured-icon"><i class='icon bx bxs-error-alt fa-3x'></i>
-                                <div class="info">
-                                    <h4>Tổng số đánh giá</h4>
-                                    <p><b>4 sản phẩm</b></p>
-                                    <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
-                                </div>
+                                <a href="ManagerOrderController">
+                                    <div class="info">
+                                        <h4>Đơn hàng bị hủy</h4>
+                                        <p><b>${countOC} sản phẩm</b></p>
+                                        <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         <div class="col-md-12">
