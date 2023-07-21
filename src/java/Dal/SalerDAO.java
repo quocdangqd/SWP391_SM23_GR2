@@ -27,6 +27,7 @@ public class SalerDAO extends ConnectMySQL {
         return user;
     }
 
+
     public void setUser(ArrayList<User> user) {
         this.user = user;
     }
@@ -84,4 +85,20 @@ public class SalerDAO extends ConnectMySQL {
         return list;
     }
 
+    public boolean UpdateOrderByID(String status, String orderId) {
+        try {
+            String sqlSelect = "update swp.order o set o.status=? where orderid=?";
+            pstm = connection.prepareCall(sqlSelect);
+            pstm.setString(1, status);
+            pstm.setInt(2, Integer.parseInt(orderId));
+            pstm.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println("UpdateOrderByID: " + e);
+        }
+        return false;
+    }
+//    public static void main(String[] args) {
+//        System.out.println("");
+//    }
 }
