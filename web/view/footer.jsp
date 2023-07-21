@@ -3,7 +3,7 @@
             <section class="footer__top">
                 <div class="container">
                     <div class="row">
-                        <article class="footer__top-intro col-lg-5 col-md-4 col-sm-6">
+                        <article class="footer__top-intro col-lg-8 col-md-6 col-sm-6">
                             <h4 class="footer__top-intro-heading">
                                 Về chúng tôi
                             </h4>
@@ -16,31 +16,28 @@
                             </div>
                         </article>
 
-                        <article class="footer__top-policy col-lg-3 col-md-4 col-sm-6">
+<!--                        <article class="footer__top-policy col-lg-3 col-md-4 col-sm-6">
                             <h4 class="footer__top-policy-heading">
                                 Chính sách mua hàng
                             </h4>
 
                             <ul class="footer__top-policy-list">
                                 <li class="footer__top-policy-item">
-                                    <a href="product.jsp" class="footer__top-policy-link">Hình thức đặt hàng</a>
+                                    <a  class="footer__top-policy-link">Hình thức thanh toán</a>
                                 </li>
                                 <li class="footer__top-policy-item">
-                                    <a href="product.jsp" class="footer__top-policy-link">Hình thức thanh toán</a>
+                                    <a class="footer__top-policy-link">Phương thức vận chuyển</a>
                                 </li>
                                 <li class="footer__top-policy-item">
-                                    <a href="product.jsp" class="footer__top-policy-link">Phương thức vận chuyển</a>
+                                    <a class="footer__top-policy-link">Chính sách đổi trả</a>
                                 </li>
                                 <li class="footer__top-policy-item">
-                                    <a href="product.jsp" class="footer__top-policy-link">Chính sách đổi trả</a>
-                                </li>
-                                <li class="footer__top-policy-item">
-                                    <a href="product.jsp" class="footer__top-policy-link">Hướng dẫn sử dụng</a>
+                                    <a class="footer__top-policy-link">Hướng dẫn sử dụng</a>
                                 </li>
                             </ul>
-                        </article>
+                        </article>-->
 
-                        <article class="footer__top-contact-wrap col-lg-4 col-md-4 col-sm-6">
+                        <article class="footer__top-contact-wrap col-lg-4 col-md-6 col-sm-6">
                             <h4 class="footer__top-contact-heading">
                                 Hotline liên hệ
                             </h4>
@@ -65,16 +62,16 @@
                             </h4>
 
                             <div class="footer__top-contact-social">
-                                <a href="product.jsp" class="footer__top-contact-social-link">
+                                <a href="https://www.facebook.com/messages/t/100004769888520" class="footer__top-contact-social-link">
                                     <img src="images/facebook.png">
                                 </a>
-                                <a href="product.jsp" class="footer__top-contact-social-link">
+                                <a href="https://www.youtube.com/channel/UCRL_OYyCJfma9ieuzhqj0WA" class="footer__top-contact-social-link">
                                     <img src="images/youtube.png">
                                 </a>
-                                <a href="product.jsp" class="footer__top-contact-social-link">
+                                <a href="https://www.tiktok.com/@secrets_revealed4869?lang=vi-VN" class="footer__top-contact-social-link">
                                     <img src="images/tiktok.png">
                                 </a>
-                                <a href="product.jsp" class="footer__top-contact-social-link">
+                                <a href="https://chat.zalo.me/" class="footer__top-contact-social-link">
                                     <img src="images/zalo.png">
                                 </a>
                             </div>
