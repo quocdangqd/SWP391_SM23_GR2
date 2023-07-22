@@ -5,11 +5,16 @@ import Dal.ManagerDAO;
 import Dal.ProductDAO;
 import Model.Earphone;
 import Model.Products;
+import com.oracle.wls.shaded.org.apache.bcel.generic.DDIV;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ManagerUpdateProductController extends HttpServlet {
 
@@ -25,6 +30,13 @@ public class ManagerUpdateProductController extends HttpServlet {
             req.setAttribute("earphone",
                     daop.getEarphoneByProductID(p.getProductID()));
         }
+        System.out.println("p.getDate(): " + p.getDate());
+        SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            p.setDate(new SimpleDateFormat("yyyy-MM-dd").format(sf.parse(p.getDate())));
+        } catch (ParseException ex) {
+            Logger.getLogger(ManagerUpdateProductController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         CategoriesDAO ca = new CategoriesDAO();
         req.setAttribute("categoriesList", ca.GetCategoriesList());
         req.setAttribute("o", p);
@@ -37,6 +49,7 @@ public class ManagerUpdateProductController extends HttpServlet {
         String id = req.getParameter("pid");
         CategoriesDAO ca = new CategoriesDAO();
         req.setAttribute("categoriesList", ca.GetCategoriesList());
+        Products p = dao.getProductsByID(id);
 
         String Cid = req.getParameter("category");
         String Name = req.getParameter("name");
@@ -48,9 +61,18 @@ public class ManagerUpdateProductController extends HttpServlet {
         String Quantity = req.getParameter("quantity");
         String Status = req.getParameter("status");
         String date = req.getParameter("date");
-//        dao.updateProduct(Cid, Name, Desciption, Image, Image2, Image3, Quantity, Status, Price, date, id);
-        Products p = dao.getProductsByID(id);
-        req.setAttribute("o", p);
+
+        p.setProductID(id);
+        p.setProduct_categoryID(Cid);
+        p.setName(Name);
+        p.setDesciption(Desciption);
+        p.setPicture(Image1);
+        p.setPicture2(Image2);
+        p.setPicture3(Image3);
+        p.setQuantity(Quantity);
+        p.setPrice(Price);
+        p.setStatus(Status);
+        p.setDate(date);
 
         Earphone e = new Earphone();
         String type = req.getParameter("type");
@@ -75,56 +97,18 @@ public class ManagerUpdateProductController extends HttpServlet {
             e.setEarphone_ProductID(id);
             daop.updateEarphone(e);
         }
-        if ("1".equals(p.getCategories().getCategoryID())) {
-            req.setAttribute("earphone",
-                    daop.getEarphoneByProductID(p.getProductID()));
+
+        req.setAttribute("o", p);
+        req.setAttribute("earphone", e);
+        if (Status.equals("0")) {
+            p.setQuantity("0");
+            dao.updateProduct(p);
+            req.setAttribute("successText", "Update Successful!!!");
+        } else if (Integer.parseInt(Quantity) == 0) {
+            p.setStatus("0");
+            dao.updateProduct(p);
+            req.setAttribute("successText", "Update Successful!!!");
         }
-        req.setAttribute("name", Name);
-        req.setAttribute("price", Price.replace(",", ""));
-        req.setAttribute("image", Image1);
-        req.setAttribute("image2", Image2);
-        req.setAttribute("image3", Image3);
-        req.setAttribute("category", Cid);
-        req.setAttribute("mota", Desciption);
-        req.setAttribute("quantity", Quantity);
-        req.setAttribute("status", Status);
-        req.setAttribute("date", date);
-        req.setAttribute("type", type);
-        req.setAttribute("frequency", frequency);
-        req.setAttribute("sensitive", sensitive);
-        req.setAttribute("impedance", impedance);
-        req.setAttribute("meterial", meterial);
-        req.setAttribute("size", size);
-        req.setAttribute("battery", battery);
-        req.setAttribute("connection_distance", connection_distance);
-        req.setAttribute("wire_length", wire_length);
-
-        if (Float.parseFloat(Price) > 200000 && Integer.parseInt(Quantity) > 1
-                && (Image1.endsWith(".png") || Image1.endsWith(".jpg"))
-                && (Image2.endsWith(".png") || Image2.endsWith(".jpg"))
-                && (Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
-            dao.updateProduct(Cid, Name, Desciption, Image1, Image2, Image3, Price, Quantity, Status, date, id);
-
-            req.setAttribute("successText", "Add Successful!!!");
-        } else {
-            if (Float.parseFloat(Price) < 200000) {
-                req.setAttribute("PriceErr", "Price must Enter at least 200,000");
-            }
-            if (Integer.parseInt(Quantity) < 1) {
-                req.setAttribute("QuantityErr", "Quantiy must enter at leat 1");
-            }
-            if (!(Image1.endsWith(".png") || Image1.endsWith(".jpg"))) {
-                req.setAttribute("Image1Err", "Must enter file with .png or .jpg");
-            }
-            if (!(Image2.endsWith(".png") || Image2.endsWith(".jpg"))) {
-                req.setAttribute("Image2Err", "Must enter file with .png or .jpg");
-            }
-            if (!(Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
-                req.setAttribute("Image3Err", "Must enter file with .png or .jpg");
-            }
-
-        }
-        req.setAttribute("successText", "Update Successful!!!");
         req.getRequestDispatcher("editproduct.jsp").forward(req, resp);
 
     }

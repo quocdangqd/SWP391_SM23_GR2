@@ -96,11 +96,11 @@
                 display: none;
             }
 
-            <%--<c:if test="${p==null}">--%>
-                /*.earphone {*/
-                    /*display: none;*/
-                /*}*/
-            <%--</c:if>--%>
+            <c:if test="${p==null}">
+                .earphone {
+                    display: none;
+                }
+            </c:if>
             #thumbbox {
                 position: relative;
                 width: 100%;
@@ -200,16 +200,16 @@
                             <form class="row" action="ManagerAddProductController" method="post">
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Tên sản phẩm</label>
-                                    <input name="name" class="form-control" type="text" value="${name}" required="" placeholder="Nhập tên sản phẩm">
+                                    <input name="name" class="form-control" type="text" value="${o.getName()}" required="" placeholder="Nhập tên sản phẩm">
                                 </div>
                                 <div class="form-group  col-md-4">
                                     <label class="control-label">Số lượng</label>
-                                    <input class="form-control" type="number" name="quantity" value="${quantity}" required="" placeholder="Nhập số lượng">
+                                    <input class="form-control" type="number" name="quantity" value="${o.getQuantity()}" required="" placeholder="Nhập số lượng">
                                     <label class="control-label">${QuantityErr}</label>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Giá bán</label>
-                                    <input class="form-control" type="number" name='price' value="${price}" required="" placeholder="Nhập giá">
+                                    <input class="form-control" type="number" name='price' value="${o.getPrice()}" required="" placeholder="Nhập giá">
                                     <label class="control-label">${PriceErr}</label>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -223,25 +223,25 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Tình trạng</label>
-                                    <input name="status" value="${status}" class="form-control" type="text" readonly="" placeholder="Còn hàng">  
+                                    <input name="status" value="Còn hàng" class="form-control" type="text" readonly="" placeholder="Còn hàng">  
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="exampleSelect1" class="control-label">Ngày nhập</label>
-                                    <input name="date" value="${date}" class="form-control" type="date">  
+                                    <input name="date" value="${o.getDate()}" class="form-control" type="date">  
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 1</label>
-                                    <input value="${image}" name="image" class="form-control" type="text" required="" placeholder="Nhập link ảnh .jpg hoặc .png">
+                                    <input value="${o.getPicture()}" name="image" class="form-control" type="text" required="" placeholder="Nhập link ảnh .jpg hoặc .png">
                                     <label class="control-label">${Image1Err}</label>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 2</label>
-                                    <input value="${image2}" name="image2" class="form-control" type="text">
+                                    <input value="${o.getPicture2()}" name="image2" class="form-control" type="text">
                                     <label class="control-label">${Image2Err}</label>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="control-label">Ảnh 3 </label>
-                                    <input value="${image3}" name="image3" class="form-control" type="text">
+                                    <input value="${o.getPicture3()}" name="image3" class="form-control" type="text">
                                     <label class="control-label">${Image3Err}</label>
                                 </div>
 
@@ -292,7 +292,7 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Mô tả sản phẩm</label>
-                                    <input class="form-control"  name="mota" value="${mota}" required="" placeholder="Nhập mô tả">
+                                    <input class="form-control"  name="mota" value="${o.getDesciption()}" required="" placeholder="Nhập mô tả">
                                     <script>CKEDITOR.replace('mota');</script>
                                 </div>
 

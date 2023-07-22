@@ -196,7 +196,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Mã sản phẩm </label>
-                                        <input class="form-control" type="text" value="${o.getProductID()}" name="pid" readonly="">
+                                        <input class="form-control" type="text" value="${o.getProductID()}"  name="pid" readonly="">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="control-label">Tên sản phẩm</label>
@@ -214,15 +214,10 @@
                                     </div>
                                     <div class="form-group col-md-6 ">
                                         <label for="exampleSelect1" class="control-label">Tình trạng sản phẩm</label>
-                                        <select class="form-control" id="exampleSelect1" name="status" value="${o.getStatus()}">
-                                            <c:if test="${o.getStatus()=='0'}">
-                                                <option value="1" >Còn hàng</option>
-                                                <option value="0" selected="">Hết hàng</option>
-                                            </c:if>
-                                            <c:if test="${o.getStatus()=='1'}">
-                                                <option value="1" selected="">Còn hàng</option>
-                                                <option value="0">Hết hàng</option>
-                                            </c:if>
+                                        <select class="form-control" id="exampleSelect1" name="status">
+
+                                            <option value="0" ${o.getStatus().equals("0") ? "selected" : "" }>Hết hàng</option>
+                                            <option value="1" ${o.getStatus().equals("1") ? "selected" : "" }>Còn hàng</option>
                                         </select>
                                     </div>
 
@@ -251,7 +246,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleSelect1" class="control-label">Ngày nhập</label>
-                                        <input name="date" value="${date}" class="form-control" type="date">  
+                                        <input name="date" value="${o.getDate()}" class="form-control" type="date">  
                                     </div>
                                     <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
                                         <label class="control-label">Loại</label>
@@ -290,12 +285,12 @@
 
                                     <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
                                         <label class="control-label">Khoảng cách kết nối </label>
-                                        <input value="${earphone.connection_distance}" name="connection distance" class="form-control" type="text">
+                                        <input value="${earphone.connection_distance}" name="connection_distance" class="form-control" type="text">
                                     </div> 
 
                                     <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
                                         <label class="control-label">Độ dài dây</label>
-                                        <input value="${earphone.wire_length}" name="wire length" class="form-control" type="text">
+                                        <input value="${earphone.wire_length}" name="wire_length" class="form-control" type="text">
 
                                     </div>
                                     <div class="form-group col-md-12">
