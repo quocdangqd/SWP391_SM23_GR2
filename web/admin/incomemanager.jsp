@@ -29,17 +29,17 @@
                                             aria-label="Hide Sidebar"></a>
             <!-- Navbar Right Menu-->
             <header class="app-header">
-            <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
-                                            aria-label="Hide Sidebar"></a>
-            <!-- Navbar Right Menu-->
-            <ul class="app-nav">
+                <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
+                                                aria-label="Hide Sidebar"></a>
+                <!-- Navbar Right Menu-->
+                <ul class="app-nav">
 
-                <!-- User Menu-->
-                <li><a class="app-nav__item" href="../view/homepage"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                    <!-- User Menu-->
+                    <li><a class="app-nav__item" href="../view/homepage"><i class='bx bx-log-out bx-rotate-180'></i> </a>
 
-                </li>
-            </ul>
-        </header>
+                    </li>
+                </ul>
+            </header>
         </header>
         <!-- Sidebar menu-->
         <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
@@ -129,6 +129,24 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-6">
+                    <div class="tile">
+                        <h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tile">
+                        <h3 class="tile-title">THỐNG KÊ DOANH THU</h3>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            <div class="row">
                 <div class="col-md-12">
                     <div class="tile">
                         <div>
@@ -180,6 +198,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:if test="${empty listun}">
+                                        <tr>
+                                            <td colspan="4" style="text-align: center;">Không có sản phẩm hết</td>
+                                        </tr>
+                                    </c:if>
                                     <c:forEach items="${listun}" var="l">
                                         <tr>
                                             <td>${l.getProductID()}</td>
@@ -197,24 +220,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="tile">
-                        <h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="tile">
-                        <h3 class="tile-title">THỐNG KÊ DOANH THU</h3>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>  
         </main>
 
         <!-- Essential javascripts for application to work-->
