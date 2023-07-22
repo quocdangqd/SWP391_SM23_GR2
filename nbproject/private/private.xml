@@ -3,62 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/CartDAO.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/orderList.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/ProductListController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/userProfile.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/FeedbackDAO.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/customer/userProfile.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/listProduct.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/customer/header.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/ProductDetailController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/homepage.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Impl/Config.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/TrackingController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Model/Feedback.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Model/Earphone.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Model/DetailOrder.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/CompareProductController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/CheckoutController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/OrderListController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/ordermanager.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/auth/forgetpassword.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/OrderDAO.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Account/ChangePasswordController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/HomePageController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/header.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Account/RegisterController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Impl/SendMail.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/auth/login.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Model/Cart.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/CustomerController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/SaleCodeDAO.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Impl/LoginWithGoogle.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/accountbanned.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/compareProduct.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/productDetail.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/addorder.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Model/Orderdetail.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/ConnectMySQL.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/productmanager.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/usermanager.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Account/LoginController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/tracking.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/OrderdetailDAO.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/incomemanager.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Impl/Constants.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/js/plugins/jquery.dataTables.min.js</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/CartController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/view/beforecompare.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Account/ForgetPasswordController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/auth/changepassword.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/View/OrderdetailController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Controller/Manager/ManagerHomepageController.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/addproduct.jsp</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Dal/CustomerDAO.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/src/java/Impl/LoginAndRegisterValidation.java</file>
-            <file>file:/C:/Users/PC/dcm/Documents/GitHub/SWP391_SM23_GR2/web/admin/adduser.jsp</file>
+            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Dal/ConnectMySQL.java</file>
+            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/web/manager/editproduct.jsp</file>
+            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Controller/Manager/ManagerUpdateProductController.java</file>
+            <file>file:/D:/Ky5_SM23/SWP391/SWP391_SM23_GR2/src/java/Dal/ManagerDAO.java</file>
         </group>
     </open-files>
 </project-private>
