@@ -96,11 +96,11 @@
                 display: none;
             }
 
-            <%--<c:if test="${p==null}">--%>
-                /*.earphone {*/
-                    /*display: none;*/
-                /*}*/
-            <%--</c:if>--%>
+            <c:if test="${p==null}">
+                .earphone {
+                    display: none;
+                }
+            </c:if>
             #thumbbox {
                 position: relative;
                 width: 100%;
