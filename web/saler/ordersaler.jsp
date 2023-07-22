@@ -80,7 +80,7 @@
                                 <tbody>
                                     <c:forEach items="${listO}" var="o">
                                         <tr>
-                                            <td><a style="color: #ff6666" href="ManagerOrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>                                           
+                                            <td><a>${o.getOrderID()}</a></td>                                           
                                             <td>${o.getName_user()}</td>
                                             <td>${o.getPhone_number()}</td>
                                             <td>${o.getAddress()}</td>

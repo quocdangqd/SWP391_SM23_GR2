@@ -14,7 +14,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/home.css">
-
+        
         <!--popup-->
         <link
             rel="stylesheet"

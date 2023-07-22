@@ -56,7 +56,7 @@ public class EditUserController extends HttpServlet {
                 AccountDao accountDao = new AccountDao();
                 accountDao.AddUserByAdmin(user);
 //                System.out.println(user);
-                request.getRequestDispatcher("ManagerUserController").forward(request, response);
+               response.sendRedirect("ManagerUserController");
                 return;
             } else if (request.getParameter("Submit") != null) {
                 userID = request.getParameter("userID");
@@ -75,7 +75,8 @@ public class EditUserController extends HttpServlet {
                 accountDao.EditUserByAdmin(user);
                 request.setAttribute("user", accountDao.GetUserByUserID(userID));
                 request.setAttribute("message", "Lưu thay đổi thành công!");
-                request.getRequestDispatcher("edituser.jsp").forward(request, response);
+               // request.getRequestDispatcher("edituser.jsp").forward(request, response);
+                response.sendRedirect("ManagerUserController");
                 return;
             } else {
 
@@ -89,9 +90,11 @@ public class EditUserController extends HttpServlet {
                 }
 //                request.setAttribute("user", usertemp);
                 session.setAttribute("user", usertemp);
+                  request.getRequestDispatcher("edituser.jsp").forward(request, response);
             }
 
-            request.getRequestDispatcher("edituser.jsp").forward(request, response);
+//            request.getRequestDispatcher("edituser.jsp").forward(request, response);
+           //response.sendRedirect("");
         } catch (Exception e) {
             System.out.println(e);
         }
