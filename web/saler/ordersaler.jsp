@@ -5,7 +5,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Danh sách khách hàng</title>
+        <title>Danh sách đơn hàng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,17 +64,16 @@
                 <div class="col-md-12">
                     <div class="tile">
                         <div class="tile-body">
-                            <h3 class="tile-title">Khách hàng mới</h3>
                             <h4 class="tile-title">Nhân viên: ${sessionScope.user.getName()} </h4>
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                     <tr>
                                         <th>Mã đơn hàng</th>
                                         <th>Tên khách hàng</th>
-                                        <th>So Dien Thoai</th>
-                                        <th>Dia Chi</th>                                               
+                                        <th>Số điện thoại</th>
+                                        <th>Địa chỉ</th>                                               
                                         <th>Tổng tiền</th>
-                                        <th>Ngay dat hang</th>
+                                        <th>Ngày đặt hàng</th>
                                         <th>Trạng thái đơn hàng</th>
                                     </tr>
                                 </thead>
@@ -87,7 +86,18 @@
                                             <td>${o.getAddress()}</td>
                                             <td>${o.getPrice_order()}</td>
                                             <td>${o.getDate()}</td>
-                                            <td>${o.getStatus()}</td>
+                                             <td>
+                                                <form action="SalerOrderController" method="post">
+                                                    <input type="hidden" name="orderId" value="${o.getOrderID()}">
+                                                    <select name="Status">
+                                                        <option value="Pending" ${ o.getStatus().equals("Pending") ? "selected" : "" }>Pending</option>
+                                                        <option value="Shipping" ${o.getStatus().equals("Shipping") ? "selected" : "" }>Shipping</option>
+                                                        <option value="Completed" ${o.getStatus().equals("Completed") ? "selected" : "" }>Completed</option>
+                                                        <option value="Cancelled" ${ o.getStatus().equals("Cancelled") ? "selected" : "" }>Cancelled</option>
+                                                    </select>
+                                                    <input style="background-color: #99ffff; border: 2px solid #00ffff; border-radius: 10px;color: blue;" type="submit" value="Cập nhật">
+                                                </form>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

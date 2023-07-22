@@ -4,7 +4,6 @@ import Model.DetailOrder;
 import Model.Feedback;
 import Model.Order;
 import Model.Products;
-import Model.User;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -117,10 +116,8 @@ public class ManagerDAO extends ConnectMySQL {
 
     public void addNewProduct(String cid, String pname, String desciption, String img1, String img2, String img3, String price, String quantity, String status, String date) {
         try {
-            String sql = "insert into swp.product (product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, status, date)\n"
+            String sql = "insert into swp.product (product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, sale, date)\n"
                     + "values (?,?,?,?,?,?,?,?,?,?);";
-            decimalFormat.applyPattern("#,###");
-            dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             pstm = connection.prepareStatement(sql);
             pstm.setInt(1, Integer.parseInt(cid));
             pstm.setString(2, pname);
@@ -142,28 +139,52 @@ public class ManagerDAO extends ConnectMySQL {
         }
     }
 
-    public void updateProduct(String cid, String pname, String desciption, String img1, String img2, String img3, String quantity, String status, String price, String date, String pid) {
+    public void addNewProduct(Products p) {
         try {
-            String sql = "UPDATE product set product_categoryID=?, name=?, desciption=?,picture=?,picture2=?,picture3=?,\n"
-                    + "price=?,quantity=?, status=?, date=? where ProductID = ?;";
+            String sql = "INSERT INTO swp.`product` "
+                    + "(product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, status,date) "
+                    + "VALUES\n"
+                    + " (?, ?, ?, ?, ?, \n"
+                    + "?, ?, ?, ?, ?);";
             pstm = connection.prepareStatement(sql);
-            pstm.setInt(1, Integer.parseInt(cid));
-            pstm.setString(2, pname);
-            pstm.setString(3, desciption);
-            pstm.setString(4, img1);
-            pstm.setString(5, img2);
-            pstm.setString(6, img3);
-            price = price.replace(",", "");
-            pstm.setFloat(7, Float.parseFloat(price));
-            pstm.setInt(8, Integer.parseInt(quantity));
-            pstm.setInt(9, Integer.parseInt(status));
-            Date date1 = Date.valueOf((date));
-            pstm.setDate(10, (date1));
-            pstm.setInt(11, Integer.parseInt(pid));
+            pstm.setInt(1, Integer.parseInt(p.getProduct_categoryID()));
+            pstm.setString(2, p.getName());
+            pstm.setString(3, p.getDesciption());
+            pstm.setString(4, p.getPicture());
+            pstm.setString(5, p.getPicture2());
+            pstm.setString(6, p.getPicture3());
+            pstm.setFloat(7, Float.parseFloat(p.getPrice().replace(",", "")));
+            pstm.setInt(8, Integer.parseInt(p.getQuantity()));
+            pstm.setBoolean(9, p.getStatus().equals("1"));
+            Date date = Date.valueOf(p.getDate());
+            pstm.setDate(10, date);
             pstm.executeUpdate();
         } catch (Exception e) {
-            System.out.println("updateProduct: " + e.getMessage());
-
+                        System.out.println("addNewProduct: " + e.getMessage());
+        }
+    }
+    
+    public void updateProduct(Products p) {
+        try {
+            String sql = "UPDATE product\n"
+                    + "SET product_categoryID=?,name=?,desciption=?,picture=?,picture2=?,picture3=?,price=?,quantity=?,status=?,date=?\n"
+                    + "WHERE productID=?;";
+            pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, Integer.parseInt(p.getProduct_categoryID()));
+            pstm.setString(2, p.getName());
+            pstm.setString(3, p.getDesciption());
+            pstm.setString(4, p.getPicture());
+            pstm.setString(5, p.getPicture2());
+            pstm.setString(6, p.getPicture3());
+            pstm.setFloat(7, Float.parseFloat(p.getPrice().replace(",", "")));
+            pstm.setInt(8, Integer.parseInt(p.getQuantity()));
+//            pstm.setBoolean(9, p.getStatus().equals("1"));
+            pstm.setInt(9, Integer.parseInt(p.getStatus()));
+            pstm.setDate(10, Date.valueOf(p.getDate()));
+            pstm.setString(11, p.getProductID());
+            pstm.execute();
+        } catch (Exception ex) {
+            System.out.println("updateProduct: " + ex);
         }
     }
 
@@ -342,6 +363,37 @@ public class ManagerDAO extends ConnectMySQL {
         return count;
     }
 
+    public int countProductStock() {
+        int count = 0;
+        try {
+            String sqlSelectString = "select count(ProductID) from swp.product where quantity<5;";
+            pstm = connection.prepareStatement(sqlSelectString);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println("countProductStock: " + e);
+        }
+        return count;
+    }
+
+    public int countOrderCancelled() {
+        int count = 0;
+        String sqlSelect = "SELECT COUNT(*) FROM swp.order\n"
+                + "where status = 'Cancelled'";
+        try {
+            pstm = connection.prepareStatement(sqlSelect);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return count;
+    }
+
     public ArrayList<Order> getNewOrder() {
         order = new ArrayList<>();
         String sql = "select o.*,u.name,od.price from swp.order o, swp.orderdetail od, swp.user u\n"
@@ -373,12 +425,12 @@ public class ManagerDAO extends ConnectMySQL {
 
         System.out.println(dao.countProductByProductID());
         System.out.println(dao.getAllProduct().get(1));
-        dao.updateProduct("1", "Corsair HS70", " Corsair HS70 Pro Wireless Carbon là dòng tai nghe máy tính có phần đệm tai mềm mại, dày dặn, độ sâu lớn, trùm kín tai hạn chế âm thanh từ bên ngoài lọt vào, cùng với độ bền cao, độ đàn hồi lớn ít bị biến dạng và khó rách. ",
-                "https://product.hstatic.net/200000722513/product/thumbtainghe_43854b38b58545be8683a4e1cbcf1d67_1898e6f48b834e80a6249d87d9839073_master.png",
-                "https://product.hstatic.net/200000722513/product/he-corsair-hs70-pro-wireless-carbon-2_3855186e6a3e4f74bf4f15d9dc36990d_c3bff6691ab24c7cbb963acfbe1e4cb0_master.jpg",
-                "https://product.hstatic.net/200000722513/product/he-corsair-hs70-pro-wireless-carbon-3_ba19343bfeb746f5b9c4e4f486971ea2_fee978ad3a344dccbd22e56923d397fb_master.jpg",
-                "101", "1", "1,790,000", "2023-07-11", "1");
-        System.out.println(dao.getProductsByID("1"));
+//        dao.updateProduct("1", "Corsair HS70", " Corsair HS70 Pro Wireless Carbon là dòng tai nghe máy tính có phần đệm tai mềm mại, dày dặn, độ sâu lớn, trùm kín tai hạn chế âm thanh từ bên ngoài lọt vào, cùng với độ bền cao, độ đàn hồi lớn ít bị biến dạng và khó rách. ",
+//                "https://product.hstatic.net/200000722513/product/thumbtainghe_43854b38b58545be8683a4e1cbcf1d67_1898e6f48b834e80a6249d87d9839073_master.png",
+//                "https://product.hstatic.net/200000722513/product/he-corsair-hs70-pro-wireless-carbon-2_3855186e6a3e4f74bf4f15d9dc36990d_c3bff6691ab24c7cbb963acfbe1e4cb0_master.jpg",
+//                "https://product.hstatic.net/200000722513/product/he-corsair-hs70-pro-wireless-carbon-3_ba19343bfeb746f5b9c4e4f486971ea2_fee978ad3a344dccbd22e56923d397fb_master.jpg",
+//                "101", "1", "1,790,000", "2023-07-11", "1");
+//        System.out.println(dao.getProductsByID("1"));
 
     }
 }

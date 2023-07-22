@@ -122,29 +122,27 @@
                 <div class="col-md-12">
                     <div class="tile">
                         <div class="tile-body">
-<!--                            <div class="row element-button">
-                                <div class="col-sm-2">
-                                    <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất file</a>
-                                </div>
-                            </div>-->
+                            <!--                            <div class="row element-button">
+                                                            <div class="col-sm-2">
+                                                                <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất file</a>
+                                                            </div>
+                                                        </div>-->
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                     <tr>
-                                        <th width="10"><input type="checkbox" id="all"></th>
                                         <th>Mã đơn hàng</th>
                                         <th>Khách hàng</th>
                                         <th>Tư vấn viên</th>
                                         <th>Ngày tạo đơn</th>
                                         <th>Tổng tiền</th>
-                                        <th>Trạng thái đơn hàng</th>
-<!--                                        <th>Tính năng</th>-->
+                                        <th style="width: 20%">Trạng thái đơn hàng</th>
+                                        <!--                                        <th>Tính năng</th>-->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${listO}" var="o">
                                         <tr>
-                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                            <td><a style="color: #ff6666" href="ManagerOrderDetailController?id=${o.getOrderID()}">${o.getOrderID()}</a></td>
+                                            <td style="width:8%;"><a title="Đơn hàng chi tiết">${o.getOrderID()}</a></td>
                                             <td>${o.getName_user()}</td>
                                             <td>${o.getOrder_salecodeID()}</td>
                                             <td>${o.getDate()}</td>
@@ -159,15 +157,16 @@
                                                         <option value="Completed" ${o.getStatus().equals("Completed") ? "selected" : "" }>Completed</option>
                                                         <option value="Cancelled" ${ o.getStatus().equals("Cancelled") ? "selected" : "" }>Cancelled</option>
                                                     </select>
-                                                    <input type="submit" value="Update">
+                                                    <input style="background-color: #99ffff; border: 2px solid #00ffff; border-radius: 10px;color: blue;" type="submit" value="Cập nhật">
+                                                    <a href="OrderDetailController?id=${o.getOrderID()}" style="background-color: #ffff99; border: 2px solid #ccff36; border-radius: 10px;color: blue; padding: 1px 6px 1px 6px;" type="submit" value="Chi tiết"> Chi tiết</a>
                                                 </form>
                                             </td>
                                             <!--<td>${o.getNote()}</td>-->
-<!--                                            <td>
-                                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </td>-->
+                                            <!--                                            <td>
+                                                                                            <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                                                                                    onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
+                                                                                            </button>
+                                                                                        </td>-->
                                         </tr>
                                     </c:forEach>
                                 </tbody>

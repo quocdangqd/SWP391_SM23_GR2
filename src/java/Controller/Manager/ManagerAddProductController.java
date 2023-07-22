@@ -4,6 +4,7 @@ import Dal.CategoriesDAO;
 import Dal.ManagerDAO;
 import Dal.ProductDAO;
 import Model.Earphone;
+import Model.Products;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -40,7 +41,20 @@ public class ManagerAddProductController extends HttpServlet {
         String date = req.getParameter("date");
 //        dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Price, Quantity, Status, date);
 //        req.setAttribute("successText", "Add Successful!!!");
+        Products p = new Products();
 
+        p.setProduct_categoryID(Cid);
+        p.setName(Name);
+        p.setDesciption(Desciption);
+        p.setPicture(Image1);
+        p.setPicture2(Image2);
+        p.setPicture3(Image3);
+        p.setQuantity(Quantity);
+        p.setPrice(Price);
+        p.setStatus("1");
+        p.setDate(date);
+        
+        
         Earphone e = new Earphone();
         String type = req.getParameter("type");
         String frequency = req.getParameter("frequency");
@@ -64,31 +78,32 @@ public class ManagerAddProductController extends HttpServlet {
             e.setEarphone_ProductID(daop.getLastId() + "");
             daop.addNewEarphone(e);
         }
-        req.setAttribute("name", Name);
-        req.setAttribute("price", Price);
-        req.setAttribute("image", Image1);
-        req.setAttribute("image2", Image2);
-        req.setAttribute("image3", Image3);
-        req.setAttribute("category", Cid);
-        req.setAttribute("mota", Desciption);
-        req.setAttribute("quantity", Quantity);
-        req.setAttribute("status", Status);
-        req.setAttribute("date", date);
-        req.setAttribute("type", type);
-        req.setAttribute("frequency", frequency);
-        req.setAttribute("sensitive", sensitive);
-        req.setAttribute("impedance", impedance);
-        req.setAttribute("meterial", meterial);
-        req.setAttribute("size", size);
-        req.setAttribute("battery", battery);
-        req.setAttribute("connection_distance", connection_distance);
-        req.setAttribute("wire_length", wire_length);
+//        req.setAttribute("name", Name);
+//        req.setAttribute("price", Price);
+//        req.setAttribute("image", Image1);
+//        req.setAttribute("image2", Image2);
+//        req.setAttribute("image3", Image3);
+//        req.setAttribute("category", Cid);
+//        req.setAttribute("mota", Desciption);
+//        req.setAttribute("quantity", Quantity);
+//        req.setAttribute("status", Status);
+//        req.setAttribute("date", date);
+//        req.setAttribute("type", type);
+//        req.setAttribute("frequency", frequency);
+//        req.setAttribute("sensitive", sensitive);
+//        req.setAttribute("impedance", impedance);
+//        req.setAttribute("meterial", meterial);
+//        req.setAttribute("size", size);
+//        req.setAttribute("battery", battery);
+//        req.setAttribute("connection_distance", connection_distance);
+//        req.setAttribute("wire_length", wire_length);
 
         if (Float.parseFloat(Price) > 200000 && Integer.parseInt(Quantity) > 1
                 && (Image1.endsWith(".png") || Image1.endsWith(".jpg"))
                 && (Image2.endsWith(".png") || Image2.endsWith(".jpg"))
                 && (Image3.endsWith(".png") || Image3.endsWith(".jpg"))) {
-            dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Price, Quantity, Status, date);
+//            dao.addNewProduct(Cid, Name, Desciption, Image1, Image2, Image3, Price, Quantity, "1", date);
+        dao.addNewProduct(p);
 
             req.setAttribute("successText", "Add Successful!!!");
         } else {
@@ -109,6 +124,9 @@ public class ManagerAddProductController extends HttpServlet {
             }
 
         }
+        req.setAttribute("o", p);
+        req.setAttribute("earphone", e);
+
         req.getRequestDispatcher("addproduct.jsp").forward(req, resp);
 
     }

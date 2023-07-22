@@ -241,7 +241,7 @@
                                     <select class="form-control" id="exampleSelect1" name="status">
                                         <%--<c:if test="${user.getStatus()=='1'}">--%>
                                             <option value="1"selected="">Tài khoản mở</option>
-                                            <option value="0">Tài khoản Khóa</option>
+                                            <option value="0">Tài khoản khóa</option>
                                         <%--</c:if>--%>
                                         <%--<c:if test="${user.getStatus()=='0'}">--%>
 <!--                                            <option value="1">Tài khoản mở</option>
