@@ -246,7 +246,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="exampleSelect1" class="control-label">Ngày nhập</label>
-                                        <input name="date" value="${o.getDate()}" class="form-control" type="text">  
+                                        <input name="date" value="${o.getDate()}" class="form-control" type="date">  
                                     </div>
                                     <div class="form-group col-md-3 earphone" ${o.getCategories().getCategoryID()=='1'?'style="display: block"':'style="display: none"'}>
                                         <label class="control-label">Loại</label>

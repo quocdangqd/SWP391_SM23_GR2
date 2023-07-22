@@ -169,6 +169,17 @@ public class ManagerDAO extends ConnectMySQL {
             String sql = "UPDATE product\n"
                     + "SET product_categoryID=?,name=?,desciption=?,picture=?,picture2=?,picture3=?,price=?,quantity=?,status=?,date=?\n"
                     + "WHERE productID=?;";
+            System.out.println("p.getProduct_categoryID()"+p.getProduct_categoryID());
+            System.out.println("p.getName()"+p.getName());
+            System.out.println("p.getDesciption()"+p.getProduct_categoryID());
+            System.out.println("p.getPicture()"+p.getPicture());
+            System.out.println("p.getPicture2()"+p.getPicture2());
+            System.out.println("p.getPicture3()"+p.getPicture3());
+            System.out.println("p.getPrice()"+p.getPrice());
+            System.out.println("p.getQuantity()"+p.getQuantity());
+            System.out.println("p.getStatus()"+p.getStatus());
+            System.out.println("p.getDate()"+p.getDate());
+            System.out.println("p.getProductID()"+p.getProductID());
             pstm = connection.prepareStatement(sql);
             pstm.setInt(1, Integer.parseInt(p.getProduct_categoryID()));
             pstm.setString(2, p.getName());
@@ -182,6 +193,7 @@ public class ManagerDAO extends ConnectMySQL {
             pstm.setInt(9, Integer.parseInt(p.getStatus()));
             pstm.setDate(10, Date.valueOf(p.getDate()));
             pstm.setString(11, p.getProductID());
+            
             pstm.execute();
         } catch (Exception ex) {
             System.out.println("updateProduct: " + ex);

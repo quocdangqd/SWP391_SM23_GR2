@@ -5,11 +5,16 @@ import Dal.ManagerDAO;
 import Dal.ProductDAO;
 import Model.Earphone;
 import Model.Products;
+import com.oracle.wls.shaded.org.apache.bcel.generic.DDIV;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ManagerUpdateProductController extends HttpServlet {
 
@@ -24,6 +29,13 @@ public class ManagerUpdateProductController extends HttpServlet {
         if ("1".equals(p.getCategories().getCategoryID())) {
             req.setAttribute("earphone",
                     daop.getEarphoneByProductID(p.getProductID()));
+        }
+        System.out.println("p.getDate(): "+p.getDate());
+        SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            p.setDate(new SimpleDateFormat("yyyy-MM-dd").format(sf.parse(p.getDate())));
+        } catch (ParseException ex) {
+            Logger.getLogger(ManagerUpdateProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
         CategoriesDAO ca = new CategoriesDAO();
         req.setAttribute("categoriesList", ca.GetCategoriesList());
