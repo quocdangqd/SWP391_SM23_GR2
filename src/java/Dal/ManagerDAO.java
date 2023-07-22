@@ -118,8 +118,6 @@ public class ManagerDAO extends ConnectMySQL {
         try {
             String sql = "insert into swp.product (product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, sale, date)\n"
                     + "values (?,?,?,?,?,?,?,?,?,?);";
-            decimalFormat.applyPattern("#,###");
-            dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             pstm = connection.prepareStatement(sql);
             pstm.setInt(1, Integer.parseInt(cid));
             pstm.setString(2, pname);
@@ -141,6 +139,31 @@ public class ManagerDAO extends ConnectMySQL {
         }
     }
 
+    public void addNewProduct(Products p) {
+        try {
+            String sql = "INSERT INTO swp.`product` "
+                    + "(product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, status,date) "
+                    + "VALUES\n"
+                    + " (?, ?, ?, ?, ?, \n"
+                    + "?, ?, ?, ?, ?);";
+            pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, Integer.parseInt(p.getProduct_categoryID()));
+            pstm.setString(2, p.getName());
+            pstm.setString(3, p.getDesciption());
+            pstm.setString(4, p.getPicture());
+            pstm.setString(5, p.getPicture2());
+            pstm.setString(6, p.getPicture3());
+            pstm.setFloat(7, Float.parseFloat(p.getPrice().replace(",", "")));
+            pstm.setInt(8, Integer.parseInt(p.getQuantity()));
+            pstm.setBoolean(9, p.getStatus().equals("1"));
+            Date date = Date.valueOf(p.getDate());
+            pstm.setDate(10, date);
+            pstm.executeUpdate();
+        } catch (Exception e) {
+                        System.out.println("addNewProduct: " + e.getMessage());
+        }
+    }
+    
     public void updateProduct(Products p) {
         try {
             String sql = "UPDATE product\n"
@@ -159,9 +182,9 @@ public class ManagerDAO extends ConnectMySQL {
             pstm.setInt(9, Integer.parseInt(p.getStatus()));
             pstm.setDate(10, Date.valueOf(p.getDate()));
             pstm.setString(11, p.getProductID());
-            pstm.executeUpdate();
+            pstm.execute();
         } catch (Exception ex) {
-            System.out.println("updateProduct: " + ex.getMessage());
+            System.out.println("updateProduct: " + ex);
         }
     }
 
