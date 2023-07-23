@@ -280,7 +280,7 @@ public class AccountDao extends ConnectMySQL {
             pstm.setString(8, user.getPhone_number());
             pstm.setString(9, user.getEmail());
             pstm.setInt(10, Integer.parseInt(user.getUserID()));
-            pstm.execute();
+            pstm.executeUpdate();
             return true;
         } catch (Exception e) {
             System.out.println("EditUserByAdmin: " + e);

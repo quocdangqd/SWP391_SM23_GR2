@@ -79,8 +79,8 @@ public class EditUserController extends HttpServlet {
                         break;
                     }
                 }
-//                request.setAttribute("user", usertemp);
-                session.setAttribute("user", usertemp);
+                request.setAttribute("user", usertemp);
+//                session.setAttribute("user", usertemp);
                   request.getRequestDispatcher("edituser.jsp").forward(request, response);
             }
 
