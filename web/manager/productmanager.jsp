@@ -144,7 +144,6 @@
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                     <tr>
-                                        <th width="10"><input type="checkbox" id="all"></th>
                                         <th>Mã sản phẩm</th>
                                         <th>Danh mục</th>
                                         <th>Tên sản phẩm</th>
@@ -160,7 +159,6 @@
                                 <tbody>
                                     <c:forEach items="${listP}" var="o">
                                         <tr>
-                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
                                             <td>${o.getProductID()}</td>
                                             <td>${listC.get(o.getProduct_categoryID()-1).getName()}</td>
                                             <td>${o.getName()}</td>
@@ -171,7 +169,9 @@
                                             </td>
                                             <td>${o.getQuantity()}</td>
                                             <td>${o.getPrice()}</td>
-                                            <td>${o.getStatus()}</td>
+                                            <c:if test="${o.getStatus()==1}"><td>Mở</td></c:if>
+                                            <c:if test="${o.getStatus()==0}"><td>Đóng</td></c:if>
+<!--                                            <td>${o.getStatus()}</td>-->
                                             <td>${o.getDate()}</td>
                                             <td>
 <!--                                                <a href="ManagerDeleteProduct?id=${o.getProductID()}">

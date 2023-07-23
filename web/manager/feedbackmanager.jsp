@@ -131,7 +131,6 @@
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                     <tr>
-                                        <th width="10"><input type="checkbox" id="all"></th>
                                         <th>ID đánh giá</th>
                                         <th>Sản phẩm</th>
                                         <th>Khách hàng</th>
@@ -145,13 +144,14 @@
                                 <tbody>
                                 <c:forEach items="${listF}" var="o">
                                     <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
                                         <td>${o.getFeedbackID()}</td>
                                         <td>${o.getProductName()}</td>
                                         <td>${o.getUsername()}</td>
                                         <td>${o.getInformation()}</td>
                                         <td>${o.getDate()}</td>
-                                        <td>${o.getStatus()}</td>
+                                        <c:if test="${o.status==1}"><td>Hiện</td></c:if>
+                                        <c:if test="${o.status==0}"><td>Ẩn</td></c:if>
+<!--                                        <td>${o.getStatus()}</td>-->
                                         <td>${o.getOrderdetailID()}</td>
                                         <td>
                                             <a href="ManagerFeedbackController?id=${o.getFeedbackID()}&mod=1">

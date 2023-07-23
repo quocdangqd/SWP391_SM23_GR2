@@ -90,7 +90,7 @@ public class AdminIncomeController extends HttpServlet {
         request.setAttribute("listP", listpro);
         request.setAttribute("listun", listun);
 
-        request.getRequestDispatcher("/admin/homepage.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/incomemanager.jsp").forward(request, response);
     }
 
     /**

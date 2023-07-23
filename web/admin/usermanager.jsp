@@ -81,16 +81,11 @@
                                     <a class="btn btn-add btn-sm" href="adduser.jsp" title="Thêm"><i class="fas fa-plus"></i>
                                         Tạo mới người dùng</a>
                                 </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                            class="fas fa-trash-alt"></i> Xóa tất cả </a>
-                                </div>
                             </div>
                             <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
                                    id="sampleTable">
                                 <thead>
                                     <tr>
-                                        <th width="10"><input type="checkbox" id="all"></th>
                                         <th>ID người dùng</th>
                                         <th>Tên đăng nhập</th>
                                         <th>Mật khẩu</th>
@@ -127,7 +122,6 @@
                                                                                     </td>
                                                                                 </tr>-->
                                         <tr>
-                                            <td width="10"><input type="checkbox" name="check2" value="2"></td>
                                             <td>${item.getUserID()} </td>
                                             <td>${item.getUsername()}</td>
                                             <td>${item.getPassword()}</td>

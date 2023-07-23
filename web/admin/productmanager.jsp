@@ -106,12 +106,6 @@
                                             Tạo mới sản phẩm</a>
                                     </div>
 
-                                    <div class="col-sm-2">
-                                        <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                                class="fas fa-trash-alt"></i> Xóa tất cả </a>
-                                    </div>
-
-
                                 </div>
                                 <form action="AdminController" method="get">
                                     <label >Tìm kiếm</label>
@@ -134,7 +128,6 @@
                                 <table class="table table-hover table-bordered" id="Table">
                                     <thead>
                                         <tr>
-                                            <th width="10"><input type="checkbox" id="all"></th>
                                             <th>Mã sản phẩm</th>
                                             <th>Danh mục</th>
                                             <th>Tên sản phẩm</th>
@@ -152,9 +145,6 @@
                                     <tbody>
                                         <c:forEach items="${product}" var="p">
                                             <tr>
-                                                <!--<td width="10"><input type="checkbox" name="check1" value="1"></td>-->
-
-                                                <td></td>
                                                 <td>${p.productID}</td>
                                                 <td>${p.categories.name}</td>
                                                 <td>${p.getName()}</td>
@@ -162,7 +152,9 @@
                                                 <td > <img class="col-4" src="${p.picture}"> <img class="col-4" src="${p.picture2}">  <img class="col-4" src="${p.picture3}"></td>
                                                 <td>${p.quantity}</td>
                                                 <td>${p.price}</td> 
-                                                <td>${p.status}</td>  
+                                                <c:if test="${p.status==1}"><td>Mở</td></c:if>
+                                                <c:if test="${p.status==0}"><td>Đóng</td></c:if>
+<!--                                                <td>${p.status}</td>  -->
                                                 <td style="width: 100px;">${p.date}</td> 
 
                                                 <td><a href="editproduct?id=${p.productID}&action=edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
