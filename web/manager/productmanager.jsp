@@ -171,14 +171,16 @@
                                             </td>
                                             <td>${o.getQuantity()}</td>
                                             <td>${o.getPrice()}</td>
-                                            <td>${o.getStatus()}</td>
+                                            <td>
+                                                <c:if test="${o.getStatus()== '0'}" >
+                                                    <div>Hết hàng</div>
+                                                </c:if>
+                                                <c:if test="${o.getStatus()== '1'}" >
+                                                    <div>Còn hàng</div>
+                                                </c:if>
+                                            </td>
                                             <td>${o.getDate()}</td>
                                             <td>
-<!--                                                <a href="ManagerDeleteProduct?id=${o.getProductID()}">
-                                                    <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                            onclick="myFunction(this)"><i class="fas fa-trash-alt"></i> 
-                                                    </button>
-                                                </a>-->
                                                 <a href="ManagerUpdateProductController?id=${o.getProductID()}">
                                                     <button class="btn btn-primary btn-sm edit" type="button" title="Sửa">
                                                         <i class="fas fa-edit"></i>

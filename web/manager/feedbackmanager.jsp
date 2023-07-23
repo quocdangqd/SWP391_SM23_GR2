@@ -122,46 +122,44 @@
                 <div class="col-md-12">
                     <div class="tile">
                         <div class="tile-body">
-<!--                            <div class="row element-button">
-                                <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" href="" title="Thêm"><i class="fas fa-plus"></i>
-                                        Tạo mới đánh giá</a>
-                                </div>
-                            </div>-->
+                            <!--                            <div class="row element-button">
+                                                            <div class="col-sm-2">
+                                                                <a class="btn btn-add btn-sm" href="" title="Thêm"><i class="fas fa-plus"></i>
+                                                                    Tạo mới đánh giá</a>
+                                                            </div>
+                                                        </div>-->
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                     <tr>
-                                        <th width="10"><input type="checkbox" id="all"></th>
                                         <th>ID đánh giá</th>
                                         <th>Sản phẩm</th>
                                         <th>Khách hàng</th>
                                         <th>Nội dung</th>
                                         <th>Ngày đặt</th>
-                                        <th>Tình trạng</th>
+                                        <!--<th>Tình trạng</th>-->
                                         <th>Chi tiết đơn hàng</th>
                                         <th>Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${listF}" var="o">
-                                    <tr>
-                                        <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                        <td>${o.getFeedbackID()}</td>
-                                        <td>${o.getProductName()}</td>
-                                        <td>${o.getUsername()}</td>
-                                        <td>${o.getInformation()}</td>
-                                        <td>${o.getDate()}</td>
-                                        <td>${o.getStatus()}</td>
-                                        <td>${o.getOrderdetailID()}</td>
-                                        <td>
-                                            <a href="ManagerFeedbackController?id=${o.getFeedbackID()}&mod=1">
-                                                <button class="btn btn-primary btn-sm trash" type="button"
-                                                        title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
+                                    <c:forEach items="${listF}" var="o">
+                                        <tr>
+                                            <td>${o.getFeedbackID()}</td>
+                                            <td>${o.getProductName()}</td>
+                                            <td>${o.getUsername()}</td>
+                                            <td>${o.getInformation()}</td>
+                                            <td>${o.getDate()}</td>
+                                            <!--<td>${o.getStatus()}</td>-->
+                                            <td><a href="ManagerOrderDetailController?id=${o.getOrderdetailID()}">${o.getOrderdetailID()}</a></td>
+                                            <td>
+                                                <a href="" onclick="confirmDelete('${o.getDate()}');">
+                                                    <button class="btn btn-primary btn-sm trash" type="button" 
+                                                            title="Xóa" ><i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -170,6 +168,7 @@
             </div>
 
         </main>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> <!-- Nhúng thư viện SweetAlert -->
         <!-- Essential javascripts for application to work-->
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/popper.min.js"></script>
@@ -186,45 +185,15 @@
         <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript">$('#sampleTable').DataTable();</script>
         <script>
-            function deleteRow(r) {
-                var i = r.parentNode.parentNode.rowIndex;
-                document.getElementById("myTable").deleteRow(i);
+            
+            function confirmDelete(date) {
+            var confirmation = confirm("Bạn có chắc chắn là muốn xóa đánh giá này?");
+            if (confirmation) {
+            window.location.href = "ManagerFeedbackController?id=" + date + "&mod=1&confirmation=true";
+            } else {
+                alert("Hủy xóa!");
             }
-            jQuery(function () {
-                jQuery(".trash").click(function () {
-                    swal({
-                        title: "Cảnh báo",
-
-                        text: "Bạn có chắc chắn là muốn xóa đánh giá này?",
-                        buttons: ["Hủy bỏ", "Đồng ý"],
-                    })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    swal("Đã xóa thành công.!", {
-
-                                    });
-                                }
-                            });
-                });
-            });
-            oTable = $('#sampleTable').dataTable();
-            $('#all').click(function (e) {
-                $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
-                e.stopImmediatePropagation();
-            });
-
-            //EXCEL
-            // $(document).ready(function () {
-            //   $('#').DataTable({
-
-            //     dom: 'Bfrtip',
-            //     "buttons": [
-            //       'excel'
-            //     ]
-            //   });
-            // });
-
-
+        }
             //Thời Gian
             function time() {
                 var today = new Date();
@@ -275,25 +244,7 @@
                     win.print();
                 }
             }
-            //     //Sao chép dữ liệu
-            //     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
 
-            // copyTextareaBtn.addEventListener('click', function(event) {
-            //   var copyTextarea = document.querySelector('.js-copytextarea');
-            //   copyTextarea.focus();
-            //   copyTextarea.select();
-
-            //   try {
-            //     var successful = document.execCommand('copy');
-            //     var msg = successful ? 'successful' : 'unsuccessful';
-            //     console.log('Copying text command was ' + msg);
-            //   } catch (err) {
-            //     console.log('Oops, unable to copy');
-            //   }
-            // });
-
-
-            //Modal
             $("#show-emp").on("click", function () {
                 $("#ModalUP").modal({backdrop: false, keyboard: false})
             });

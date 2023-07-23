@@ -5,6 +5,7 @@ import Model.Feedback;
 import Model.Order;
 import Model.Products;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -16,38 +17,38 @@ import java.util.Locale;
  * @author laptop
  */
 public class ManagerDAO extends ConnectMySQL {
-
+    
     private ArrayList<Products> product;
     private ArrayList<Order> order;
     private ArrayList<Feedback> feedback;
-
+    
     public ManagerDAO() {
     }
-
+    
     public ArrayList<Products> getProduct() {
         return product;
     }
-
+    
     public void setProduct(ArrayList<Products> product) {
         this.product = product;
     }
-
+    
     public ArrayList<Order> getOrder() {
         return order;
     }
-
+    
     public void setOrder(ArrayList<Order> order) {
         this.order = order;
     }
-
+    
     public ArrayList<Feedback> getFeedback() {
         return feedback;
     }
-
+    
     public void setFeedback(ArrayList<Feedback> feedback) {
         this.feedback = feedback;
     }
-
+    
     DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.getDefault());
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
@@ -74,13 +75,13 @@ public class ManagerDAO extends ConnectMySQL {
                 String date = String.valueOf(dateFormat.format(rs.getDate(12)));
                 product.add(new Products(ProductID, product_categoryID, name, desciption, picture, price, quantity, status, picture2, picture3, date));
             }
-
+            
         } catch (Exception e) {
             System.out.println("getAllProduct: " + e.getMessage());
         }
         return product;
     }
-
+    
     public Products getProductsByID(String id) {
         try {
             String sqlSelect = "Select * from product where ProductID=" + id;
@@ -88,13 +89,13 @@ public class ManagerDAO extends ConnectMySQL {
             rs = pstm.executeQuery();
             decimalFormat.applyPattern("#,###");
             dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
+            
             while (rs.next()) {
                 Products p = new Products();
                 p.setProductID(String.valueOf(rs.getInt(1)));
                 String categories = String.valueOf(rs.getInt(2));
                 p.setProduct_categoryID(categories);
-
+                
                 p.setName(String.valueOf(rs.getString(3)));
                 p.setDesciption(String.valueOf(rs.getString(4)));
                 p.setPicture(rs.getString(5));
@@ -110,35 +111,10 @@ public class ManagerDAO extends ConnectMySQL {
         } catch (Exception e) {
             System.out.println(e);
         }
-
+        
         return null;
     }
-
-    public void addNewProduct(String cid, String pname, String desciption, String img1, String img2, String img3, String price, String quantity, String status, String date) {
-        try {
-            String sql = "insert into swp.product (product_categoryID, name, desciption, picture, picture2, picture3, price, quantity, sale, date)\n"
-                    + "values (?,?,?,?,?,?,?,?,?,?);";
-            pstm = connection.prepareStatement(sql);
-            pstm.setInt(1, Integer.parseInt(cid));
-            pstm.setString(2, pname);
-            pstm.setString(3, desciption);
-            pstm.setString(4, img1);
-            pstm.setString(5, img2);
-            pstm.setString(6, img3);
-            price = price.replace(",", "");
-            pstm.setFloat(7, Float.parseFloat(price));
-            pstm.setInt(8, Integer.parseInt(quantity));
-            pstm.setBoolean(9, status.equals("1"));
-            Date date1 = Date.valueOf(date);
-            pstm.setDate(10, (date1));
-
-            pstm.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("addNewProduct: " + e.getMessage());
-
-        }
-    }
-
+    
     public void addNewProduct(Products p) {
         try {
             String sql = "INSERT INTO swp.`product` "
@@ -160,7 +136,7 @@ public class ManagerDAO extends ConnectMySQL {
             pstm.setDate(10, date);
             pstm.executeUpdate();
         } catch (Exception e) {
-                        System.out.println("addNewProduct: " + e.getMessage());
+            System.out.println("addNewProduct: " + e.getMessage());
         }
     }
     
@@ -169,17 +145,17 @@ public class ManagerDAO extends ConnectMySQL {
             String sql = "UPDATE product\n"
                     + "SET product_categoryID=?,name=?,desciption=?,picture=?,picture2=?,picture3=?,price=?,quantity=?,status=?,date=?\n"
                     + "WHERE productID=?;";
-            System.out.println("p.getProduct_categoryID()"+p.getProduct_categoryID());
-            System.out.println("p.getName()"+p.getName());
-            System.out.println("p.getDesciption()"+p.getProduct_categoryID());
-            System.out.println("p.getPicture()"+p.getPicture());
-            System.out.println("p.getPicture2()"+p.getPicture2());
-            System.out.println("p.getPicture3()"+p.getPicture3());
-            System.out.println("p.getPrice()"+p.getPrice());
-            System.out.println("p.getQuantity()"+p.getQuantity());
-            System.out.println("p.getStatus()"+p.getStatus());
-            System.out.println("p.getDate()"+p.getDate());
-            System.out.println("p.getProductID()"+p.getProductID());
+            System.out.println("p.getProduct_categoryID()" + p.getProduct_categoryID());
+            System.out.println("p.getName()" + p.getName());
+            System.out.println("p.getDesciption()" + p.getProduct_categoryID());
+            System.out.println("p.getPicture()" + p.getPicture());
+            System.out.println("p.getPicture2()" + p.getPicture2());
+            System.out.println("p.getPicture3()" + p.getPicture3());
+            System.out.println("p.getPrice()" + p.getPrice());
+            System.out.println("p.getQuantity()" + p.getQuantity());
+            System.out.println("p.getStatus()" + p.getStatus());
+            System.out.println("p.getDate()" + p.getDate());
+            System.out.println("p.getProductID()" + p.getProductID());
             pstm = connection.prepareStatement(sql);
             pstm.setInt(1, Integer.parseInt(p.getProduct_categoryID()));
             pstm.setString(2, p.getName());
@@ -205,9 +181,9 @@ public class ManagerDAO extends ConnectMySQL {
         order = new ArrayList<>();
         String sql = "SELECT o.*, u.name, SUM(od.price) \n"
                 + "FROM swp.order o, swp.user u, swp.orderdetail od \n"
-                + "WHERE u.userID=o.order_userID AND od.orderdetail_orderID = o.orderID\n"
+                + "WHERE u.userID=o.order_userID AND od.orderdetail_orderID = o.orderID \n"
                 + "GROUP BY o.orderID \n"
-                + "ORDER BY (o.date) DESC;";
+                + "ORDER BY o.orderID desc;";
         try {
             pstm = connection.prepareStatement(sql);
             rs = pstm.executeQuery();
@@ -216,19 +192,19 @@ public class ManagerDAO extends ConnectMySQL {
                 String order_userID = String.valueOf(rs.getInt(2));
                 String sale = String.valueOf(rs.getInt(3));
                 String note = String.valueOf(rs.getString(4));
-                String date = String.valueOf(dateFormat.format(rs.getTimestamp(5)));
+                String date = String.valueOf((rs.getTimestamp(5)));
                 String status = rs.getString(6);
                 String name_user = rs.getString(7);
                 String price_order = String.valueOf(decimalFormat.format((int) rs.getFloat(8)));
                 order.add(new Order(orderID, order_userID, sale, note, date, status, name_user, price_order));
             }
-
+            
         } catch (Exception e) {
             System.out.println("getListOrder: " + e.getMessage());
         }
         return order;
     }
-
+    
     public Order getOrderByID(String id) {
         try {
             String sqlSelect = "SELECT * FROM swp.order where orderID=" + id;
@@ -248,7 +224,7 @@ public class ManagerDAO extends ConnectMySQL {
         } catch (Exception e) {
             System.out.println("getOrderByID: " + e.getMessage());
         }
-
+        
         return null;
     }
 
@@ -285,7 +261,7 @@ public class ManagerDAO extends ConnectMySQL {
         }
         return data;
     }
-
+    
     public int sumPrice(int orderID) {
         String sql = "SELECT sum(price-price*coalesce(salecodeRate,0)/100) \n"
                 + "FROM swp.salecode sc right outer join swp.order o on sc.salecodeID=o.order_salecodeID , swp.orderdetail od\n"
@@ -310,8 +286,8 @@ public class ManagerDAO extends ConnectMySQL {
             String sqlSelectString = "select FeedbackID,f.FeedbackID_ProductID, feedbackID_userID, information,\n"
                     + "f.status, f.date, u.name,od.orderdetailID, p.name\n"
                     + "from feedback f,user u  ,orderdetail od  ,swp.order o, swp.product p \n"
-                    + "where f.feedbackID_userID=u.userID  and u.userID=o.order_userID\n"
-                    + "and o.orderID=od.orderdetail_orderID and f.orderdetailID=od.orderdetailID";
+                    + "where f.feedbackID_userID=u.userID  and u.userID=o.order_userID and p.ProductID = f.FeedbackID_ProductID\n"
+                    + "and o.orderID=od.orderdetail_orderID and f.orderdetailID=od.orderdetailID;";
             pstm = connection.prepareStatement(sqlSelectString);
             rs = pstm.executeQuery();
             while (rs.next()) {
@@ -332,12 +308,12 @@ public class ManagerDAO extends ConnectMySQL {
         }
         return feedback;
     }
-
-    public void deleteFeedback(String pid) {
-        String sql = "DELETE FROM swp.feedback WHERE FeedbackID_ProductID=?;";
+    
+    public void deleteFeedback(Timestamp date) {
+        String sql = "DELETE FROM swp.feedback WHERE date=?;";
         try {
             pstm = connection.prepareStatement(sql);
-            pstm.setInt(1, Integer.parseInt(pid));
+            pstm.setTimestamp(1, (date));
             pstm.executeUpdate();
         } catch (Exception e) {
             System.out.println("deleteFB: " + e);
@@ -359,7 +335,7 @@ public class ManagerDAO extends ConnectMySQL {
         }
         return count;
     }
-
+    
     public int countOrder() {
         int count = 0;
         try {
@@ -374,7 +350,7 @@ public class ManagerDAO extends ConnectMySQL {
         }
         return count;
     }
-
+    
     public int countProductStock() {
         int count = 0;
         try {
@@ -389,7 +365,7 @@ public class ManagerDAO extends ConnectMySQL {
         }
         return count;
     }
-
+    
     public int countOrderCancelled() {
         int count = 0;
         String sqlSelect = "SELECT COUNT(*) FROM swp.order\n"
@@ -405,7 +381,7 @@ public class ManagerDAO extends ConnectMySQL {
         }
         return count;
     }
-
+    
     public ArrayList<Order> getNewOrder() {
         order = new ArrayList<>();
         String sql = "select o.*,u.name,od.price from swp.order o, swp.orderdetail od, swp.user u\n"
@@ -425,24 +401,16 @@ public class ManagerDAO extends ConnectMySQL {
                 String price_order = String.valueOf(decimalFormat.format((int) rs.getFloat(8)));
                 order.add(new Order(orderID, order_userID, order_userID, note, date, status, name_user, price_order));
             }
-
+            
         } catch (Exception e) {
             System.out.println("getListOrder: " + e.getMessage());
         }
         return order;
     }
-
+    
     public static void main(String[] args) {
         ManagerDAO dao = new ManagerDAO();
-
-        System.out.println(dao.countProductByProductID());
-        System.out.println(dao.getAllProduct().get(1));
-//        dao.updateProduct("1", "Corsair HS70", " Corsair HS70 Pro Wireless Carbon là dòng tai nghe máy tính có phần đệm tai mềm mại, dày dặn, độ sâu lớn, trùm kín tai hạn chế âm thanh từ bên ngoài lọt vào, cùng với độ bền cao, độ đàn hồi lớn ít bị biến dạng và khó rách. ",
-//                "https://product.hstatic.net/200000722513/product/thumbtainghe_43854b38b58545be8683a4e1cbcf1d67_1898e6f48b834e80a6249d87d9839073_master.png",
-//                "https://product.hstatic.net/200000722513/product/he-corsair-hs70-pro-wireless-carbon-2_3855186e6a3e4f74bf4f15d9dc36990d_c3bff6691ab24c7cbb963acfbe1e4cb0_master.jpg",
-//                "https://product.hstatic.net/200000722513/product/he-corsair-hs70-pro-wireless-carbon-3_ba19343bfeb746f5b9c4e4f486971ea2_fee978ad3a344dccbd22e56923d397fb_master.jpg",
-//                "101", "1", "1,790,000", "2023-07-11", "1");
-//        System.out.println(dao.getProductsByID("1"));
-
+//        dao.deleteFeedback("2023-06-30 13:42:51");
+        
     }
 }
