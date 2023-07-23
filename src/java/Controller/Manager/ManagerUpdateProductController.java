@@ -98,8 +98,6 @@ public class ManagerUpdateProductController extends HttpServlet {
             daop.updateEarphone(e);
         }
 
-        req.setAttribute("o", p);
-        req.setAttribute("earphone", e);
         if (Status.equals("0")) {
             p.setQuantity("0");
             dao.updateProduct(p);
@@ -108,7 +106,14 @@ public class ManagerUpdateProductController extends HttpServlet {
             p.setStatus("0");
             dao.updateProduct(p);
             req.setAttribute("successText", "Update Successful!!!");
+        } else if (Status.equals("0") && Integer.parseInt(Quantity) == 0
+                || Status.equals("1") && Integer.parseInt(Quantity) > 0) {
+            dao.updateProduct(p);
+            req.setAttribute("successText", "Update Successful!!!");
         }
+
+        req.setAttribute("o", p);
+        req.setAttribute("earphone", e);
         req.getRequestDispatcher("editproduct.jsp").forward(req, resp);
 
     }
