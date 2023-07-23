@@ -47,7 +47,8 @@ public class EditUserController extends HttpServlet {
                 AccountDao accountDao = new AccountDao();
                 accountDao.AddUserByAdmin(user);
 //                System.out.println(user);
-               response.sendRedirect("ManagerUserController");
+//               response.sendRedirect("ManagerUserController");
+                request.getRequestDispatcher("ManagerUserController").forward(request, response);
                 return;
             } else if (request.getParameter("Submit") != null) {
                 userID = request.getParameter("userID");
@@ -66,8 +67,9 @@ public class EditUserController extends HttpServlet {
                 accountDao.EditUserByAdmin(user);
                 request.setAttribute("user", accountDao.GetUserByUserID(userID));
                 request.setAttribute("message", "Lưu thay đổi thành công!");
-               // request.getRequestDispatcher("edituser.jsp").forward(request, response);
-                response.sendRedirect("ManagerUserController");
+                // request.getRequestDispatcher("edituser.jsp").forward(request, response);
+//                response.sendRedirect("ManagerUserController");
+                request.getRequestDispatcher("edituser.jsp").forward(request, response);
                 return;
             } else {
 
@@ -79,13 +81,11 @@ public class EditUserController extends HttpServlet {
                         break;
                     }
                 }
-//                request.setAttribute("user", usertemp);
-                session.setAttribute("user", usertemp);
-                  request.getRequestDispatcher("edituser.jsp").forward(request, response);
+                request.setAttribute("user", usertemp);
+//                session.setAttribute("user", usertemp);
+//                  request.getRequestDispatcher("edituser.jsp").forward(request, response);
             }
-
-//            request.getRequestDispatcher("edituser.jsp").forward(request, response);
-           //response.sendRedirect("");
+            request.getRequestDispatcher("edituser.jsp").forward(request, response);
         } catch (Exception e) {
             System.out.println(e);
         }
