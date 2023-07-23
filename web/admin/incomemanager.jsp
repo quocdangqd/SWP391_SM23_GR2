@@ -5,7 +5,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Báo cáo doanh thu</title>
+        <title>Bảng điều khiển</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,12 +46,12 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="ManagerHomepageController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="AdminIncomeController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item" href="AdminHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span 
+                <li><a class="app-menu__item active" href="AdminIncomeController"><i class='app-menu__icon bx bx-tachometer'></i><span 
                             class="app-menu__label">Bảng điều khiển</span></a></li>
                 <li><a class="app-menu__item " href="ManagerUserController"><i class='app-menu__icon bx bx-id-card'></i> <span
                             class="app-menu__label">Quản lý người dùng</span></a></li>
@@ -60,9 +60,9 @@
                 </li>
                 <li><a class="app-menu__item" href="OrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Quản lý đơn hàng</span></a></li>
-                <li><a class="app-menu__item active" href="AdminIncomeController"><i
+<!--                <li><a class="app-menu__item active" href="AdminIncomeController"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-                </li>
+                </li>-->
             </ul>
         </aside>
         <main class="app-content">
@@ -70,7 +70,7 @@
                 <div class="col-md-12">
                     <div class="app-title">
                         <ul class="app-breadcrumb breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><b>Báo cáo doanh thu    </b></a></li>
+                            <li class="breadcrumb-item"><a href="#"><b>Bảng điều khiển    </b></a></li>
                         </ul>
                         <div id="clock"></div>
                     </div>

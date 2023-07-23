@@ -4,7 +4,7 @@
 <html lang="en">
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Danh sách đơn hàng | Quản trị Admin</title>
+        <title>Chi tiết đơn hàng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -119,7 +119,7 @@
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb side">
-                    <li class="breadcrumb-item active"><a href="#"><b>Danh sách đơn hàng</b></a></li>
+                    <li class="breadcrumb-item active"><a href="#"><b>Chi tiết đơn hàng</b></a></li>
                 </ul>
                 <div class="col-sm-2">
                     <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i

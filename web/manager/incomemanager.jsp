@@ -5,7 +5,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Báo cáo doanh thu</title>
+        <title>Bảng điều khiển</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -95,7 +95,7 @@
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item " href="ManagerHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item active" href="ManagerIncomeController"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
                 <li><a class="app-menu__item " href="ManagerProductController"><i
@@ -105,9 +105,9 @@
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
                 <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
-                <li><a class="app-menu__item active" href="ManagerIncomeController"><i
+<!--                <li><a class="app-menu__item active" href="ManagerIncomeController"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-                </li>
+                </li>-->
             </ul>
         </aside>
         <main class="app-content">
@@ -115,7 +115,7 @@
                 <div class="col-md-12">
                     <div class="app-title">
                         <ul class="app-breadcrumb breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><b>Báo cáo doanh thu    </b></a></li>
+                            <li class="breadcrumb-item"><a href="#"><b>Bảng điều khiển    </b></a></li>
                         </ul>
                         <div id="clock"></div>
                     </div>
