@@ -30,7 +30,7 @@ public class ManagerUpdateProductController extends HttpServlet {
             req.setAttribute("earphone",
                     daop.getEarphoneByProductID(p.getProductID()));
         }
-        System.out.println("p.getDate(): "+p.getDate());
+        System.out.println("p.getDate(): " + p.getDate());
         SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy");
         try {
             p.setDate(new SimpleDateFormat("yyyy-MM-dd").format(sf.parse(p.getDate())));
@@ -73,9 +73,7 @@ public class ManagerUpdateProductController extends HttpServlet {
         p.setPrice(Price);
         p.setStatus(Status);
         p.setDate(date);
-        dao.updateProduct(p);
-        
-        
+
         Earphone e = new Earphone();
         String type = req.getParameter("type");
         String frequency = req.getParameter("frequency");
@@ -99,11 +97,18 @@ public class ManagerUpdateProductController extends HttpServlet {
             e.setEarphone_ProductID(id);
             daop.updateEarphone(e);
         }
-        
+
         req.setAttribute("o", p);
         req.setAttribute("earphone", e);
-
-        req.setAttribute("successText", "Update Successful!!!");
+        if (Status.equals("0")) {
+            p.setQuantity("0");
+            dao.updateProduct(p);
+            req.setAttribute("successText", "Update Successful!!!");
+        } else if (Integer.parseInt(Quantity) == 0) {
+            p.setStatus("0");
+            dao.updateProduct(p);
+            req.setAttribute("successText", "Update Successful!!!");
+        }
         req.getRequestDispatcher("editproduct.jsp").forward(req, resp);
 
     }
