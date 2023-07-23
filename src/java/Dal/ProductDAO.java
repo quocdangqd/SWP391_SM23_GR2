@@ -386,18 +386,17 @@ public class ProductDAO extends ConnectMySQL {
         return false;
     }
 
-    public List<Products> searchProducts(String keyword, String sort) {
+    public List<Products> searchProducts(String sort) {
 
         List<Products> data = new ArrayList<>();
         try {
-            String sqlSelect = "Select * from product where name like ? ";
+            String sqlSelect = "Select * from product ";
             if ("1".equals(sort)) {
                 sqlSelect += "order by date asc";
             } else if ("2".equals(sort)) {
                 sqlSelect += "order by date desc";
             }
             pstm = connection.prepareStatement(sqlSelect);
-            pstm.setString(1, "%" + keyword + "%");
             rs = pstm.executeQuery();
             while (rs.next()) {
                 Products p = new Products();
@@ -858,7 +857,7 @@ public class ProductDAO extends ConnectMySQL {
 
     public static void main(String[] args) {
         ProductDAO productDAO = new ProductDAO();
-        ArrayList<Products> data = productDAO.GetRandomProduct(productDAO.GetProductListByCategoryID(""), 6);
+        List<Products> data = productDAO.searchProducts("2");
         for (Products products : data) {
             System.out.println(products.getProductID());
         }
