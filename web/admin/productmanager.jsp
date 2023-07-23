@@ -107,14 +107,7 @@
                                     </div>
 
                                 </div>
-                                <form action="AdminController" method="get">
-                                    <label >Tìm kiếm</label>
-                                    <div>
-
-                                        <input value="${search}" name="search" type="text" class="left-box"/>
-                                        <input type="submit" hidden/>
-
-                                    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                               
                                     <label> Sắp xếp </label>      
                                     <select name="sort"  id="exampleSelect1" onchange="this.form.submit()" >
 
@@ -125,7 +118,8 @@
                                     </select>
                                 </form>
 
-                                <table class="table table-hover table-bordered" id="Table">
+                               <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
+                                   id="sampleTable">
                                     <thead>
                                         <tr>
                                             <th>Mã sản phẩm</th>
@@ -187,8 +181,8 @@
             <!-- Data table plugin-->
             <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
             <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
-            <script type="text/javascript">
-
+            <script type="text/javascript">$('#sampleTable').DataTable();</script>
+<script>
                                         //Thời Gian
                                         function time() {
                                             var today = new Date();
@@ -229,6 +223,16 @@
                                                 return i;
                                             }
                                         }
+                                        //In dữ liệu
+            var myApp = new function () {
+                this.printTable = function () {
+                    var tab = document.getElementById('sampleTable');
+                    var win = window.open('', '', 'height=700,width=700');
+                    win.document.write(tab.outerHTML);
+                    win.document.close();
+                    win.print();
+                }
+            }
             </script>
         </body>
 
