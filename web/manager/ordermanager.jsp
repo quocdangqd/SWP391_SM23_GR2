@@ -158,7 +158,7 @@
                                                         <option value="Cancelled" ${ o.getStatus().equals("Cancelled") ? "selected" : "" }>Cancelled</option>
                                                     </select>
                                                     <input style="background-color: #99ffff; border: 2px solid #00ffff; border-radius: 10px;color: blue;" type="submit" value="Cập nhật">
-                                                    <a href="OrderDetailController?id=${o.getOrderID()}" style="background-color: #ffff99; border: 2px solid #ccff36; border-radius: 10px;color: blue; padding: 1px 6px 1px 6px;" type="submit" value="Chi tiết"> Chi tiết</a>
+                                                    <a href="ManagerOrderDetailController?id=${o.getOrderID()}" style="background-color: #ffff99; border: 2px solid #ccff36; border-radius: 10px;color: blue; padding: 1px 6px 1px 6px;" type="submit" value="Chi tiết"> Chi tiết</a>
                                                 </form>
                                             </td>
                                             <!--<td>${o.getNote()}</td>-->

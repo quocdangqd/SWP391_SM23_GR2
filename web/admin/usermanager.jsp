@@ -140,6 +140,9 @@
                                             <c:if test="${item.getUser_roleID()=='3'}">
                                                 <td>Khách hàng</td>
                                             </c:if>
+                                            <c:if test="${item.getUser_roleID()=='4'}">
+                                                <td>Saler</td>
+                                            </c:if>
                                             <td>${item.getName()}</td>
                                             <td>${item.getAge()}</td>
                                             <c:if test="${item.getUser_sexID()=='1'}">
@@ -155,9 +158,9 @@
                                             <!--<td><img src="UserImage/user.getAvatar()}"></td>-->
                                             <td>${item.getStatus()=='1'?"Hoạt động":"Tắt hoạt động"}</td>
                                             <td>
-<!--                                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                                </button>-->
+                                                <!--                                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                                                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
+                                                                                                </button>-->
                                                 <a href="EditUserController?userID=${item.getUserID()}" class="btn btn-primary btn-sm" title="chỉnh sửa"><i class="fas fa-edit"></i></a>
                                             </td>
                                         </tr>

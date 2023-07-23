@@ -43,15 +43,6 @@ public class EditUserController extends HttpServlet {
                 String user_sexID = request.getParameter("user_sexID");
                 String user_roleID = request.getParameter("user_roleID");
                 String status = request.getParameter("status");
-                out.print("username: " + username+"<br>");
-                out.print("password: " + password+"<br>");
-                out.print("name: " + name+"<br>");
-                out.print("phone_number: " + phone_number+"<br>");
-                out.print("age: " + age+"<br>");
-                out.print("address: " + address+"<br>");
-                out.print("user_sexID: " + user_sexID+"<br>");
-                out.print("user_roleID: " + user_roleID+"<br>");
-                out.print("status: " + status+"<br>");
                 User user = new User(userID, username, password, user_roleID, name, age, user_sexID, address, phone_number, status);
                 AccountDao accountDao = new AccountDao();
                 accountDao.AddUserByAdmin(user);
