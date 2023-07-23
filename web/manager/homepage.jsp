@@ -91,12 +91,12 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="ManagerHomepageController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="ManagerIncomeController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item active" href="ManagerHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item active" href="ManagerIncomeController"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
                 <li><a class="app-menu__item " href="ManagerProductController"><i
@@ -106,9 +106,9 @@
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
                 <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
-                <li><a class="app-menu__item" href="ManagerIncomeController"><i
+<!--                <li><a class="app-menu__item" href="ManagerIncomeController"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-                </li>
+                </li>-->
             </ul>
         </aside>
         <main class="app-content">
@@ -154,7 +154,7 @@
                             <div class="widget-small danger coloured-icon"><i class='icon bx bxs-error-alt fa-3x'></i>
                                 <div class="info">
                                     <h4>Sắp hết hàng</h4>
-                                    <p><b>${countPS} sản phẩm</b></p>
+                                    <p><b>4 sản phẩm</b></p>
                                     <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
                                 </div>
                             </div>
@@ -162,13 +162,11 @@
                         <!--col-6--> 
                         <div class="col-md-6">
                             <div class="widget-small danger coloured-icon"><i class='icon bx bxs-error-alt fa-3x'></i>
-                                <a href="ManagerOrderController">
-                                    <div class="info">
-                                        <h4>Đơn hàng bị hủy</h4>
-                                        <p><b>${countOC} sản phẩm</b></p>
-                                        <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
-                                    </div>
-                                </a>
+                                <div class="info">
+                                    <h4>Tổng số đánh giá</h4>
+                                    <p><b>4 sản phẩm</b></p>
+                                    <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">

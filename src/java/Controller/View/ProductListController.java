@@ -54,7 +54,7 @@ public class ProductListController extends HttpServlet {
                     String headPhonesortOrder = null;
                     String searchSubmit = request.getParameter("searchSubmit");
                     if (searchSubmit != null) {// click search
-                        searchInput = request.getParameter("searchInput");
+                        searchInput = request.getParameter("searchInput").trim();
                         headPhonesortOrder = (String) session.getAttribute("headPhonesortOrder");
 //                        out.print("e"); 
                         if (headPhonesortOrder == null) {
@@ -122,7 +122,7 @@ public class ProductListController extends HttpServlet {
                     String mousesortOrder = null;
                     String searchSubmit = request.getParameter("searchSubmit");
                     if (searchSubmit != null) {// click search
-                        searchInput = request.getParameter("searchInput");
+                        searchInput = request.getParameter("searchInput").trim();
                         mousesortOrder = (String) session.getAttribute("mousesortOrder");
                         if (mousesortOrder == null) {
                             mouseData = pdao.getProductListByCategoryIDAndNameAndSort("3", searchInput, "rate");
@@ -188,7 +188,7 @@ public class ProductListController extends HttpServlet {
                     String keyboardsortOrder = null;
                     String searchSubmit = request.getParameter("searchSubmit");
                     if (searchSubmit != null) {// click search
-                        searchInput = request.getParameter("searchInput");
+                        searchInput = request.getParameter("searchInput").trim();
                         keyboardsortOrder = (String) session.getAttribute("keyboardsortOrder");
                         if (keyboardsortOrder == null) {
                             keyboardData = pdao.getProductListByCategoryIDAndNameAndSort("2", searchInput, "rate");
@@ -259,7 +259,7 @@ public class ProductListController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("headPhonesortOrder") != null || request.getParameter("keyboardsortOrder") != null || request.getParameter("mousesortOrder") != null || request.getParameter("searchInput") != null) {
+        if (request.getParameter("headPhonesortOrder") != null || request.getParameter("keyboardsortOrder") != null || request.getParameter("mousesortOrder") != null || request.getParameter("searchInput").trim() != null) {
             processRequest(request, response);
             return;
         }

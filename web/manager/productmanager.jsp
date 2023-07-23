@@ -5,7 +5,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Danh sách sản phẩm</title>
+        <title>Quản lý sản phẩm</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -91,12 +91,12 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="ManagerHomepageController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="ManagerIncomeController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item " href="ManagerHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item " href="ManagerIncomeController"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
 
                 <li><a class="app-menu__item active" href="ManagerProductController"><i
@@ -106,9 +106,9 @@
                             class="app-menu__label">Danh sách đơn hàng</span></a></li>
                 <li><a class="app-menu__item" href="ManagerFeedbackController"><i class='app-menu__icon bx bx-run'></i><span
                             class="app-menu__label">Đánh giá </span></a></li>
-                <li><a class="app-menu__item" href="ManagerIncomeController"><i
+<!--                <li><a class="app-menu__item" href="ManagerIncomeController"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-                </li>
+                </li>-->
             </ul>
         </aside>
         <main class="app-content">
@@ -144,7 +144,6 @@
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                     <tr>
-                                        <th width="10"><input type="checkbox" id="all"></th>
                                         <th>Mã sản phẩm</th>
                                         <th>Danh mục</th>
                                         <th>Tên sản phẩm</th>
@@ -160,7 +159,6 @@
                                 <tbody>
                                     <c:forEach items="${listP}" var="o">
                                         <tr>
-                                            <td width="10"><input type="checkbox" name="check1" value="1"></td>
                                             <td>${o.getProductID()}</td>
                                             <td>${listC.get(o.getProduct_categoryID()-1).getName()}</td>
                                             <td>${o.getName()}</td>

@@ -24,7 +24,7 @@
                 }
             </style>
             <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-            <title>Danh sách nhân viên | Quản trị Admin</title>
+            <title>Quản lý sản phẩm</title>
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -68,12 +68,12 @@
             <aside class="app-sidebar">
                 <div class="app-sidebar__user">
                     <div>
-                        <a href="homepage.jsp"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                        <a href="AdminIncomeController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                     </div>
                 </div>
                 <hr>
                 <ul class="app-menu" style="font-family: 'roboto';">
-                    <li><a class="app-menu__item" href="AdminHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span
+                    <li><a class="app-menu__item" href="AdminIncomeController"><i class='app-menu__icon bx bx-tachometer'></i><span
                                 class="app-menu__label">Bảng điều khiển</span></a></li>
                     <li><a class="app-menu__item " href="ManagerUserController"><i class='app-menu__icon bx bx-id-card'></i> <span
                                 class="app-menu__label">Quản lý người dùng</span></a></li>
@@ -82,9 +82,9 @@
                     </li>
                     <li><a class="app-menu__item" href="OrderController"><i class='app-menu__icon bx bx-task'></i><span
                                 class="app-menu__label">Quản lý đơn hàng</span></a></li>
-                    <li><a class="app-menu__item" href="AdminIncomeController"><i
+<!--                    <li><a class="app-menu__item" href="AdminIncomeController"><i
                                 class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-                    </li>
+                    </li>-->
                 </ul>
             </aside>
 
@@ -105,12 +105,6 @@
                                         <a class="btn btn-add btn-sm" href="editproduct?action=add" title="Thêm"><i class="fas fa-plus"></i>
                                             Tạo mới sản phẩm</a>
                                     </div>
-
-                                    <div class="col-sm-2">
-                                        <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                                class="fas fa-trash-alt"></i> Xóa tất cả </a>
-                                    </div>
-
 
                                 </div>
                                 <form action="AdminController" method="get">
@@ -134,7 +128,6 @@
                                 <table class="table table-hover table-bordered" id="Table">
                                     <thead>
                                         <tr>
-                                            <th width="10"><input type="checkbox" id="all"></th>
                                             <th>Mã sản phẩm</th>
                                             <th>Danh mục</th>
                                             <th>Tên sản phẩm</th>
@@ -152,9 +145,6 @@
                                     <tbody>
                                         <c:forEach items="${product}" var="p">
                                             <tr>
-                                                <!--<td width="10"><input type="checkbox" name="check1" value="1"></td>-->
-
-                                                <td></td>
                                                 <td>${p.productID}</td>
                                                 <td>${p.categories.name}</td>
                                                 <td>${p.getName()}</td>
@@ -162,7 +152,9 @@
                                                 <td > <img class="col-4" src="${p.picture}"> <img class="col-4" src="${p.picture2}">  <img class="col-4" src="${p.picture3}"></td>
                                                 <td>${p.quantity}</td>
                                                 <td>${p.price}</td> 
-                                                <td>${p.status}</td>  
+                                                <c:if test="${p.status==1}"><td>Mở</td></c:if>
+                                                <c:if test="${p.status==0}"><td>Đóng</td></c:if>
+<!--                                                <td>${p.status}</td>  -->
                                                 <td style="width: 100px;">${p.date}</td> 
 
                                                 <td><a href="editproduct?id=${p.productID}&action=edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>

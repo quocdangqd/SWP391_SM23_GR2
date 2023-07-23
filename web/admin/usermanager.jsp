@@ -5,7 +5,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Danh sách người dùng | Quản trị Admin</title>
+        <title>Quản lý người dùng</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,12 +43,12 @@
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="homepage.jsp"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="AdminIncomeController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item " href="AdminHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span
+                <li><a class="app-menu__item " href="AdminIncomeController"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Bảng điều khiển</span></a></li>
                 <li><a class="app-menu__item active" href="ManagerUserController"><i class='app-menu__icon bx bx-id-card'></i>
                         <span class="app-menu__label">Quản lý người dùng</span></a></li>
@@ -57,9 +57,9 @@
                 </li>
                 <li><a class="app-menu__item" href="OrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Quản lý đơn hàng</span></a></li>            
-                <li><a class="app-menu__item" href="AdminIncomeController"><i
+<!--                <li><a class="app-menu__item" href="AdminIncomeController"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-                </li>
+                </li>-->
             </ul>
         </aside>
         <main class="app-content">
@@ -81,16 +81,11 @@
                                     <a class="btn btn-add btn-sm" href="adduser.jsp" title="Thêm"><i class="fas fa-plus"></i>
                                         Tạo mới người dùng</a>
                                 </div>
-                                <div class="col-sm-2">
-                                    <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                            class="fas fa-trash-alt"></i> Xóa tất cả </a>
-                                </div>
                             </div>
                             <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
                                    id="sampleTable">
                                 <thead>
                                     <tr>
-                                        <th width="10"><input type="checkbox" id="all"></th>
                                         <th>ID người dùng</th>
                                         <th>Tên đăng nhập</th>
                                         <th>Mật khẩu</th>
@@ -127,7 +122,6 @@
                                                                                     </td>
                                                                                 </tr>-->
                                         <tr>
-                                            <td width="10"><input type="checkbox" name="check2" value="2"></td>
                                             <td>${item.getUserID()} </td>
                                             <td>${item.getUsername()}</td>
                                             <td>${item.getPassword()}</td>
@@ -139,6 +133,9 @@
                                             </c:if>
                                             <c:if test="${item.getUser_roleID()=='3'}">
                                                 <td>Khách hàng</td>
+                                            </c:if>
+                                            <c:if test="${item.getUser_roleID()=='4'}">
+                                                <td>Saler</td>
                                             </c:if>
                                             <td>${item.getName()}</td>
                                             <td>${item.getAge()}</td>
@@ -155,9 +152,9 @@
                                             <!--<td><img src="UserImage/user.getAvatar()}"></td>-->
                                             <td>${item.getStatus()=='1'?"Hoạt động":"Tắt hoạt động"}</td>
                                             <td>
-<!--                                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                                </button>-->
+                                                <!--                                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                                                                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
+                                                                                                </button>-->
                                                 <a href="EditUserController?userID=${item.getUserID()}" class="btn btn-primary btn-sm" title="chỉnh sửa"><i class="fas fa-edit"></i></a>
                                             </td>
                                         </tr>

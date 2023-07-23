@@ -225,6 +225,7 @@ public class CartDAO extends ConnectMySQL {
                 String price = String.valueOf(rs.getFloat(3));
                 String quantity = String.valueOf(rs.getInt(4));
                 String totalcost = String.valueOf(decimalFormat.format(rs.getFloat(5)));
+              
                 String productID = String.valueOf(rs.getInt(6));
                 String userID = String.valueOf(rs.getInt(7));
                 String status = String.valueOf(rs.getInt(8));

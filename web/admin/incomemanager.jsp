@@ -5,7 +5,7 @@
 
     <head>
         <link rel="icon" href="image/icon.png" type="image/x-icon"/>
-        <title>Báo cáo doanh thu</title>
+        <title>Bảng điều khiển</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,29 +29,29 @@
                                             aria-label="Hide Sidebar"></a>
             <!-- Navbar Right Menu-->
             <header class="app-header">
-            <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
-                                            aria-label="Hide Sidebar"></a>
-            <!-- Navbar Right Menu-->
-            <ul class="app-nav">
+                <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
+                                                aria-label="Hide Sidebar"></a>
+                <!-- Navbar Right Menu-->
+                <ul class="app-nav">
 
-                <!-- User Menu-->
-                <li><a class="app-nav__item" href="../view/homepage"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                    <!-- User Menu-->
+                    <li><a class="app-nav__item" href="../view/homepage"><i class='bx bx-log-out bx-rotate-180'></i> </a>
 
-                </li>
-            </ul>
-        </header>
+                    </li>
+                </ul>
+            </header>
         </header>
         <!-- Sidebar menu-->
         <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
         <aside class="app-sidebar">
             <div class="app-sidebar__user">
                 <div>
-                    <a href="ManagerHomepageController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
+                    <a href="AdminIncomeController"><img src="image/logo1.png" alt="Logo" height="45px" width="225px"/></a>
                 </div>
             </div>
             <hr>
             <ul class="app-menu">
-                <li><a class="app-menu__item" href="AdminHomepageController"><i class='app-menu__icon bx bx-tachometer'></i><span 
+                <li><a class="app-menu__item active" href="AdminIncomeController"><i class='app-menu__icon bx bx-tachometer'></i><span 
                             class="app-menu__label">Bảng điều khiển</span></a></li>
                 <li><a class="app-menu__item " href="ManagerUserController"><i class='app-menu__icon bx bx-id-card'></i> <span
                             class="app-menu__label">Quản lý người dùng</span></a></li>
@@ -60,9 +60,9 @@
                 </li>
                 <li><a class="app-menu__item" href="OrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Quản lý đơn hàng</span></a></li>
-                <li><a class="app-menu__item active" href="AdminIncomeController"><i
+<!--                <li><a class="app-menu__item active" href="AdminIncomeController"><i
                             class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-                </li>
+                </li>-->
             </ul>
         </aside>
         <main class="app-content">
@@ -70,7 +70,7 @@
                 <div class="col-md-12">
                     <div class="app-title">
                         <ul class="app-breadcrumb breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><b>Báo cáo doanh thu    </b></a></li>
+                            <li class="breadcrumb-item"><a href="#"><b>Bảng điều khiển    </b></a></li>
                         </ul>
                         <div id="clock"></div>
                     </div>
@@ -129,6 +129,24 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-6">
+                    <div class="tile">
+                        <h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tile">
+                        <h3 class="tile-title">THỐNG KÊ DOANH THU</h3>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            <div class="row">
                 <div class="col-md-12">
                     <div class="tile">
                         <div>
@@ -180,6 +198,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <c:if test="${empty listun}">
+                                        <tr>
+                                            <td colspan="4" style="text-align: center;">Không có sản phẩm hết</td>
+                                        </tr>
+                                    </c:if>
                                     <c:forEach items="${listun}" var="l">
                                         <tr>
                                             <td>${l.getProductID()}</td>
@@ -197,24 +220,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="tile">
-                        <h3 class="tile-title">THỐNG KÊ DOANH SỐ</h3>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="tile">
-                        <h3 class="tile-title">THỐNG KÊ DOANH THU</h3>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <canvas class="embed-responsive-item" id="barChartDemo"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>  
         </main>
 
         <!-- Essential javascripts for application to work-->

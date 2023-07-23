@@ -43,19 +43,11 @@ public class EditUserController extends HttpServlet {
                 String user_sexID = request.getParameter("user_sexID");
                 String user_roleID = request.getParameter("user_roleID");
                 String status = request.getParameter("status");
-                out.print("username: " + username+"<br>");
-                out.print("password: " + password+"<br>");
-                out.print("name: " + name+"<br>");
-                out.print("phone_number: " + phone_number+"<br>");
-                out.print("age: " + age+"<br>");
-                out.print("address: " + address+"<br>");
-                out.print("user_sexID: " + user_sexID+"<br>");
-                out.print("user_roleID: " + user_roleID+"<br>");
-                out.print("status: " + status+"<br>");
                 User user = new User(userID, username, password, user_roleID, name, age, user_sexID, address, phone_number, status);
                 AccountDao accountDao = new AccountDao();
                 accountDao.AddUserByAdmin(user);
 //                System.out.println(user);
+//               response.sendRedirect("ManagerUserController");
                 request.getRequestDispatcher("ManagerUserController").forward(request, response);
                 return;
             } else if (request.getParameter("Submit") != null) {
@@ -75,6 +67,8 @@ public class EditUserController extends HttpServlet {
                 accountDao.EditUserByAdmin(user);
                 request.setAttribute("user", accountDao.GetUserByUserID(userID));
                 request.setAttribute("message", "Lưu thay đổi thành công!");
+                // request.getRequestDispatcher("edituser.jsp").forward(request, response);
+//                response.sendRedirect("ManagerUserController");
                 request.getRequestDispatcher("edituser.jsp").forward(request, response);
                 return;
             } else {
@@ -87,10 +81,10 @@ public class EditUserController extends HttpServlet {
                         break;
                     }
                 }
-//                request.setAttribute("user", usertemp);
-                session.setAttribute("user", usertemp);
+                request.setAttribute("user", usertemp);
+//                session.setAttribute("user", usertemp);
+//                  request.getRequestDispatcher("edituser.jsp").forward(request, response);
             }
-
             request.getRequestDispatcher("edituser.jsp").forward(request, response);
         } catch (Exception e) {
             System.out.println(e);
