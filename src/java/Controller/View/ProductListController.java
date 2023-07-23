@@ -259,7 +259,7 @@ public class ProductListController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("headPhonesortOrder") != null || request.getParameter("keyboardsortOrder") != null || request.getParameter("mousesortOrder") != null || request.getParameter("searchInput").trim() != null) {
+        if (request.getParameter("headPhonesortOrder") != null || request.getParameter("keyboardsortOrder") != null || request.getParameter("mousesortOrder") != null || request.getParameter("searchInput") != null) {
             processRequest(request, response);
             return;
         }
