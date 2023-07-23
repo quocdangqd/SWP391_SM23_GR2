@@ -107,16 +107,7 @@
                                     </div>
 
                                 </div>
-                               
-                                    <label> Sắp xếp </label>      
-                                    <select name="sort"  id="exampleSelect1" onchange="this.form.submit()" >
-
-                                        <option value="0" ${sort=='0'?'selected':''}>không</option>
-                                        <option value="1" ${sort=='1'?'selected':''}>Tăng dần theo ngày</option>
-                                        <option value="2" ${sort=='2'?'selected':''}>Giảm dần theo ngày</option>
-
-                                    </select>
-                                </form>
+                                
 
                                <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
                                    id="sampleTable">
