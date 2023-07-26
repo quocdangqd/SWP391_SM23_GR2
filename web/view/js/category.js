@@ -58,4 +58,3 @@ headernavSearch.ondbclick= function (){
         document.getElementById(id).style.display = "none"
     }
 }
-// tạm thời chưa chạy , có thời gian sẽ sửa sau

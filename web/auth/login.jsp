@@ -201,8 +201,8 @@
                             <div class="social-login">
                                 <span class="social-label">ĐĂNG NHẬP VỚI</span>
                                 <ul class="socials">
-                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+<!--                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                                    <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>-->
                                     <li><a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:9999/TechZone/auth/LoginWithGoogle&response_type=code
 		   &client_id=403286912163-5tgcg35ogl3jujvvteq6b4vm38uvvu1h.apps.googleusercontent.com&approval_prompt=force"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
                                 </ul>
