@@ -176,17 +176,21 @@
                 </li>
                 <li><a class="app-menu__item" href="OrderController"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Quản lý đơn hàng</span></a></li>
-<!--                <li><a class="app-menu__item" href="AdminIncomeController"><i
-                            class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-                </li>-->
+                <!--                <li><a class="app-menu__item" href="AdminIncomeController"><i
+                                            class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
+                                </li>-->
             </ul>
         </aside>
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb">
                     <li class="breadcrumb-item">Danh sách sản phẩm</li>
-                    <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
-                </ul>
+                        <c:if test="${p==null}">
+                        <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
+                        </c:if>
+                        <c:if test="${p!=null}">
+                        <li class="breadcrumb-item"><a href="#">Chỉnh sửa sản phẩm</a></li><!-- comment -->
+                    </c:if>                </ul>
             </div>
             <c:if test="${p==null}"> 
                 <div class="row">
@@ -420,8 +424,8 @@
 
 
                                 <div class="modal-footer">
-                                    <input type="submit" class="btn btn-success" value="Edit">
-                                    <a class="btn btn-cancel" href="AdminController">Cancel</a>
+                                    <input type="submit" class="btn btn-success" value="Lưu">
+                                    <a class="btn btn-cancel" href="AdminController">Hủy bỏ</a>
                                 </div>
 
                             </form>
@@ -447,24 +451,24 @@
     <script src="js/plugins/pace.min.js"></script>
     <script>
 
-                        const inpFile = document.getElementById("inpFile");
-                        const loadFile = document.getElementById("loadFile");
-                        const previewContainer = document.getElementById("imagePreview");
-                        const previewContainer = document.getElementById("imagePreview");
-                        const previewImage = previewContainer.querySelector(".image-preview__image");
-                        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-                        inpFile.addEventListener("change", function () {
-                            const file = this.files[0];
-                            if (file) {
-                                const reader = new FileReader();
-                                previewDefaultText.style.display = "none";
-                                previewImage.style.display = "block";
-                                reader.addEventListener("load", function () {
-                                    previewImage.setAttribute("src", this.result);
-                                });
-                                reader.readAsDataURL(file);
-                            }
-                        });
+                                        const inpFile = document.getElementById("inpFile");
+                                        const loadFile = document.getElementById("loadFile");
+                                        const previewContainer = document.getElementById("imagePreview");
+                                        const previewContainer = document.getElementById("imagePreview");
+                                        const previewImage = previewContainer.querySelector(".image-preview__image");
+                                        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+                                        inpFile.addEventListener("change", function () {
+                                            const file = this.files[0];
+                                            if (file) {
+                                                const reader = new FileReader();
+                                                previewDefaultText.style.display = "none";
+                                                previewImage.style.display = "block";
+                                                reader.addEventListener("load", function () {
+                                                    previewImage.setAttribute("src", this.result);
+                                                });
+                                                reader.readAsDataURL(file);
+                                            }
+                                        });
 
 
     </script>

@@ -70,7 +70,7 @@ public class SalerDAO extends ConnectMySQL {
                 ps2.setInt(1, Integer.parseInt(rs.getString(1)));
                 ResultSet rs2 = ps2.executeQuery();
                 String total = 0 + "";
-
+                
                 if (rs2.next()) {
                     if (rs2.getString(2) != null) {
                         total = rs2.getString(2);

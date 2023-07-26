@@ -20,7 +20,7 @@
         });
 
         $(".product__panel-item").click(function(){
-            $(location).attr('href','product.html');
+            $(location).attr('href','ProductDetailController?ProductID=${item.getProductID()}');
         });
 
         // $(".product__main-img-list img").click(function(){

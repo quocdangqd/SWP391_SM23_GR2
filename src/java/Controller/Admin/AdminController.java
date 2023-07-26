@@ -61,7 +61,7 @@ public class AdminController extends HttpServlet {
         product = productDAO.searchProducts(sort); 
         request.setAttribute("sort", sort);
         request.setAttribute("product", product);
-         request.getRequestDispatcher("productmanager.jsp").forward(request,response);
+        request.getRequestDispatcher("productmanager.jsp").forward(request,response);
        
             
         

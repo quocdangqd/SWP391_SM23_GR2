@@ -796,7 +796,7 @@
         <button onclick="topFunction()" id="myBtn-scroll" title="Go to top"><i class="fas fa-chevron-up"></i></i></button>
     <!--  -->
 
-    <script src="js/jq.js"></script>
+<!--    <script src="js/jq.js"></script>-->
     <script src="js/category.js"></script>
     <script>
             function changeHeadPhone() {

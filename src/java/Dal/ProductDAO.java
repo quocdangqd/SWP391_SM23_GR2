@@ -498,7 +498,6 @@ public class ProductDAO extends ConnectMySQL {
             stm.setFloat(7, Float.parseFloat(p.getPrice()));
             stm.setInt(8, Integer.parseInt(p.getQuantity()));
             stm.setBoolean(9, p.getStatus().equals("1"));
-            stm.setInt(9, Integer.parseInt("1"));
             stm.setDate(10, Date.valueOf(p.getDate()));
             stm.setString(11, p.getProductID());
             stm.executeUpdate();

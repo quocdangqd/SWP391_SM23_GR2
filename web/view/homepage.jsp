@@ -341,13 +341,7 @@
                                 </div>
                             </nav>
 
-                            <!--                            <div class="product__sidebar-img-wrap">
-                                                             <img src="images1/product/Demon Slayer_ Kimetsu no Yaiba - Assista na Crunchyroll.png" width="255" height="350" alt=""> 
-                                                            <video width="255" height="300" controls>
-                                                                <source src="https://www.youtube.com/embed/9xpCv_7Bfr4" type="video/mp4">
-                                                            </video>
-                                                             <img src="images/banner_7.jpg" alt="" class="product__sidebar-img"> 
-                                                        </div>-->
+                       
                         </aside>
 
                         <article class="product__content col-lg-9 col-md-12 col-sm-12" id="articleTab">
@@ -395,9 +389,9 @@
                                     </c:if>
                                 </ul>                              
                             </nav>
-
-                            <div class="row product__panel" id="row product__panel">
+                            <div class="row product__panel" id="row product__panel"">
                                 <c:forEach items="${typeProductList}" var="item">
+                                  
                                     <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
                                         <div class="product__panel-item-wrap">
                                             <div class="product__panel-img-wrap">
@@ -434,6 +428,7 @@
                                             </c:if>
                                         </div>
                                     </div>
+                                                
                                 </c:forEach>
                             </div>
                         </article>
@@ -452,35 +447,9 @@
                             </h2>
                         </div>
                     </div>
-                    <div class="row bg-white">
-
-                        <!--                        <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-                                                    <div class="product__panel-img-wrap">
-                                                        <img src="images1/product/1.jpg" alt="" class="product__panel-img">
-                                                    </div>
-                                                    <h3 class="product__panel-heading">
-                                                        <a href="#" class="product__panel-link">Tai Nghe Gaming PRESONUS</a>
-                                                    </h3>
-                                                    <div class="product__panel-rate-wrap">
-                                                        <i class="fas fa-star product__panel-rate"></i>
-                                                        <i class="fas fa-star product__panel-rate"></i>
-                                                        <i class="fas fa-star product__panel-rate"></i>
-                                                        <i class="fas fa-star product__panel-rate"></i>
-                                                        <i class="fas fa-star product__panel-rate"></i>
-                                                    </div>
-                        
-                                                    <div class="product__panel-price">
-                                                        <span class="product__panel-price-old product__panel-price-old-hide">
-                                                            2.800.000đ
-                                                        </span>
-                                                        <span class="product__panel-price-current">
-                                                            2.709.580đ
-                                                        </span>
-                                                    </div>  
-                                                </div>-->
+                    <div class="row bg-white">            
                         <c:forEach items="${bottomDataList}" var="item">
                             <div class="product__panel-item col-lg-2 col-md-3 col-sm-6">
-
                                 <div class="product__panel-img-wrap">
                                     <a href="ProductDetailController?ProductID=${item.getProductID()}">
                                         <img src="${item.getPicture()}" alt="" class="product__panel-img">
@@ -497,7 +466,6 @@
                                     <i class="fas fa-star product__panel-rate"></i>
                                     <i class="fas fa-star product__panel-rate"></i>
                                 </div>
-
                                 <div class="product__panel-price">
                                     <span class="product__panel-price-old product__panel-price-old-hide">
                                         ${item.getSalePrice()}đ
@@ -508,15 +476,6 @@
                                 </div>  
                             </div>
                         </c:forEach>
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
             </section>
@@ -526,7 +485,7 @@
             <jsp:include page="footer.jsp"></jsp:include>
                 <!-- end footer -->
             </div>
-            <script src="js/jq.js"></script>
+<!--            <script src="js/jq.js"></script>-->
             <script src="js/index.js"></script>
         <c:if test="${successCheckout!=null}">
             <script>
@@ -558,5 +517,6 @@
                 });
             }
         </script>
+        
     </body>
 </html>
